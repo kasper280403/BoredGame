@@ -1,6 +1,8 @@
 package Modules;
 
-public class LadderAction {
+public class LadderAction implements TileAction {
+
+  //TODO Implementere spiller Actions
 
   private int destinationTileId;
 
@@ -13,5 +15,10 @@ public class LadderAction {
     if (destinationTileId < 0) {
       throw new IllegalArgumentException("destinationTile has to be greater than zero");
     }
+  }
+
+  @Override
+  public void perform(Player player) {
+    //player.goToTile, eller lignende
   }
 }
