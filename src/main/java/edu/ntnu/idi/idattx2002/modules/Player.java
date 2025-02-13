@@ -1,23 +1,26 @@
 package edu.ntnu.idi.idattx2002.modules;
 
 public class Player {
-    String name;
+    String playerName;
     int playerID;
     int pieceID;
     int currentTile = 0;
 
-    public Player(String name, int playerID, int pieceID) {
-        this.name = name;
+    public Player(String playerName, int playerID, int pieceID) {
+        this.playerName = playerName;
         this.playerID = playerID;
         this.pieceID = pieceID;
     }
 
-    public void movePlayer(int n){
-        currentTile += n;
+    public void movePlayerBySteps(int numberOfSteps){
+        currentTile += numberOfSteps;
+    }
+
+    public void movePlayerToTile(int tileId) {
+        currentTile = tileId;
     }
 
     public int getCurrentTile(){
         return currentTile;
     }
-
 }
