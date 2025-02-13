@@ -5,7 +5,7 @@ import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 public class Tile {
 
   private final int tileId;
-  private TileAction landAction;
+  private LandAction landAction;
 
   public Tile (int tileId) {
     validateTileId(tileId);
@@ -19,7 +19,7 @@ public class Tile {
     }
    }
 
-   public void setLandAction(TileAction landAction) {
+   public void setLandAction(LandAction landAction) {
     this.landAction = landAction;
    }
 

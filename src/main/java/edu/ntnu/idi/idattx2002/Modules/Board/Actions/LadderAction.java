@@ -1,8 +1,9 @@
-package edu.ntnu.idi.idattx2002.Modules.Board;
+package edu.ntnu.idi.idattx2002.Modules.Board.Actions;
 
+import edu.ntnu.idi.idattx2002.Modules.Board.LandAction;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 
-public class LadderAction implements TileAction {
+public class LadderAction implements LandAction {
 
   private final int destinationTileId;
 
@@ -12,7 +13,7 @@ public class LadderAction implements TileAction {
   }
 
   private void validateDestinationTileId(int destinationTileId) {
-    if (destinationTileId < 0) {
+    if (destinationTileId < 1 || destinationTileId > 90) {
       throw new IllegalArgumentException("destinationTile has to be greater than zero");
     }
   }
