@@ -1,3 +1,5 @@
+package edu.ntnu.idi.idattx2002.modules;
+
 public class Player {
     String name;
     int playerID;
