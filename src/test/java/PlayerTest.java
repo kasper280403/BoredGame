@@ -1,4 +1,4 @@
-import edu.ntnu.idi.idattx2002.modules.Player;
+import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

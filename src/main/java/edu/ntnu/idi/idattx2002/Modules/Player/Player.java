@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.modules;
+package edu.ntnu.idi.idattx2002.Modules.Player;
 
 public class Player {
     String playerName;
