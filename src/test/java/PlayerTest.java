@@ -13,10 +13,19 @@ class PlayerTest {
     }
 
     @Test
-    void testMovePlayer(){
-        player.movePlayer(10);
+    void testMovePlayerBySteps(){
+        player.movePlayerBySteps(10);
         assertEquals(10, player.getCurrentTile());
         assertNotEquals(5, player.getCurrentTile());
+    }
+
+    @Test
+    void testMovePlayerToTile(){
+        player.movePlayerToTile(30);
+        assertEquals(30, player.getCurrentTile());
+        player.movePlayerToTile(2);
+        assertEquals(2, player.getCurrentTile());
+        assertNotEquals(32, player.getCurrentTile());
     }
 
 }

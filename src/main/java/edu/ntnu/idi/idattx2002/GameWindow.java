@@ -17,7 +17,7 @@ public class GameWindow extends Application {
         BorderPane root = new BorderPane();
 
         TilesWindow tilesWindow = new TilesWindow();
-        root.setCenter(TilesWindow.test());
+        root.setCenter(TilesWindow.getBoard(0, 0));
 
 
         // Scene and window

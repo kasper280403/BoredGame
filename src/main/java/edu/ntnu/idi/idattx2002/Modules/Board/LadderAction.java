@@ -1,5 +1,7 @@
 package edu.ntnu.idi.idattx2002.Modules.Board;
 
+import edu.ntnu.idi.idattx2002.Modules.Player.Player;
+
 public class LadderAction implements TileAction {
 
   private final int destinationTileId;
