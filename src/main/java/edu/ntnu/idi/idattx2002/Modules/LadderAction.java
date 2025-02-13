@@ -2,9 +2,7 @@ package edu.ntnu.idi.idattx2002.Modules;
 
 public class LadderAction implements TileAction {
 
-  //TODO Implementere spiller Actions
-
-  private int destinationTileId;
+  private final int destinationTileId;
 
   public LadderAction (int destinationTileId) {
     validateDestinationTileId(destinationTileId);
@@ -19,6 +17,6 @@ public class LadderAction implements TileAction {
 
   @Override
   public void perform(Player player) {
-    //player.goToTile, eller lignende
+    player.movePlayerToTile(this.destinationTileId);
   }
 }
