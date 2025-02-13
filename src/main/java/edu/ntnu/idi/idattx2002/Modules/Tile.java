@@ -1,11 +1,10 @@
-package Modules;
+package edu.ntnu.idi.idattx2002.Modules;
 
 public class Tile {
 
   private final int tileId;
   private TileAction landAction;
 
-  //TileAction in constructor
   public Tile (int tileId) {
     validateTileId(tileId);
 

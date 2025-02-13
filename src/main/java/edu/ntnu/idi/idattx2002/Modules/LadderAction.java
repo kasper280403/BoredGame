@@ -1,4 +1,4 @@
-package Modules;
+package edu.ntnu.idi.idattx2002.Modules;
 
 public class LadderAction implements TileAction {
 
