@@ -14,4 +14,8 @@ public class Player {
         currentTile += n;
     }
 
+    public int getCurrentTile(){
+        return currentTile;
+    }
+
 }
