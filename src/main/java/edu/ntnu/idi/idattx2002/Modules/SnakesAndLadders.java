@@ -20,4 +20,8 @@ public class SnakesAndLadders {
     board.createBoard(90);
   }
 
+  public void addPlayer(Player player) {
+    players.put(player.getPlayerID, player);
+  }
+
 }
