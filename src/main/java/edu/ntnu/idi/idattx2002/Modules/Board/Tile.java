@@ -19,6 +19,10 @@ public class Tile {
     }
    }
 
+   public int getTileId() {
+    return this.tileId;
+   }
+
    public void setLandAction(LandAction landAction) {
     this.landAction = landAction;
    }
