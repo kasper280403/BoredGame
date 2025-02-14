@@ -14,4 +14,8 @@ public class Board {
   public void addTile(Tile tile) {
     tiles.put(tile.getTileId(), tile);
   }
+
+  public Tile getTile(int tileId) {
+    return tiles.get(tileId);
+  }
 }
