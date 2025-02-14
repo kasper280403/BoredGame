@@ -16,5 +16,8 @@ public class SnakesAndLadders {
     this.dice = new dice();
   }
 
+  public void createBoard() {
+    board.createBoard(90);
+  }
 
 }
