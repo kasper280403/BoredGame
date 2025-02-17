@@ -1,14 +1,13 @@
 package edu.ntnu.idi.idattx2002;
+import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
-import java.awt.*;
 import java.util.Random;
 
 public class GameWindow extends Application {
@@ -21,11 +20,12 @@ public class GameWindow extends Application {
         VBox root = new VBox(10);
 
         GridPane board = TilesWindow.getBoard(9, 10);
+        GridPane dice = DiceWindow.getDice();
 
         Button colorChanger = new Button("Change Color");
         colorChanger.setOnAction(e -> {changeColor();});
 
-        root.getChildren().addAll(board, colorChanger);
+        root.getChildren().addAll(board, colorChanger, dice);
 
         Scene scene = new Scene(root, 900, 600);
 
