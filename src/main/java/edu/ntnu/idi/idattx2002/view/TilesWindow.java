@@ -16,22 +16,17 @@ public class TilesWindow{
 
         GridPane gridPane = new GridPane();
         double tileSize = 50;
-        int tileID =  xDimensions * yDimensions - 1;
-        boolean isDirectionNumbersRight = yDimensions % 2 == 0;
+        int tileID = 1;
+        boolean leftToRight = true;
 
-        for (int row = 0; row < xDimensions; row++) {
-            if (isDirectionNumbersRight) {
-                tileID -= xDimensions;
+        for (int row = xDimensions-1; row >= 0; row--) {
+
+            if (!leftToRight) {
+                tileID += yDimensions - 1;
             }
 
             for (int col = 0; col < yDimensions; col++) {
                 Rectangle tile = new Rectangle(tileSize, tileSize);
-
-                if (isDirectionNumbersRight) {
-                    tileID += 1;
-                } else {
-                    tileID -= 1;
-                }
 
                 tileMap.put(tileID, tile);
 
@@ -43,23 +38,22 @@ public class TilesWindow{
 
                 tile.setStroke(Color.BLACK);
                 Text tileText = new Text(""+tileID);
-                tileText.setFont(Font.font(10)); // Setter skriftstørrelse
-                tileText.setFill(Color.BLACK);
                 StackPane tilePane = new StackPane();
                 tilePane.getChildren().addAll(tile, tileText);
 
-
                 gridPane.add(tilePane, col, row);
+
+                if (leftToRight) {
+                    tileID++;
+                } else {
+                    tileID--;
+                }
             }
-            if (isDirectionNumbersRight) {
-                tileID -= xDimensions;
-                isDirectionNumbersRight = false;
-            } else {
-                isDirectionNumbersRight = true;
-                tileID -= 2;
+            leftToRight = !leftToRight;
+            if (leftToRight) {
+                tileID += yDimensions + 1;
             }
         }
-
         return gridPane;
     }
 

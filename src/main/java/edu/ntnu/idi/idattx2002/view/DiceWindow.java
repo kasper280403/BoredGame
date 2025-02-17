@@ -1,7 +1,6 @@
 package edu.ntnu.idi.idattx2002.view;
 
 import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -64,7 +63,7 @@ public class DiceWindow {
 
             timeline.getKeyFrames().add(keyFrame);
         }
-        KeyFrame finalFrame = new KeyFrame(Duration.millis(2250), e -> {
+        KeyFrame finalFrame = new KeyFrame(Duration.millis(2200), e -> {
             ArrayList<ImageView> diceList = getImages(A, B);
             dices.put("diceA", diceList.get(0));
             dices.put("diceB", diceList.get(1));

@@ -4,8 +4,6 @@ import edu.ntnu.idi.idattx2002.view.TilesWindow;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,10 +21,8 @@ public class GameWindow extends Application {
         GridPane board = TilesWindow.getBoard(9, 10);
         GridPane dice = DiceWindow.getDice();
 
-
         Button colorChanger = new Button("Change Color");
-        colorChanger.setOnAction(e -> {changeColor(50);});
-
+        colorChanger.setOnAction(e -> {changeColor(3);});
 
         Button throwDice = new Button("Throw Dice");
         throwDice.setOnAction(e -> {throwDice(5, 6);});
