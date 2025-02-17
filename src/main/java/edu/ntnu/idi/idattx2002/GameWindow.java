@@ -5,19 +5,20 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
+
 import java.util.Random;
 
 public class GameWindow extends Application {
 
-
-
     @Override
     public void start(Stage primaryStage) {
 
-        VBox root = new VBox(10);
+        HBox root = new HBox(10);
 
         GridPane board = TilesWindow.getBoard(9, 10);
         GridPane dice = DiceWindow.getDice();
@@ -25,11 +26,17 @@ public class GameWindow extends Application {
         Button colorChanger = new Button("Change Color");
         colorChanger.setOnAction(e -> {changeColor();});
 
-        root.getChildren().addAll(board, colorChanger, dice);
+        Button throwDice = new Button("Throw Dice");
+        throwDice.setOnAction(e -> {throwDice(4, 6);});
+
+        VBox leftSide = new VBox(10);
+        leftSide.getChildren().addAll(board, colorChanger, throwDice);
+
+        root.getChildren().addAll(leftSide, dice);
 
         Scene scene = new Scene(root, 900, 600);
 
-        primaryStage.setTitle("Snakes and ladders");
+        primaryStage.setTitle("Snakes and Ladders");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -40,6 +47,10 @@ public class GameWindow extends Application {
 
         TilesWindow.changeTileColor(a, Color.RED);
 
+    }
+
+    public void throwDice(int A, int B) {
+        DiceWindow.throwDice(A, B);
     }
 
     public static void main(String[] args) {
