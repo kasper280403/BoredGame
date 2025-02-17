@@ -22,10 +22,10 @@ public class GameWindow extends Application {
         GridPane dice = DiceWindow.getDice();
 
         Button colorChanger = new Button("Change Color");
-        colorChanger.setOnAction(e -> {changeColor(3);});
+        colorChanger.setOnAction(e -> changeColor(3));
 
         Button throwDice = new Button("Throw Dice");
-        throwDice.setOnAction(e -> {throwDice(5, 6);});
+        throwDice.setOnAction(e -> throwDice(5, 6));
 
         VBox leftSide = new VBox(10);
         leftSide.getChildren().addAll(board, colorChanger, throwDice);

@@ -9,11 +9,12 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 
 public class DiceWindow {
 
-    private static GridPane dice = new GridPane();
+    private static final GridPane dice = new GridPane();
     private static final HashMap<String, ImageView> dices = new HashMap<>();
     static HashMap<Integer, Image> diceImages = new HashMap<>();
 
@@ -23,12 +24,12 @@ public class DiceWindow {
         dice.setStyle("-fx-background-color: black;");
 
         if (dices.isEmpty()) {
-            diceImages.put(1, new Image(DiceWindow.class.getResourceAsStream("/images/dice1.png")));
-            diceImages.put(2, new Image(DiceWindow.class.getResourceAsStream("/images/dice2.png")));
-            diceImages.put(3, new Image(DiceWindow.class.getResourceAsStream("/images/dice3.png")));
-            diceImages.put(4, new Image(DiceWindow.class.getResourceAsStream("/images/dice4.png")));
-            diceImages.put(5, new Image(DiceWindow.class.getResourceAsStream("/images/dice5.png")));
-            diceImages.put(6, new Image(DiceWindow.class.getResourceAsStream("/images/dice6.png")));
+            diceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice1.png"))));
+            diceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice2.png"))));
+            diceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice3.png"))));
+            diceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice4.png"))));
+            diceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice5.png"))));
+            diceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice6.png"))));
 
             ArrayList<ImageView> diceList = getImages(1, 1);
             dices.put("diceA", diceList.get(0));
