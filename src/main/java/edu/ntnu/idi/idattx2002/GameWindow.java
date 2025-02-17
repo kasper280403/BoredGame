@@ -23,31 +23,16 @@ public class GameWindow extends Application {
         GridPane board = TilesWindow.getBoard(9, 10);
         GridPane dice = DiceWindow.getDice();
 
-        Slider slider = new Slider(1, 90, 30);
-        slider.setShowTickLabels(true);  // Viser tallene
-        slider.setShowTickMarks(true);   // Viser streker for verdiene
-        slider.setMajorTickUnit(25);     // Store steg
-        slider.setMinorTickCount(5);     // Små steg mellom hver store verdi
-        slider.setBlockIncrement(1);
-        Label valueLabel = new Label("Verdi: " + slider.getValue());
-        slider.valueProperty().addListener((obs, oldVal, newVal) ->
-                valueLabel.setText("Verdi: " + String.format("%.2f", newVal))
-        );
 
         Button colorChanger = new Button("Change Color");
-        colorChanger.setOnAction(e -> {changeColor((int)slider.getValue());});
+        colorChanger.setOnAction(e -> {changeColor(50);});
 
 
-        Slider sliderA = new Slider(1, 6, 3);
-        Slider sliderB = new Slider(1, 6, 3);
-        sliderA.setSnapToTicks(true);
-        sliderB.setSnapToTicks(true);
-        sliderA.setBlockIncrement(1.0);
         Button throwDice = new Button("Throw Dice");
-        throwDice.setOnAction(e -> {throwDice((int)sliderA.getValue(), (int)sliderB.getValue());});
+        throwDice.setOnAction(e -> {throwDice(5, 6);});
 
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(board, slider,valueLabel, colorChanger, sliderA, sliderB, throwDice);
+        leftSide.getChildren().addAll(board, colorChanger, throwDice);
 
         root.getChildren().addAll(leftSide, dice);
 
