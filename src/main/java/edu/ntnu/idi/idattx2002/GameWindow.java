@@ -4,14 +4,14 @@ import edu.ntnu.idi.idattx2002.view.TilesWindow;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
-import java.util.Random;
 
 public class GameWindow extends Application {
 
@@ -23,14 +23,31 @@ public class GameWindow extends Application {
         GridPane board = TilesWindow.getBoard(9, 10);
         GridPane dice = DiceWindow.getDice();
 
-        Button colorChanger = new Button("Change Color");
-        colorChanger.setOnAction(e -> {changeColor();});
+        Slider slider = new Slider(1, 90, 30);
+        slider.setShowTickLabels(true);  // Viser tallene
+        slider.setShowTickMarks(true);   // Viser streker for verdiene
+        slider.setMajorTickUnit(25);     // Store steg
+        slider.setMinorTickCount(5);     // Små steg mellom hver store verdi
+        slider.setBlockIncrement(1);
+        Label valueLabel = new Label("Verdi: " + slider.getValue());
+        slider.valueProperty().addListener((obs, oldVal, newVal) ->
+                valueLabel.setText("Verdi: " + String.format("%.2f", newVal))
+        );
 
+        Button colorChanger = new Button("Change Color");
+        colorChanger.setOnAction(e -> {changeColor((int)slider.getValue());});
+
+
+        Slider sliderA = new Slider(1, 6, 3);
+        Slider sliderB = new Slider(1, 6, 3);
+        sliderA.setSnapToTicks(true);
+        sliderB.setSnapToTicks(true);
+        sliderA.setBlockIncrement(1.0);
         Button throwDice = new Button("Throw Dice");
-        throwDice.setOnAction(e -> {throwDice(4, 6);});
+        throwDice.setOnAction(e -> {throwDice((int)sliderA.getValue(), (int)sliderB.getValue());});
 
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(board, colorChanger, throwDice);
+        leftSide.getChildren().addAll(board, slider,valueLabel, colorChanger, sliderA, sliderB, throwDice);
 
         root.getChildren().addAll(leftSide, dice);
 
@@ -41,12 +58,8 @@ public class GameWindow extends Application {
         primaryStage.show();
     }
 
-    public void changeColor() {
-        Random ran = new Random();
-        int a = ran.nextInt(90);
-
-        TilesWindow.changeTileColor(a, Color.RED);
-
+    public void changeColor(int tileNumber) {
+        TilesWindow.changeTileColor(tileNumber, Color.RED);
     }
 
     public void throwDice(int A, int B) {
