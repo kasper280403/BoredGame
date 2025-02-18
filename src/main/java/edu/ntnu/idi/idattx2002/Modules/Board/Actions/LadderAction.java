@@ -13,7 +13,7 @@ public class LadderAction implements LandAction {
   }
 
   private void validateDestinationTileId(int destinationTileId) {
-    if (destinationTileId < 1 || destinationTileId > 90) {
+    if (destinationTileId < 1) {
       throw new IllegalArgumentException("destinationTile has to be greater than zero");
     }
   }
