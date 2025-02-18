@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002;
+package edu.ntnu.idi.idattx2002.view;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
 import javafx.application.Application;
