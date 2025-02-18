@@ -24,8 +24,6 @@ public class SnakesAndLadders {
 
   }
 
-  public void addPlayer(Player player) {
-    players.put(player.getPlayerID, player);
-  }
+
 
 }
