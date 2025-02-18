@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.Modules;
+package edu.ntnu.idi.idattx2002.Modules.Games;
 
 import edu.ntnu.idi.idattx2002.view.GameWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
@@ -22,6 +22,7 @@ public class SnakesAndLadders {
   public void createBoard() {
     board.createBoard(9, 10);
   }
+
 
 
 
