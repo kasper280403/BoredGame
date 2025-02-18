@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.Modules;
 
+import edu.ntnu.idi.idattx2002.view.GameWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
@@ -10,6 +11,7 @@ public class SnakesAndLadders {
   private Board board;
   private HashMap<Integer, Player> players;
   private Dice dice;
+  private GameWindow gameWindow;
 
   public SnakesAndLadders() {
     this.board = new Board();
@@ -21,8 +23,6 @@ public class SnakesAndLadders {
     board.createBoard(9, 10);
   }
 
- // public void addPlayer(Player player) {
-//    players.put(player.getPlayerID, player);
-//  }
+
 
 }

@@ -15,7 +15,7 @@
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.1</junit.version>
-        <javafx.version>23.0.2</javafx.version>
+        <javafx.version>22.0.2</javafx.version>
     </properties>
 
 
@@ -186,7 +186,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>edu.ntnu.idi.idattx2002.GameWindow</mainClass>
+                    <mainClass>edu.ntnu.idi.idattx2002.view.GameWindow</mainClass>
                 </configuration>
             </plugin>
             <plugin>
