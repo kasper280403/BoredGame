@@ -36,12 +36,14 @@ class BoardTest {
   @Test
   void testCreateBoard() {
     //arrange
-    board.createBoard(10);
+    board.createBoard(9, 10);
     //act
     Tile tile1 = board.getTile(1);
     Tile tile10 = board.getTile(10);
+    Tile tile24 = board.getTile(24);
     //assert
     Assertions.assertEquals(10, tile10.getTileId());
     Assertions.assertEquals(1, tile1.getTileId());
+    Assertions.assertEquals(24, tile24.getTileId());
   }
 }

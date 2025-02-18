@@ -18,11 +18,11 @@ public class SnakesAndLadders {
   }
 
   public void createBoard() {
-    board.createBoard(90);
+    board.createBoard(9, 10);
   }
 
-  public void addPlayer(Player player) {
-    players.put(player.getPlayerID, player);
-  }
+ // public void addPlayer(Player player) {
+//    players.put(player.getPlayerID, player);
+//  }
 
 }

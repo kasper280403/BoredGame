@@ -19,9 +19,12 @@ public class Board {
     tiles.put(tile.getTileId(), tile);
   }
 
-  public void createBoard(int boardSize) {
-    for (int i = 1; i < boardSize + 1; i++) {
-      addTile(new Tile(i));
+  public void createBoard(int numberOfRows, int numberOfColumns) {
+    for (int j = 0; j < numberOfRows; j++) {
+      for (int i = 0; i < numberOfColumns; i++) {
+        int tileId = (i+1) + (j * numberOfColumns);
+        addTile(new Tile(tileId));
+      }
     }
   }
 }
