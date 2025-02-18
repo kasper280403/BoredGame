@@ -1,10 +1,6 @@
-package edu.ntnu.idi.idattx2002;
-import edu.ntnu.idi.idattx2002.view.TilesWindow;
+package edu.ntnu.idi.idattx2002.view;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
