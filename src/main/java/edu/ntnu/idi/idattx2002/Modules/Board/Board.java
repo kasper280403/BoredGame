@@ -12,11 +12,11 @@ public class Board {
   }
 
   public Tile getTile(int tileId) {
-    try {
-      return tiles.get(tileId);
-    } catch (Exception e) {
-      throw new IllegalArgumentException("TileId does not exist");
+    Tile tile = tiles.get(tileId);
+    if (tile == null) {
+      throw new IllegalArgumentException("Tile with id " + tileId + " does not exist");
     }
+    return tile;
   }
 
   public void addTile(Tile tile) {

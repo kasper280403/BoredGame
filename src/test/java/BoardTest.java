@@ -46,4 +46,20 @@ class BoardTest {
     Assertions.assertEquals(1, tile1.getTileId());
     Assertions.assertEquals(24, tile24.getTileId());
   }
+
+  @Test
+  void testValidateRowsAndColumns() {
+    //assert
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      board.validateRowsAndColumns(0, 0);
+    });
+  }
+
+  @Test
+  void testGetTileException() {
+    //assert
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      board.getTile(1);
+    });
+  }
 }
