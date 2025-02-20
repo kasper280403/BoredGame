@@ -56,22 +56,13 @@ public class DiceWindow {
             int randomDiceB = random.nextInt(6)+1;
             int wait = (int) (Math.pow(1.77, i) + 100);
 
-            double brightness = -0.2 + i*0.0333;
-            double hue = 1 - i*0.15;
-            double saturation= 0.7;
 
             KeyFrame keyFrame = new KeyFrame(Duration.millis(wait), e -> {
                 ArrayList<ImageView> diceList = getImages(randomDiceA, randomDiceB);
 
-                ColorAdjust diceEffect = new ColorAdjust();
-                diceEffect.setHue(hue);
-                diceEffect.setBrightness(brightness);
-                diceEffect.setSaturation(saturation);
 
-                System.out.println(diceEffect.getHue());
-
-                diceList.get(0).setEffect(diceEffect);
-                diceList.get(1).setEffect(diceEffect);
+                diceList.get(0).setEffect(diceEffect(0.8, 0.1));
+                diceList.get(1).setEffect(diceEffect(0.8, 0.1));
 
                 dices.put("diceA", diceList.get(0));
                 dices.put("diceB", diceList.get(1));
@@ -86,13 +77,9 @@ public class DiceWindow {
         KeyFrame finalFrame = new KeyFrame(Duration.millis(2200), e -> {
             ArrayList<ImageView> diceList = getImages(A, B);
 
-            ColorAdjust diceEffect = new ColorAdjust();
-            diceEffect.setSaturation(0.7);
-            diceEffect.setHue(0.7);
-            diceEffect.setBrightness(0.4);
 
-            diceList.get(0).setEffect(diceEffect);
-            diceList.get(1).setEffect(diceEffect);
+            diceList.get(0).setEffect(diceEffect(0.7, 0.7));
+            diceList.get(1).setEffect(diceEffect(0.7, 0.7));
 
             dices.put("diceA", diceList.get(0));
             dices.put("diceB", diceList.get(1));
@@ -124,6 +111,15 @@ public class DiceWindow {
         diceList.add(diceB);
 
         return diceList;
+    }
+
+
+    public static ColorAdjust diceEffect(Double saturation, Double hue){
+        ColorAdjust diceEffect = new ColorAdjust();
+        diceEffect.setSaturation(saturation);
+        diceEffect.setHue(hue);
+        diceEffect.setBrightness(0.4);
+        return diceEffect;
     }
 }
 
