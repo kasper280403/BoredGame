@@ -9,13 +9,13 @@ import java.util.HashMap;
 public class SnakesAndLadders {
 
   private Board board;
-  private HashMap<Integer, Player> players;
+  public static HashMap<Integer, Player> players;
   private Dice dice;
   private GameWindow gameWindow;
 
   public SnakesAndLadders() {
     this.board = new Board();
-    this.players = new HashMap<>();
+    players = new HashMap<>();
     this.dice = new Dice();
   }
 
