@@ -1,7 +1,11 @@
 package edu.ntnu.idi.idattx2002.view;
 
+import java.awt.Color;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.effect.Bloom;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -52,8 +56,23 @@ public class DiceWindow {
             int randomDiceB = random.nextInt(6)+1;
             int wait = (int) (Math.pow(1.77, i) + 100);
 
+            double brightness = -0.2 + i*0.0333;
+            double hue = 1 - i*0.15;
+            double saturation= 0.7;
+
             KeyFrame keyFrame = new KeyFrame(Duration.millis(wait), e -> {
                 ArrayList<ImageView> diceList = getImages(randomDiceA, randomDiceB);
+
+                ColorAdjust diceEffect = new ColorAdjust();
+                diceEffect.setHue(hue);
+                diceEffect.setBrightness(brightness);
+                diceEffect.setSaturation(saturation);
+
+                System.out.println(diceEffect.getHue());
+
+                diceList.get(0).setEffect(diceEffect);
+                diceList.get(1).setEffect(diceEffect);
+
                 dices.put("diceA", diceList.get(0));
                 dices.put("diceB", diceList.get(1));
 
@@ -66,6 +85,15 @@ public class DiceWindow {
         }
         KeyFrame finalFrame = new KeyFrame(Duration.millis(2200), e -> {
             ArrayList<ImageView> diceList = getImages(A, B);
+
+            ColorAdjust diceEffect = new ColorAdjust();
+            diceEffect.setSaturation(0.7);
+            diceEffect.setHue(0.7);
+            diceEffect.setBrightness(0.4);
+
+            diceList.get(0).setEffect(diceEffect);
+            diceList.get(1).setEffect(diceEffect);
+
             dices.put("diceA", diceList.get(0));
             dices.put("diceB", diceList.get(1));
 
