@@ -1,11 +1,8 @@
 package edu.ntnu.idi.idattx2002.view;
 
-import java.awt.Color;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.effect.Bloom;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
