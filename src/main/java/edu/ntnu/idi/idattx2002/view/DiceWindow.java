@@ -2,7 +2,6 @@ package edu.ntnu.idi.idattx2002.view;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -23,22 +22,21 @@ public class DiceWindow {
     public static GridPane getDice(){
         dice.setHgap(10);
         dice.setVgap(10);
-        dice.setStyle("-fx-background-color: black;");
 
         if (dices.isEmpty()) {
-            greenDiceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice1.png"))));
-            greenDiceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice2.png"))));
-            greenDiceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice3.png"))));
-            greenDiceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice4.png"))));
-            greenDiceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice5.png"))));
-            greenDiceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice6.png"))));
+            greenDiceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice1.png"))));
+            greenDiceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice2.png"))));
+            greenDiceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice3.png"))));
+            greenDiceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice4.png"))));
+            greenDiceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice5.png"))));
+            greenDiceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice6.png"))));
 
-            orangeDiceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice1.png"))));
-            orangeDiceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice2.png"))));
-            orangeDiceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice3.png"))));
-            orangeDiceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice4.png"))));
-            orangeDiceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice5.png"))));
-            orangeDiceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice6.png"))));
+            orangeDiceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice1.png"))));
+            orangeDiceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice2.png"))));
+            orangeDiceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice3.png"))));
+            orangeDiceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice4.png"))));
+            orangeDiceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice5.png"))));
+            orangeDiceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice6.png"))));
 
             ArrayList<ImageView> diceList = getGreenImages(1, 1);
             dices.put("diceA", diceList.get(0));
@@ -96,11 +94,11 @@ public class DiceWindow {
         ImageView diceA = new ImageView(diceAA);
         ImageView diceB = new ImageView(diceBB);
 
-        diceA.setFitWidth(diceAA.getWidth() * 0.1);
-        diceA.setFitHeight(diceAA.getHeight() * 0.1);
+        diceA.setFitWidth(diceAA.getWidth() * 0.15);
+        diceA.setFitHeight(diceAA.getHeight() * 0.15);
         diceA.setPreserveRatio(true);
-        diceB.setFitWidth(diceAA.getWidth() * 0.1);
-        diceB.setFitHeight(diceAA.getHeight() * 0.1);
+        diceB.setFitWidth(diceAA.getWidth() * 0.15);
+        diceB.setFitHeight(diceAA.getHeight() * 0.15);
         diceB.setPreserveRatio(true);
 
         ArrayList<ImageView> greenDiceList = new ArrayList<>();
@@ -116,11 +114,11 @@ public class DiceWindow {
         ImageView diceA = new ImageView(diceAA);
         ImageView diceB = new ImageView(diceBB);
 
-        diceA.setFitWidth(diceAA.getWidth() * 0.1);
-        diceA.setFitHeight(diceAA.getHeight() * 0.1);
+        diceA.setFitWidth(diceAA.getWidth() * 0.15);
+        diceA.setFitHeight(diceAA.getHeight() * 0.15);
         diceA.setPreserveRatio(true);
-        diceB.setFitWidth(diceAA.getWidth() * 0.1);
-        diceB.setFitHeight(diceAA.getHeight() * 0.1);
+        diceB.setFitWidth(diceAA.getWidth() * 0.15);
+        diceB.setFitHeight(diceAA.getHeight() * 0.15);
         diceB.setPreserveRatio(true);
 
         ArrayList<ImageView> orangeDiceList = new ArrayList<>();
