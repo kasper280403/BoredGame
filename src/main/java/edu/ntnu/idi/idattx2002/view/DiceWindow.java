@@ -17,7 +17,8 @@ public class DiceWindow {
 
     private static final GridPane dice = new GridPane();
     private static final HashMap<String, ImageView> dices = new HashMap<>();
-    static HashMap<Integer, Image> diceImages = new HashMap<>();
+    static HashMap<Integer, Image> greenDiceImages = new HashMap<>();
+    static HashMap<Integer, Image> orangeDiceImages = new HashMap<>();
 
     public static GridPane getDice(){
         dice.setHgap(10);
@@ -25,14 +26,21 @@ public class DiceWindow {
         dice.setStyle("-fx-background-color: black;");
 
         if (dices.isEmpty()) {
-            diceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice1.png"))));
-            diceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice2.png"))));
-            diceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice3.png"))));
-            diceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice4.png"))));
-            diceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice5.png"))));
-            diceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dice6.png"))));
+            greenDiceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice1.png"))));
+            greenDiceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice2.png"))));
+            greenDiceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice3.png"))));
+            greenDiceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice4.png"))));
+            greenDiceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice5.png"))));
+            greenDiceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/greenDice6.png"))));
 
-            ArrayList<ImageView> diceList = getImages(1, 1);
+            orangeDiceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice1.png"))));
+            orangeDiceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice2.png"))));
+            orangeDiceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice3.png"))));
+            orangeDiceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice4.png"))));
+            orangeDiceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice5.png"))));
+            orangeDiceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/orangeDice6.png"))));
+
+            ArrayList<ImageView> diceList = getGreenImages(1, 1);
             dices.put("diceA", diceList.get(0));
             dices.put("diceB", diceList.get(1));
 
@@ -55,11 +63,7 @@ public class DiceWindow {
 
 
             KeyFrame keyFrame = new KeyFrame(Duration.millis(wait), e -> {
-                ArrayList<ImageView> diceList = getImages(randomDiceA, randomDiceB);
-
-
-                diceList.get(0).setEffect(diceEffect(0.8, 0.1));
-                diceList.get(1).setEffect(diceEffect(0.8, 0.1));
+                ArrayList<ImageView> diceList = getOrangeImages(randomDiceA, randomDiceB);
 
                 dices.put("diceA", diceList.get(0));
                 dices.put("diceB", diceList.get(1));
@@ -72,11 +76,7 @@ public class DiceWindow {
             timeline.getKeyFrames().add(keyFrame);
         }
         KeyFrame finalFrame = new KeyFrame(Duration.millis(2200), e -> {
-            ArrayList<ImageView> diceList = getImages(A, B);
-
-
-            diceList.get(0).setEffect(diceEffect(0.7, 0.7));
-            diceList.get(1).setEffect(diceEffect(0.7, 0.7));
+            ArrayList<ImageView> diceList = getGreenImages(A, B);
 
             dices.put("diceA", diceList.get(0));
             dices.put("diceB", diceList.get(1));
@@ -90,9 +90,9 @@ public class DiceWindow {
         timeline.play();
     }
 
-    private static ArrayList<ImageView> getImages(int A, int B){
-        Image diceAA = diceImages.get(A);
-        Image diceBB = diceImages.get(B);
+    private static ArrayList<ImageView> getGreenImages(int A, int B){
+        Image diceAA = greenDiceImages.get(A);
+        Image diceBB = greenDiceImages.get(B);
         ImageView diceA = new ImageView(diceAA);
         ImageView diceB = new ImageView(diceBB);
 
@@ -103,20 +103,31 @@ public class DiceWindow {
         diceB.setFitHeight(diceAA.getHeight() * 0.1);
         diceB.setPreserveRatio(true);
 
-        ArrayList<ImageView> diceList = new ArrayList<>();
-        diceList.add(diceA);
-        diceList.add(diceB);
+        ArrayList<ImageView> greenDiceList = new ArrayList<>();
+        greenDiceList.add(diceA);
+        greenDiceList.add(diceB);
 
-        return diceList;
+        return greenDiceList;
     }
 
+    private static ArrayList<ImageView> getOrangeImages(int A, int B){
+        Image diceAA = orangeDiceImages.get(A);
+        Image diceBB = orangeDiceImages.get(B);
+        ImageView diceA = new ImageView(diceAA);
+        ImageView diceB = new ImageView(diceBB);
 
-    public static ColorAdjust diceEffect(Double saturation, Double hue){
-        ColorAdjust diceEffect = new ColorAdjust();
-        diceEffect.setSaturation(saturation);
-        diceEffect.setHue(hue);
-        diceEffect.setBrightness(0.4);
-        return diceEffect;
+        diceA.setFitWidth(diceAA.getWidth() * 0.1);
+        diceA.setFitHeight(diceAA.getHeight() * 0.1);
+        diceA.setPreserveRatio(true);
+        diceB.setFitWidth(diceAA.getWidth() * 0.1);
+        diceB.setFitHeight(diceAA.getHeight() * 0.1);
+        diceB.setPreserveRatio(true);
+
+        ArrayList<ImageView> orangeDiceList = new ArrayList<>();
+        orangeDiceList.add(diceA);
+        orangeDiceList.add(diceB);
+
+        return orangeDiceList;
     }
 }
 
