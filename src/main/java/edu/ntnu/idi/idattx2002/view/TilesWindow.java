@@ -1,6 +1,5 @@
 package edu.ntnu.idi.idattx2002.view;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -40,12 +39,9 @@ public class TilesWindow {
                     tileMap.put(tileID, tilePane);
                 }
 
-                if (leftToRight) {
-                    tileID++;
-                } else {
-                    tileID--;
-                }
+                tileID += tileIDUpdateAtColChange(leftToRight);
             }
+
             leftToRight = !leftToRight;
             if (leftToRight) {
                 tileID += yDimensions + 1;
@@ -68,6 +64,10 @@ public class TilesWindow {
 
         tilePane.getChildren().addAll(tile, tileText);
         return tilePane;
+    }
+
+    private static int tileIDUpdateAtColChange(boolean leftToRight) {
+        return leftToRight ? 1 : -1;
     }
 
     public static void displayPieceAtTile(int tileID, int pieceID) {
