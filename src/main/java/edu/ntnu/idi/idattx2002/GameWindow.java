@@ -2,6 +2,7 @@ package edu.ntnu.idi.idattx2002;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
+import java.util.Random;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,8 +34,11 @@ public class GameWindow extends Application {
         Button throwDice = new Button("Throw Dice");
         throwDice.setOnAction(e -> throwDice(5, 6));
 
+        Button randomlyPlacePlayer1 = new Button("Randomly Move Player1");
+        randomlyPlacePlayer1.setOnAction(e -> randomlyPlacePlayer1());
+
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(board, colorChanger, throwDice);
+        leftSide.getChildren().addAll(board, colorChanger, throwDice, randomlyPlacePlayer1);
 
         root.getChildren().addAll(leftSide, dice);
 
@@ -47,6 +51,11 @@ public class GameWindow extends Application {
 
     public void changeColor(int tileNumber) {
         TilesWindow.changeTileColor(tileNumber, Color.RED);
+    }
+
+    public void randomlyPlacePlayer1() {
+        Random random = new Random();
+        TilesWindow.displayPieceAtTile(random.nextInt(90), 1);
     }
 
     public void throwDice(int A, int B) {
