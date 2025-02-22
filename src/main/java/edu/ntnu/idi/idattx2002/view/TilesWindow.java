@@ -29,15 +29,9 @@ public class TilesWindow {
 
             for (int col = 0; col < yDimensions; col++) {
 
-                if ((row + col) % 2 == 0) {
-                    StackPane tilePane = getTilePane(Color.LIGHTGRAY, tileSize, tileID);
-                    gridPane.add(tilePane, col, row);
-                    tileMap.put(tileID, tilePane);
-                } else {
-                    StackPane tilePane = getTilePane(Color.DARKGRAY, tileSize, tileID);
-                    gridPane.add(tilePane, col, row);
-                    tileMap.put(tileID, tilePane);
-                }
+                StackPane tilePane = getTilePane(getTileColor(row, col), tileSize, tileID);
+                gridPane.add(tilePane, col, row);
+                tileMap.put(tileID, tilePane);
 
                 tileID += tileIDUpdateAtColChange(leftToRight);
             }
@@ -64,6 +58,10 @@ public class TilesWindow {
 
         tilePane.getChildren().addAll(tile, tileText);
         return tilePane;
+    }
+
+    private static Color getTileColor(int row, int col) {
+        return (row + col) % 2 == 0 ? Color.LIGHTGRAY : Color.DARKGRAY;
     }
 
     private static int tileIDUpdateAtColChange(boolean leftToRight) {
