@@ -14,53 +14,53 @@ import java.util.Random;
 
 public class DiceWindow {
 
-    private static final GridPane dice = new GridPane();
-    private static final HashMap<String, ImageView> dices = new HashMap<>();
-    static HashMap<Integer, Image> greenDiceImages = new HashMap<>();
-    static HashMap<Integer, Image> orangeDiceImages = new HashMap<>();
+    private static final GridPane dicePane = new GridPane();
+    private static final HashMap<String, ImageView> diceMap = new HashMap<>();
+    static HashMap<Integer, Image> greenDiceImageMap = new HashMap<>();
+    static HashMap<Integer, Image> orangeDiceImageMap = new HashMap<>();
 
-    public static GridPane getDice(){
-        dice.setHgap(10);
-        dice.setVgap(10);
+    public static GridPane getDicePane(){
+        dicePane.setHgap(10);
+        dicePane.setVgap(10);
 
         loadDiceImages();
 
-        ArrayList<ImageView> diceList = getGreenImages(1, 1);
-        dices.put("diceA", diceList.get(0));
-        dices.put("diceB", diceList.get(1));
+        ArrayList<ImageView> diceList = getDiceImages(1, 1, greenDiceImageMap);
+        diceMap.put("diceA", diceList.get(0));
+        diceMap.put("diceB", diceList.get(1));
 
-        dice.add(diceList.get(0), 0, 0);
-        dice.add(diceList.get(1), 1, 0);
+        dicePane.add(diceList.get(0), 0, 0);
+        dicePane.add(diceList.get(1), 1, 0);
 
-        return dice;
+        return dicePane;
     }
 
     private static void loadDiceImages() {
-        if (dices.isEmpty()) {
-            greenDiceImages.put(1, new Image(Objects.requireNonNull(
+        if (diceMap.isEmpty()) {
+            greenDiceImageMap.put(1, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/greenDice1.png"))));
-            greenDiceImages.put(2, new Image(Objects.requireNonNull(
+            greenDiceImageMap.put(2, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/greenDice2.png"))));
-            greenDiceImages.put(3, new Image(Objects.requireNonNull(
+            greenDiceImageMap.put(3, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/greenDice3.png"))));
-            greenDiceImages.put(4, new Image(Objects.requireNonNull(
+            greenDiceImageMap.put(4, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/greenDice4.png"))));
-            greenDiceImages.put(5, new Image(Objects.requireNonNull(
+            greenDiceImageMap.put(5, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/greenDice5.png"))));
-            greenDiceImages.put(6, new Image(Objects.requireNonNull(
+            greenDiceImageMap.put(6, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/greenDice6.png"))));
 
-            orangeDiceImages.put(1, new Image(Objects.requireNonNull(
+            orangeDiceImageMap.put(1, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/orangeDice1.png"))));
-            orangeDiceImages.put(2, new Image(Objects.requireNonNull(
+            orangeDiceImageMap.put(2, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/orangeDice2.png"))));
-            orangeDiceImages.put(3, new Image(Objects.requireNonNull(
+            orangeDiceImageMap.put(3, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/orangeDice3.png"))));
-            orangeDiceImages.put(4, new Image(Objects.requireNonNull(
+            orangeDiceImageMap.put(4, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/orangeDice4.png"))));
-            orangeDiceImages.put(5, new Image(Objects.requireNonNull(
+            orangeDiceImageMap.put(5, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/orangeDice5.png"))));
-            orangeDiceImages.put(6, new Image(Objects.requireNonNull(
+            orangeDiceImageMap.put(6, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/orangeDice6.png"))));
         }
     }
@@ -77,36 +77,36 @@ public class DiceWindow {
 
 
             KeyFrame keyFrame = new KeyFrame(Duration.millis(wait), e -> {
-                ArrayList<ImageView> diceList = getOrangeImages(randomDiceA, randomDiceB);
+                ArrayList<ImageView> diceList = getDiceImages(randomDiceA, randomDiceB, orangeDiceImageMap);
 
-                dices.put("diceA", diceList.get(0));
-                dices.put("diceB", diceList.get(1));
+                diceMap.put("diceA", diceList.get(0));
+                diceMap.put("diceB", diceList.get(1));
 
-                dice.getChildren().clear();
-                dice.add(dices.get("diceA"), 0, 0);
-                dice.add(dices.get("diceB"), 1, 0);
+                dicePane.getChildren().clear();
+                dicePane.add(diceMap.get("diceA"), 0, 0);
+                dicePane.add(diceMap.get("diceB"), 1, 0);
             });
 
             timeline.getKeyFrames().add(keyFrame);
         }
         KeyFrame finalFrame = new KeyFrame(Duration.millis(2200), e -> {
-            ArrayList<ImageView> diceList = getGreenImages(A, B);
+            ArrayList<ImageView> diceList = getDiceImages(A, B, greenDiceImageMap);
 
-            dices.put("diceA", diceList.get(0));
-            dices.put("diceB", diceList.get(1));
+            diceMap.put("diceA", diceList.get(0));
+            diceMap.put("diceB", diceList.get(1));
 
-            dice.getChildren().clear();
-            dice.add(dices.get("diceA"), 0, 0);
-            dice.add(dices.get("diceB"), 1, 0);
+            dicePane.getChildren().clear();
+            dicePane.add(diceMap.get("diceA"), 0, 0);
+            dicePane.add(diceMap.get("diceB"), 1, 0);
         });
 
         timeline.getKeyFrames().add(finalFrame);
         timeline.play();
     }
 
-    private static ArrayList<ImageView> getGreenImages(int A, int B){
-        Image diceAA = greenDiceImages.get(A);
-        Image diceBB = greenDiceImages.get(B);
+    private static ArrayList<ImageView> getDiceImages(int A, int B, HashMap<Integer, Image> diceImageMap){
+        Image diceAA = diceImageMap.get(A);
+        Image diceBB = diceImageMap.get(B);
         ImageView diceA = new ImageView(diceAA);
         ImageView diceB = new ImageView(diceBB);
 
@@ -117,31 +117,11 @@ public class DiceWindow {
         diceB.setFitHeight(diceAA.getHeight() * 0.15);
         diceB.setPreserveRatio(true);
 
-        ArrayList<ImageView> greenDiceList = new ArrayList<>();
-        greenDiceList.add(diceA);
-        greenDiceList.add(diceB);
+        ArrayList<ImageView> diceList = new ArrayList<>();
+        diceList.add(diceA);
+        diceList.add(diceB);
 
-        return greenDiceList;
-    }
-
-    private static ArrayList<ImageView> getOrangeImages(int A, int B){
-        Image diceAA = orangeDiceImages.get(A);
-        Image diceBB = orangeDiceImages.get(B);
-        ImageView diceA = new ImageView(diceAA);
-        ImageView diceB = new ImageView(diceBB);
-
-        diceA.setFitWidth(diceAA.getWidth() * 0.15);
-        diceA.setFitHeight(diceAA.getHeight() * 0.15);
-        diceA.setPreserveRatio(true);
-        diceB.setFitWidth(diceAA.getWidth() * 0.15);
-        diceB.setFitHeight(diceAA.getHeight() * 0.15);
-        diceB.setPreserveRatio(true);
-
-        ArrayList<ImageView> orangeDiceList = new ArrayList<>();
-        orangeDiceList.add(diceA);
-        orangeDiceList.add(diceB);
-
-        return orangeDiceList;
+        return diceList;
     }
 }
 

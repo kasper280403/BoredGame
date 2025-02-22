@@ -20,7 +20,7 @@ public class GameWindow extends Application {
         HBox root = new HBox(10);
 
         GridPane board = TilesWindow.getBoard(9, 10);
-        GridPane dice = DiceWindow.getDice();
+        GridPane dice = DiceWindow.getDicePane();
 
         PieceWindow.createPieces(50);
 
