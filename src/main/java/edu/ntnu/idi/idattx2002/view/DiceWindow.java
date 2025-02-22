@@ -14,6 +14,7 @@ import java.util.Random;
 
 public class DiceWindow {
 
+    private static Random random = new Random();
     private static final GridPane dicePane = new GridPane();
     private static final HashMap<String, ImageView> diceMap = new HashMap<>();
     static HashMap<Integer, Image> greenDiceImageMap = new HashMap<>();
@@ -67,7 +68,6 @@ public class DiceWindow {
 
     public static void throwDice(int A, int B){
 
-        Random random  = new Random();
         Timeline timeline = new Timeline();
 
         for (int i = 0; i < 13; i++) {
