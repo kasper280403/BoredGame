@@ -1,5 +1,7 @@
 package edu.ntnu.idi.idattx2002.Modules.Games;
 
+import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
+import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.view.GameWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
@@ -23,6 +25,30 @@ public class SnakesAndLadders {
     board.createBoard(9, 10);
   }
 
+  public void setLandActions() {
+    setLadderActions();
+    setSwitchWithRandomActions();
+  }
+
+  public void setLadderActions() {
+    board.getTile(1).setLandAction(new LadderAction(40));
+    board.getTile(24).setLandAction(new LadderAction(5));
+    board.getTile(33).setLandAction(new LadderAction(3));
+    board.getTile(36).setLandAction(new LadderAction(52));
+    board.getTile(43).setLandAction(new LadderAction(62));
+    board.getTile(49).setLandAction(new LadderAction(79));
+    board.getTile(56).setLandAction(new LadderAction(37));
+    board.getTile(64).setLandAction(new LadderAction(27));
+    board.getTile(68).setLandAction(new LadderAction(85));
+    board.getTile(74).setLandAction(new LadderAction(12));
+    board.getTile(87).setLandAction(new LadderAction(70));
+  }
+
+  public void setSwitchWithRandomActions() {
+    board.getTile(8).setLandAction(new SwitchWithRandomAction());
+    board.getTile(42).setLandAction(new SwitchWithRandomAction());
+    board.getTile(82).setLandAction(new SwitchWithRandomAction());
+  }
 
 
 
