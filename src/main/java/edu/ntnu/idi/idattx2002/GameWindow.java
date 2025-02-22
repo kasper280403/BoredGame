@@ -21,6 +21,9 @@ public class GameWindow extends Application {
         GridPane board = TilesWindow.getBoard(9, 10);
         GridPane dice = DiceWindow.getDice();
 
+        TilesWindow.displayPieceAtTile(1, 1);
+        TilesWindow.displayPieceAtTile(2, 2);
+
         Button colorChanger = new Button("Change Color");
         colorChanger.setOnAction(e -> changeColor(3));
 
