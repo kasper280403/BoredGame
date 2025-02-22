@@ -71,37 +71,31 @@ public class DiceWindow {
         Timeline timeline = new Timeline();
 
         for (int i = 0; i < 13; i++) {
-            int randomDiceA = random.nextInt(6)+1;
-            int randomDiceB = random.nextInt(6)+1;
+            int diceValueA = random.nextInt(6)+1;
+            int diceValueB = random.nextInt(6)+1;
             int wait = (int) (Math.pow(1.77, i) + 100);
 
-
-            KeyFrame keyFrame = new KeyFrame(Duration.millis(wait), e -> {
-                ArrayList<ImageView> diceList = getDiceImages(randomDiceA, randomDiceB, orangeDiceImageMap);
-
-                diceMap.put("diceA", diceList.get(0));
-                diceMap.put("diceB", diceList.get(1));
-
-                dicePane.getChildren().clear();
-                dicePane.add(diceMap.get("diceA"), 0, 0);
-                dicePane.add(diceMap.get("diceB"), 1, 0);
-            });
-
+            KeyFrame keyFrame = getDicesKeyFrame(diceValueA, diceValueB, orangeDiceImageMap, wait);
             timeline.getKeyFrames().add(keyFrame);
         }
-        KeyFrame finalFrame = new KeyFrame(Duration.millis(2200), e -> {
-            ArrayList<ImageView> diceList = getDiceImages(A, B, greenDiceImageMap);
 
-            diceMap.put("diceA", diceList.get(0));
-            diceMap.put("diceB", diceList.get(1));
-
-            dicePane.getChildren().clear();
-            dicePane.add(diceMap.get("diceA"), 0, 0);
-            dicePane.add(diceMap.get("diceB"), 1, 0);
-        });
-
+        KeyFrame finalFrame = getDicesKeyFrame(A, B, greenDiceImageMap, 2200);
         timeline.getKeyFrames().add(finalFrame);
+
         timeline.play();
+    }
+
+    private static KeyFrame getDicesKeyFrame(int diceValueA, int diceValueB, HashMap<Integer, Image> diceImageMap,  double wait) {
+      return new KeyFrame(Duration.millis(wait), e -> {
+          ArrayList<ImageView> diceList = getDiceImages(diceValueA, diceValueB, diceImageMap);
+
+          diceMap.put("diceA", diceList.get(0));
+          diceMap.put("diceB", diceList.get(1));
+
+          dicePane.getChildren().clear();
+          dicePane.add(diceMap.get("diceA"), 0, 0);
+          dicePane.add(diceMap.get("diceB"), 1, 0);
+      });
     }
 
     private static ArrayList<ImageView> getDiceImages(int A, int B, HashMap<Integer, Image> diceImageMap){
