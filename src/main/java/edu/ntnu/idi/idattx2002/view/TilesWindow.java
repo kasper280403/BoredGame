@@ -9,7 +9,6 @@ import javafx.scene.text.Text;
 
 import java.util.HashMap;
 
-
 public class TilesWindow {
 
     private static final HashMap<Integer, StackPane> tileMap = new HashMap<>();
@@ -67,7 +66,6 @@ public class TilesWindow {
     private static int tileIDUpdateAtColChange(boolean leftToRight) {
         return leftToRight ? 1 : -1;
     }
-
 
     public static void displayPieceAtTile(int tileID, int pieceID) {
         StackPane tilePane = tileMap.get(tileID);

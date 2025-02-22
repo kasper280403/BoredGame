@@ -23,30 +23,46 @@ public class DiceWindow {
         dice.setHgap(10);
         dice.setVgap(10);
 
-        if (dices.isEmpty()) {
-            greenDiceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice1.png"))));
-            greenDiceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice2.png"))));
-            greenDiceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice3.png"))));
-            greenDiceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice4.png"))));
-            greenDiceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice5.png"))));
-            greenDiceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/greenDice6.png"))));
+        loadDiceImages();
 
-            orangeDiceImages.put(1, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice1.png"))));
-            orangeDiceImages.put(2, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice2.png"))));
-            orangeDiceImages.put(3, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice3.png"))));
-            orangeDiceImages.put(4, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice4.png"))));
-            orangeDiceImages.put(5, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice5.png"))));
-            orangeDiceImages.put(6, new Image(Objects.requireNonNull(DiceWindow.class.getResourceAsStream("/images/dices/orangeDice6.png"))));
+        ArrayList<ImageView> diceList = getGreenImages(1, 1);
+        dices.put("diceA", diceList.get(0));
+        dices.put("diceB", diceList.get(1));
 
-            ArrayList<ImageView> diceList = getGreenImages(1, 1);
-            dices.put("diceA", diceList.get(0));
-            dices.put("diceB", diceList.get(1));
-
-            dice.add(diceList.get(0), 0, 0);
-            dice.add(diceList.get(1), 1, 0);
-        }
+        dice.add(diceList.get(0), 0, 0);
+        dice.add(diceList.get(1), 1, 0);
 
         return dice;
+    }
+
+    private static void loadDiceImages() {
+        if (dices.isEmpty()) {
+            greenDiceImages.put(1, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/greenDice1.png"))));
+            greenDiceImages.put(2, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/greenDice2.png"))));
+            greenDiceImages.put(3, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/greenDice3.png"))));
+            greenDiceImages.put(4, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/greenDice4.png"))));
+            greenDiceImages.put(5, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/greenDice5.png"))));
+            greenDiceImages.put(6, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/greenDice6.png"))));
+
+            orangeDiceImages.put(1, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/orangeDice1.png"))));
+            orangeDiceImages.put(2, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/orangeDice2.png"))));
+            orangeDiceImages.put(3, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/orangeDice3.png"))));
+            orangeDiceImages.put(4, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/orangeDice4.png"))));
+            orangeDiceImages.put(5, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/orangeDice5.png"))));
+            orangeDiceImages.put(6, new Image(Objects.requireNonNull(
+                DiceWindow.class.getResourceAsStream("/images/dices/orangeDice6.png"))));
+        }
     }
 
     public static void throwDice(int A, int B){
