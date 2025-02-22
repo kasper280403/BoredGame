@@ -68,6 +68,7 @@ public class TilesWindow {
         return leftToRight ? 1 : -1;
     }
 
+
     public static void displayPieceAtTile(int tileID, int pieceID) {
         StackPane tilePane = tileMap.get(tileID);
         ImageView pieceView = PieceWindow.getImageView(pieceID);

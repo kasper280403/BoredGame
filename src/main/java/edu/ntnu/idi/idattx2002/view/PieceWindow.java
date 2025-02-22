@@ -15,13 +15,16 @@ public class PieceWindow {
     ImageView imageView1 = new ImageView(pieceImage1);
     ImageView imageView2 = new ImageView(pieceImage2);
 
-    imageView1.setFitHeight(imageViewSize);
-    imageView1.setFitWidth(imageViewSize);
-    imageView2.setFitHeight(imageViewSize);
-    imageView2.setFitWidth(imageViewSize);
+    setImageSize(imageViewSize, imageView1);
+    setImageSize(imageViewSize, imageView2);
 
     imageViewMap.put(1, imageView1);
     imageViewMap.put(2, imageView2);
+  }
+
+  public static void setImageSize(double imageViewSize, ImageView imageView) {
+    imageView.setFitHeight(imageViewSize);
+    imageView.setFitWidth(imageViewSize);
   }
 
   public static ImageView getImageView(int pieceID) {
