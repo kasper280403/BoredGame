@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class DiceWindow {
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
     private static final GridPane dicePane = new GridPane();
     private static final HashMap<String, ImageView> diceMap = new HashMap<>();
     static HashMap<Integer, Image> greenDiceImageMap = new HashMap<>();
