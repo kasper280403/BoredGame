@@ -29,25 +29,16 @@ public class TilesWindow {
             }
 
             for (int col = 0; col < yDimensions; col++) {
-                Rectangle tile = new Rectangle(tileSize, tileSize);
 
                 if ((row + col) % 2 == 0) {
-                    tile.setFill(Color.LIGHTGRAY);
+                    StackPane tilePane = getTilePane(Color.LIGHTGRAY, tileSize, tileID);
+                    gridPane.add(tilePane, col, row);
+                    tileMap.put(tileID, tilePane);
                 } else {
-                    tile.setFill(Color.DARKGRAY);
+                    StackPane tilePane = getTilePane(Color.DARKGRAY, tileSize, tileID);
+                    gridPane.add(tilePane, col, row);
+                    tileMap.put(tileID, tilePane);
                 }
-                tile.setStroke(Color.BLACK);
-
-                Text tileText = new Text("" + tileID);
-                StackPane tilePane = new StackPane();
-                tilePane.setPrefSize(tileSize, tileSize);
-                tilePane.setMaxSize(tileSize, tileSize);
-                tilePane.setMinSize(tileSize, tileSize);
-                tilePane.getChildren().addAll(tile, tileText);
-
-                tileMap.put(tileID, tilePane);
-
-                gridPane.add(tilePane, col, row);
 
                 if (leftToRight) {
                     tileID++;
@@ -61,6 +52,22 @@ public class TilesWindow {
             }
         }
         return gridPane;
+    }
+
+    private static StackPane getTilePane(Color color, double tileSize, int tileID) {
+        StackPane tilePane = new StackPane();
+        tilePane.setPrefSize(tileSize, tileSize);
+        tilePane.setMaxSize(tileSize, tileSize);
+        tilePane.setMinSize(tileSize, tileSize);
+
+        Rectangle tile = new Rectangle(tileSize, tileSize);
+        tile.setFill(color);
+        tile.setStroke(Color.BLACK);
+
+        Text tileText = new Text("" + tileID);
+
+        tilePane.getChildren().addAll(tile, tileText);
+        return tilePane;
     }
 
     public static void displayPieceAtTile(int tileID, int pieceID) {
