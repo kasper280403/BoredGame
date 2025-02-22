@@ -40,6 +40,9 @@ public class TilesWindow {
 
                 Text tileText = new Text("" + tileID);
                 StackPane tilePane = new StackPane();
+                tilePane.setPrefSize(tileSize, tileSize);
+                tilePane.setMaxSize(tileSize, tileSize);
+                tilePane.setMinSize(tileSize, tileSize);
                 tilePane.getChildren().addAll(tile, tileText);
 
                 tileMap.put(tileID, tilePane);
@@ -60,24 +63,10 @@ public class TilesWindow {
         return gridPane;
     }
 
-
-    //TODO refactor!!
     public static void displayPieceAtTile(int tileID, int pieceID) {
         StackPane tilePane = tileMap.get(tileID);
-        if (pieceID == 1) {
-            Image pieceImage = new Image("/images/pieces/frogPiece.png");
-            ImageView pieceView = new ImageView(pieceImage);
-            pieceView.setFitWidth(60);
-            pieceView.setFitHeight(60);
-            tilePane.getChildren().add(pieceView);
-        } else if (pieceID == 2) {
-            Image pieceImage = new Image("/images/pieces/catPiece.png");
-            ImageView pieceView = new ImageView(pieceImage);
-            pieceView.setFitWidth(60);
-            pieceView.setFitHeight(60);
-            tilePane.getChildren().add(pieceView);
-        }
-
+        ImageView pieceView = PieceWindow.getImageView(pieceID);
+        tilePane.getChildren().add(pieceView);
     }
 
     public static void changeTileColor(int tileID, Color color) {

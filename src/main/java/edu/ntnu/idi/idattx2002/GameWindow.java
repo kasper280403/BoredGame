@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
+import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,6 +21,8 @@ public class GameWindow extends Application {
 
         GridPane board = TilesWindow.getBoard(9, 10);
         GridPane dice = DiceWindow.getDice();
+
+        PieceWindow.createPieces(50);
 
         TilesWindow.displayPieceAtTile(1, 1);
         TilesWindow.displayPieceAtTile(2, 2);
