@@ -25,6 +25,11 @@ public class SnakesAndLadders {
     board.createBoard(9, 10);
   }
 
+  public void addPlayer(String playerName, int pieceID) {
+    int playerID = players.size() + 1;
+    players.put(playerID, new Player(playerName, playerID, pieceID));
+  }
+
   public void setLandActions() {
     setLadderActions();
     setSwitchWithRandomActions();
