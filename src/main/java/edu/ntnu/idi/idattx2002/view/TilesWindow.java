@@ -16,7 +16,7 @@ public class TilesWindow {
     public static GridPane getBoard(int xDimensions, int yDimensions) {
 
         GridPane gridPane = new GridPane();
-        double tileSize = 50;
+        double tileSize = 75;
         int tileID = 1;
         boolean leftToRight = true;
 

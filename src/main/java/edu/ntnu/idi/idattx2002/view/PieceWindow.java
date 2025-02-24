@@ -11,15 +11,19 @@ public class PieceWindow {
   public static void createPieces(double imageViewSize) {
     Image pieceImage1 = new Image("/images/pieces/frogPiece.png");
     Image pieceImage2 = new Image("/images/pieces/catPiece.png");
+    Image pieceImage3 = new Image("/images/pieces/punkPiece.png");
 
     ImageView imageView1 = new ImageView(pieceImage1);
     ImageView imageView2 = new ImageView(pieceImage2);
+    ImageView imageView3 = new ImageView(pieceImage3);
 
     setImageSize(imageViewSize, imageView1);
     setImageSize(imageViewSize, imageView2);
+    setImageSize(imageViewSize, imageView3);
 
     imageViewMap.put(1, imageView1);
     imageViewMap.put(2, imageView2);
+    imageViewMap.put(3, imageView3);
   }
 
   public static void setImageSize(double imageViewSize, ImageView imageView) {
