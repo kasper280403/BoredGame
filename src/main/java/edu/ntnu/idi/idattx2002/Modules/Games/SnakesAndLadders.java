@@ -25,6 +25,15 @@ public class SnakesAndLadders {
     board.createBoard(9, 10);
   }
 
+  public void playTurn(Player player) {
+    int stepsToMove = dice.throwDice();
+    player.movePlayerBySteps(stepsToMove);
+  }
+
+  public boolean checkForWin(Player player) {
+    return player.getCurrentTile() >= board.getTiles().size();
+  }
+
   public void addPlayer(String playerName, int pieceID) {
     int playerID = players.size() + 1;
     players.put(playerID, new Player(playerName, playerID, pieceID));
@@ -54,7 +63,6 @@ public class SnakesAndLadders {
     board.getTile(42).setLandAction(new SwitchWithRandomAction());
     board.getTile(82).setLandAction(new SwitchWithRandomAction());
   }
-
 
 
 }

@@ -11,6 +11,10 @@ public class Board {
     this.tiles = new HashMap<>();
   }
 
+  public HashMap<Integer, Tile> getTiles() {
+    return tiles;
+  }
+
   public Tile getTile(int tileId) {
     Tile tile = tiles.get(tileId);
     if (tile == null) {
