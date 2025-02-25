@@ -23,4 +23,8 @@ public class Player {
     public int getCurrentTile(){
         return currentTileId;
     }
+
+    public int getPlayerID() {
+        return playerID;
+    }
 }
