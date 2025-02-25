@@ -14,11 +14,13 @@ public class SnakesAndLadders {
   public static HashMap<Integer, Player> players;
   private Dice dice;
   private GameWindow gameWindow;
+  private int playerToMoveID;
 
   public SnakesAndLadders() {
     this.board = new Board();
     players = new HashMap<>();
     this.dice = new Dice();
+    playerToMoveID = 1;
   }
 
   public void createBoard() {
@@ -28,6 +30,16 @@ public class SnakesAndLadders {
   public void playTurn(Player player) {
     int stepsToMove = dice.throwDice();
     player.movePlayerBySteps(stepsToMove);
+    updatePlayerToMove();
+  }
+
+  private void updatePlayerToMove() {
+    if (playerToMoveID >= players.size()) {
+      playerToMoveID = 1;
+    }
+    else {
+      playerToMoveID += 1;
+    }
   }
 
   public boolean checkForWin(Player player) {
