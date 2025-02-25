@@ -19,6 +19,12 @@ public class Tile {
     }
    }
 
+   public int getTileId() {
+    return this.tileId;
+   }
+
+
+   //TODO exeption handling if tileAction exists
    public void setLandAction(LandAction landAction) {
     this.landAction = landAction;
    }

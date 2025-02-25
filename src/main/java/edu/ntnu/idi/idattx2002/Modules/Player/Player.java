@@ -4,7 +4,7 @@ public class Player {
     String playerName;
     int playerID;
     int pieceID;
-    int currentTile = 0;
+    int currentTileId = 0;
 
     public Player(String playerName, int playerID, int pieceID) {
         this.playerName = playerName;
@@ -13,14 +13,14 @@ public class Player {
     }
 
     public void movePlayerBySteps(int numberOfSteps){
-        currentTile += numberOfSteps;
+        currentTileId += numberOfSteps;
     }
 
     public void movePlayerToTile(int tileId) {
-        currentTile = tileId;
+        currentTileId = tileId;
     }
 
     public int getCurrentTile(){
-        return currentTile;
+        return currentTileId;
     }
 }
