@@ -4,7 +4,7 @@ public class Player {
     String playerName;
     int playerID;
     int pieceID;
-    int currentTileId = 0;
+    int currentTileId = 1;
 
     public Player(String playerName, int playerID, int pieceID) {
         this.playerName = playerName;
@@ -22,5 +22,9 @@ public class Player {
 
     public int getCurrentTile(){
         return currentTileId;
+    }
+
+    public int getPieceID() {
+        return pieceID;
     }
 }

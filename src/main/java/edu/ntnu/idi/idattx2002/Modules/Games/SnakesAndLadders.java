@@ -23,18 +23,30 @@ public class SnakesAndLadders {
     playerToMoveID = 1;
   }
 
+  public Dice getDice() {
+    return dice;
+  }
+
+  public HashMap<Integer, Player> getPlayers() {
+    return players;
+  }
+
+  public int getPlayerToMoveID() {
+    return playerToMoveID;
+  }
+
   public void createBoard() {
     board.createBoard(9, 10);
   }
 
   //TODO impliment checkForWin
-  public void playTurn(Player player) {
+  public int playTurn(Player player) {
     int stepsToMove = dice.throwDice();
     player.movePlayerBySteps(stepsToMove);
-    updatePlayerToMove();
+    return stepsToMove;
   }
 
-  private void updatePlayerToMove() {
+  public void updatePlayerToMove() {
     if (playerToMoveID >= players.size()) {
       playerToMoveID = 1;
     }
