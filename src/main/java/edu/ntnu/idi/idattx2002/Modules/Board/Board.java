@@ -1,5 +1,7 @@
 package edu.ntnu.idi.idattx2002.Modules.Board;
 import edu.ntnu.idi.idattx2002.Modules.Board.Tile;
+
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -23,6 +25,11 @@ public class Board {
     return tile;
   }
 
+  public Tile getLastTile() {
+    int lastTileID = Collections.max(tiles.keySet());
+    return tiles.get(lastTileID);
+  }
+
   public void addTile(Tile tile) {
     tiles.put(tile.getTileId(), tile);
   }
@@ -30,6 +37,12 @@ public class Board {
   public void createBoard(int numberOfRows, int numberOfColumns) {
     validateRowsAndColumns(numberOfRows, numberOfColumns);
 
+
+    //er ikke denne helt mongo avansert
+    // hva med
+    // for (i = 1; i < rows*cols+1; i++){
+    //        addTile(new Tile(i)
+    //}
     for (int j = 0; j < numberOfRows; j++) {
       for (int i = 0; i < numberOfColumns; i++) {
         int tileId = (i+1) + (j * numberOfColumns);
@@ -37,6 +50,7 @@ public class Board {
       }
     }
   }
+
   public void validateRowsAndColumns(int numberOfRows, int numberOfColumns) {
     if (numberOfColumns < 1 || numberOfRows < 1) {
       throw new IllegalArgumentException("Rows and columns has to be greater then zero");
