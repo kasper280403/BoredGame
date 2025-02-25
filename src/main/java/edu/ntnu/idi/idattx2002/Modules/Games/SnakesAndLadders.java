@@ -27,6 +27,7 @@ public class SnakesAndLadders {
     board.createBoard(9, 10);
   }
 
+  //TODO impliment checkForWin
   public void playTurn(Player player) {
     int stepsToMove = dice.throwDice();
     player.movePlayerBySteps(stepsToMove);
@@ -75,6 +76,4 @@ public class SnakesAndLadders {
     board.getTile(42).setLandAction(new SwitchWithRandomAction());
     board.getTile(82).setLandAction(new SwitchWithRandomAction());
   }
-
-
 }
