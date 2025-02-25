@@ -28,6 +28,7 @@ public class GameWindow extends Application {
         TilesWindow.displayPieceAtTile(1, 1);
         TilesWindow.displayPieceAtTile(2, 2);
         TilesWindow.displayPieceAtTile(3, 3);
+        TilesWindow.displayPieceAtTile(4, 4);
 
         Button colorChanger = new Button("Change Color");
         colorChanger.setOnAction(e -> changeColor(3));
