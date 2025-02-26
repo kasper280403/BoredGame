@@ -2,6 +2,7 @@ package edu.ntnu.idi.idattx2002.Modules.Games;
 
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
+import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.GameWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
@@ -31,8 +32,8 @@ public class SnakesAndLadders {
     return players;
   }
 
-  public int getPlayerToMoveID() {
-    return playerToMoveID;
+  private Player getPlayerToMove() {
+    return players.get(playerToMoveID);
   }
 
   public void createBoard() {
@@ -40,9 +41,14 @@ public class SnakesAndLadders {
   }
 
 
-  public void playTurn(Player player) {
-    int stepsToMove = dice.throwDice();
-    player.movePlayerBySteps(stepsToMove);
+  public void playTurn() {
+    Player player = getPlayerToMove();
+    int diceA = dice.throwDice();
+    int diceB = dice.throwDice();
+
+    DiceWindow.throwDice(diceA, diceB);
+
+    player.movePlayerBySteps(diceA + diceB);
     if (checkForWin(player)){
       //player has won
       player.movePlayerToTile(board.getLastTile().getTileId());

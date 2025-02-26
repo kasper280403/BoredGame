@@ -1,8 +1,5 @@
 package edu.ntnu.idi.idattx2002.view;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
-import edu.ntnu.idi.idattx2002.view.DiceWindow;
-import edu.ntnu.idi.idattx2002.view.PieceWindow;
-import edu.ntnu.idi.idattx2002.view.TilesWindow;
 import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
 import java.util.Random;
 import javafx.animation.PauseTransition;
@@ -36,20 +33,11 @@ public class GameWindow extends Application {
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
 
-        Button colorChanger = new Button("Change Color");
-        colorChanger.setOnAction(e -> changeColor(3));
-
         Button throwDice = new Button("Throw Dice");
-        throwDice.setOnAction(e -> throwDice(5, 6));
-
-        Button throwDiceTurn = new Button("Throw Dice turn");
-        throwDiceTurn.setOnAction(e -> throwDiceTurn());
-
-        Button randomlyPlacePlayer1 = new Button("Randomly Move Player1");
-        randomlyPlacePlayer1.setOnAction(e -> randomlyPlacePlayer1());
+        throwDice.setOnAction(e -> playTurn());
 
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(board, colorChanger, throwDice, randomlyPlacePlayer1, throwDiceTurn);
+        leftSide.getChildren().addAll(board, throwDice);
 
         root.getChildren().addAll(leftSide, dice);
 
@@ -60,31 +48,16 @@ public class GameWindow extends Application {
         primaryStage.show();
     }
 
-    public void changeColor(int tileNumber) {
-        TilesWindow.changeTileColor(tileNumber, Color.RED);
-    }
 
     public void randomlyPlacePlayer1() {
         Random random = new Random();
         TilesWindow.displayPieceAtTile(random.nextInt(90), 1);
     }
 
-    public void throwDice(int A, int B) {
-        DiceWindow.throwDice(A, B);
+    public void playTurn() {
+        game.playTurn();
     }
 
-    public void throwDiceTurn() {
-        Player player = game.getPlayers().get(game.getPlayerToMoveID());
-
-        throwDice(game.playTurn(player), 6);
-
-        PauseTransition pause = new PauseTransition(Duration.seconds(2.2));
-        pause.setOnFinished(event -> {
-            TilesWindow.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
-            game.updatePlayerToMove();
-        });
-        pause.play();
-    }
 
     public void setUpGame() {
         game.createBoard();
