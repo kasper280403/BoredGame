@@ -51,13 +51,19 @@ public class SnakesAndLadders {
     DiceWindow.throwDice(diceA, diceB);
 
     player.movePlayerBySteps(steps);
-    TilesWindow.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
+    board.getTile(player.getCurrentTile()).landPlayer(player);
     if (checkForWin(player)){
-      //player has won
       player.movePlayerToTile(board.getLastTile().getTileId());
       // winSequence(player)
     }else {
       updatePlayerToMove();
+    }
+    updatePlayerPositions();
+  }
+
+  private void updatePlayerPositions(){
+    for (Player player : players.values()){
+      TilesWindow.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
     }
   }
 
@@ -84,7 +90,15 @@ public class SnakesAndLadders {
   }
 
   public void setLadderActions() {
-    board.getTile(1).setLandAction(new LadderAction(40));
+    board.getTile(2).setLandAction(new LadderAction(40));
+    board.getTile(3).setLandAction(new LadderAction(40));
+    board.getTile(4).setLandAction(new LadderAction(40));
+    board.getTile(5).setLandAction(new LadderAction(40));
+    board.getTile(6).setLandAction(new LadderAction(40));
+    board.getTile(7).setLandAction(new LadderAction(40));
+    board.getTile(8).setLandAction(new LadderAction(40));
+    board.getTile(9).setLandAction(new LadderAction(40));
+    board.getTile(10).setLandAction(new LadderAction(40));
     board.getTile(24).setLandAction(new LadderAction(5));
     board.getTile(33).setLandAction(new LadderAction(3));
     board.getTile(36).setLandAction(new LadderAction(52));

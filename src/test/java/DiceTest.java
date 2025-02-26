@@ -15,7 +15,7 @@ public class DiceTest {
     @Test
     void testThrowDice(){
         for (int i = 0; i < 1000; i++) { // Tester terningen 1000 ganger
-            int result = dice.roll();
+            int result = dice.throwDice();
             assertTrue(result >= 1 && result <= 6, "Dice shows invalid int: " + result);
         }
     }

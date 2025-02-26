@@ -4,10 +4,8 @@ import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -21,20 +19,19 @@ public class GameWindow extends Application {
     public void start(Stage primaryStage) {
 
         setUpGame();
-        Double size = 50.0;
+        double size = 50.0;
         HBox root = new HBox(10);
 
         GridPane board = TilesWindow.getBoard(9, 10, size);
         GridPane dice = DiceWindow.getDicePane();
 
         PieceWindow.createPieces(size);
-
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
 
 
         Button playTurn = new Button("Throw Dice");
-        PauseTransition pause = new PauseTransition(Duration.millis(2200));
+        PauseTransition pause = new PauseTransition(Duration.millis(2400));
         pause.setOnFinished(event -> playTurn.setDisable(false));
         playTurn.setOnAction(e -> {
             playTurn();
@@ -65,6 +62,7 @@ public class GameWindow extends Application {
         game.createBoard();
         game.addPlayer("Sindre", 1);
         game.addPlayer("kasper", 3);
+        game.setLandActions();
     }
 
     public static void main(String[] args) {

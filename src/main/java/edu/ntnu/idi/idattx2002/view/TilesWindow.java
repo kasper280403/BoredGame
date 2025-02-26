@@ -1,5 +1,4 @@
 package edu.ntnu.idi.idattx2002.view;
-import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
 import javafx.animation.PauseTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -70,12 +69,18 @@ public class TilesWindow {
     }
 
     public static void displayPieceAtTile(int tileID, int pieceID) {
-        PauseTransition pause = new PauseTransition(Duration.millis(2200));
+        PauseTransition pause = new PauseTransition(Duration.millis(2400));
 
 
         StackPane tilePane = tileMap.get(tileID);
         ImageView pieceView = PieceWindow.getImageView(pieceID);
-        pause.setOnFinished(event -> tilePane.getChildren().add(pieceView));
+        pause.setOnFinished(event -> {
+            // Fjern fra tidligere tile hvis den har en parent
+            if (pieceView.getParent() instanceof StackPane oldTile) {
+                oldTile.getChildren().remove(pieceView);
+            }
+            tilePane.getChildren().add(pieceView);
+        });
 
         pause.play();
     }
