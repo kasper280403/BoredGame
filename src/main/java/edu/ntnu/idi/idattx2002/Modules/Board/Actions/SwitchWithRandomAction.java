@@ -16,13 +16,16 @@ public class SwitchWithRandomAction implements LandAction {
 
   @Override
   public void perform(Player player) {
-    Player playerToSwitch = players.get(random.nextInt(players.size()) + 1);
+      Player playerToSwitch;
+      do {
+          playerToSwitch = players.get(random.nextInt(players.size()) + 1);
+      } while (playerToSwitch.getPlayerID() != player.getPlayerID());
 
-    int playerTileId = player.getCurrentTile();
-    int playerToSwitchTileId = playerToSwitch.getCurrentTile();
+      int playerTileId = player.getCurrentTile();
+      int playerToSwitchTileId = playerToSwitch.getCurrentTile();
 
-    player.movePlayerToTile(playerToSwitchTileId);
-    playerToSwitch.movePlayerToTile(playerTileId);
+      player.movePlayerToTile(playerToSwitchTileId);
+      playerToSwitch.movePlayerToTile(playerTileId);
   }
 
 

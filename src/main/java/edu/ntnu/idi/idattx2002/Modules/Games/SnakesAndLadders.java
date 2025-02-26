@@ -10,9 +10,9 @@ import java.util.HashMap;
 
 public class SnakesAndLadders {
 
-  private Board board;
+  private final Board board;
   public static HashMap<Integer, Player> players;
-  private Dice dice;
+  private final Dice dice;
   private GameWindow gameWindow;
   private int playerToMoveID;
 
@@ -39,18 +39,23 @@ public class SnakesAndLadders {
     board.createBoard(9, 10);
   }
 
-  //TODO impliment checkForWin
-  public int playTurn(Player player) {
+
+  public void playTurn(Player player) {
     int stepsToMove = dice.throwDice();
     player.movePlayerBySteps(stepsToMove);
-    return stepsToMove;
+    if (checkForWin(player)){
+      //player has won
+      player.movePlayerToTile(board.getLastTile().getTileId());
+      // winSequence(player)
+    }else {
+      updatePlayerToMove();
+    }
   }
 
-  public void updatePlayerToMove() {
+  private void updatePlayerToMove() {
     if (playerToMoveID >= players.size()) {
       playerToMoveID = 1;
-    }
-    else {
+    } else {
       playerToMoveID += 1;
     }
   }

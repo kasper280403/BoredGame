@@ -27,4 +27,8 @@ public class Player {
     public int getPieceID() {
         return pieceID;
     }
+
+    public int getPlayerID() {
+        return playerID;
+    }
 }
