@@ -19,7 +19,7 @@ public class SwitchWithRandomAction implements LandAction {
       Player playerToSwitch;
       do {
           playerToSwitch = players.get(random.nextInt(players.size()) + 1);
-      } while (playerToSwitch.getPlayerID() != player.getPlayerID());
+      } while (playerToSwitch.getPlayerID() == player.getPlayerID());
 
       int playerTileId = player.getCurrentTile();
       int playerToSwitchTileId = playerToSwitch.getCurrentTile();

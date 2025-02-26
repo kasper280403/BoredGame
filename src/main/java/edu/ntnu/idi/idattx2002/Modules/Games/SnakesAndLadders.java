@@ -85,8 +85,8 @@ public class SnakesAndLadders {
   }
 
   public void setLandActions() {
-    setLadderActions();
-    //setSwitchWithRandomActions(); not working
+    //setLadderActions();
+    setSwitchWithRandomActions(); //not working
   }
 
   public void setLadderActions() {
@@ -105,15 +105,15 @@ public class SnakesAndLadders {
   public void setSwitchWithRandomActions() {
     board.getTile(8).setLandAction(new SwitchWithRandomAction());
     board.getTile(9).setLandAction(new SwitchWithRandomAction());
-    board.getTile(82).setLandAction(new SwitchWithRandomAction());
-    board.getTile(40).setLandAction(new SwitchWithRandomAction());
-    board.getTile(41).setLandAction(new SwitchWithRandomAction());
-    board.getTile(42).setLandAction(new SwitchWithRandomAction());
-    board.getTile(43).setLandAction(new SwitchWithRandomAction());
-    board.getTile(44).setLandAction(new SwitchWithRandomAction());
-    board.getTile(45).setLandAction(new SwitchWithRandomAction());
-    board.getTile(46).setLandAction(new SwitchWithRandomAction());
-    board.getTile(47).setLandAction(new SwitchWithRandomAction());
+    board.getTile(10).setLandAction(new SwitchWithRandomAction());
+    board.getTile(11).setLandAction(new SwitchWithRandomAction());
+    board.getTile(12).setLandAction(new SwitchWithRandomAction());
+    board.getTile(13).setLandAction(new SwitchWithRandomAction());
+    board.getTile(14).setLandAction(new SwitchWithRandomAction());
+    board.getTile(15).setLandAction(new SwitchWithRandomAction());
+    board.getTile(16).setLandAction(new SwitchWithRandomAction());
+    board.getTile(17).setLandAction(new SwitchWithRandomAction());
+    board.getTile(18).setLandAction(new SwitchWithRandomAction());
     board.getTile(48).setLandAction(new SwitchWithRandomAction());
 
   }
