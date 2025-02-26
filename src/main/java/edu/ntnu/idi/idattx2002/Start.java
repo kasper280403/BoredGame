@@ -2,11 +2,13 @@ package edu.ntnu.idi.idattx2002;
 
 import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
@@ -24,13 +26,14 @@ public class Start extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setTitle("Velg spill");
+        primaryStage.setTitle("Chose game");
 
-        Label label = new Label("Velg spill:");
+        Label label = new Label("Chose game:");
         Button snakesAndLaddersButton = new Button("Snakes and Ladders");
         snakesAndLaddersButton.setOnAction(e -> openPlayerInput());
 
         VBox layout = new VBox(10);
+        layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(label, snakesAndLaddersButton);
 
         Scene scene = new Scene(layout, 300, 200);
@@ -40,20 +43,28 @@ public class Start extends Application {
 
     private void openPlayerInput() {
         VBox layout = new VBox(10);
-        Label label = new Label("Skriv inn spillernavn:");
+        Label heading = new Label("Add players!");
+        Region spacing = new Region();
+        spacing.setMinHeight(20);
 
+        Label playerNameLabel = new Label("Player name:");
         TextField playerNameField = new TextField();
+        HBox playerNameHBox = new HBox(20);
+        playerNameHBox.setAlignment(Pos.CENTER);
+        playerNameHBox.getChildren().addAll(playerNameLabel, playerNameField);
+
+
         HBox pieces = new HBox(10);
         ListView<String> playerListView = new ListView<>();
         HashMap<Integer, ImageView> images = getPiecesImg();
         HashMap<Integer, Button> pieceButtons = new HashMap<>();
 
-        final int[] selectedPiece = {1}; // Standardvalgt brikke
+        final int[] selectedPiece = {1};
 
         for (Integer key : images.keySet()) {
             VBox pieceBox = new VBox(10);
-            Label imgTxt = new Label("Brikke " + key);
-            Button selectPieceButton = new Button("Velg");
+            Label imgTxt = new Label("Piece " + key);
+            Button selectPieceButton = new Button("Pick me");
 
             selectPieceButton.setOnAction(e -> {
                 selectedPiece[0] = key;
@@ -66,16 +77,18 @@ public class Start extends Application {
             pieceButtons.put(key, selectPieceButton);
         }
 
-        Button addPlayerButton = new Button("Legg til spiller");
-        Button startGameButton = new Button("Start spill");
+        pieces.setAlignment(Pos.CENTER);
+
+        Button addPlayerButton = new Button("Add player");
+        Button startGameButton = new Button("Start game");
         startGameButton.setDisable(true);
 
         addPlayerButton.setOnAction(e -> {
             String name = playerNameField.getText().trim();
             if (!name.isEmpty() && !playerNames.contains(name)) {
                 playerNames.add(name);
-                playerPieces.add(selectedPiece[0]); // Lagre valgt brikke
-                playerListView.getItems().add(name + " (Brikke " + selectedPiece[0] + ")");
+                playerPieces.add(selectedPiece[0]);
+                playerListView.getItems().add(name + " (Piece " + selectedPiece[0] + ")");
                 playerNameField.clear();
             }
             if (playerNames.size() >= 2) {
@@ -85,9 +98,10 @@ public class Start extends Application {
 
         startGameButton.setOnAction(e -> startSnakesAndLadders());
 
-        layout.getChildren().addAll(label, playerNameField, pieces, addPlayerButton, playerListView, startGameButton);
-
-        Scene scene = new Scene(layout, 400, 400);
+        layout.getChildren().addAll(heading, playerNameHBox, pieces, spacing, addPlayerButton, playerListView, startGameButton);
+        layout.setAlignment(Pos.CENTER);
+        layout.setSpacing(10);
+        Scene scene = new Scene(layout, 500, 400);
         primaryStage.setScene(scene);
     }
 
