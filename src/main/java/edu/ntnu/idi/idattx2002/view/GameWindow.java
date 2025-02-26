@@ -30,6 +30,9 @@ public class GameWindow extends Application {
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
 
 
+        Button showWin = new Button("Win");
+        showWin.setOnAction(e -> showWin());
+
         Button playTurn = new Button("Throw Dice");
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
         pause.setOnFinished(event -> playTurn.setDisable(false));
@@ -41,7 +44,7 @@ public class GameWindow extends Application {
         });
 
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(board, playTurn);
+        leftSide.getChildren().addAll(board, playTurn, showWin);
 
         root.getChildren().addAll(leftSide, dice);
 
@@ -52,6 +55,11 @@ public class GameWindow extends Application {
         primaryStage.show();
     }
 
+
+    //ToBeRemoved
+    public void showWin() {
+        WinWindow.createStage();
+    }
 
     public void playTurn() {
         game.playTurn();
