@@ -1,7 +1,6 @@
 package edu.ntnu.idi.idattx2002.view;
 import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
 import javafx.animation.PauseTransition;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -10,15 +9,23 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.List;
 
-public class GameWindow extends Application {
 
-    SnakesAndLadders game = new SnakesAndLadders();
+public class SnakesAndLadderWindow{
 
-    @Override
-    public void start(Stage primaryStage) {
+    private SnakesAndLadders game;
+    private Stage primaryStage;
 
-        setUpGame();
+
+    public SnakesAndLadderWindow(Stage stage, List<String> players, List<Integer> pieces) {
+        this.primaryStage = stage;
+        this.game = new SnakesAndLadders();
+        setUpGame(players, pieces);
+        StartGame();
+    }
+
+    public void StartGame(){
         double size = 50.0;
         HBox root = new HBox(10);
 
@@ -58,15 +65,12 @@ public class GameWindow extends Application {
     }
 
 
-    public void setUpGame() {
+    public void setUpGame(List<String> players, List<Integer> pieces) {
         game.createBoard();
-        game.addPlayer("Sindre", 1);
-        game.addPlayer("kasper", 3);
+        for (int i = 0; i < players.size(); i++) {
+            game.addPlayer(players.get(i), pieces.get(i));
+        }
         game.setLandActions();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
 

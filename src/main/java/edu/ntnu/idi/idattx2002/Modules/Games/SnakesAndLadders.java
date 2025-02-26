@@ -3,7 +3,7 @@ package edu.ntnu.idi.idattx2002.Modules.Games;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
-import edu.ntnu.idi.idattx2002.view.GameWindow;
+import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
@@ -16,7 +16,7 @@ public class SnakesAndLadders {
   private final Board board;
   public static HashMap<Integer, Player> players;
   private final Dice dice;
-  private GameWindow gameWindow;
+  private SnakesAndLadderWindow snakesAndLadderWindow;
   private int playerToMoveID;
 
   public SnakesAndLadders() {
