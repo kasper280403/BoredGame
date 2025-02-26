@@ -38,17 +38,11 @@ public class Board {
     validateRowsAndColumns(numberOfRows, numberOfColumns);
 
 
-    //er ikke denne helt mongo avansert
-    // hva med
-    // for (i = 1; i < rows*cols+1; i++){
-    //        addTile(new Tile(i)
-    //}
-    for (int j = 0; j < numberOfRows; j++) {
-      for (int i = 0; i < numberOfColumns; i++) {
-        int tileId = (i+1) + (j * numberOfColumns);
-        addTile(new Tile(tileId));
-      }
+
+    for (int i = 1; i < numberOfRows*numberOfColumns+1; i++){
+           addTile(new Tile(i));
     }
+
   }
 
   public void validateRowsAndColumns(int numberOfRows, int numberOfColumns) {
