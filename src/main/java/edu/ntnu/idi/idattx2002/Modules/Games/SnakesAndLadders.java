@@ -7,6 +7,8 @@ import edu.ntnu.idi.idattx2002.view.GameWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
+import edu.ntnu.idi.idattx2002.view.TilesWindow;
+
 import java.util.HashMap;
 
 public class SnakesAndLadders {
@@ -45,10 +47,11 @@ public class SnakesAndLadders {
     Player player = getPlayerToMove();
     int diceA = dice.throwDice();
     int diceB = dice.throwDice();
-
+    int steps = diceA + diceB;
     DiceWindow.throwDice(diceA, diceB);
 
-    player.movePlayerBySteps(diceA + diceB);
+    player.movePlayerBySteps(steps);
+    TilesWindow.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
     if (checkForWin(player)){
       //player has won
       player.movePlayerToTile(board.getLastTile().getTileId());

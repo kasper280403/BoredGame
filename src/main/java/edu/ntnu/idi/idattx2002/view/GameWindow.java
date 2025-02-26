@@ -1,16 +1,15 @@
 package edu.ntnu.idi.idattx2002.view;
-import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
-import java.util.Random;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 
@@ -33,11 +32,19 @@ public class GameWindow extends Application {
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
 
-        Button throwDice = new Button("Throw Dice");
-        throwDice.setOnAction(e -> playTurn());
+
+        Button playTurn = new Button("Throw Dice");
+        PauseTransition pause = new PauseTransition(Duration.millis(2200));
+        pause.setOnFinished(event -> playTurn.setDisable(false));
+        playTurn.setOnAction(e -> {
+            playTurn();
+            playTurn.setDisable(true);
+            pause.play();
+
+        });
 
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(board, throwDice);
+        leftSide.getChildren().addAll(board, playTurn);
 
         root.getChildren().addAll(leftSide, dice);
 
@@ -48,11 +55,6 @@ public class GameWindow extends Application {
         primaryStage.show();
     }
 
-
-    public void randomlyPlacePlayer1() {
-        Random random = new Random();
-        TilesWindow.displayPieceAtTile(random.nextInt(90), 1);
-    }
 
     public void playTurn() {
         game.playTurn();
