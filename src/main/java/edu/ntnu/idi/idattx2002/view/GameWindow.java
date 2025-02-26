@@ -21,13 +21,13 @@ public class GameWindow extends Application {
     public void start(Stage primaryStage) {
 
         setUpGame();
-
+        Double size = 50.0;
         HBox root = new HBox(10);
 
-        GridPane board = TilesWindow.getBoard(9, 10);
+        GridPane board = TilesWindow.getBoard(9, 10, size);
         GridPane dice = DiceWindow.getDicePane();
 
-        PieceWindow.createPieces(75);
+        PieceWindow.createPieces(size);
 
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());

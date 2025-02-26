@@ -16,10 +16,9 @@ public class TilesWindow {
 
     private static final HashMap<Integer, StackPane> tileMap = new HashMap<>();
 
-    public static GridPane getBoard(int xDimensions, int yDimensions) {
+    public static GridPane getBoard(int xDimensions, int yDimensions, double tileSize) {
 
         GridPane gridPane = new GridPane();
-        double tileSize = 75;
         int tileID = 1;
         boolean leftToRight = true;
 
