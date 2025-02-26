@@ -41,6 +41,7 @@ public class Start extends Application {
         primaryStage.show();
     }
 
+    //Må refaktoreres litt her, denne kan være generell for flere spill men kan ikke kalle på startsnakeAndladders herifra
     private void openPlayerInput() {
         VBox layout = new VBox(10);
         Label heading = new Label("Add players!");
@@ -104,7 +105,6 @@ public class Start extends Application {
         Scene scene = new Scene(layout, 500, 400);
         primaryStage.setScene(scene);
     }
-
 
     private void startSnakesAndLadders() {
         new SnakesAndLadderWindow(primaryStage, playerNames, playerPieces);
