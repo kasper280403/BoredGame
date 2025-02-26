@@ -58,7 +58,7 @@ public class GameWindow extends Application {
 
     //ToBeRemoved
     public void showWin() {
-        WinWindow.createStage();
+        WinWindow.createStage(1, "Sindre");
     }
 
     public void playTurn() {
