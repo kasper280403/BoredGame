@@ -79,7 +79,7 @@ public class DiceWindow {
             timeline.getKeyFrames().add(keyFrame);
         }
 
-        KeyFrame finalFrame = getDicesKeyFrame(A, B, greenDiceImageMap, 2200);
+        KeyFrame finalFrame = getDicesKeyFrame(A, B, greenDiceImageMap, 2130);
         timeline.getKeyFrames().add(finalFrame);
 
         timeline.play();

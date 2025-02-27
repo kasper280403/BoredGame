@@ -140,7 +140,7 @@ public class SnakesAndLadders {
   }
 
   public static void winSequence(Player player) {
-    PauseTransition pause = new PauseTransition(Duration.millis(3500));
+    PauseTransition pause = new PauseTransition(Duration.millis(5000));
     pause.setOnFinished(event -> {
       SnakesAndLadderWindow.closeStage();
       WinWindow.createStage(player.getPieceID(), player.getPlayerName());
