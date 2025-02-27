@@ -59,11 +59,9 @@ public class SnakesAndLadderWindow{
         primaryStage.show();
     }
 
-
     public void playTurn() {
         game.playTurn();
     }
-
 
     public void setUpGame(List<String> players, List<Integer> pieces) {
         game.createBoard();
