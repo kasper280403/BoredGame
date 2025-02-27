@@ -18,6 +18,7 @@ public class WinWindow {
 
   //TODO add buttons for replay and exit
   public static void createStage(int pieceID, String name) {
+
     Stage winStage = new Stage();
     winStage.initModality(Modality.APPLICATION_MODAL);
     winStage.setTitle("WIN");

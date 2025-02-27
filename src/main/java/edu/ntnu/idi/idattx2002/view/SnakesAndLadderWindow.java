@@ -14,12 +14,12 @@ import java.util.List;
 
 public class SnakesAndLadderWindow{
 
-    private SnakesAndLadders game;
-    private Stage primaryStage;
+    private final SnakesAndLadders game;
+    public static Stage primaryStage;
 
 
     public SnakesAndLadderWindow(Stage stage, List<String> players, List<Integer> pieces) {
-        this.primaryStage = stage;
+        primaryStage = stage;
         this.game = new SnakesAndLadders();
         setUpGame(players, pieces);
         StartGame();
@@ -70,6 +70,13 @@ public class SnakesAndLadderWindow{
         }
         game.setLandActions();
     }
+
+    public static void closeStage(){
+        primaryStage.close();
+    }
+
 }
+
+
 
 

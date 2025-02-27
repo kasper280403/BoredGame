@@ -8,6 +8,9 @@ import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
+import edu.ntnu.idi.idattx2002.view.WinWindow;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 import java.util.HashMap;
 
@@ -16,7 +19,6 @@ public class SnakesAndLadders {
   private final Board board;
   public static HashMap<Integer, Player> players;
   private final Dice dice;
-  private SnakesAndLadderWindow snakesAndLadderWindow;
   private int playerToMoveID;
 
   public SnakesAndLadders() {
@@ -24,10 +26,6 @@ public class SnakesAndLadders {
     players = new HashMap<>();
     this.dice = new Dice();
     playerToMoveID = 1;
-  }
-
-  public Dice getDice() {
-    return dice;
   }
 
   public HashMap<Integer, Player> getPlayers() {
@@ -51,13 +49,19 @@ public class SnakesAndLadders {
     DiceWindow.throwDice(diceA, diceB);
 
     player.movePlayerBySteps(steps);
-    board.getTile(player.getCurrentTile()).landPlayer(player);
-    if (checkForWin(player)){
+
+    if (checkForWin(player)) {
+      System.out.println("Win hit!");
       player.movePlayerToTile(board.getLastTile().getTileId());
-      // winSequence(player)
-    }else {
-      updatePlayerToMove();
+      winSequence(player);
+      updatePlayerPositions();
     }
+
+    board.getTile(player.getCurrentTile()).landPlayer(player);
+
+    board.getTile(player.getCurrentTile()).landPlayer(player);
+    updatePlayerToMove();
+
     updatePlayerPositions();
   }
 
@@ -86,7 +90,8 @@ public class SnakesAndLadders {
 
   public void setLandActions() {
     //setLadderActions();
-    setSwitchWithRandomActions(); //not working
+    //setSwitchWithRandomActions();
+    deBugActions();
   }
 
   public void setLadderActions() {
@@ -100,6 +105,22 @@ public class SnakesAndLadders {
     board.getTile(68).setLandAction(new LadderAction(85));
     board.getTile(74).setLandAction(new LadderAction(12));
     board.getTile(87).setLandAction(new LadderAction(70));
+  }
+  
+  public void deBugActions(){
+
+    board.getTile(2).setLandAction(new LadderAction(80));
+    board.getTile(3).setLandAction(new LadderAction(80));
+    board.getTile(4).setLandAction(new LadderAction(80));
+    board.getTile(5).setLandAction(new LadderAction(80));
+    board.getTile(6).setLandAction(new LadderAction(80));
+    board.getTile(7).setLandAction(new LadderAction(80));
+    board.getTile(8).setLandAction(new LadderAction(80));
+    board.getTile(9).setLandAction(new LadderAction(80));
+    board.getTile(10).setLandAction(new LadderAction(80));
+    board.getTile(11).setLandAction(new LadderAction(80));
+    board.getTile(12).setLandAction(new LadderAction(80));
+    board.getTile(13).setLandAction(new LadderAction(80));
   }
 
   public void setSwitchWithRandomActions() {
@@ -115,6 +136,17 @@ public class SnakesAndLadders {
     board.getTile(17).setLandAction(new SwitchWithRandomAction());
     board.getTile(18).setLandAction(new SwitchWithRandomAction());
     board.getTile(48).setLandAction(new SwitchWithRandomAction());
+
+  }
+
+  public static void winSequence(Player player) {
+    PauseTransition pause = new PauseTransition(Duration.millis(3500));
+    pause.setOnFinished(event -> {
+      SnakesAndLadderWindow.closeStage();
+      WinWindow.createStage(player.getPieceID(), player.getPlayerName());
+    });
+
+    pause.play();
 
   }
 }
