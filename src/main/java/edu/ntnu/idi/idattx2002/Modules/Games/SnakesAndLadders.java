@@ -89,9 +89,9 @@ public class SnakesAndLadders {
   }
 
   public void setLandActions() {
-    //setLadderActions();
-    //setSwitchWithRandomActions();
-    deBugActions();
+    setLadderActions();
+    setSwitchWithRandomActions();
+    //deBugActions();
   }
 
   public void setLadderActions() {

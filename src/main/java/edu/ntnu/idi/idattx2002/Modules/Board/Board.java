@@ -1,5 +1,4 @@
 package edu.ntnu.idi.idattx2002.Modules.Board;
-import edu.ntnu.idi.idattx2002.Modules.Board.Tile;
 
 import java.util.Collections;
 import java.util.HashMap;
