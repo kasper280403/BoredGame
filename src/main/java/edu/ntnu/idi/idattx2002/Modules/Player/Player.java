@@ -31,4 +31,8 @@ public class Player {
     public int getPlayerID() {
         return playerID;
     }
+
+    public String getPlayerName() {
+        return playerName;
+    }
 }
