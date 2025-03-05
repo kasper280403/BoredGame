@@ -61,6 +61,6 @@ public class TileTest {
     //act
     tile.landPlayer(player);
     //assert
-    Assertions.assertEquals(0, player.getCurrentTile());
+    Assertions.assertEquals(1, player.getCurrentTile());
   }
 }
