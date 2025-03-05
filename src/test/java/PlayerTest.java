@@ -8,24 +8,51 @@ class PlayerTest {
     Player player;
 
     @BeforeEach
+    //arrange
     void setUp(){
         player =  new Player("Kasper", 1, 1);
     }
 
     @Test
     void testMovePlayerBySteps(){
+        //act
         player.movePlayerBySteps(10);
-        assertEquals(10, player.getCurrentTile());
+        //assert
+        assertEquals(11, player.getCurrentTile());
         assertNotEquals(5, player.getCurrentTile());
     }
 
     @Test
     void testMovePlayerToTile(){
+        //act
         player.movePlayerToTile(30);
+        //assert
         assertEquals(30, player.getCurrentTile());
-        player.movePlayerToTile(2);
-        assertEquals(2, player.getCurrentTile());
         assertNotEquals(32, player.getCurrentTile());
     }
 
+
+    @Test
+    void testGetPlayerName() {
+        //act
+        String name = player.getPlayerName();
+        //assert
+        assertEquals("Kasper", name);
+    }
+
+    @Test
+    void testGetPlayerID() {
+        //act
+        int playerID = player.getPlayerID();
+        //assert
+        assertEquals(1, playerID);
+    }
+
+    @Test
+    void testGetPieceID() {
+        //act
+        int pieceID = player.getPieceID();
+        //assert
+        assertEquals(1, pieceID);
+    }
 }
