@@ -85,7 +85,7 @@ public class SnakesAndLadders {
   }
 
   public void setLandActions() {
-    //setLadderActions();
+    setLadderActions();
     setSwitchWithRandomActions(); //not working
   }
 
