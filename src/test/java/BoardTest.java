@@ -1,4 +1,8 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import edu.ntnu.idi.idattx2002.Modules.Board.Tile;
+import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -61,5 +65,25 @@ class BoardTest {
     Assertions.assertThrows(IllegalArgumentException.class, () -> {
       board.getTile(1);
     });
+  }
+
+  @Test
+  void testGetBoard() {
+    //arrange
+    board.createBoard(2, 2);
+    //act
+    HashMap<Integer, Tile> tiles = board.getTiles();
+    //assert
+    assertEquals(4, tiles.size());
+  }
+
+  @Test
+  void testGetLastTile() {
+    //arrange
+    board.createBoard(3, 3);
+    //act
+    Tile lastTile = board.getLastTile();
+    //assert
+    assertEquals(9, lastTile.getTileId());
   }
 }
