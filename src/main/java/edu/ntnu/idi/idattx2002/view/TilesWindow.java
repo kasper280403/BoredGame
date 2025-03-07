@@ -1,9 +1,15 @@
 package edu.ntnu.idi.idattx2002.view;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
+import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Board.LandAction;
 import edu.ntnu.idi.idattx2002.Modules.Board.Tile;
 import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import javafx.animation.PauseTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -91,25 +97,57 @@ public class TilesWindow {
         pause.play();
     }
 
+    //TODO should be refactored
     private static void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
         Board board = game.getBoard();
         Tile tile;
         LandAction landAction;
+
+        ArrayList<Color> colorList = getColorList();
+        int colorInt = 0;
+
         for (Integer tileID : tileMap.keySet()) {
             tile = board.getTile(tileID);
-            if (tile.hasLandAction()){
+
+            if (tile.hasLandAction()) {
                 landAction = tile.getLandAction();
                 if(landAction instanceof LadderAction) {
                     LadderAction ladderAction = (LadderAction) landAction;
-                    if(ladderAction.getDestinationTileId() < tileID) {
-                        tileMap.get(tileID).getChildren().addAll(LadderView.getRedPortal(tileSize));
-                    }
-                    else if(ladderAction.getDestinationTileId() > tileID) {
-                        tileMap.get(tileID).getChildren().addAll(LadderView.getGreenPortal(tileSize));
-                    }
+
+                    int destinationTileID  = ladderAction.getDestinationTileId();
+                    tileMap.get(tileID).getChildren().add(LadderView.getPortalEntrance(tileSize));
+                    tileMap.get(destinationTileID).getChildren().add(LadderView.getPortalExit(tileSize));
+
+                    changeTileColor(tileID, colorList.get(colorInt));
+                    changeTileColor(destinationTileID, colorList.get(colorInt));
+                    colorInt ++;
+                }
+                if(landAction instanceof SwitchWithRandomAction) {
+                    tileMap.get(tileID).getChildren().add(LadderView.getSwitchWithRandom(tileSize));
                 }
             }
         }
+    }
+
+    private static void displayLadderAction(LadderAction ladderAction,int tileSize, Color color)
+
+    private static ArrayList<Color> getColorList(){
+        ArrayList<Color> colorList = new ArrayList<>();
+
+        colorList.add(Color.web("#7F00FF"));
+        colorList.add(Color.web("#FF007F"));
+        colorList.add(Color.web("#33FF99"));
+        colorList.add(Color.web("#0000FF"));
+        colorList.add(Color.web("#FF0000"));
+        colorList.add(Color.web("#00FF00"));
+        colorList.add(Color.web("#FF7F00"));
+        colorList.add(Color.web("#3399FF"));
+        colorList.add(Color.web("#FFFF00"));
+        colorList.add(Color.web("#7FFF00"));
+        colorList.add(Color.web("#00FFFF"));
+        colorList.add(Color.web("#FF00FF"));
+
+        return colorList;
     }
 
     public static void changeTileColor(int tileID, Color color) {

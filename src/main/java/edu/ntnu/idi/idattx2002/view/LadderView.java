@@ -9,14 +9,17 @@ public class LadderView {
 
 
 
-  public static ImageView getGreenPortal(double tileSize) {
-    return createPortalImage("images/tiles/greenPortal.png", tileSize);
+  public static ImageView getPortalEntrance(double tileSize) {
+    return createPortalImage("images/tiles/portalEntrance.png", tileSize);
   }
 
-  public static ImageView getRedPortal(double tileSize) {
-    return createPortalImage("images/tiles/redPortal.png", tileSize);
+  public static ImageView getPortalExit(double tileSize) {
+    return createPortalImage("images/tiles/portalExit.png", tileSize);
   }
 
+  public static ImageView getSwitchWithRandom(double tileSize) {
+    return createPortalImage("images/tiles/switchWithRandom.png", tileSize);
+  }
 
   private static ImageView createPortalImage(String imageLocation, double tileSize) {
     Image portalImage = new Image(imageLocation);
