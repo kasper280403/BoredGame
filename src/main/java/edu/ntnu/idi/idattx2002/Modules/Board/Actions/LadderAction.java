@@ -18,6 +18,10 @@ public class LadderAction implements LandAction {
     }
   }
 
+  public int getDestinationTileId() {
+    return destinationTileId;
+  }
+
   @Override
   public void perform(Player player) {
     player.movePlayerToTile(this.destinationTileId);

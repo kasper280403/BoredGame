@@ -23,6 +23,12 @@ public class Tile {
     return this.tileId;
    }
 
+   public LandAction getLandAction(){
+    if(hasLandAction()){
+      return landAction;
+    }
+    return null;
+   }
 
    //TODO exeption handling if tileAction exists
    public void setLandAction(LandAction landAction) {

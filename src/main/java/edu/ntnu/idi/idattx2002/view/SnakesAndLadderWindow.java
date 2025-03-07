@@ -29,7 +29,7 @@ public class SnakesAndLadderWindow{
         double size = 50.0;
         HBox root = new HBox(10);
 
-        GridPane board = TilesWindow.getBoard(9, 10, size);
+        GridPane board = TilesWindow.getBoard(9, 10, size, game);
         GridPane dice = DiceWindow.getDicePane();
 
         PieceWindow.createPieces(size);

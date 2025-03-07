@@ -1,4 +1,9 @@
 package edu.ntnu.idi.idattx2002.view;
+import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
+import edu.ntnu.idi.idattx2002.Modules.Board.Board;
+import edu.ntnu.idi.idattx2002.Modules.Board.LandAction;
+import edu.ntnu.idi.idattx2002.Modules.Board.Tile;
+import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
 import javafx.animation.PauseTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -15,7 +20,7 @@ public class TilesWindow {
 
     private static final HashMap<Integer, StackPane> tileMap = new HashMap<>();
 
-    public static GridPane getBoard(int xDimensions, int yDimensions, double tileSize) {
+    public static GridPane getBoard(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game) {
 
         GridPane gridPane = new GridPane();
         int tileID = 1;
@@ -41,6 +46,7 @@ public class TilesWindow {
                 tileID += yDimensions + 1;
             }
         }
+        displayLandActionsAtTile(tileSize, game);
         return gridPane;
     }
 
@@ -83,6 +89,27 @@ public class TilesWindow {
         });
 
         pause.play();
+    }
+
+    private static void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
+        Board board = game.getBoard();
+        Tile tile;
+        LandAction landAction;
+        for (Integer tileID : tileMap.keySet()) {
+            tile = board.getTile(tileID);
+            if (tile.hasLandAction()){
+                landAction = tile.getLandAction();
+                if(landAction instanceof LadderAction) {
+                    LadderAction ladderAction = (LadderAction) landAction;
+                    if(ladderAction.getDestinationTileId() < tileID) {
+                        tileMap.get(tileID).getChildren().addAll(LadderView.getRedPortal(tileSize));
+                    }
+                    else if(ladderAction.getDestinationTileId() > tileID) {
+                        tileMap.get(tileID).getChildren().addAll(LadderView.getGreenPortal(tileSize));
+                    }
+                }
+            }
+        }
     }
 
     public static void changeTileColor(int tileID, Color color) {

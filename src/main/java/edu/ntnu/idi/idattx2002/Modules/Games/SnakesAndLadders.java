@@ -32,6 +32,10 @@ public class SnakesAndLadders {
     return players;
   }
 
+  public Board getBoard() {
+    return board;
+  }
+
   private Player getPlayerToMove() {
     return players.get(playerToMoveID);
   }
