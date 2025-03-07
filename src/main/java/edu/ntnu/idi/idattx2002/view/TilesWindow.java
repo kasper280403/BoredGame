@@ -129,8 +129,6 @@ public class TilesWindow {
         }
     }
 
-    private static void displayLadderAction(LadderAction ladderAction,int tileSize, Color color)
-
     private static ArrayList<Color> getColorList(){
         ArrayList<Color> colorList = new ArrayList<>();
 
