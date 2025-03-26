@@ -24,14 +24,14 @@ public class SnakesAndLadders {
   private TilesWindow tilesView;
   private WinWindow winView;
 
-  public SnakesAndLadders() {
+  public SnakesAndLadders(SnakesAndLadderWindow window) {
     this.board = new Board();
     players = new HashMap<>();
     this.dice = new Dice();
     playerToMoveID = 1;
 
     //Should be moved
-    diceView = new DiceWindow();
+    diceView = new DiceWindow(window);
     tilesView = new TilesWindow();
     winView = new WinWindow();
 

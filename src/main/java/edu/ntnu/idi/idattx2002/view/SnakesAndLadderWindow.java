@@ -12,14 +12,14 @@ import javafx.util.Duration;
 import java.util.List;
 
 
-public class SnakesAndLadderWindow{
+public class SnakesAndLadderWindow extends HBox{
 
     private final SnakesAndLadders game;
     public static Stage primaryStage;
 
     public SnakesAndLadderWindow(Stage stage, List<String> players, List<Integer> pieces) {
         primaryStage = stage;
-        this.game = new SnakesAndLadders();
+        this.game = new SnakesAndLadders(this);
 
         setUpGame(players, pieces);
         StartGame();
@@ -27,10 +27,8 @@ public class SnakesAndLadderWindow{
 
     public void StartGame(){
         double size = 50.0;
-        HBox root = new HBox(10);
 
         GridPane board = game.getTilesView().getBoard(9, 10, size, game);
-        GridPane dice = game.getDiceView().getDicePane();
 
         PieceWindow.createPieces(size);
         game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
@@ -50,9 +48,10 @@ public class SnakesAndLadderWindow{
         VBox leftSide = new VBox(10);
         leftSide.getChildren().addAll(board, playTurn);
 
-        root.getChildren().addAll(leftSide, dice);
+        getChildren().addAll(leftSide);
+        game.getDiceView().show();
 
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(this, 900, 600);
 
         primaryStage.setTitle("Snakes and Ladders");
         primaryStage.setScene(scene);

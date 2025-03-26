@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -14,38 +15,18 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
 
-public class DiceWindow {
+public class DiceWindow extends GridPane{
+
+    private Pane parent;
 
     private Random random;
-    private GridPane dicePane;
-    private final Map<String, ImageView> diceMap;
+    private Map<String, ImageView> diceMap;
     private Map<Integer, Image> greenDiceImageMap;
     private HashMap<Integer, Image> orangeDiceImageMap;
 
-    public DiceWindow() {
-        random = new Random();
-        dicePane = new GridPane();
-
-        diceMap = new HashMap<>();
-
-       greenDiceImageMap = new HashMap<>();
-       orangeDiceImageMap = new HashMap<>();
-    }
-
-    public GridPane getDicePane(){
-        dicePane.setHgap(10);
-        dicePane.setVgap(10);
-
-        loadDiceImages();
-
-        ArrayList<ImageView> diceList = getDiceImages(1, 1, greenDiceImageMap);
-        diceMap.put("diceA", diceList.get(0));
-        diceMap.put("diceB", diceList.get(1));
-
-        dicePane.add(diceList.get(0), 0, 0);
-        dicePane.add(diceList.get(1), 1, 0);
-
-        return dicePane;
+    public DiceWindow(Pane parent) {
+        this.parent = parent;
+        init();
     }
 
     private void loadDiceImages() {
@@ -78,25 +59,6 @@ public class DiceWindow {
         }
     }
 
-    public void throwDice(int A, int B){
-
-        Timeline timeline = new Timeline();
-
-        for (int i = 0; i < 13; i++) {
-            int diceValueA = random.nextInt(6)+1;
-            int diceValueB = random.nextInt(6)+1;
-            int wait = (int) (Math.pow(1.77, i) + 100);
-
-            KeyFrame keyFrame = getDicesKeyFrame(diceValueA, diceValueB, orangeDiceImageMap, wait);
-            timeline.getKeyFrames().add(keyFrame);
-        }
-
-        KeyFrame finalFrame = getDicesKeyFrame(A, B, greenDiceImageMap, 2130);
-        timeline.getKeyFrames().add(finalFrame);
-
-        timeline.play();
-    }
-
     private KeyFrame getDicesKeyFrame(int diceValueA, int diceValueB, Map<Integer, Image> diceImageMap,  double wait) {
       return new KeyFrame(Duration.millis(wait), e -> {
           ArrayList<ImageView> diceList = getDiceImages(diceValueA, diceValueB, diceImageMap);
@@ -104,9 +66,9 @@ public class DiceWindow {
           diceMap.put("diceA", diceList.get(0));
           diceMap.put("diceB", diceList.get(1));
 
-          dicePane.getChildren().clear();
-          dicePane.add(diceMap.get("diceA"), 0, 0);
-          dicePane.add(diceMap.get("diceB"), 1, 0);
+          getChildren().clear();
+          add(diceMap.get("diceA"), 0, 0);
+          add(diceMap.get("diceB"), 1, 0);
       });
     }
 
@@ -128,6 +90,48 @@ public class DiceWindow {
         diceList.add(diceB);
 
         return diceList;
+    }
+
+    public void throwDice(int A, int B){
+
+        Timeline timeline = new Timeline();
+
+        for (int i = 0; i < 13; i++) {
+            int diceValueA = random.nextInt(6)+1;
+            int diceValueB = random.nextInt(6)+1;
+            int wait = (int) (Math.pow(1.77, i) + 100);
+
+            KeyFrame keyFrame = getDicesKeyFrame(diceValueA, diceValueB, orangeDiceImageMap, wait);
+            timeline.getKeyFrames().add(keyFrame);
+        }
+
+        KeyFrame finalFrame = getDicesKeyFrame(A, B, greenDiceImageMap, 2130);
+        timeline.getKeyFrames().add(finalFrame);
+
+        timeline.play();
+    }
+
+
+    public void init(){
+        random = new Random();
+        diceMap = new HashMap<>();
+        greenDiceImageMap = new HashMap<>();
+        orangeDiceImageMap = new HashMap<>();
+        loadDiceImages();
+
+        setHgap(10);
+        setVgap(10);
+
+        ArrayList<ImageView> diceList = getDiceImages(1, 1, greenDiceImageMap);
+        diceMap.put("diceA", diceList.get(0));
+        diceMap.put("diceB", diceList.get(1));
+
+        add(diceList.get(0), 0, 0);
+        add(diceList.get(1), 1, 0);
+    }
+
+    public void show() {
+        parent.getChildren().add(this);
     }
 }
 
