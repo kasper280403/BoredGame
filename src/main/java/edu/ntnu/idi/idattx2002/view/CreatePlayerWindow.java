@@ -1,53 +1,42 @@
-package edu.ntnu.idi.idattx2002;
+package edu.ntnu.idi.idattx2002.view;
 
-import edu.ntnu.idi.idattx2002.view.CreatePlayerWindow;
-import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
-import javafx.application.Application;
+import edu.ntnu.idi.idattx2002.Modules.Player.PlayerDAO;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import static edu.ntnu.idi.idattx2002.view.PieceWindow.setImageSize;
 
-public class Start extends Application {
+public class CreatePlayerWindow{
 
-    private Stage primaryStage;
-    private List<String> playerNames = new ArrayList<>();
-    private List<Integer> playerPieces = new ArrayList<>();
-    public CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
+    public ArrayList<String> playerNames;
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        primaryStage.setTitle("Chose game");
+    Stage createPlayerStage = new Stage();
+    PlayerDAO playerDAO;
 
-        Label label = new Label("Chose game:");
-        Button snakesAndLaddersButton = new Button("Snakes and Ladders");
-        snakesAndLaddersButton.setOnAction(e -> openPlayerInput());
-
-        Button createPlayerButton = new Button("Create Player");
-        createPlayerButton.setOnAction(e -> createPlayerWindow.openPlayerInput());
-
-        VBox layout = new VBox(10);
-        layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(label, createPlayerButton,  snakesAndLaddersButton);
-
-        Scene scene = new Scene(layout, 300, 200);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public CreatePlayerWindow(){
+        playerDAO = new PlayerDAO();
     }
 
-    //Må refaktoreres litt her, denne kan være generell for flere spill men kan ikke kalle på startsnakeAndladders herifra
-    private void openPlayerInput() {
+    public void openPlayerInput(){
+
+        try {
+            playerNames = getPlayerNames();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         VBox layout = new VBox(10);
         Label heading = new Label("Add players!");
         Region spacing = new Region();
@@ -61,8 +50,17 @@ public class Start extends Application {
 
 
         HBox pieces = new HBox(10);
-        ListView<String> playerListView = new ListView<>();
+
+
+        ListView<String> playerListView = null;
+        try {
+            playerListView = getPlayersListView();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         HashMap<Integer, ImageView> images = getPiecesImg();
+
         HashMap<Integer, Button> pieceButtons = new HashMap<>();
 
         final int[] selectedPiece = {1};
@@ -86,33 +84,31 @@ public class Start extends Application {
         pieces.setAlignment(Pos.CENTER);
 
         Button addPlayerButton = new Button("Add player");
-        Button startGameButton = new Button("Start game");
-        startGameButton.setDisable(true);
+        Button goBackButton = new Button("BACK");
 
+        ListView<String> finalPlayerListView = playerListView;
         addPlayerButton.setOnAction(e -> {
             String name = playerNameField.getText().trim();
             if (!name.isEmpty() && !playerNames.contains(name)) {
                 playerNames.add(name);
-                playerPieces.add(selectedPiece[0]);
-                playerListView.getItems().add(name + " (Piece " + selectedPiece[0] + ")");
+                finalPlayerListView.getItems().add(name + " (Piece " + selectedPiece[0] + ")");
                 playerNameField.clear();
-            }
-            if (playerNames.size() >= 2) {
-                startGameButton.setDisable(false);
+                try {
+                    updateDAO(name, selectedPiece[0]);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
-        startGameButton.setOnAction(e -> startSnakesAndLadders());
+        goBackButton.setOnAction(e -> goBack());
 
-        layout.getChildren().addAll(heading, playerNameHBox, pieces, spacing, addPlayerButton, playerListView, startGameButton);
+        layout.getChildren().addAll(heading, playerNameHBox, pieces, spacing, addPlayerButton, playerListView, goBackButton);
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(10);
         Scene scene = new Scene(layout, 500, 400);
-        primaryStage.setScene(scene);
-    }
-
-    private void startSnakesAndLadders() {
-        new SnakesAndLadderWindow(primaryStage, playerNames, playerPieces);
+        createPlayerStage.setScene(scene);
+        createPlayerStage.show();
     }
 
     public HashMap<Integer, ImageView> getPiecesImg() {
@@ -141,8 +137,32 @@ public class Start extends Application {
         return imageViewMap;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-}
+    public void goBack() {}
 
+    public ListView<String> getPlayersListView() throws IOException {
+        ArrayList<ArrayList<String>> playerList = playerDAO.getPlayers();
+        ListView<String> playerListView = new ListView<>();
+
+        for (ArrayList<String> player : playerList) {
+            playerListView.getItems().add(player.get(0) + " (Piece " + player.get(1) + ")");
+        }
+
+        return playerListView;
+    }
+
+    public ArrayList<String> getPlayerNames() throws IOException {
+        ArrayList<ArrayList<String>> playerList = playerDAO.getPlayers();
+        ArrayList<String> playerNames = new ArrayList<>();
+
+        for (ArrayList<String> player : playerList) {
+            playerNames.add(player.get(0));
+        }
+
+        return playerNames;
+    }
+
+    public void updateDAO(String playerName, int selectedPiece) throws IOException {
+        playerDAO.writePlayer(playerName, selectedPiece);
+    }
+
+}
