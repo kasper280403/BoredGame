@@ -30,7 +30,7 @@ public class SnakesAndLadderWindow extends HBox{
     public void StartGame(){
         double size = 50.0;
 
-        PieceWindow.createPieces(size);
+        game.getPieceWindow().createPieces(size);
         game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
         game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
 

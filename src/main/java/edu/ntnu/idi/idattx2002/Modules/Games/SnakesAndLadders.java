@@ -3,6 +3,7 @@ package edu.ntnu.idi.idattx2002.Modules.Games;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
+import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
@@ -23,6 +24,7 @@ public class SnakesAndLadders {
   private DiceWindow diceView;
   private TilesWindow tilesView;
   private WinWindow winView;
+  private PieceWindow pieceWindow;
 
   public SnakesAndLadders(SnakesAndLadderWindow window) {
     this.board = new Board();
@@ -34,6 +36,7 @@ public class SnakesAndLadders {
     createBoard();
 
     //Should be moved
+    pieceWindow = new PieceWindow();
     diceView = new DiceWindow(window);
     tilesView = new TilesWindow(10, 9, 50, this, window);
     winView = new WinWindow();
@@ -46,6 +49,9 @@ public class SnakesAndLadders {
   }
   public TilesWindow getTilesView() {
     return tilesView;
+  }
+  public PieceWindow getPieceWindow() {
+    return pieceWindow;
   }
 
   public HashMap<Integer, Player> getPlayers() {

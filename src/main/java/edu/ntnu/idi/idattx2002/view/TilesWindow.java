@@ -80,7 +80,7 @@ public class TilesWindow extends GridPane{
 
 
         StackPane tilePane = tileMap.get(tileID);
-        ImageView pieceView = PieceWindow.getImageView(pieceID);
+        ImageView pieceView = game.getPieceWindow().getImageView(pieceID);
         pause.setOnFinished(event -> {
             // Fjern fra tidligere tile hvis den har en parent
             if (pieceView.getParent() instanceof StackPane oldTile) {
