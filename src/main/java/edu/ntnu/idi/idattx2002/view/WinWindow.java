@@ -15,9 +15,11 @@ import javafx.stage.Stage;
 
 public class WinWindow {
 
+  public WinWindow() {
+  }
 
   //TODO add buttons for replay and exit
-  public static void createStage(int pieceID, String name) {
+  public void createStage(int pieceID, String name) {
 
     Stage winStage = new Stage();
     winStage.initModality(Modality.APPLICATION_MODAL);
@@ -31,11 +33,11 @@ public class WinWindow {
     winStage.show();
   }
 
-  private static Scene createScene(int pieceID, String name) {
+  private Scene createScene(int pieceID, String name) {
     return new Scene(createVbox(pieceID, name), 300, 300);
   }
 
-  private static VBox createVbox(int pieceID, String name) {
+  private VBox createVbox(int pieceID, String name) {
     VBox vBox = new VBox(30);
     vBox.setAlignment(Pos.CENTER);
 
@@ -44,7 +46,7 @@ public class WinWindow {
     return vBox;
   }
 
-  private static Text createWinText(String name) {
+  private Text createWinText(String name) {
     Text text = new Text("WUUUUHUUUUU!\n" + name + " Won!!!");
 
     text.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 40));
@@ -54,11 +56,11 @@ public class WinWindow {
     return text;
   }
 
-  private static ImageView getPiece(int imageViewSize, int pieceID){
+  private ImageView getPiece(int imageViewSize, int pieceID){
     return createPieces(imageViewSize).get(pieceID);
   }
 
-  private static HashMap<Integer, ImageView> createPieces(int imageViewSize) {
+  private HashMap<Integer, ImageView> createPieces(int imageViewSize) {
     HashMap<Integer, ImageView> pieceMap = new HashMap<>();
     pieceMap.put(1, createPiece(imageViewSize, "/images/pieces/frogPiece.png"));
     pieceMap.put(2, createPiece(imageViewSize, "/images/pieces/catPiece.png"));
@@ -67,19 +69,19 @@ public class WinWindow {
     return pieceMap;
   }
 
-  private static ImageView createPiece(int imageViewSize, String imageLocation) {
+  private ImageView createPiece(int imageViewSize, String imageLocation) {
     Image pieceImage = new Image(imageLocation, imageViewSize, imageViewSize, true, false);
     ImageView imageView = new ImageView(pieceImage);
 
     return imageView;
   }
 
-  private static void setSize(int size, Stage stage){
+  private void setSize(int size, Stage stage){
     stage.setWidth(size);
     stage.setHeight(size);
   }
 
-  private static void setPosition(int xPosition, int yPosition, Stage stage) {
+  private void setPosition(int xPosition, int yPosition, Stage stage) {
     stage.setX(xPosition); // X position in pixels from the left edge of the screen
     stage.setY(yPosition); // Y position in pixels from the top of the screen
 

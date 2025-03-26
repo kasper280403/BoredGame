@@ -22,6 +22,7 @@ public class SnakesAndLadders {
   private int playerToMoveID;
   private DiceWindow diceView;
   private TilesWindow tilesView;
+  private WinWindow winView;
 
   public SnakesAndLadders() {
     this.board = new Board();
@@ -32,6 +33,7 @@ public class SnakesAndLadders {
     //Should be moved
     diceView = new DiceWindow();
     tilesView = new TilesWindow();
+    winView = new WinWindow();
 
   }
 
@@ -151,11 +153,11 @@ public class SnakesAndLadders {
 
   }
 
-  public static void winSequence(Player player) {
+  public void winSequence(Player player) {
     PauseTransition pause = new PauseTransition(Duration.millis(5000));
     pause.setOnFinished(event -> {
       SnakesAndLadderWindow.closeStage();
-      WinWindow.createStage(player.getPieceID(), player.getPlayerName());
+      winView.createStage(player.getPieceID(), player.getPlayerName());
     });
 
     pause.play();
