@@ -15,6 +15,7 @@ import javafx.animation.PauseTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 
 public class TilesWindow extends GridPane{
 
+    Pane parent;
     SnakesAndLadders game;
     double tileSize;
 
@@ -34,7 +36,9 @@ public class TilesWindow extends GridPane{
     int xDimensions;
     int yDimensions;
 
-    public TilesWindow(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game) {
+    public TilesWindow(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
+        this.parent = parent;
+
         tileMap = new HashMap<>();
         ladderView = new LadderView();
 
@@ -43,34 +47,8 @@ public class TilesWindow extends GridPane{
 
         this.xDimensions = xDimensions;
         this.yDimensions = yDimensions;
-    }
 
-    public GridPane getBoard() {
-        int tileID = 1;
-        boolean leftToRight = true;
-
-        for (int row = xDimensions - 1; row >= 0; row--) {
-
-            if (!leftToRight) {
-                tileID += yDimensions - 1;
-            }
-
-            for (int col = 0; col < yDimensions; col++) {
-
-                StackPane tilePane = getTilePane(getTileColor(row, col), tileSize, tileID);
-                add(tilePane, col, row);
-                tileMap.put(tileID, tilePane);
-
-                tileID += tileIDUpdateAtColChange(leftToRight);
-            }
-
-            leftToRight = !leftToRight;
-            if (leftToRight) {
-                tileID += yDimensions + 1;
-            }
-        }
-        displayLandActionsAtTile(tileSize, game);
-        return this;
+        init();
     }
 
     private StackPane getTilePane(Color color, double tileSize, int tileID) {
@@ -175,5 +153,36 @@ public class TilesWindow extends GridPane{
                 }
             }
         }
+    }
+
+    public void init() {
+        int tileID = 1;
+        boolean leftToRight = true;
+
+        for (int row = xDimensions - 1; row >= 0; row--) {
+
+            if (!leftToRight) {
+                tileID += yDimensions - 1;
+            }
+
+            for (int col = 0; col < yDimensions; col++) {
+
+                StackPane tilePane = getTilePane(getTileColor(row, col), tileSize, tileID);
+                add(tilePane, col, row);
+                tileMap.put(tileID, tilePane);
+
+                tileID += tileIDUpdateAtColChange(leftToRight);
+            }
+
+            leftToRight = !leftToRight;
+            if (leftToRight) {
+                tileID += yDimensions + 1;
+            }
+        }
+        displayLandActionsAtTile(tileSize, game);
+    }
+
+    public void show() {
+        parent.getChildren().add(this);
     }
 }

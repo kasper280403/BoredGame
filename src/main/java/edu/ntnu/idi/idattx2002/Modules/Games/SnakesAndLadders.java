@@ -30,9 +30,12 @@ public class SnakesAndLadders {
     this.dice = new Dice();
     playerToMoveID = 1;
 
+    //Move into init
+    createBoard();
+
     //Should be moved
     diceView = new DiceWindow(window);
-    tilesView = new TilesWindow(10, 9, 50, this);
+    tilesView = new TilesWindow(10, 9, 50, this, window);
     winView = new WinWindow();
 
   }

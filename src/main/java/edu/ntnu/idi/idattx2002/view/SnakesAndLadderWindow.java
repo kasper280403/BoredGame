@@ -25,10 +25,10 @@ public class SnakesAndLadderWindow extends HBox{
         StartGame();
     }
 
+    //TODO make board display at left side
+    //Logic should be factored away
     public void StartGame(){
         double size = 50.0;
-
-        GridPane board = game.getTilesView().getBoard();
 
         PieceWindow.createPieces(size);
         game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
@@ -46,10 +46,11 @@ public class SnakesAndLadderWindow extends HBox{
         });
 
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(board, playTurn);
+        leftSide.getChildren().addAll(playTurn);
 
         getChildren().addAll(leftSide);
         game.getDiceView().show();
+        game.getTilesView().show();
 
         Scene scene = new Scene(this, 900, 600);
 
@@ -62,8 +63,8 @@ public class SnakesAndLadderWindow extends HBox{
         game.playTurn();
     }
 
+    //Should be move into snakeandLadders
     public void setUpGame(List<String> players, List<Integer> pieces) {
-        game.createBoard();
         for (int i = 0; i < players.size(); i++) {
             game.addPlayer(players.get(i), pieces.get(i));
         }
