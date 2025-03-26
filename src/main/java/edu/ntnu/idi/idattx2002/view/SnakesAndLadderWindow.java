@@ -17,10 +17,10 @@ public class SnakesAndLadderWindow{
     private final SnakesAndLadders game;
     public static Stage primaryStage;
 
-
     public SnakesAndLadderWindow(Stage stage, List<String> players, List<Integer> pieces) {
         primaryStage = stage;
         this.game = new SnakesAndLadders();
+
         setUpGame(players, pieces);
         StartGame();
     }
@@ -30,7 +30,7 @@ public class SnakesAndLadderWindow{
         HBox root = new HBox(10);
 
         GridPane board = TilesWindow.getBoard(9, 10, size, game);
-        GridPane dice = DiceWindow.getDicePane();
+        GridPane dice = game.getDiceView().getDicePane();
 
         PieceWindow.createPieces(size);
         TilesWindow.displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());

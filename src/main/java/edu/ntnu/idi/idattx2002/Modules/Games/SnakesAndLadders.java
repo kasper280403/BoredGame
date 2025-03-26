@@ -20,12 +20,21 @@ public class SnakesAndLadders {
   public static HashMap<Integer, Player> players;
   private final Dice dice;
   private int playerToMoveID;
+  private DiceWindow diceView;
 
   public SnakesAndLadders() {
     this.board = new Board();
     players = new HashMap<>();
     this.dice = new Dice();
     playerToMoveID = 1;
+
+    //Should be moved
+    diceView = new DiceWindow();
+  }
+
+  //Should be moved
+  public DiceWindow getDiceView() {
+    return diceView;
   }
 
   public HashMap<Integer, Player> getPlayers() {
@@ -50,7 +59,7 @@ public class SnakesAndLadders {
     int diceA = dice.throwDice();
     int diceB = dice.throwDice();
     int steps = diceA + diceB;
-    DiceWindow.throwDice(diceA, diceB);
+    diceView.throwDice(diceA, diceB);
 
     player.movePlayerBySteps(steps);
 

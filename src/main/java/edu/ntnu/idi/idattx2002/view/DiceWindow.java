@@ -1,5 +1,7 @@
 package edu.ntnu.idi.idattx2002.view;
 
+import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
+import java.util.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -14,13 +16,23 @@ import java.util.Random;
 
 public class DiceWindow {
 
-    private static final Random random = new Random();
-    private static final GridPane dicePane = new GridPane();
-    private static final HashMap<String, ImageView> diceMap = new HashMap<>();
-    static HashMap<Integer, Image> greenDiceImageMap = new HashMap<>();
-    static HashMap<Integer, Image> orangeDiceImageMap = new HashMap<>();
+    private Random random;
+    private GridPane dicePane;
+    private final Map<String, ImageView> diceMap;
+    private Map<Integer, Image> greenDiceImageMap;
+    private HashMap<Integer, Image> orangeDiceImageMap;
 
-    public static GridPane getDicePane(){
+    public DiceWindow() {
+        random = new Random();
+        dicePane = new GridPane();
+
+        diceMap = new HashMap<>();
+
+       greenDiceImageMap = new HashMap<>();
+       orangeDiceImageMap = new HashMap<>();
+    }
+
+    public GridPane getDicePane(){
         dicePane.setHgap(10);
         dicePane.setVgap(10);
 
@@ -36,7 +48,7 @@ public class DiceWindow {
         return dicePane;
     }
 
-    private static void loadDiceImages() {
+    private void loadDiceImages() {
         if (diceMap.isEmpty()) {
             greenDiceImageMap.put(1, new Image(Objects.requireNonNull(
                 DiceWindow.class.getResourceAsStream("/images/dices/greenDice1.png"))));
@@ -66,7 +78,7 @@ public class DiceWindow {
         }
     }
 
-    public static void throwDice(int A, int B){
+    public void throwDice(int A, int B){
 
         Timeline timeline = new Timeline();
 
@@ -85,7 +97,7 @@ public class DiceWindow {
         timeline.play();
     }
 
-    private static KeyFrame getDicesKeyFrame(int diceValueA, int diceValueB, HashMap<Integer, Image> diceImageMap,  double wait) {
+    private KeyFrame getDicesKeyFrame(int diceValueA, int diceValueB, Map<Integer, Image> diceImageMap,  double wait) {
       return new KeyFrame(Duration.millis(wait), e -> {
           ArrayList<ImageView> diceList = getDiceImages(diceValueA, diceValueB, diceImageMap);
 
@@ -98,7 +110,7 @@ public class DiceWindow {
       });
     }
 
-    private static ArrayList<ImageView> getDiceImages(int A, int B, HashMap<Integer, Image> diceImageMap){
+    private ArrayList<ImageView> getDiceImages(int A, int B, Map<Integer, Image> diceImageMap){
         Image diceAA = diceImageMap.get(A);
         Image diceBB = diceImageMap.get(B);
         ImageView diceA = new ImageView(diceAA);
