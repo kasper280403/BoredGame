@@ -29,12 +29,12 @@ public class SnakesAndLadderWindow{
         double size = 50.0;
         HBox root = new HBox(10);
 
-        GridPane board = TilesWindow.getBoard(9, 10, size, game);
+        GridPane board = game.getTilesView().getBoard(9, 10, size, game);
         GridPane dice = game.getDiceView().getDicePane();
 
         PieceWindow.createPieces(size);
-        TilesWindow.displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
-        TilesWindow.displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
+        game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
+        game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
 
 
         Button playTurn = new Button("Throw Dice");

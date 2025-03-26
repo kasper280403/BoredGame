@@ -21,6 +21,7 @@ public class SnakesAndLadders {
   private final Dice dice;
   private int playerToMoveID;
   private DiceWindow diceView;
+  private TilesWindow tilesView;
 
   public SnakesAndLadders() {
     this.board = new Board();
@@ -30,11 +31,16 @@ public class SnakesAndLadders {
 
     //Should be moved
     diceView = new DiceWindow();
+    tilesView = new TilesWindow();
+
   }
 
   //Should be moved
   public DiceWindow getDiceView() {
     return diceView;
+  }
+  public TilesWindow getTilesView() {
+    return tilesView;
   }
 
   public HashMap<Integer, Player> getPlayers() {
@@ -80,7 +86,7 @@ public class SnakesAndLadders {
 
   private void updatePlayerPositions(){
     for (Player player : players.values()){
-      TilesWindow.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
+      tilesView.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
     }
   }
 

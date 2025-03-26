@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import javafx.animation.PauseTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -24,9 +25,15 @@ import java.util.HashMap;
 
 public class TilesWindow {
 
-    private static final HashMap<Integer, StackPane> tileMap = new HashMap<>();
+    private Map<Integer, StackPane> tileMap;
+    private LadderView ladderView;
 
-    public static GridPane getBoard(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game) {
+    public TilesWindow() {
+        tileMap = new HashMap<>();
+        ladderView = new LadderView();
+    }
+
+    public GridPane getBoard(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game) {
 
         GridPane gridPane = new GridPane();
         int tileID = 1;
@@ -56,7 +63,7 @@ public class TilesWindow {
         return gridPane;
     }
 
-    private static StackPane getTilePane(Color color, double tileSize, int tileID) {
+    private StackPane getTilePane(Color color, double tileSize, int tileID) {
         StackPane tilePane = new StackPane();
         tilePane.setPrefSize(tileSize, tileSize);
         tilePane.setMaxSize(tileSize, tileSize);
@@ -72,15 +79,15 @@ public class TilesWindow {
         return tilePane;
     }
 
-    private static Color getTileColor(int row, int col) {
+    private Color getTileColor(int row, int col) {
         return (row + col) % 2 == 0 ? Color.LIGHTGRAY : Color.DARKGRAY;
     }
 
-    private static int tileIDUpdateAtColChange(boolean leftToRight) {
+    private int tileIDUpdateAtColChange(boolean leftToRight) {
         return leftToRight ? 1 : -1;
     }
 
-    public static void displayPieceAtTile(int tileID, int pieceID) {
+    public void displayPieceAtTile(int tileID, int pieceID) {
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
 
 
@@ -98,7 +105,7 @@ public class TilesWindow {
     }
 
     //TODO should be refactored
-    private static void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
+    private void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
         Board board = game.getBoard();
         Tile tile;
         LandAction landAction;
@@ -115,21 +122,21 @@ public class TilesWindow {
                     LadderAction ladderAction = (LadderAction) landAction;
 
                     int destinationTileID  = ladderAction.getDestinationTileId();
-                    tileMap.get(tileID).getChildren().add(LadderView.getPortalEntrance(tileSize));
-                    tileMap.get(destinationTileID).getChildren().add(LadderView.getPortalExit(tileSize));
+                    tileMap.get(tileID).getChildren().add(ladderView.getPortalEntrance(tileSize));
+                    tileMap.get(destinationTileID).getChildren().add(ladderView.getPortalExit(tileSize));
 
                     changeTileColor(tileID, colorList.get(colorInt));
                     changeTileColor(destinationTileID, colorList.get(colorInt));
                     colorInt ++;
                 }
                 if(landAction instanceof SwitchWithRandomAction) {
-                    tileMap.get(tileID).getChildren().add(LadderView.getSwitchWithRandom(tileSize));
+                    tileMap.get(tileID).getChildren().add(ladderView.getSwitchWithRandom(tileSize));
                 }
             }
         }
     }
 
-    private static ArrayList<Color> getColorList(){
+    private ArrayList<Color> getColorList(){
         ArrayList<Color> colorList = new ArrayList<>();
 
         colorList.add(Color.web("#7F00FF"));
@@ -148,7 +155,7 @@ public class TilesWindow {
         return colorList;
     }
 
-    public static void changeTileColor(int tileID, Color color) {
+    public void changeTileColor(int tileID, Color color) {
         StackPane tilePane = tileMap.get(tileID);
         if (tilePane != null) {
             for (Node node : tilePane.getChildren()) {
