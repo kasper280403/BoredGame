@@ -111,7 +111,6 @@ public class DiceWindow extends GridPane{
         timeline.play();
     }
 
-
     public void init(){
         random = new Random();
         diceMap = new HashMap<>();

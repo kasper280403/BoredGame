@@ -32,7 +32,7 @@ public class SnakesAndLadders {
 
     //Should be moved
     diceView = new DiceWindow(window);
-    tilesView = new TilesWindow();
+    tilesView = new TilesWindow(10, 9, 50, this);
     winView = new WinWindow();
 
   }

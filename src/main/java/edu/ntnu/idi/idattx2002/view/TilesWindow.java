@@ -23,19 +23,29 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public class TilesWindow {
+public class TilesWindow extends GridPane{
+
+    SnakesAndLadders game;
+    double tileSize;
 
     private Map<Integer, StackPane> tileMap;
     private LadderView ladderView;
 
-    public TilesWindow() {
+    int xDimensions;
+    int yDimensions;
+
+    public TilesWindow(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game) {
         tileMap = new HashMap<>();
         ladderView = new LadderView();
+
+        this.game = game;
+        this.tileSize = tileSize;
+
+        this.xDimensions = xDimensions;
+        this.yDimensions = yDimensions;
     }
 
-    public GridPane getBoard(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game) {
-
-        GridPane gridPane = new GridPane();
+    public GridPane getBoard() {
         int tileID = 1;
         boolean leftToRight = true;
 
@@ -48,7 +58,7 @@ public class TilesWindow {
             for (int col = 0; col < yDimensions; col++) {
 
                 StackPane tilePane = getTilePane(getTileColor(row, col), tileSize, tileID);
-                gridPane.add(tilePane, col, row);
+                add(tilePane, col, row);
                 tileMap.put(tileID, tilePane);
 
                 tileID += tileIDUpdateAtColChange(leftToRight);
@@ -60,7 +70,7 @@ public class TilesWindow {
             }
         }
         displayLandActionsAtTile(tileSize, game);
-        return gridPane;
+        return this;
     }
 
     private StackPane getTilePane(Color color, double tileSize, int tileID) {
