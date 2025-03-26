@@ -7,21 +7,22 @@ import javafx.scene.layout.StackPane;
 
 public class LadderView {
 
+  public LadderView() {
+  }
 
-
-  public static ImageView getPortalEntrance(double tileSize) {
+  public ImageView getPortalEntrance(double tileSize) {
     return createPortalImage("images/tiles/portalEntrance.png", tileSize);
   }
 
-  public static ImageView getPortalExit(double tileSize) {
+  public ImageView getPortalExit(double tileSize) {
     return createPortalImage("images/tiles/portalExit.png", tileSize);
   }
 
-  public static ImageView getSwitchWithRandom(double tileSize) {
+  public ImageView getSwitchWithRandom(double tileSize) {
     return createPortalImage("images/tiles/switchWithRandom.png", tileSize);
   }
 
-  private static ImageView createPortalImage(String imageLocation, double tileSize) {
+  private ImageView createPortalImage(String imageLocation, double tileSize) {
     Image portalImage = new Image(imageLocation);
     ImageView portalView = new ImageView(portalImage);
     portalView.setFitHeight(tileSize);
