@@ -1,8 +1,7 @@
 package edu.ntnu.idi.idattx2002;
 
-import edu.ntnu.idi.idattx2002.view.ChoosePlayerWindow;
-import edu.ntnu.idi.idattx2002.view.PieceWindow;
-import edu.ntnu.idi.idattx2002.view.CreatePlayerWindow;
+import edu.ntnu.idi.idattx2002.view.Setup.ChoosePlayerWindow;
+import edu.ntnu.idi.idattx2002.view.Setup.CreatePlayerWindow;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

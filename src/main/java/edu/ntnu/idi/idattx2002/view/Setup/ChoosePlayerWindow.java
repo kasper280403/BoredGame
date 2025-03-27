@@ -1,6 +1,7 @@
-package edu.ntnu.idi.idattx2002.view;
+package edu.ntnu.idi.idattx2002.view.Setup;
 
 import edu.ntnu.idi.idattx2002.Modules.Player.PlayerDAO;
+import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

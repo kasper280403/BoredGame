@@ -9,7 +9,7 @@ import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
-import edu.ntnu.idi.idattx2002.view.WinWindow;
+import edu.ntnu.idi.idattx2002.view.Win.WinWindow;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 
