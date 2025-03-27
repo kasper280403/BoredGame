@@ -3,6 +3,7 @@ package edu.ntnu.idi.idattx2002.Modules.Games;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
+import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
@@ -20,12 +21,37 @@ public class SnakesAndLadders {
   public static HashMap<Integer, Player> players;
   private final Dice dice;
   private int playerToMoveID;
+  private DiceWindow diceView;
+  private TilesWindow tilesView;
+  private WinWindow winView;
+  private PieceWindow pieceWindow;
 
-  public SnakesAndLadders() {
+  public SnakesAndLadders(SnakesAndLadderWindow window) {
     this.board = new Board();
     players = new HashMap<>();
     this.dice = new Dice();
     playerToMoveID = 1;
+
+    //Move into init
+    createBoard();
+
+    //Should be moved
+    pieceWindow = new PieceWindow();
+    diceView = new DiceWindow(window);
+    tilesView = new TilesWindow(10, 9, 50, this, window);
+    winView = new WinWindow();
+
+  }
+
+  //Should be moved
+  public DiceWindow getDiceView() {
+    return diceView;
+  }
+  public TilesWindow getTilesView() {
+    return tilesView;
+  }
+  public PieceWindow getPieceWindow() {
+    return pieceWindow;
   }
 
   public HashMap<Integer, Player> getPlayers() {
@@ -50,7 +76,7 @@ public class SnakesAndLadders {
     int diceA = dice.throwDice();
     int diceB = dice.throwDice();
     int steps = diceA + diceB;
-    DiceWindow.throwDice(diceA, diceB);
+    diceView.throwDice(diceA, diceB);
 
     player.movePlayerBySteps(steps);
 
@@ -71,7 +97,7 @@ public class SnakesAndLadders {
 
   private void updatePlayerPositions(){
     for (Player player : players.values()){
-      TilesWindow.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
+      tilesView.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
     }
   }
 
@@ -128,26 +154,19 @@ public class SnakesAndLadders {
   }
 
   public void setSwitchWithRandomActions() {
-    board.getTile(8).setLandAction(new SwitchWithRandomAction());
+    board.getTile(88).setLandAction(new SwitchWithRandomAction());
     board.getTile(9).setLandAction(new SwitchWithRandomAction());
-    board.getTile(10).setLandAction(new SwitchWithRandomAction());
-    board.getTile(11).setLandAction(new SwitchWithRandomAction());
-    board.getTile(12).setLandAction(new SwitchWithRandomAction());
-    board.getTile(13).setLandAction(new SwitchWithRandomAction());
-    board.getTile(14).setLandAction(new SwitchWithRandomAction());
-    board.getTile(15).setLandAction(new SwitchWithRandomAction());
-    board.getTile(16).setLandAction(new SwitchWithRandomAction());
-    board.getTile(17).setLandAction(new SwitchWithRandomAction());
-    board.getTile(18).setLandAction(new SwitchWithRandomAction());
-    board.getTile(48).setLandAction(new SwitchWithRandomAction());
+    board.getTile(66).setLandAction(new SwitchWithRandomAction());
+    board.getTile(87).setLandAction(new SwitchWithRandomAction());
+
 
   }
 
-  public static void winSequence(Player player) {
+  public void winSequence(Player player) {
     PauseTransition pause = new PauseTransition(Duration.millis(5000));
     pause.setOnFinished(event -> {
       SnakesAndLadderWindow.closeStage();
-      WinWindow.createStage(player.getPieceID(), player.getPlayerName());
+      winView.createStage(player.getPieceID(), player.getPlayerName());
     });
 
     pause.play();

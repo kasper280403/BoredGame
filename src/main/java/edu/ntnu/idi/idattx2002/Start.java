@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002;
 
+import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.CreatePlayerWindow;
 import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import javafx.application.Application;
@@ -16,14 +17,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static edu.ntnu.idi.idattx2002.view.PieceWindow.setImageSize;
-
 public class Start extends Application {
 
     private Stage primaryStage;
     private List<String> playerNames = new ArrayList<>();
     private List<Integer> playerPieces = new ArrayList<>();
     public CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
+
+    //Remove
+    PieceWindow pieceWindow = new PieceWindow();
 
     @Override
     public void start(Stage primaryStage) {
@@ -117,26 +119,11 @@ public class Start extends Application {
 
     public HashMap<Integer, ImageView> getPiecesImg() {
         HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
-        Image pieceImage1 = new Image("/images/pieces/frogPiece.png");
-        Image pieceImage2 = new Image("/images/pieces/catPiece.png");
-        Image pieceImage3 = new Image("/images/pieces/punkPiece.png");
-        Image pieceImage4 = new Image("/images/pieces/filipPiece.png");
 
-        ImageView imageView1 = new ImageView(pieceImage1);
-        ImageView imageView2 = new ImageView(pieceImage2);
-        ImageView imageView3 = new ImageView(pieceImage3);
-        ImageView imageView4 = new ImageView(pieceImage4);
-
-        double imageViewSize = 100;
-        setImageSize(imageViewSize, imageView1);
-        setImageSize(imageViewSize, imageView2);
-        setImageSize(imageViewSize, imageView3);
-        setImageSize(imageViewSize, imageView4);
-
-        imageViewMap.put(1, imageView1);
-        imageViewMap.put(2, imageView2);
-        imageViewMap.put(3, imageView3);
-        imageViewMap.put(4, imageView4);
+        imageViewMap.put(1, pieceWindow.getImageView(1));
+        imageViewMap.put(2, pieceWindow.getImageView(2));
+        imageViewMap.put(3, pieceWindow.getImageView(3));
+        imageViewMap.put(4, pieceWindow.getImageView(4));
 
         return imageViewMap;
     }
