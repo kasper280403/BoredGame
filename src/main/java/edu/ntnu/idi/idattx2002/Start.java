@@ -17,9 +17,7 @@ import java.util.List;
 
 public class Start extends Application {
 
-    private Stage primaryStage;
-    private List<String> playerNames = new ArrayList<>();
-    private List<Integer> playerPieces = new ArrayList<>();
+    public Stage primaryStage;
     public CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
 
     //Remove
@@ -32,7 +30,7 @@ public class Start extends Application {
 
         Label label = new Label("Choose game:");
         Button chooseGameButton = new Button("Choose Game");
-        chooseGameButton.setOnAction(e -> openGamesWindow(primaryStage));
+        chooseGameButton.setOnAction(e -> openGamesWindow());
 
         Button createPlayerButton = new Button("Create Player");
         createPlayerButton.setOnAction(e -> createPlayerWindow.openPlayerInput());
@@ -47,7 +45,7 @@ public class Start extends Application {
     }
 
 
-    private void openGamesWindow(Stage primaryStage) {
+    private void openGamesWindow() {
         VBox layout = new VBox(10);
         Label heading = new Label("Choose Game");
         ChoosePlayerWindow choosePlayerWindow = new ChoosePlayerWindow(primaryStage);
@@ -59,7 +57,6 @@ public class Start extends Application {
 
         snakesAndLadders.setOnAction(e -> {
             choosePlayerWindow.selectPlayers(2);
-            //new SnakesAndLadderWindow(primaryStage, playerNames, playerPieces);
         });
 
         layout.getChildren().addAll(heading, snakesAndLadders);
@@ -69,17 +66,6 @@ public class Start extends Application {
         primaryStage.setScene(scene);
     }
 
-
-    public HashMap<Integer, ImageView> getPiecesImg() {
-        HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
-
-        imageViewMap.put(1, pieceWindow.getImageView(1));
-        imageViewMap.put(2, pieceWindow.getImageView(2));
-        imageViewMap.put(3, pieceWindow.getImageView(3));
-        imageViewMap.put(4, pieceWindow.getImageView(4));
-
-        return imageViewMap;
-    }
 
     public static void main(String[] args) {
         launch(args);
