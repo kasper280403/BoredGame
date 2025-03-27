@@ -96,7 +96,6 @@ public class TilesWindow extends GridPane implements Observer {
 
     //TODO should be refactored
     private void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
-        System.out.println("Displaying actions");
         Board board = game.getBoard();
         Tile tile;
         LandAction landAction;
@@ -161,7 +160,6 @@ public class TilesWindow extends GridPane implements Observer {
     @Override
     public void update(Player player) {
         displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
-        System.out.println("try to update position for " + player.getPlayerID() + "ID");
     }
 
     public void init() {

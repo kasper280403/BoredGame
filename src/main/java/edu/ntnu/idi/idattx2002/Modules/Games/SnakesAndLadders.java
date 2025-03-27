@@ -114,7 +114,6 @@ public class SnakesAndLadders {
   }
 
   public void setLandActions() {
-    System.out.println("Setting landActions");
     setLadderActions();
     setSwitchWithRandomActions();
     //deBugActions();
