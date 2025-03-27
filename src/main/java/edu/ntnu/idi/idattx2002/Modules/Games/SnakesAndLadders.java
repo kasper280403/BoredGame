@@ -68,6 +68,7 @@ public class SnakesAndLadders {
 
   public void createBoard() {
     board.createBoard(9, 10);
+    setLandActions();
   }
 
 
@@ -113,6 +114,7 @@ public class SnakesAndLadders {
   }
 
   public void setLandActions() {
+    System.out.println("Setting landActions");
     setLadderActions();
     setSwitchWithRandomActions();
     //deBugActions();

@@ -68,7 +68,6 @@ public class SnakesAndLadderWindow extends HBox{
         for (int i = 0; i < players.size(); i++) {
             game.addPlayer(players.get(i), pieces.get(i));
         }
-        game.setLandActions();
     }
 
     public static void closeStage(){
