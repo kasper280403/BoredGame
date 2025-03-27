@@ -5,6 +5,8 @@ import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Board.LandAction;
 import edu.ntnu.idi.idattx2002.Modules.Board.Tile;
 import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
+import edu.ntnu.idi.idattx2002.Modules.Observer;
+import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -24,7 +26,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public class TilesWindow extends GridPane{
+public class TilesWindow extends GridPane implements Observer {
 
     Pane parent;
     SnakesAndLadders game;
@@ -153,6 +155,12 @@ public class TilesWindow extends GridPane{
                 }
             }
         }
+    }
+
+    @Override
+    public void update(Player player) {
+        displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
+        System.out.println("try to update position for " + player.getPlayerID() + "ID");
     }
 
     public void init() {

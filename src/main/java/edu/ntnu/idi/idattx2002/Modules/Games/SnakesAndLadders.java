@@ -84,21 +84,12 @@ public class SnakesAndLadders {
       System.out.println("Win hit!");
       player.movePlayerToTile(board.getLastTile().getTileId());
       winSequence(player);
-      updatePlayerPositions();
     }
 
     board.getTile(player.getCurrentTile()).landPlayer(player);
 
     board.getTile(player.getCurrentTile()).landPlayer(player);
     updatePlayerToMove();
-
-    updatePlayerPositions();
-  }
-
-  private void updatePlayerPositions(){
-    for (Player player : players.values()){
-      tilesView.displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
-    }
   }
 
   private void updatePlayerToMove() {
@@ -115,7 +106,10 @@ public class SnakesAndLadders {
 
   public void addPlayer(String playerName, int pieceID) {
     int playerID = players.size() + 1;
-    players.put(playerID, new Player(playerName, playerID, pieceID));
+    Player player = new Player(playerName, playerID, pieceID);
+
+    player.addObserver(tilesView);
+    players.put(playerID, player);
   }
 
   public void setLandActions() {
