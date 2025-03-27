@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idattx2002.view;
 
-import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
+import edu.ntnu.idi.idattx2002.Modules.DiceObserver;
 import java.util.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
 
-public class DiceWindow extends GridPane{
+public class DiceWindow extends GridPane {
 
     private Pane parent;
 
@@ -110,6 +110,7 @@ public class DiceWindow extends GridPane{
 
         timeline.play();
     }
+
 
     public void init(){
         random = new Random();

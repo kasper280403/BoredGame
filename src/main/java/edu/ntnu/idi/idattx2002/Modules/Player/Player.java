@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idattx2002.Modules.Player;
 
-import edu.ntnu.idi.idattx2002.Modules.Observer;
+import edu.ntnu.idi.idattx2002.Modules.PlayerObserver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,18 +9,18 @@ public class Player {
     int playerID;
     int pieceID;
     int currentTileId = 1;
-    List<Observer> observers;
+    List<PlayerObserver> playerObservers;
 
     public Player(String playerName, int playerID, int pieceID) {
         this.playerName = playerName;
         this.playerID = playerID;
         this.pieceID = pieceID;
 
-        observers = new ArrayList<>();
+        playerObservers = new ArrayList<>();
     }
 
-    public void addObserver(Observer observer) {
-        observers.add(observer);
+    public void addObserver(PlayerObserver playerObserver) {
+        playerObservers.add(playerObserver);
         System.out.println("Added observer");
     }
 
@@ -36,8 +36,8 @@ public class Player {
 
     private void notifyObservers() {
         System.out.println("Entered notify observers");
-        for(Observer observer : observers) {
-            observer.update(this);
+        for(PlayerObserver playerObserver : playerObservers) {
+            playerObserver.update(this);
         }
     }
 

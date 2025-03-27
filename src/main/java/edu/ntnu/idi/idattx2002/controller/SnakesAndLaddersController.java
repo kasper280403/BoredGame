@@ -22,22 +22,35 @@ public class SnakesAndLaddersController {
 
 
   public SnakesAndLaddersController(Stage mainStage, List<String> players, List<Integer> pieces) {
-    game = new SnakesAndLadders();
-
     //Maybe move
-    snakesAndLadderWindow = new SnakesAndLadderWindow(mainStage);
-    pieceView = new PieceWindow();
+    snakesAndLadderWindow = new SnakesAndLadderWindow(mainStage, this);
     diceView = new DiceWindow(snakesAndLadderWindow);
+    game = new SnakesAndLadders(diceView);
+
+    pieceView = new PieceWindow();
     tilesView = new TilesWindow(10, 9, 50, game, snakesAndLadderWindow);
     winView = new WinWindow();
 
     setUpGame(players, pieces);
+    startGame();
   }
 
   public void setUpGame(List<String> players, List<Integer> pieces) {
     for (int i = 0; i < players.size(); i++) {
-      game.addPlayer(players.get(i), pieces.get(i));
+      game.addPlayer(players.get(i), pieces.get(i), tilesView);
     }
+  }
+
+  public void startGame() {
+    double size = 50;
+
+    pieceView.createPieces(size);
+    diceView.show();
+    tilesView.show();
+  }
+
+  public void playTurn() {
+    game.playTurn();
   }
 
 }

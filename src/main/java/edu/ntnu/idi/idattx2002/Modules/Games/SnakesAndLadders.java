@@ -2,6 +2,8 @@ package edu.ntnu.idi.idattx2002.Modules.Games;
 
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
+import edu.ntnu.idi.idattx2002.Modules.DiceObserver;
+import edu.ntnu.idi.idattx2002.Modules.PlayerObserver;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
@@ -10,6 +12,8 @@ import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
 import edu.ntnu.idi.idattx2002.view.WinWindow;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 
@@ -19,39 +23,33 @@ public class SnakesAndLadders {
 
   private final Board board;
   public static HashMap<Integer, Player> players;
-  private final Dice dice;
+  private final Dice dice1;
+  private final Dice dice2;
+  private List<Dice> dices;
+
   private int playerToMoveID;
-  private DiceWindow diceView;
-  private TilesWindow tilesView;
-  private WinWindow winView;
+  private DiceWindow diceWindow;
   private PieceWindow pieceWindow;
 
-  public SnakesAndLadders(SnakesAndLadderWindow window) {
+  public SnakesAndLadders(DiceWindow diceWindow) {
     this.board = new Board();
     players = new HashMap<>();
-    this.dice = new Dice();
+    this.dice1 = new Dice();
+    this.dice2 = new Dice();
     playerToMoveID = 1;
+
+    this.diceWindow = diceWindow;
+
+    dices = new ArrayList<>();
+    dices.add(dice1);
+    dices.add(dice2);
 
     //Move into init
     createBoard();
-
-    //Should be moved
-    pieceWindow = new PieceWindow();
-    diceView = new DiceWindow(window);
-    tilesView = new TilesWindow(10, 9, 50, this, window);
-    winView = new WinWindow();
-
   }
 
-  //Should be moved
-  public DiceWindow getDiceView() {
-    return diceView;
-  }
-  public TilesWindow getTilesView() {
-    return tilesView;
-  }
-  public PieceWindow getPieceWindow() {
-    return pieceWindow;
+  public List<Dice> getDice() {
+    return dices;
   }
 
   public HashMap<Integer, Player> getPlayers() {
@@ -73,18 +71,19 @@ public class SnakesAndLadders {
 
 
   public void playTurn() {
+    System.out.println("PlayTurn");
     Player player = getPlayerToMove();
-    int diceA = dice.throwDice();
-    int diceB = dice.throwDice();
+    int diceA = dice1.throwDice();
+    int diceB = dice2.throwDice();
     int steps = diceA + diceB;
-    diceView.throwDice(diceA, diceB);
+    diceWindow.throwDice(diceA, diceB);
 
     player.movePlayerBySteps(steps);
 
     if (checkForWin(player)) {
       System.out.println("Win hit!");
       player.movePlayerToTile(board.getLastTile().getTileId());
-      winSequence(player);
+      //winSequence(player);
     }
 
     board.getTile(player.getCurrentTile()).landPlayer(player);
@@ -105,7 +104,8 @@ public class SnakesAndLadders {
     return player.getCurrentTile() >= board.getTiles().size();
   }
 
-  public void addPlayer(String playerName, int pieceID) {
+  //Add observer instead of tilesView variable?
+  public void addPlayer(String playerName, int pieceID, TilesWindow tilesView) {
     int playerID = players.size() + 1;
     Player player = new Player(playerName, playerID, pieceID);
 
@@ -157,6 +157,7 @@ public class SnakesAndLadders {
 
   }
 
+  /*
   public void winSequence(Player player) {
     PauseTransition pause = new PauseTransition(Duration.millis(5000));
     pause.setOnFinished(event -> {
@@ -167,4 +168,5 @@ public class SnakesAndLadders {
     pause.play();
 
   }
+   */
 }

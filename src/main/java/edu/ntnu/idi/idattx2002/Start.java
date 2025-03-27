@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002;
 
+import edu.ntnu.idi.idattx2002.controller.SnakesAndLaddersController;
 import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import javafx.application.Application;
@@ -109,7 +110,7 @@ public class Start extends Application {
     }
 
     private void startSnakesAndLadders() {
-        new SnakesAndLadderWindow(primaryStage, playerNames, playerPieces);
+        new SnakesAndLaddersController(primaryStage, playerNames, playerPieces);
     }
 
     public HashMap<Integer, ImageView> getPiecesImg() {

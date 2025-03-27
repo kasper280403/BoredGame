@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.view;
 import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
+import edu.ntnu.idi.idattx2002.controller.SnakesAndLaddersController;
 import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,60 +15,43 @@ import java.util.List;
 
 public class SnakesAndLadderWindow extends HBox{
 
-    private final SnakesAndLadders game;
+    private final SnakesAndLaddersController controller;
     public static Stage primaryStage;
 
-    public SnakesAndLadderWindow(Stage stage, List<String> players, List<Integer> pieces) {
+    public SnakesAndLadderWindow(Stage stage, SnakesAndLaddersController controller) {
         primaryStage = stage;
-        this.game = new SnakesAndLadders(this);
+        this.controller = controller;
 
-        setUpGame(players, pieces);
-        StartGame();
+        init();
     }
 
-    //TODO make board display at left side
-    //Logic should be factored away
-    public void StartGame(){
-        double size = 50.0;
-
-        game.getPieceWindow().createPieces(size);
-        game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
-        game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
-
-
+    private Button createPlayTurnButton() {
         Button playTurn = new Button("Throw Dice");
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
         pause.setOnFinished(event -> playTurn.setDisable(false));
         playTurn.setOnAction(e -> {
-            playTurn();
+            controller.playTurn();
             playTurn.setDisable(true);
             pause.play();
 
         });
+        return playTurn;
+    }
 
+    public VBox createLeftSide() {
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(playTurn);
+        leftSide.getChildren().addAll(createPlayTurnButton());
+        return leftSide;
+    }
 
-        getChildren().addAll(leftSide);
-        game.getDiceView().show();
-        game.getTilesView().show();
+    public void init() {
+        getChildren().add(createLeftSide());
 
         Scene scene = new Scene(this, 900, 600);
 
         primaryStage.setTitle("Snakes and Ladders");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public void playTurn() {
-        game.playTurn();
-    }
-
-    //Should be move into snakeandLadders
-    public void setUpGame(List<String> players, List<Integer> pieces) {
-        for (int i = 0; i < players.size(); i++) {
-            game.addPlayer(players.get(i), pieces.get(i));
-        }
     }
 
     public static void closeStage(){
