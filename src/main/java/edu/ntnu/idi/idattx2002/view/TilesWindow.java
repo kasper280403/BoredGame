@@ -10,10 +10,12 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import javafx.animation.PauseTransition;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -22,41 +24,34 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public class TilesWindow {
+public class TilesWindow extends GridPane{
 
-    private static final HashMap<Integer, StackPane> tileMap = new HashMap<>();
+    Pane parent;
+    SnakesAndLadders game;
+    double tileSize;
 
-    public static GridPane getBoard(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game) {
+    private Map<Integer, StackPane> tileMap;
+    private LadderView ladderView;
 
-        GridPane gridPane = new GridPane();
-        int tileID = 1;
-        boolean leftToRight = true;
+    int xDimensions;
+    int yDimensions;
 
-        for (int row = xDimensions - 1; row >= 0; row--) {
+    public TilesWindow(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
+        this.parent = parent;
 
-            if (!leftToRight) {
-                tileID += yDimensions - 1;
-            }
+        tileMap = new HashMap<>();
+        ladderView = new LadderView();
 
-            for (int col = 0; col < yDimensions; col++) {
+        this.game = game;
+        this.tileSize = tileSize;
 
-                StackPane tilePane = getTilePane(getTileColor(row, col), tileSize, tileID);
-                gridPane.add(tilePane, col, row);
-                tileMap.put(tileID, tilePane);
+        this.xDimensions = xDimensions;
+        this.yDimensions = yDimensions;
 
-                tileID += tileIDUpdateAtColChange(leftToRight);
-            }
-
-            leftToRight = !leftToRight;
-            if (leftToRight) {
-                tileID += yDimensions + 1;
-            }
-        }
-        displayLandActionsAtTile(tileSize, game);
-        return gridPane;
+        init();
     }
 
-    private static StackPane getTilePane(Color color, double tileSize, int tileID) {
+    private StackPane getTilePane(Color color, double tileSize, int tileID) {
         StackPane tilePane = new StackPane();
         tilePane.setPrefSize(tileSize, tileSize);
         tilePane.setMaxSize(tileSize, tileSize);
@@ -72,20 +67,20 @@ public class TilesWindow {
         return tilePane;
     }
 
-    private static Color getTileColor(int row, int col) {
+    private Color getTileColor(int row, int col) {
         return (row + col) % 2 == 0 ? Color.LIGHTGRAY : Color.DARKGRAY;
     }
 
-    private static int tileIDUpdateAtColChange(boolean leftToRight) {
+    private int tileIDUpdateAtColChange(boolean leftToRight) {
         return leftToRight ? 1 : -1;
     }
 
-    public static void displayPieceAtTile(int tileID, int pieceID) {
+    public void displayPieceAtTile(int tileID, int pieceID) {
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
 
 
         StackPane tilePane = tileMap.get(tileID);
-        ImageView pieceView = PieceWindow.getImageView(pieceID);
+        ImageView pieceView = game.getPieceWindow().getImageView(pieceID);
         pause.setOnFinished(event -> {
             // Fjern fra tidligere tile hvis den har en parent
             if (pieceView.getParent() instanceof StackPane oldTile) {
@@ -98,7 +93,7 @@ public class TilesWindow {
     }
 
     //TODO should be refactored
-    private static void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
+    private void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
         Board board = game.getBoard();
         Tile tile;
         LandAction landAction;
@@ -115,21 +110,21 @@ public class TilesWindow {
                     LadderAction ladderAction = (LadderAction) landAction;
 
                     int destinationTileID  = ladderAction.getDestinationTileId();
-                    tileMap.get(tileID).getChildren().add(LadderView.getPortalEntrance(tileSize));
-                    tileMap.get(destinationTileID).getChildren().add(LadderView.getPortalExit(tileSize));
+                    tileMap.get(tileID).getChildren().add(ladderView.getPortalEntrance(tileSize));
+                    tileMap.get(destinationTileID).getChildren().add(ladderView.getPortalExit(tileSize));
 
                     changeTileColor(tileID, colorList.get(colorInt));
                     changeTileColor(destinationTileID, colorList.get(colorInt));
                     colorInt ++;
                 }
                 if(landAction instanceof SwitchWithRandomAction) {
-                    tileMap.get(tileID).getChildren().add(LadderView.getSwitchWithRandom(tileSize));
+                    tileMap.get(tileID).getChildren().add(ladderView.getSwitchWithRandom(tileSize));
                 }
             }
         }
     }
 
-    private static ArrayList<Color> getColorList(){
+    private ArrayList<Color> getColorList(){
         ArrayList<Color> colorList = new ArrayList<>();
 
         colorList.add(Color.web("#7F00FF"));
@@ -148,7 +143,7 @@ public class TilesWindow {
         return colorList;
     }
 
-    public static void changeTileColor(int tileID, Color color) {
+    public void changeTileColor(int tileID, Color color) {
         StackPane tilePane = tileMap.get(tileID);
         if (tilePane != null) {
             for (Node node : tilePane.getChildren()) {
@@ -158,5 +153,36 @@ public class TilesWindow {
                 }
             }
         }
+    }
+
+    public void init() {
+        int tileID = 1;
+        boolean leftToRight = true;
+
+        for (int row = xDimensions - 1; row >= 0; row--) {
+
+            if (!leftToRight) {
+                tileID += yDimensions - 1;
+            }
+
+            for (int col = 0; col < yDimensions; col++) {
+
+                StackPane tilePane = getTilePane(getTileColor(row, col), tileSize, tileID);
+                add(tilePane, col, row);
+                tileMap.put(tileID, tilePane);
+
+                tileID += tileIDUpdateAtColChange(leftToRight);
+            }
+
+            leftToRight = !leftToRight;
+            if (leftToRight) {
+                tileID += yDimensions + 1;
+            }
+        }
+        displayLandActionsAtTile(tileSize, game);
+    }
+
+    public void show() {
+        parent.getChildren().add(this);
     }
 }

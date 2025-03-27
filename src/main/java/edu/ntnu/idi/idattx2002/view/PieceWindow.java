@@ -1,14 +1,20 @@
 package edu.ntnu.idi.idattx2002.view;
 
 import java.util.HashMap;
+import java.util.Map;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class PieceWindow {
 
-  public static HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
+  public static Map<Integer, ImageView> imageViewMap;
 
-  public static void createPieces(double imageViewSize) {
+  public PieceWindow() {
+    imageViewMap = new HashMap<>();
+    createPieces(50);
+  }
+
+  public void createPieces(double imageViewSize) {
     Image pieceImage1 = new Image("/images/pieces/frogPiece.png");
     Image pieceImage2 = new Image("/images/pieces/catPiece.png");
     Image pieceImage3 = new Image("/images/pieces/punkPiece.png");
@@ -30,12 +36,12 @@ public class PieceWindow {
     imageViewMap.put(4, imageView4);
   }
 
-  public static void setImageSize(double imageViewSize, ImageView imageView) {
+  public void setImageSize(double imageViewSize, ImageView imageView) {
     imageView.setFitHeight(imageViewSize);
     imageView.setFitWidth(imageViewSize);
   }
 
-  public static ImageView getImageView(int pieceID) {
+  public ImageView getImageView(int pieceID) {
     return imageViewMap.get(pieceID);
   }
 }

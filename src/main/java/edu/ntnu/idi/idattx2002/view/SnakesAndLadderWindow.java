@@ -12,29 +12,27 @@ import javafx.util.Duration;
 import java.util.List;
 
 
-public class SnakesAndLadderWindow{
+public class SnakesAndLadderWindow extends HBox{
 
     private final SnakesAndLadders game;
     public static Stage primaryStage;
 
-
     public SnakesAndLadderWindow(Stage stage, List<String> players, List<Integer> pieces) {
         primaryStage = stage;
-        this.game = new SnakesAndLadders();
+        this.game = new SnakesAndLadders(this);
+
         setUpGame(players, pieces);
         StartGame();
     }
 
+    //TODO make board display at left side
+    //Logic should be factored away
     public void StartGame(){
         double size = 50.0;
-        HBox root = new HBox(10);
 
-        GridPane board = TilesWindow.getBoard(9, 10, size, game);
-        GridPane dice = DiceWindow.getDicePane();
-
-        PieceWindow.createPieces(size);
-        TilesWindow.displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
-        TilesWindow.displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
+        game.getPieceWindow().createPieces(size);
+        game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(1).getPieceID());
+        game.getTilesView().displayPieceAtTile(1, game.getPlayers().get(2).getPieceID());
 
 
         Button playTurn = new Button("Throw Dice");
@@ -48,11 +46,13 @@ public class SnakesAndLadderWindow{
         });
 
         VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(board, playTurn);
+        leftSide.getChildren().addAll(playTurn);
 
-        root.getChildren().addAll(leftSide, dice);
+        getChildren().addAll(leftSide);
+        game.getDiceView().show();
+        game.getTilesView().show();
 
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(this, 900, 600);
 
         primaryStage.setTitle("Snakes and Ladders");
         primaryStage.setScene(scene);
@@ -63,8 +63,8 @@ public class SnakesAndLadderWindow{
         game.playTurn();
     }
 
+    //Should be move into snakeandLadders
     public void setUpGame(List<String> players, List<Integer> pieces) {
-        game.createBoard();
         for (int i = 0; i < players.size(); i++) {
             game.addPlayer(players.get(i), pieces.get(i));
         }
