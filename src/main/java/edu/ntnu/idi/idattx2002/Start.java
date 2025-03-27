@@ -3,25 +3,17 @@ package edu.ntnu.idi.idattx2002;
 import edu.ntnu.idi.idattx2002.view.ChoosePlayerWindow;
 import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.CreatePlayerWindow;
-import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Start extends Application {
 
     public Stage primaryStage;
     public CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
-
-    //Remove
-    PieceWindow pieceWindow = new PieceWindow();
 
     @Override
     public void start(Stage primaryStage) {
