@@ -3,7 +3,6 @@ import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
 import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -68,7 +67,10 @@ public class SnakesAndLadderWindow extends HBox{
         for (int i = 0; i < players.size(); i++) {
             game.addPlayer(players.get(i), pieces.get(i));
         }
-        game.setLandActions();
+
+        //game id må velges på en eller annen måte
+        String gameID = "regularSnakesAndLadders";
+        game.setActions(gameID);
     }
 
     public static void closeStage(){

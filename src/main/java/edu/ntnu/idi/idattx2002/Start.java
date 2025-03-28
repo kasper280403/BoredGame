@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002;
 
+import edu.ntnu.idi.idattx2002.Modules.Board.BoardDAO;
 import edu.ntnu.idi.idattx2002.view.Setup.ChoosePlayerWindow;
 import edu.ntnu.idi.idattx2002.view.Setup.CreatePlayerWindow;
 import javafx.application.Application;
@@ -41,10 +42,7 @@ public class Start extends Application {
         Label heading = new Label("Choose Game");
         ChoosePlayerWindow choosePlayerWindow = new ChoosePlayerWindow(primaryStage);
 
-
         Button snakesAndLadders = new Button("Snakes and ladders");
-
-
 
         snakesAndLadders.setOnAction(e -> {
             choosePlayerWindow.selectPlayers(2);

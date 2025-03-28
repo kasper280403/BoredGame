@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class PlayerDAO {
 
-    public PlayerDAO() {
-    }
+    public PlayerDAO() {}
 
 
     public void writePlayer(String name, int imgID) throws IOException {

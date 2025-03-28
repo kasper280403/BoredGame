@@ -1,7 +1,6 @@
 package edu.ntnu.idi.idattx2002.Modules.Games;
 
-import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
-import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
+import edu.ntnu.idi.idattx2002.Modules.Board.BoardDAO;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
@@ -118,49 +117,11 @@ public class SnakesAndLadders {
     players.put(playerID, new Player(playerName, playerID, pieceID));
   }
 
-  public void setLandActions() {
-    setLadderActions();
-    setSwitchWithRandomActions();
-    //deBugActions();
+  public void setActions(String gameID) {
+    BoardDAO boardDAO = new BoardDAO(board);
+    boardDAO.setActions(gameID);
   }
 
-  public void setLadderActions() {
-    board.getTile(24).setLandAction(new LadderAction(5));
-    board.getTile(33).setLandAction(new LadderAction(3));
-    board.getTile(36).setLandAction(new LadderAction(52));
-    board.getTile(43).setLandAction(new LadderAction(62));
-    board.getTile(49).setLandAction(new LadderAction(79));
-    board.getTile(56).setLandAction(new LadderAction(37));
-    board.getTile(64).setLandAction(new LadderAction(27));
-    board.getTile(68).setLandAction(new LadderAction(85));
-    board.getTile(74).setLandAction(new LadderAction(12));
-    board.getTile(87).setLandAction(new LadderAction(70));
-  }
-  
-  public void deBugActions(){
-
-    board.getTile(2).setLandAction(new LadderAction(80));
-    board.getTile(3).setLandAction(new LadderAction(80));
-    board.getTile(4).setLandAction(new LadderAction(80));
-    board.getTile(5).setLandAction(new LadderAction(80));
-    board.getTile(6).setLandAction(new LadderAction(80));
-    board.getTile(7).setLandAction(new LadderAction(80));
-    board.getTile(8).setLandAction(new LadderAction(80));
-    board.getTile(9).setLandAction(new LadderAction(80));
-    board.getTile(10).setLandAction(new LadderAction(80));
-    board.getTile(11).setLandAction(new LadderAction(80));
-    board.getTile(12).setLandAction(new LadderAction(80));
-    board.getTile(13).setLandAction(new LadderAction(80));
-  }
-
-  public void setSwitchWithRandomActions() {
-    board.getTile(88).setLandAction(new SwitchWithRandomAction());
-    board.getTile(9).setLandAction(new SwitchWithRandomAction());
-    board.getTile(66).setLandAction(new SwitchWithRandomAction());
-    board.getTile(87).setLandAction(new SwitchWithRandomAction());
-
-
-  }
 
   public void winSequence(Player player) {
     PauseTransition pause = new PauseTransition(Duration.millis(5000));
