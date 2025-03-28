@@ -98,13 +98,6 @@ public class BoardDAO {
         }
 
         reader.close();
-
-        for (int i = 0; i < actionNames.size(); i++) {
-            System.out.println("Action type: " + actionNames.get(i));
-            for (ArrayList<Integer> pair : actions.get(i)) {
-                System.out.println(pair);
-            }
-        }
     }
 
     public void ladderAction(int tile, int destination){
