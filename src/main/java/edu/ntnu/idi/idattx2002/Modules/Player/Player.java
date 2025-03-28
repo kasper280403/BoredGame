@@ -8,13 +8,14 @@ public class Player {
     String playerName;
     int playerID;
     int pieceID;
-    int currentTileId = 1;
+    int currentTileId;
     List<PlayerObserver> playerObservers;
 
     public Player(String playerName, int playerID, int pieceID) {
         this.playerName = playerName;
         this.playerID = playerID;
         this.pieceID = pieceID;
+        this.currentTileId = 0;
 
         playerObservers = new ArrayList<>();
     }
