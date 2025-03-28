@@ -69,7 +69,7 @@ public class SnakesAndLadderWindow extends HBox{
         }
 
         //game id må velges på en eller annen måte
-        String gameID = "regularSnakesAndLadders";
+        String gameID = "RegularSnakesAndLadders";
         game.setActions(gameID);
     }
 
