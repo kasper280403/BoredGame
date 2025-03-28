@@ -24,7 +24,7 @@ public class BoardDAO {
         actionNames = new ArrayList<>();
         actions = new ArrayList<>();
         actionMethods.put("LadderActions", this::ladderAction);
-        actionMethods.put("SwitchActions", (a, b) -> switchWithRandomAction(a));
+        actionMethods.put("SwitchActions", (a, b) -> switchWithRandomAction(a, b));
 
     }
 
@@ -41,6 +41,7 @@ public class BoardDAO {
             for (ArrayList<Integer> oneAction : thisAction) {
                 actionMethods.get(actionName).accept(oneAction.get(0), oneAction.get(1));
             }
+            index++;
         }
 
     }
@@ -97,6 +98,13 @@ public class BoardDAO {
         }
 
         reader.close();
+
+        for (int i = 0; i < actionNames.size(); i++) {
+            System.out.println("Action type: " + actionNames.get(i));
+            for (ArrayList<Integer> pair : actions.get(i)) {
+                System.out.println(pair);
+            }
+        }
     }
 
     public void ladderAction(int tile, int destination){
@@ -104,7 +112,7 @@ public class BoardDAO {
         board.getTile(tile).setLandAction(new LadderAction(destination));
     }
 
-    public void switchWithRandomAction(int tile){
+    public void switchWithRandomAction(int tile, int dummy){
         System.out.println("Switch action: " + tile);
         board.getTile(tile).setLandAction(new SwitchWithRandomAction());
     }
