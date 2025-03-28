@@ -5,7 +5,7 @@ import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.PieceWindow;
 import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
-import edu.ntnu.idi.idattx2002.view.WinWindow;
+import edu.ntnu.idi.idattx2002.view.Win.WinWindow;
 import java.util.List;
 import javafx.stage.Stage;
 

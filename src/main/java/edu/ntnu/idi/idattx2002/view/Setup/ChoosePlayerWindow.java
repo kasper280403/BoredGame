@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idattx2002.view.Setup;
 
 import edu.ntnu.idi.idattx2002.Modules.Player.PlayerDAO;
-import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
+import edu.ntnu.idi.idattx2002.controller.SnakesAndLaddersController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -102,7 +102,7 @@ public class ChoosePlayerWindow {
 
         Button button = new Button("Start Game");
         button.setOnAction(e -> {
-            new SnakesAndLadderWindow(primaryStage, choosenPlayerNames, choosenPlayerPieces);
+            new SnakesAndLaddersController(primaryStage, choosenPlayerNames, choosenPlayerPieces);
         });
 
         button.setDisable(true);

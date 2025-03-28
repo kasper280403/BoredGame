@@ -1,22 +1,15 @@
 package edu.ntnu.idi.idattx2002.Modules.Games;
 
 import edu.ntnu.idi.idattx2002.Modules.Board.BoardDAO;
-import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
-import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
-import edu.ntnu.idi.idattx2002.Modules.DiceObserver;
-import edu.ntnu.idi.idattx2002.Modules.PlayerObserver;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.PieceWindow;
-import edu.ntnu.idi.idattx2002.view.SnakesAndLadderWindow;
 import edu.ntnu.idi.idattx2002.Modules.Board.Board;
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.Player.Player;
 import edu.ntnu.idi.idattx2002.view.TilesWindow;
-import edu.ntnu.idi.idattx2002.view.Win.WinWindow;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.PauseTransition;
-import javafx.util.Duration;
+
 
 import java.util.HashMap;
 
@@ -67,7 +60,10 @@ public class SnakesAndLadders {
 
   public void createBoard() {
     board.createBoard(9, 10);
-    setLandActions();
+
+    //gameID has to be choosen from the available games in the BoardSetUp.csv
+    String gameID = "RegularSnakesAndLadders";
+    setActions(gameID);
   }
 
 

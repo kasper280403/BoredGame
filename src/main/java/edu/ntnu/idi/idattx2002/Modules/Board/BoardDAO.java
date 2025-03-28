@@ -97,20 +97,15 @@ public class BoardDAO {
         }
 
         reader.close();
-
-        for (int i = 0; i < actionNames.size(); i++) {
-            System.out.println("Action type: " + actionNames.get(i));
-            for (ArrayList<Integer> pair : actions.get(i)) {
-                System.out.println(pair);
-            }
-        }
     }
 
     public void ladderAction(int tile, int destination){
+        System.out.println("Ladder action: " + tile + ", " + destination);
         board.getTile(tile).setLandAction(new LadderAction(destination));
     }
 
     public void switchWithRandomAction(int tile){
+        System.out.println("Switch action: " + tile);
         board.getTile(tile).setLandAction(new SwitchWithRandomAction());
     }
 
