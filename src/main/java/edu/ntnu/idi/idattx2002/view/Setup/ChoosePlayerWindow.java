@@ -76,6 +76,7 @@ public class ChoosePlayerWindow {
         return box;
     }
 
+    //TODO lurer på om det sto i oppgave beskrivelsen at fxml ikke var tillatt
     public Button selectButton(Integer minimumPlayers, ArrayList<String> player){
         Button button = new Button("Unselected");
         button.setStyle("-fx-background-color: red; -fx-text-fill: white;");

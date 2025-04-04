@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.controller;
 
+import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.view.PieceWindow;
@@ -27,6 +28,7 @@ public class SnakesAndLaddersController {
     diceView = new DiceWindow(snakesAndLadderWindow);
     game = new SnakesAndLadders(diceView);
 
+    diceView = new DiceWindow(snakesAndLadderWindow);
     pieceView = new PieceWindow();
     tilesView = new TilesWindow(10, 9, 50, game, snakesAndLadderWindow);
     winView = new WinWindow();
@@ -38,7 +40,13 @@ public class SnakesAndLaddersController {
   public void setUpGame(List<String> players, List<Integer> pieces) {
     for (int i = 0; i < players.size(); i++) {
       game.addPlayer(players.get(i), pieces.get(i), tilesView);
+
     }
+    for (Dice dice : game.getDices()) {
+      dice.addObserver(diceView);
+      diceView.initDice(dice);
+    }
+
   }
 
   public void startGame() {
