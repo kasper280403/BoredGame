@@ -29,7 +29,6 @@ public class Dice {
 
   public void addObserver(DiceObserver diceObserver) {
     observers.add(diceObserver);
-    notifyObservers();
   }
 
   public void notifyObservers() {

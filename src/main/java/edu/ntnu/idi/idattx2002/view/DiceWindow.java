@@ -2,19 +2,15 @@ package edu.ntnu.idi.idattx2002.view;
 
 import edu.ntnu.idi.idattx2002.Modules.Dice.Dice;
 import edu.ntnu.idi.idattx2002.Modules.DiceObserver;
-import java.util.List;
 import java.util.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
@@ -85,7 +81,7 @@ public class DiceWindow extends HBox implements DiceObserver{
         return diceImageView;
     }
 
-    private void throwDice2(Dice dice) {
+    private void throwDice(Dice dice) {
         Timeline timeline = new Timeline();
 
         for (int i = 0; i < 13; i++) {
@@ -118,7 +114,7 @@ public class DiceWindow extends HBox implements DiceObserver{
     }
 
     public void update(Dice dice) {
-        throwDice2(dice);
+        throwDice(dice);
     }
 
     public void show() {
