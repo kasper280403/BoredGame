@@ -65,10 +65,11 @@ public class SnakesAndLadders {
   public void playTurn() {
     System.out.println("PlayTurn");
     Player player = getPlayerToMove();
-    int diceA = dice1.throwDice();
-    int diceB = dice2.throwDice();
-    int steps = diceA + diceB;
-    //diceWindow.throwDice(diceA, diceB);
+
+    int steps = 0;
+    for (Dice dice : dices) {
+      steps += dice.throwDice();
+    }
 
     player.movePlayerBySteps(steps);
 
@@ -96,7 +97,7 @@ public class SnakesAndLadders {
     return player.getCurrentTile() >= board.getTiles().size();
   }
 
-  //Add observer instead of tilesView variable?
+  //TODO refactor so that a List of Players is stored instead of name and pieceID
   public void addPlayer(String playerName, int pieceID, TilesWindow tilesView) {
     int playerID = players.size() + 1;
     Player player = new Player(playerName, playerID, pieceID);

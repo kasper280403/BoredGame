@@ -40,6 +40,7 @@ public class SnakesAndLaddersController {
   public void setUpGame(List<String> players, List<Integer> pieces) {
     for (int i = 0; i < players.size(); i++) {
       game.addPlayer(players.get(i), pieces.get(i), tilesView);
+
     }
     for (Dice dice : game.getDices()) {
       dice.addObserver(diceView);
