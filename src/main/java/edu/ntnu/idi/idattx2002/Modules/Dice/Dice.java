@@ -17,8 +17,13 @@ public class Dice {
     currentValue = 6;
   }
 
+  public int getCurrentValue() {
+    return currentValue;
+  }
+
   public int throwDice() {
     currentValue = randomNumberGenerator.nextInt(6) + 1;
+    notifyObservers();
     return currentValue;
   }
 
@@ -29,7 +34,7 @@ public class Dice {
 
   public void notifyObservers() {
     for (DiceObserver diceObserver : observers) {
-      diceObserver.update(currentValue);
+      diceObserver.update(this);
     }
   }
 }

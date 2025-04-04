@@ -17,8 +17,8 @@ public class SnakesAndLadders {
 
   private final Board board;
   public static HashMap<Integer, Player> players;
-  private final Dice dice1;
-  private final Dice dice2;
+  private Dice dice1;
+  private Dice dice2;
   private List<Dice> dices;
 
   private int playerToMoveID;
@@ -28,21 +28,16 @@ public class SnakesAndLadders {
   public SnakesAndLadders(DiceWindow diceWindow) {
     this.board = new Board();
     players = new HashMap<>();
-    this.dice1 = new Dice();
-    this.dice2 = new Dice();
     playerToMoveID = 1;
 
-    this.diceWindow = diceWindow;
-
-    dices = new ArrayList<>();
-    dices.add(dice1);
-    dices.add(dice2);
+    initDices();
+    //this.diceWindow = diceWindow;
 
     //Move into init
     createBoard();
   }
 
-  public List<Dice> getDice() {
+  public List<Dice> getDices() {
     return dices;
   }
 
@@ -73,7 +68,7 @@ public class SnakesAndLadders {
     int diceA = dice1.throwDice();
     int diceB = dice2.throwDice();
     int steps = diceA + diceB;
-    diceWindow.throwDice(diceA, diceB);
+    //diceWindow.throwDice(diceA, diceB);
 
     player.movePlayerBySteps(steps);
 
@@ -113,6 +108,15 @@ public class SnakesAndLadders {
   public void setActions(String gameID) {
     BoardDAO boardDAO = new BoardDAO(board);
     boardDAO.setActions(gameID);
+  }
+
+  private void initDices() {
+    this.dice1 = new Dice();
+    this.dice2 = new Dice();
+
+    dices = new ArrayList<>();
+    dices.add(dice1);
+    dices.add(dice2);
   }
 
 
