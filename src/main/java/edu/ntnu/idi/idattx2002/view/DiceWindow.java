@@ -63,9 +63,9 @@ public class DiceWindow extends HBox implements DiceObserver{
         }
     }
 
-    private KeyFrame getDiceKeyFrame(Dice dice, Map<Integer, Image> diceImageMap,  double wait) {
+    private KeyFrame getDiceKeyFrame(Dice dice, int diceValue, Map<Integer, Image> diceImageMap,  double wait) {
       return new KeyFrame(Duration.millis(wait), e -> {
-          Image diceImage = diceImageMap.get(dice.getCurrentValue());
+          Image diceImage = diceImageMap.get(diceValue);
           ImageView diceImageView = diceMap2.get(dice);
 
           if (diceImageView != null) {
@@ -89,15 +89,14 @@ public class DiceWindow extends HBox implements DiceObserver{
         Timeline timeline = new Timeline();
 
         for (int i = 0; i < 13; i++) {
-            int diceValueA = random.nextInt(6)+1;
-            int diceValueB = random.nextInt(6)+1;
+            int randomDiceValue = random.nextInt(6)+1;
             int wait = (int) (Math.pow(1.77, i) + 100);
 
-            KeyFrame keyFrame = getDiceKeyFrame(dice, orangeDiceImageMap, wait);
+            KeyFrame keyFrame = getDiceKeyFrame(dice, randomDiceValue, orangeDiceImageMap, wait);
             timeline.getKeyFrames().add(keyFrame);
         }
 
-        KeyFrame finalFrame = getDiceKeyFrame(dice, greenDiceImageMap, 2130);
+        KeyFrame finalFrame = getDiceKeyFrame(dice, dice.getCurrentValue(), greenDiceImageMap, 2130);
         timeline.getKeyFrames().add(finalFrame);
 
         timeline.play();
