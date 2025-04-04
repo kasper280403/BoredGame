@@ -9,23 +9,27 @@ public class Dice {
   private final Random randomNumberGenerator;
 
   private List<DiceObserver> observers;
+  private int currentValue;
 
   public Dice() {
     randomNumberGenerator = new Random();
     observers = new ArrayList<>();
+    currentValue = 6;
   }
 
   public int throwDice() {
-    return randomNumberGenerator.nextInt(6) + 1;
+    currentValue = randomNumberGenerator.nextInt(6) + 1;
+    return currentValue;
   }
 
   public void addObserver(DiceObserver diceObserver) {
     observers.add(diceObserver);
+    notifyObservers();
   }
 
-  public void notifyObservers(int A) {
+  public void notifyObservers() {
     for (DiceObserver diceObserver : observers) {
-      diceObserver.update(A);
+      diceObserver.update(currentValue);
     }
   }
 }
