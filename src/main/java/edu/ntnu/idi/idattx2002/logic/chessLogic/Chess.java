@@ -43,7 +43,7 @@ public class Chess {
   }
 
   public void addPlayer(String name, ChessColor chessColor) {
-    ChessPlayer player = new HumanChessPlayer(name, chessColor);
+    ChessPlayer player = new HumanChessPlayer(name, 1, chessColor);
     players.add(player);
 
     playerToMove = getPlayer(ChessColor.WHITE);

@@ -2,7 +2,6 @@ package edu.ntnu.idi.idattx2002;
 
 import edu.ntnu.idi.idattx2002.gui.chessGui.controller.MainController;
 import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
-import edu.ntnu.idi.idattx2002.gui.common.ChoosePlayerWindow;
 import edu.ntnu.idi.idattx2002.gui.common.view.CreatePlayerWindow;
 import java.io.IOException;
 import javafx.application.Application;
