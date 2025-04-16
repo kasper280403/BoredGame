@@ -6,8 +6,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,7 +31,6 @@ public class ChoosePlayerWindow {
         this.choosenPlayerNames = new ArrayList<>();
         this.choosenPlayerPieces = new ArrayList<>();
     }
-
 
     public void selectPlayers(Integer minimumPlayers, Integer maximumPlayers) {
 
@@ -60,39 +61,46 @@ public class ChoosePlayerWindow {
     }
 
 
+    //Factored out
     public ArrayList<ArrayList<String>> getPlayersList() throws IOException {
         return playerIO.getPlayers();
     }
 
+    //Unsure if should stay
     public String playerToString(ArrayList<String> player) {
         return player.get(0) + " (Piece " + player.get(1) + ")";
     }
 
-    public HBox makePlayerBox(ArrayList<String> player, Integer minimumPlayers, Integer maximumPlayers) {
+    //Remove max and min?
+    public HBox makePlayerBox(ArrayList<String> player, int minimumPlayers, int maximumPlayers) {
         HBox box = new HBox();
 
         Label playerInfo = new Label(playerToString(player));
-        Button chooseMe = selectButton(minimumPlayers, maximumPlayers, player);
+        Button chooseMe = createSelectPlayerBtn(minimumPlayers, maximumPlayers, player);
 
         box.getChildren().addAll(playerInfo, chooseMe);
+
         return box;
     }
 
-    //TODO lurer på om det sto i oppgave beskrivelsen at fxml ikke var tillatt
-    public Button selectButton(Integer minimumPlayers, Integer maximumPlayers, ArrayList<String> player){
+    public Button createSelectPlayerBtn(int minimumPlayers, int maximumPlayers, ArrayList<String> player){
         Button button = new Button("Unselected");
-        button.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+        button.setBackground(Background.fill(Color.RED));
+        button.setTextFill(Color.WHITESMOKE);
 
         button.setOnAction(e -> {
             if ("Unselected".equals(button.getText())) {
                 button.setText("Selected");
-                button.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+                button.setBackground(Background.fill(Color.GREEN));
+                button.setTextFill(Color.WHITESMOKE);
+
                 nChoosenPlayers++;
                 addToList(player);
                 changeStartButtonStatus(minimumPlayers, maximumPlayers);
             } else {
                 button.setText("Unselected");
-                button.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+                button.setBackground(Background.fill(Color.RED));
+                button.setTextFill(Color.WHITESMOKE);
                 nChoosenPlayers--;
                 removeFromList(player);
                 changeStartButtonStatus(minimumPlayers, maximumPlayers);
@@ -101,6 +109,7 @@ public class ChoosePlayerWindow {
         return button;
     }
 
+    //Moved Action
     public Button makeStartGameButton() {
 
         Button button = new Button("Start Game");
@@ -113,17 +122,20 @@ public class ChoosePlayerWindow {
         return button;
     }
 
+    //Moved
     public void addToList(ArrayList<String> player) {
         choosenPlayerNames.add(player.get(0));
         choosenPlayerPieces.add(Integer.parseInt(player.get(1)));
     }
 
+    //Moved
     public void removeFromList(ArrayList<String> player) {
         int index = choosenPlayerNames.indexOf(player.get(0));
         choosenPlayerNames.remove(index);
         choosenPlayerPieces.remove(index);
     }
 
+    //Moved but not finished
     public void changeStartButtonStatus(Integer minimumPlayers, Integer maximumPlayers){
         if (nChoosenPlayers < minimumPlayers || nChoosenPlayers > maximumPlayers) {
             startGameButton.setDisable(true);
