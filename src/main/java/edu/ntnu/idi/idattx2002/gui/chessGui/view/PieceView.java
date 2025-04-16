@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.view;
 
+import java.net.URL;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -13,7 +14,7 @@ public class PieceView {
 
   public PieceView(int pieceSize) {
     size = pieceSize;
-    standardLocation = "/ntnu/idi/chess/pieceImages";
+    standardLocation = "/chessResources/pieceImages";
   }
 
   public ImageView getPieceView(Piece piece) {
@@ -36,11 +37,13 @@ public class PieceView {
       case King k -> pieceString = "king";
       default -> pieceString = "null";
     }
+    System.out.println("Piece type: " + piece.getClass().getName() + " -> filename: " + pieceString);
     return pieceString;
   }
 
   private ImageView createImageView(String location) {
     ImageView piece = new ImageView(new Image(getClass().getResource(location).toExternalForm()));
+
     piece.setFitWidth(size);
     piece.setFitHeight(size);
     return piece;

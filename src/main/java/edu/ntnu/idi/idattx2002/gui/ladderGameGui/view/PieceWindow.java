@@ -15,10 +15,11 @@ public class PieceWindow {
   }
 
   public void createPieces(double imageViewSize) {
-    Image pieceImage1 = new Image("/images/pieces/frogPiece.png");
-    Image pieceImage2 = new Image("/images/pieces/catPiece.png");
-    Image pieceImage3 = new Image("/images/pieces/punkPiece.png");
-    Image pieceImage4 = new Image("/images/pieces/filipPiece.png");
+    String standardPath = "ladderGameResources/images/pieces/";
+    Image pieceImage1 = new Image(standardPath + "frogPiece.png");
+    Image pieceImage2 = new Image(standardPath + "catPiece.png");
+    Image pieceImage3 = new Image(standardPath + "punkPiece.png");
+    Image pieceImage4 = new Image(standardPath + "filipPiece.png");
 
     ImageView imageView1 = new ImageView(pieceImage1);
     ImageView imageView2 = new ImageView(pieceImage2);

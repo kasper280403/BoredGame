@@ -20,7 +20,7 @@ public class PositionIO {
   private String basePath;
 
   public PositionIO() {
-    basePath = "src/main/resources/ntnu/idi/chess/files/chessPositions/";
+    basePath = "src/main/resources/chessResources/chessPositions/";
   }
 
   public String getPositionString(Chess chess) {
@@ -187,7 +187,7 @@ public class PositionIO {
 
     String path = "startPositions";
 
-    URL url = loader.getResource("ntnu/idi/chess/files/chessPositions/" + path);
+    URL url = loader.getResource("chessResources/chessPositions/" + path);
     if (url == null) {
       throw new IllegalArgumentException("Couldnt resolve resource folder");
     }
