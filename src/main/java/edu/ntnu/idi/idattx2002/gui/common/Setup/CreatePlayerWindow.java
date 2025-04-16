@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Setup;
+package edu.ntnu.idi.idattx2002.gui.common.Setup;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.PieceWindow;
