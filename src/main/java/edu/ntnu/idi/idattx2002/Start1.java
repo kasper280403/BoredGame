@@ -1,7 +1,9 @@
 package edu.ntnu.idi.idattx2002;
 
-import edu.ntnu.idi.idattx2002.gui1.ladderGameGui.view.Setup.ChoosePlayerWindow;
-import edu.ntnu.idi.idattx2002.gui1.ladderGameGui.view.Setup.CreatePlayerWindow;
+import edu.ntnu.idi.idattx2002.gui.chessGui.controller.MainController;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Setup.ChoosePlayerWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Setup.CreatePlayerWindow;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -36,21 +38,36 @@ public class Start1 extends Application {
     }
 
 
+    //TODO should be its own class
     private void openGamesWindow() {
         VBox layout = new VBox(10);
         Label heading = new Label("Choose Game");
         ChoosePlayerWindow choosePlayerWindow = new ChoosePlayerWindow(primaryStage);
 
         Button snakesAndLadders = new Button("Snakes and ladders");
+        Button chessBtn = new Button("Chess");
 
         snakesAndLadders.setOnAction(e -> {
             choosePlayerWindow.selectPlayers(2);
         });
+        chessBtn.setOnAction(e -> {
+          try {
+            startChess();
+          } catch (IOException ex) {
+            throw new RuntimeException(ex);
+          }
+        });
 
-        layout.getChildren().addAll(heading, snakesAndLadders);
+        layout.getChildren().addAll(heading, snakesAndLadders, chessBtn);
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(10);
         Scene scene = new Scene(layout, 500, 400);
+        primaryStage.setScene(scene);
+    }
+
+    public void startChess() throws IOException {
+        MainController mainController = new MainController();
+        Scene scene = new Scene(mainController.getView(), 320, 240);
         primaryStage.setScene(scene);
     }
 
