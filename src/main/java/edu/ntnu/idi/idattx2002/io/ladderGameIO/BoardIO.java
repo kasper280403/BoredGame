@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idattx2002.io.ladderGameIO;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.SwitchWithRandomAction;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import java.util.function.BiConsumer;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,14 +13,14 @@ import java.util.Map;
 
 public class BoardIO {
 
-    Board board;
+    SnakesAndLaddersBoard board;
     ArrayList<String> actionNames;
     ArrayList<ArrayList<ArrayList<Integer>>> actions;
     Map<String, BiConsumer<Integer, Integer>> actionMethods = new HashMap<>();
 
 
 
-    public BoardIO(Board board) {
+    public BoardIO(SnakesAndLaddersBoard board) {
         this.board = board;
         actionNames = new ArrayList<>();
         actions = new ArrayList<>();

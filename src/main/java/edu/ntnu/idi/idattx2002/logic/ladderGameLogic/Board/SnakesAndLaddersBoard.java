@@ -4,20 +4,20 @@ import java.util.Collections;
 import java.util.HashMap;
 
 
-public class Board {
+public class SnakesAndLaddersBoard {
 
-  private final HashMap<Integer, SnakesAndLaddersSquare> tiles;
+  private final HashMap<Integer, SnakesAndLaddersSquare> squareMap;
 
-  public Board() {
-    this.tiles = new HashMap<>();
+  public SnakesAndLaddersBoard() {
+    this.squareMap = new HashMap<>();
   }
 
-  public HashMap<Integer, SnakesAndLaddersSquare> getTiles() {
-    return tiles;
+  public HashMap<Integer, SnakesAndLaddersSquare> getSquareMap() {
+    return squareMap;
   }
 
   public SnakesAndLaddersSquare getTile(int tileId) {
-    SnakesAndLaddersSquare tile = tiles.get(tileId);
+    SnakesAndLaddersSquare tile = squareMap.get(tileId);
     if (tile == null) {
       throw new IllegalArgumentException("Tile with id " + tileId + " does not exist");
     }
@@ -25,12 +25,12 @@ public class Board {
   }
 
   public SnakesAndLaddersSquare getLastTile() {
-    int lastTileID = Collections.max(tiles.keySet());
-    return tiles.get(lastTileID);
+    int lastTileID = Collections.max(squareMap.keySet());
+    return squareMap.get(lastTileID);
   }
 
   public void addTile(SnakesAndLaddersSquare tile) {
-    tiles.put(tile.getSquareId(), tile);
+    squareMap.put(tile.getSquareId(), tile);
   }
 
   public void createBoard(int numberOfRows, int numberOfColumns) {

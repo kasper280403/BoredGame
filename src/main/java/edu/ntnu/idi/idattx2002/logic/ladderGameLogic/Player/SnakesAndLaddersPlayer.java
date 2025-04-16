@@ -1,20 +1,18 @@
 package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player;
 
+import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.PlayerObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
-    String playerName;
+public class SnakesAndLaddersPlayer extends Player {
     int playerID;
-    int pieceID;
     int currentTileId;
     List<PlayerObserver> playerObservers;
 
-    public Player(String playerName, int playerID, int pieceID) {
-        this.playerName = playerName;
+    public SnakesAndLaddersPlayer(String playerName, int playerID, int iconID) {
+        super(playerName, iconID);
         this.playerID = playerID;
-        this.pieceID = pieceID;
         this.currentTileId = 0;
 
         playerObservers = new ArrayList<>();
@@ -42,19 +40,12 @@ public class Player {
         }
     }
 
-    public int getCurrentTile(){
+    public int getCurrentTileId(){
         return currentTileId;
-    }
-
-    public int getPieceID() {
-        return pieceID;
     }
 
     public int getPlayerID() {
         return playerID;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
 }

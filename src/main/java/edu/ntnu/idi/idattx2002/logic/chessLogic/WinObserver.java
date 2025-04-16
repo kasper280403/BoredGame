@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic;
 
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.Player;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.player.ChessPlayer;
 
 public interface WinObserver {
-  void update(Player player);
+  void update(ChessPlayer player);
 }

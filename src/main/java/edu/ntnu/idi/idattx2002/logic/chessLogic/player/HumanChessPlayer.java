@@ -2,11 +2,11 @@ package edu.ntnu.idi.idattx2002.logic.chessLogic.player;
 
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
 
-public class HumanPlayer extends Player {
+public class HumanChessPlayer extends ChessPlayer {
 
   String name;
 
-  public HumanPlayer(String name, ChessColor chessColor) {
+  public HumanChessPlayer(String name, ChessColor chessColor) {
     super(chessColor);
     this.name = name;
   }

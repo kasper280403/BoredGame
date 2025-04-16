@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Board {
+public class ChessBoard {
 
   private Map<Integer, ChessSquare> squareMap;
 
-  public Board() {
+  public ChessBoard() {
     initSquares();
   }
 

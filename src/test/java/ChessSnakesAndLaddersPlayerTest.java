@@ -1,16 +1,16 @@
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class PlayerTest {
-    Player player;
+class ChessSnakesAndLaddersPlayerTest {
+    SnakesAndLaddersPlayer player;
 
     @BeforeEach
     //arrange
     void setUp(){
-        player =  new Player("Kasper", 1, 1);
+        player =  new SnakesAndLaddersPlayer("Kasper", 1, 1);
     }
 
     @Test
@@ -18,8 +18,8 @@ class PlayerTest {
         //act
         player.movePlayerBySteps(10);
         //assert
-        assertEquals(11, player.getCurrentTile());
-        assertNotEquals(5, player.getCurrentTile());
+        assertEquals(11, player.getCurrentTileId());
+        assertNotEquals(5, player.getCurrentTileId());
     }
 
     @Test
@@ -27,8 +27,8 @@ class PlayerTest {
         //act
         player.movePlayerToTile(30);
         //assert
-        assertEquals(30, player.getCurrentTile());
-        assertNotEquals(32, player.getCurrentTile());
+        assertEquals(30, player.getCurrentTileId());
+        assertNotEquals(32, player.getCurrentTileId());
     }
 
 
@@ -49,9 +49,9 @@ class PlayerTest {
     }
 
     @Test
-    void testGetPieceID() {
+    void testGetIconId() {
         //act
-        int pieceID = player.getPieceID();
+        int pieceID = player.getIconId();
         //assert
         assertEquals(1, pieceID);
     }

@@ -2,12 +2,12 @@ package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
 import edu.ntnu.idi.idattx2002.gui.common.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.SwitchWithRandomAction;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.LandAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersSquare;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.PlayerObserver;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 import java.util.ArrayList;
 import java.util.Map;
 import javafx.animation.PauseTransition;
@@ -95,7 +95,7 @@ public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObser
 
     //TODO should be refactored
     private void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
-        Board board = game.getBoard();
+        SnakesAndLaddersBoard board = game.getBoard();
         SnakesAndLaddersSquare tile;
         LandAction landAction;
 
@@ -157,8 +157,8 @@ public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObser
     }
 
     @Override
-    public void update(Player player) {
-        displayPieceAtTile(player.getCurrentTile(), player.getPieceID());
+    public void update(SnakesAndLaddersPlayer player) {
+        displayPieceAtTile(player.getCurrentTileId(), player.getIconId());
     }
 
     public void init() {

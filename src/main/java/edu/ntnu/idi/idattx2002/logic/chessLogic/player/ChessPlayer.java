@@ -3,21 +3,21 @@ package edu.ntnu.idi.idattx2002.logic.chessLogic.player;
 import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Board;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessBoard;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.*;
 
-public abstract class Player {
+public abstract class ChessPlayer {
 
   private ChessColor chessColor;
 
   private List<Piece> pieces;
 
-  public Player(ChessColor chessColor) {
+  public ChessPlayer(ChessColor chessColor) {
     this.chessColor = chessColor;
   }
 
-  public void initPieces(Board board) {
+  public void initPieces(ChessBoard board) {
     pieces = new ArrayList<>();
 
     Piece piece;

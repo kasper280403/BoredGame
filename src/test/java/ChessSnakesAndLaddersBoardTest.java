@@ -1,20 +1,22 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import edu.ntnu.idi.idattx2002.logic.common.Board.Square;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersSquare;
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 
-class BoardTest {
+class ChessSnakesAndLaddersBoardTest {
 
-  Board board;
+  SnakesAndLaddersBoard board;
 
   @BeforeEach
   void setUp() {
-    board = new Board();
+    board = new SnakesAndLaddersBoard();
   }
 
   @Test
@@ -72,7 +74,7 @@ class BoardTest {
     //arrange
     board.createBoard(2, 2);
     //act
-    HashMap<Integer, SnakesAndLaddersSquare> tiles = board.getTiles();
+    HashMap<Integer, SnakesAndLaddersSquare> tiles = board.getSquareMap();
     //assert
     assertEquals(4, tiles.size());
   }
