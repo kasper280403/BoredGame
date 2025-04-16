@@ -6,31 +6,31 @@ import java.util.HashMap;
 
 public class Board {
 
-  private final HashMap<Integer, Tile> tiles;
+  private final HashMap<Integer, SnakesAndLaddersSquare> tiles;
 
   public Board() {
     this.tiles = new HashMap<>();
   }
 
-  public HashMap<Integer, Tile> getTiles() {
+  public HashMap<Integer, SnakesAndLaddersSquare> getTiles() {
     return tiles;
   }
 
-  public Tile getTile(int tileId) {
-    Tile tile = tiles.get(tileId);
+  public SnakesAndLaddersSquare getTile(int tileId) {
+    SnakesAndLaddersSquare tile = tiles.get(tileId);
     if (tile == null) {
       throw new IllegalArgumentException("Tile with id " + tileId + " does not exist");
     }
     return tile;
   }
 
-  public Tile getLastTile() {
+  public SnakesAndLaddersSquare getLastTile() {
     int lastTileID = Collections.max(tiles.keySet());
     return tiles.get(lastTileID);
   }
 
-  public void addTile(Tile tile) {
-    tiles.put(tile.getTileId(), tile);
+  public void addTile(SnakesAndLaddersSquare tile) {
+    tiles.put(tile.getSquareId(), tile);
   }
 
   public void createBoard(int numberOfRows, int numberOfColumns) {
@@ -39,7 +39,7 @@ public class Board {
 
 
     for (int i = 1; i < numberOfRows*numberOfColumns+1; i++){
-           addTile(new Tile(i));
+           addTile(new SnakesAndLaddersSquare(i));
     }
 
   }

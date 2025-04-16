@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.*;
 
 public class PositionEvaluator {
@@ -52,7 +52,7 @@ public class PositionEvaluator {
 
   public int nrOfLegalMoves(Piece piece) {
     int nrOfMoves = 0;
-    for(Square square : chess.getBoard().getSquareMap().values()) {
+    for(ChessSquare square : chess.getBoard().getSquareMap().values()) {
       if(piece.isMoveLegal(square, chess)) {
         nrOfMoves += 1;
       }

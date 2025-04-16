@@ -2,14 +2,14 @@ package edu.ntnu.idi.idattx2002.logic.chessLogic.pieces;
 
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 
 public class Pawn extends Piece{
 
   private boolean hasMoved;
   private boolean justMoved;
 
-  public Pawn(Square startSquare, ChessColor chessColor) {
+  public Pawn(ChessSquare startSquare, ChessColor chessColor) {
     super(startSquare, chessColor);
     justMoved = false;
     hasMoved = false;
@@ -38,13 +38,13 @@ public class Pawn extends Piece{
             (currentSquare.getYCoordinate() == 5 && chessColor == ChessColor.WHITE));
   }
 
-  public boolean checkForEnPassant(Chess chess, Square square) {
+  public boolean checkForEnPassant(Chess chess, ChessSquare square) {
     if(!squareForEnPassant()) {
       return false;
     }
 
     int yOffsett = square.getXCoordinate() == 4 ? 1 : -1;
-    Square squareToCapture = chess.getBoard().getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
+    ChessSquare squareToCapture = chess.getBoard().getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
     if(!squareToCapture.hasPiece()) {
       return false;
     }
@@ -62,9 +62,9 @@ public class Pawn extends Piece{
     }
   }
 
-  public void performEnPassant(Square square, Chess chess) {
+  public void performEnPassant(ChessSquare square, Chess chess) {
     int yOffsett = square.getXCoordinate() == 4 ? 1 : -1;
-    Square enemySquare = chess.getBoard().getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
+    ChessSquare enemySquare = chess.getBoard().getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
     Piece enemyPiece = enemySquare.getPiece();
 
     enemySquare.removePiece();
@@ -75,14 +75,14 @@ public class Pawn extends Piece{
     setCurrentSquare(square);
   }
 
-  public boolean isDiagMovePossible(Square square) {
+  public boolean isDiagMovePossible(ChessSquare square) {
     if(square.hasPiece()) {
       return square.getPiece().getColor() != chessColor;
     }
     return false;
   }
 
-  public boolean isStraightMovePossible(Square square) {
+  public boolean isStraightMovePossible(ChessSquare square) {
     int yDiff = currentSquare.getYCoordinate() - square.getYCoordinate();
     int xDiff = currentSquare.getXCoordinate() - square.getXCoordinate();
     if(chessColor == ChessColor.WHITE) {
@@ -123,7 +123,7 @@ public class Pawn extends Piece{
 
   //TODO not compatible with discoversCheck maybe.
   @Override
-  public boolean isMovePossible(Square square) {
+  public boolean isMovePossible(ChessSquare square) {
     boolean legal = false;
     int yDiff = currentSquare.getYCoordinate() - square.getYCoordinate();
     int xDiff = currentSquare.getXCoordinate() - square.getXCoordinate();
@@ -142,7 +142,7 @@ public class Pawn extends Piece{
   }
 
   @Override
-  public boolean threatens(Square square, Chess chess) {
+  public boolean threatens(ChessSquare square, Chess chess) {
     int xDiff = Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate());
     int yDiff = currentSquare.getYCoordinate() - square.getYCoordinate();
 
@@ -155,12 +155,12 @@ public class Pawn extends Piece{
 
   //TODO fix bug where pawn hinders enemy king of moving infront of it
   @Override
-  public boolean isMoveLegal(Square square, Chess chess) {
+  public boolean isMoveLegal(ChessSquare square, Chess chess) {
     return isMovePossible(square) && super.isMoveLegal(square, chess);
   }
 
   @Override
-  public void move(Square square, Chess chess) {
+  public void move(ChessSquare square, Chess chess) {
     if(isMoveLegal(square, chess)) {
       super.move(square, chess);
       updateStatus();

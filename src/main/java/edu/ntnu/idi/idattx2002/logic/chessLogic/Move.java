@@ -1,17 +1,17 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic;
 
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Piece;
 
 public class Move {
 
-  private final Square startSquare;
-  private final Square endSquare;
+  private final ChessSquare startSquare;
+  private final ChessSquare endSquare;
   private final Chess chess;
 
   private final Piece pieceToMove;
 
-  public Move(Square startSquare, Square endSquare, Chess chess) {
+  public Move(ChessSquare startSquare, ChessSquare endSquare, Chess chess) {
     this.startSquare = startSquare;
     this.endSquare = endSquare;
     this.chess = chess;

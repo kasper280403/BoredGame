@@ -75,7 +75,7 @@ public class SnakesAndLadders {
 
     if (checkForWin(player)) {
       System.out.println("Win hit!");
-      player.movePlayerToTile(board.getLastTile().getTileId());
+      player.movePlayerToTile(board.getLastTile().getSquareId());
       //winSequence(player);
     }
 

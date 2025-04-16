@@ -4,7 +4,7 @@ import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.LandAction;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Tile;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersSquare;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.PlayerObserver;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
@@ -96,7 +96,7 @@ public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObser
     //TODO should be refactored
     private void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
         Board board = game.getBoard();
-        Tile tile;
+        SnakesAndLaddersSquare tile;
         LandAction landAction;
 
         ArrayList<Color> colorList = getColorList();

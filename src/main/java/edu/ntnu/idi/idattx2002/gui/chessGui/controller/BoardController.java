@@ -10,7 +10,7 @@ import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Move;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 
 public class BoardController {
 
@@ -18,7 +18,7 @@ public class BoardController {
 
   private BoardView boardView;
   private SideBarView sideBarView;
-  private Square selectedSquare;
+  private ChessSquare selectedSquare;
   private Pane selectedTile;
 
   private ChessColor colorPerspective;
@@ -45,15 +45,15 @@ public class BoardController {
   }
 
   private void initClickableSquares() {
-    for (Map.Entry<Square, Pane> entry : boardView.getTileMap().entrySet()) {
-      Square square = entry.getKey();
+    for (Map.Entry<ChessSquare, Pane> entry : boardView.getTileMap().entrySet()) {
+      ChessSquare square = entry.getKey();
       Pane tile = entry.getValue();
 
       tile.setOnMouseClicked(e -> handleSquareClick(square, tile));
     }
   }
 
-  private void handleSquareClick(Square square, Pane tile) {
+  private void handleSquareClick(ChessSquare square, Pane tile) {
     System.out.println("Clicked");
     if(selectedSquare == null && selectedTile == null && square.hasPiece()) {
       System.out.println("Has piece");
@@ -97,7 +97,7 @@ public class BoardController {
     }
   }
 
-  public void executeMove(Square square, Pane tile) {
+  public void executeMove(ChessSquare square, Pane tile) {
     Move move = new Move(selectedSquare, square, chess);
     chess.playMove(move);
 

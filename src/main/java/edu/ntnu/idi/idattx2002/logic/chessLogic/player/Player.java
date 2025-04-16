@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Board;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.*;
 
 public abstract class Player {
@@ -21,7 +21,7 @@ public abstract class Player {
     pieces = new ArrayList<>();
 
     Piece piece;
-    for (Square square : board.getSquareMap().values()) {
+    for (ChessSquare square : board.getSquareMap().values()) {
       if(square.hasPiece()) {
         piece = square.getPiece();
         if(piece.getColor() == chessColor) {

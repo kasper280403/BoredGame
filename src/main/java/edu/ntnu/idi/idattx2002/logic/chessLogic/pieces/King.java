@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 
 public class King extends Piece {
 
   private boolean hasMoved;
 
-  public King(Square startSquare, ChessColor chessColor) {
+  public King(ChessSquare startSquare, ChessColor chessColor) {
     super(startSquare, chessColor);
     hasMoved = false;
   }
@@ -38,7 +38,7 @@ public class King extends Piece {
     if (!isInCheck(chess)) {
       return false;
     }
-    for (Square square : chess.getBoard().getSquareMap().values()) {
+    for (ChessSquare square : chess.getBoard().getSquareMap().values()) {
       for (Piece friendlyPiece : chess.getPlayer(chessColor).getAlivePieces()) {
         if (friendlyPiece.isMoveLegal(square, chess)) {
           return false;
@@ -49,7 +49,7 @@ public class King extends Piece {
     return true;
   }
 
-  public boolean isCastleLegal(Square square, Chess chess) {
+  public boolean isCastleLegal(ChessSquare square, Chess chess) {
     if(isInCheck(chess) || hasMoved || Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate()) < 2) {
       return false;
     }
@@ -71,21 +71,21 @@ public class King extends Piece {
     return canCastle;
   }
 
-  public boolean canCastleWithRook(Square square, Rook rook, Chess chess) {
+  public boolean canCastleWithRook(ChessSquare square, Rook rook, Chess chess) {
     boolean canCastle = false;
 
     ChessColor enemyChessColor = chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
     if (!rook.hasMoved) {
-      Square rookSquare = rook.getCurrentSquare();
-      List<Square> castlePath = chess.getBoard().getPath(getCurrentSquare(), rookSquare);
+      ChessSquare rookSquare = rook.getCurrentSquare();
+      List<ChessSquare> castlePath = chess.getBoard().getPath(getCurrentSquare(), rookSquare);
 
-      for (Square castleSquare : castlePath) {
+      for (ChessSquare castleSquare : castlePath) {
         if (square == castleSquare || square == rookSquare) {
          canCastle = true;
         }
       }
 
-      for (Square castleSquare : castlePath) {
+      for (ChessSquare castleSquare : castlePath) {
         for (Piece piece : chess.getPlayer(enemyChessColor).getAlivePieces()) {
           int squareDistanceFromKing = Math.abs(
               currentSquare.getXCoordinate() - castleSquare.getXCoordinate());
@@ -98,7 +98,7 @@ public class King extends Piece {
     return canCastle;
   }
 
-  public void castle(Square square, Chess chess) {
+  public void castle(ChessSquare square, Chess chess) {
     List<Rook> rooks = new ArrayList<>();
     for (Piece piece : chess.getPlayer(chessColor).getAlivePieces()) {
       if(piece instanceof Rook) {
@@ -109,16 +109,16 @@ public class King extends Piece {
     boolean performed = false;
     for (Rook rook : rooks) {
       if(canCastleWithRook(square, rook, chess) && !performed) {
-        Square kingSquare = currentSquare;
-        Square rookSquare = rook.getCurrentSquare();
+        ChessSquare kingSquare = currentSquare;
+        ChessSquare rookSquare = rook.getCurrentSquare();
 
         int kingXCoordinate = currentSquare.getXCoordinate();
         int kingYCoordinate = currentSquare.getYCoordinate();
         int rookXCoordinate = rookSquare.getXCoordinate();
         int directionFactor = kingXCoordinate - rookXCoordinate > 0 ? 1 : -1;
 
-        Square newKingSquare = chess.getBoard().getSquareByCords(kingXCoordinate - 2 * directionFactor, kingYCoordinate);
-        Square newRookSquare = chess.getBoard().getSquareByCords(kingXCoordinate - 1 * directionFactor, kingYCoordinate);
+        ChessSquare newKingSquare = chess.getBoard().getSquareByCords(kingXCoordinate - 2 * directionFactor, kingYCoordinate);
+        ChessSquare newRookSquare = chess.getBoard().getSquareByCords(kingXCoordinate - 1 * directionFactor, kingYCoordinate);
 
         kingSquare.removePiece();
         rookSquare.removePiece();
@@ -139,7 +139,7 @@ public class King extends Piece {
   }
 
   @Override
-  public boolean isMovePossible(Square square) {
+  public boolean isMovePossible(ChessSquare square) {
     int xDiff = Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate());
     int yDiff = Math.abs(currentSquare.getYCoordinate() - square.getYCoordinate());
     return xDiff <= 1 && yDiff <= 1;
@@ -147,7 +147,7 @@ public class King extends Piece {
 
   //TODO simplify by removing second if statement
   @Override
-  public boolean stopsCheck(Square square, Chess chess) {
+  public boolean stopsCheck(ChessSquare square, Chess chess) {
     ChessColor enemyChessColor = chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
 
     for (Piece enemyPiece : chess.getPlayer(enemyChessColor).getAlivePieces()) {
@@ -162,17 +162,17 @@ public class King extends Piece {
   }
 
   @Override
-  public boolean threatens(Square square, Chess chess) {
+  public boolean threatens(ChessSquare square, Chess chess) {
     return isMovePossible(square) && super.threatens(square, chess);
   }
 
   @Override
-  public boolean isMoveLegal(Square square, Chess chess) {
+  public boolean isMoveLegal(ChessSquare square, Chess chess) {
     return isMovePossible(square) && super.isMoveLegal(square, chess);
   }
 
   @Override
-  public void move(Square square, Chess chess) {
+  public void move(ChessSquare square, Chess chess) {
     if(isMoveLegal(square, chess)) {
       super.move(square, chess);
       hasMoved = true;

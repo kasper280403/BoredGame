@@ -1,39 +1,32 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic.board;
 
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Piece;
+import edu.ntnu.idi.idattx2002.logic.common.Board.Square;
 
-public class Square {
+public class ChessSquare extends Square {
 
-  private int squareId;
   private final int xCoordinate;
   private final int yCoordinate;
   private Piece piece;
 
   private SquareObserver observer;
 
-  public Square(int xCoordinate, int yCoordinate) {
+  public ChessSquare(int xCoordinate, int yCoordinate) {
+    super(((yCoordinate - 1) * 8) + xCoordinate);
+
     verifyCoordinates(xCoordinate, yCoordinate);
     this.xCoordinate = xCoordinate;
     this.yCoordinate = yCoordinate;
-    initSquareId();
   }
 
   public void setObserver(SquareObserver observer) {
     this.observer = observer;
   }
 
-  private void initSquareId() {
-    squareId = ((yCoordinate - 1) * 8) + xCoordinate;
-  }
-
   public void verifyCoordinates(int x, int y) {
     if(x < 1 || x > 8 || y < 1 || y > 8) {
       throw new IllegalArgumentException("Square coordinates are invalid");
     }
-  }
-
-  public int getSquareId() {
-    return squareId;
   }
 
   public int getYCoordinate() {
