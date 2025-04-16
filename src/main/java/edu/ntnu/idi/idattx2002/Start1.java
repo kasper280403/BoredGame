@@ -1,8 +1,9 @@
 package edu.ntnu.idi.idattx2002;
 
 import edu.ntnu.idi.idattx2002.gui.chessGui.controller.MainController;
+import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
 import edu.ntnu.idi.idattx2002.gui.common.ChoosePlayerWindow;
-import edu.ntnu.idi.idattx2002.gui.common.CreatePlayerWindow;
+import edu.ntnu.idi.idattx2002.gui.common.view.CreatePlayerWindow;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -23,7 +24,13 @@ public class Start1 extends Application {
 
         Label label = new Label("Choose game:");
         Button chooseGameButton = new Button("Choose Game");
-        chooseGameButton.setOnAction(e -> openGamesWindow());
+        chooseGameButton.setOnAction(e -> {
+          try {
+            openGamesWindow();
+          } catch (IOException ex) {
+            throw new RuntimeException(ex);
+          }
+        });
 
         Button createPlayerButton = new Button("Create Player");
         createPlayerButton.setOnAction(e -> createPlayerWindow.openPlayerInput());
@@ -39,16 +46,17 @@ public class Start1 extends Application {
 
 
     //TODO should be its own class
-    private void openGamesWindow() {
+    private void openGamesWindow() throws IOException {
         VBox layout = new VBox(10);
         Label heading = new Label("Choose Game");
-        ChoosePlayerWindow choosePlayerWindow = new ChoosePlayerWindow(primaryStage);
+        //ChoosePlayerWindow choosePlayerWindow = new ChoosePlayerWindow(layout);
+        ChoosePlayerController choosePlayerController = new ChoosePlayerController(layout, 2, 6);
 
         Button snakesAndLadders = new Button("Snakes and ladders");
         Button chessBtn = new Button("Chess");
 
         snakesAndLadders.setOnAction(e -> {
-            choosePlayerWindow.selectPlayers(2, 6);
+            choosePlayerController.showView();
         });
         chessBtn.setOnAction(e -> {
           try {

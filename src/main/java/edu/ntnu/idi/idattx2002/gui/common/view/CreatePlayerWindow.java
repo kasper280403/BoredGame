@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.gui.common;
+package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
 import javafx.geometry.Pos;

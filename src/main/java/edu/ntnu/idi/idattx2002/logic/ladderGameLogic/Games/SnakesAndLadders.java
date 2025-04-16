@@ -2,7 +2,7 @@ package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceWindow;
-import edu.ntnu.idi.idattx2002.gui.common.PlayerIconWindow;
+import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;

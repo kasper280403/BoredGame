@@ -3,12 +3,12 @@ package edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceWindow;
-import edu.ntnu.idi.idattx2002.gui.common.PlayerIconWindow;
+import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLadderWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersTilesWindow;
-import edu.ntnu.idi.idattx2002.gui.common.WinWindow;
+import edu.ntnu.idi.idattx2002.gui.common.view.WinWindow;
 import java.util.List;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
 public class SnakesAndLaddersController {
 
@@ -22,9 +22,9 @@ public class SnakesAndLaddersController {
   private WinWindow winView;
 
 
-  public SnakesAndLaddersController(Stage mainStage, List<String> players, List<Integer> pieces) {
+  public SnakesAndLaddersController(Pane mainPane, List<String> players, List<Integer> pieces) {
     //Maybe move
-    snakesAndLadderWindow = new SnakesAndLadderWindow(mainStage, this);
+    snakesAndLadderWindow = new SnakesAndLadderWindow(mainPane, this);
     diceView = new DiceWindow(snakesAndLadderWindow);
     game = new SnakesAndLadders(diceView);
 

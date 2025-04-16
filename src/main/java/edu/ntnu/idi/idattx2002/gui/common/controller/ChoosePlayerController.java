@@ -1,5 +1,6 @@
-package edu.ntnu.idi.idattx2002.gui.common;
+package edu.ntnu.idi.idattx2002.gui.common.controller;
 
+import edu.ntnu.idi.idattx2002.gui.common.view.ChoosePlayerView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
 import java.io.IOException;
@@ -27,7 +28,6 @@ public class ChoosePlayerController {
 
   public ChoosePlayerController(Pane mainPane, int minPlayers, int maxPlayers) throws IOException {
     this.mainPane = mainPane;
-    choosePlayerView = new ChoosePlayerView(mainPane, this);
 
     this.minPlayers = minPlayers;
     this.maxPlayers = maxPlayers;
@@ -35,6 +35,9 @@ public class ChoosePlayerController {
     //Init method?
     chosenPlayerNames = new ArrayList<>();
     chosenPlayerPieces = new ArrayList<>();
+    playerIO = new PlayerIO();
+
+    choosePlayerView = new ChoosePlayerView(mainPane, this);
   }
 
   public int getMaxPlayers() {
@@ -94,11 +97,11 @@ public class ChoosePlayerController {
 
   //Make sNlCont take Pane?
   public void startGame() {
-    //new SnakesAndLaddersController(primaryStage, chosenPlayerNames, chosenPlayerPieces);
+    new SnakesAndLaddersController(mainPane, chosenPlayerNames, chosenPlayerPieces);
   }
 
   public void showView() {
-
+    choosePlayerView.show();
   }
 
 }

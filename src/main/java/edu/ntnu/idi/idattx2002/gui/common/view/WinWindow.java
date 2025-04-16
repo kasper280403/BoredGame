@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.gui.common;
+package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import java.util.HashMap;
 import javafx.geometry.Pos;

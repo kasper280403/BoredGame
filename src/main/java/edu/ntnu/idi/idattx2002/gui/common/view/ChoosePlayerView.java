@@ -1,6 +1,6 @@
-package edu.ntnu.idi.idattx2002.gui.common;
+package edu.ntnu.idi.idattx2002.gui.common.view;
 
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
+import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.geometry.Pos;
@@ -23,7 +23,6 @@ public class ChoosePlayerView extends VBox {
     this.mainPane = mainPane;
 
     init();
-    show();
   }
 
   public Button getStartBtn() {
@@ -85,6 +84,7 @@ public class ChoosePlayerView extends VBox {
   }
 
   public void show() {
+    mainPane.getChildren().clear();
     mainPane.getChildren().add(this);
   }
 

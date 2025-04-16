@@ -1,5 +1,5 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
-import edu.ntnu.idi.idattx2002.gui.common.PlayerIconWindow;
+import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
