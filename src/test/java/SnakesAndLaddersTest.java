@@ -1,11 +1,3 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
-import edu.ntnu.idi.idattx2002.Modules.Player.Player;
-import java.util.HashMap;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-
 /* not working!!!
 public class SnakesAndLaddersTest {
 

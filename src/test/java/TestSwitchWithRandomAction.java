@@ -1,13 +1,5 @@
 import static org.junit.Assert.assertEquals;
 
-import edu.ntnu.idi.idattx2002.Modules.Board.Actions.SwitchWithRandomAction;
-import edu.ntnu.idi.idattx2002.Modules.Player.Player;
-import edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders;
-import static edu.ntnu.idi.idattx2002.Modules.Games.SnakesAndLadders.players;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 public class TestSwitchWithRandomAction {
 
   /* Not working
