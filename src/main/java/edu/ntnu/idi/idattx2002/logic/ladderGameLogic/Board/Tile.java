@@ -1,6 +1,6 @@
-package edu.ntnu.idi.idattx2002.logic.Board;
+package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board;
 
-import edu.ntnu.idi.idattx2002.logic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
 
 public class Tile {
 

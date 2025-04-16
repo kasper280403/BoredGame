@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.gui.view;
+package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
 
 import java.util.HashMap;
 import javafx.scene.image.Image;

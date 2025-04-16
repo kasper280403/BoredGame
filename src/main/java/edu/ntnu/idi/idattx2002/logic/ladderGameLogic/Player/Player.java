@@ -1,6 +1,6 @@
-package edu.ntnu.idi.idattx2002.logic.Player;
+package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player;
 
-import edu.ntnu.idi.idattx2002.logic.PlayerObserver;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.PlayerObserver;
 import java.util.ArrayList;
 import java.util.List;
 

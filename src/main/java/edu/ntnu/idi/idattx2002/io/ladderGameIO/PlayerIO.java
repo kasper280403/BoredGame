@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.io;
+package edu.ntnu.idi.idattx2002.io.ladderGameIO;
 import java.io.*;
 import java.util.ArrayList;
 

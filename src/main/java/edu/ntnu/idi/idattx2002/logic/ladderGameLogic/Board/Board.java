@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.logic.Board;
+package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board;
 
 import java.util.Collections;
 import java.util.HashMap;

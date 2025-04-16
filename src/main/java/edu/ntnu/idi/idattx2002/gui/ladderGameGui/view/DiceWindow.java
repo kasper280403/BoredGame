@@ -1,7 +1,7 @@
-package edu.ntnu.idi.idattx2002.gui.view;
+package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
 
-import edu.ntnu.idi.idattx2002.logic.Dice.Dice;
-import edu.ntnu.idi.idattx2002.logic.DiceObserver;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.DiceObserver;
 import java.util.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

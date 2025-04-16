@@ -1,5 +1,5 @@
-package edu.ntnu.idi.idattx2002.logic.Dice;
-import edu.ntnu.idi.idattx2002.logic.DiceObserver;
+package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.DiceObserver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

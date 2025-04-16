@@ -1,5 +1,5 @@
-package edu.ntnu.idi.idattx2002.gui.view;
-import edu.ntnu.idi.idattx2002.gui.controller.SnakesAndLaddersController;
+package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
 import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

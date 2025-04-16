@@ -1,10 +1,10 @@
-package edu.ntnu.idi.idattx2002.logic.Board.Actions;
+package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions;
 
 import java.util.Random;
 
-import static edu.ntnu.idi.idattx2002.logic.Games.SnakesAndLadders.players;
-import edu.ntnu.idi.idattx2002.logic.Board.LandAction;
-import edu.ntnu.idi.idattx2002.logic.Player.Player;
+import static edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders.players;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.LandAction;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
 
 public class SwitchWithRandomAction implements LandAction {
 

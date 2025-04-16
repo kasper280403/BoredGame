@@ -1,7 +1,7 @@
-package edu.ntnu.idi.idattx2002.io;
-import edu.ntnu.idi.idattx2002.logic.Board.Actions.LadderAction;
-import edu.ntnu.idi.idattx2002.logic.Board.Actions.SwitchWithRandomAction;
-import edu.ntnu.idi.idattx2002.logic.Board.Board;
+package edu.ntnu.idi.idattx2002.io.ladderGameIO;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.SwitchWithRandomAction;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
 import java.util.function.BiConsumer;
 import java.io.BufferedReader;
 import java.io.FileReader;

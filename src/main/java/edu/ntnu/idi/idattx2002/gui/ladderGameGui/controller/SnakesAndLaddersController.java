@@ -1,12 +1,12 @@
-package edu.ntnu.idi.idattx2002.gui.controller;
+package edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller;
 
-import edu.ntnu.idi.idattx2002.logic.Dice.Dice;
-import edu.ntnu.idi.idattx2002.logic.Games.SnakesAndLadders;
-import edu.ntnu.idi.idattx2002.gui.view.DiceWindow;
-import edu.ntnu.idi.idattx2002.gui.view.PieceWindow;
-import edu.ntnu.idi.idattx2002.gui.view.SnakesAndLadderWindow;
-import edu.ntnu.idi.idattx2002.gui.view.TilesWindow;
-import edu.ntnu.idi.idattx2002.gui.view.Win.WinWindow;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.PieceWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLadderWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.TilesWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Win.WinWindow;
 import java.util.List;
 import javafx.stage.Stage;
 

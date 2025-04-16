@@ -1,12 +1,12 @@
-package edu.ntnu.idi.idattx2002.logic.Games;
+package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games;
 
-import edu.ntnu.idi.idattx2002.io.BoardIO;
-import edu.ntnu.idi.idattx2002.gui.view.DiceWindow;
-import edu.ntnu.idi.idattx2002.gui.view.PieceWindow;
-import edu.ntnu.idi.idattx2002.logic.Board.Board;
-import edu.ntnu.idi.idattx2002.logic.Dice.Dice;
-import edu.ntnu.idi.idattx2002.logic.Player.Player;
-import edu.ntnu.idi.idattx2002.gui.view.TilesWindow;
+import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.PieceWindow;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.TilesWindow;
 import java.util.ArrayList;
 import java.util.List;
 

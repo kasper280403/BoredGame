@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.gui.view.Win;
+package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Win;
 
 import java.util.HashMap;
 import javafx.geometry.Pos;

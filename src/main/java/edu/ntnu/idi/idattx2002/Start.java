@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idattx2002;
 
-import edu.ntnu.idi.idattx2002.gui.view.Setup.ChoosePlayerWindow;
-import edu.ntnu.idi.idattx2002.gui.view.Setup.CreatePlayerWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Setup.ChoosePlayerWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Setup.CreatePlayerWindow;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

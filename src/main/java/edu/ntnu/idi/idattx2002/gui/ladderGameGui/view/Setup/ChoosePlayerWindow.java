@@ -1,7 +1,7 @@
-package edu.ntnu.idi.idattx2002.gui.view.Setup;
+package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Setup;
 
-import edu.ntnu.idi.idattx2002.io.PlayerIO;
-import edu.ntnu.idi.idattx2002.gui.controller.SnakesAndLaddersController;
+import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

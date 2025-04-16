@@ -1,8 +1,8 @@
-import edu.ntnu.idi.idattx2002.logic.Board.Tile;
-import edu.ntnu.idi.idattx2002.logic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Tile;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import edu.ntnu.idi.idattx2002.logic.Board.Actions.LadderAction;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 
 public class TileTest {
 

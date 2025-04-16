@@ -1,7 +1,7 @@
-package edu.ntnu.idi.idattx2002.logic.Board.Actions;
+package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions;
 
-import edu.ntnu.idi.idattx2002.logic.Board.LandAction;
-import edu.ntnu.idi.idattx2002.logic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.LandAction;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
 
 public class LadderAction implements LandAction {
 
