@@ -48,7 +48,7 @@ public class Start1 extends Application {
         Button chessBtn = new Button("Chess");
 
         snakesAndLadders.setOnAction(e -> {
-            choosePlayerWindow.selectPlayers(2);
+            choosePlayerWindow.selectPlayers(2, 6);
         });
         chessBtn.setOnAction(e -> {
           try {

@@ -28,6 +28,7 @@ public class CreatePlayerWindow{
     //Remove
     PlayerIconWindow playerIconWindow = new PlayerIconWindow(50);
 
+    //TODO implement controller pattern
     public CreatePlayerWindow(){
         playerIO = new PlayerIO();
     }

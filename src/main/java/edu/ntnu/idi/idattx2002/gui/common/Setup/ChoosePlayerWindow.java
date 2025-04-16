@@ -21,6 +21,7 @@ public class ChoosePlayerWindow {
     ArrayList<String> choosenPlayerNames;
     ArrayList<Integer> choosenPlayerPieces;
 
+    //TODO implement controller pattern
     public ChoosePlayerWindow(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.playerIO = new PlayerIO();
@@ -30,11 +31,12 @@ public class ChoosePlayerWindow {
     }
 
 
-    public void selectPlayers(Integer minimumPlayers) {
+    public void selectPlayers(Integer minimumPlayers, Integer maximumPlayers) {
 
         VBox layout = new VBox(10);
-        Label heading = new Label("Choose players, minimum: " + minimumPlayers);
-        layout.getChildren().add(heading);
+        Label heading1 = new Label("Choose players, minimum: " + minimumPlayers);
+        Label heading2 = new Label("Choose players, maximum: " + maximumPlayers);
+        layout.getChildren().addAll(heading1, heading2);
 
         ArrayList<ArrayList<String>> playerList = null;
         try {
@@ -44,7 +46,7 @@ public class ChoosePlayerWindow {
         }
 
         for (ArrayList<String> player : playerList){
-            HBox playerBox = makePlayerBox(player, minimumPlayers);
+            HBox playerBox = makePlayerBox(player, minimumPlayers, maximumPlayers);
             layout.getChildren().add(playerBox);
         }
 
@@ -66,18 +68,18 @@ public class ChoosePlayerWindow {
         return player.get(0) + " (Piece " + player.get(1) + ")";
     }
 
-    public HBox makePlayerBox(ArrayList<String> player, Integer minimumPlayers) {
+    public HBox makePlayerBox(ArrayList<String> player, Integer minimumPlayers, Integer maximumPlayers) {
         HBox box = new HBox();
 
         Label playerInfo = new Label(playerToString(player));
-        Button chooseMe = selectButton(minimumPlayers, player);
+        Button chooseMe = selectButton(minimumPlayers, maximumPlayers, player);
 
         box.getChildren().addAll(playerInfo, chooseMe);
         return box;
     }
 
     //TODO lurer på om det sto i oppgave beskrivelsen at fxml ikke var tillatt
-    public Button selectButton(Integer minimumPlayers, ArrayList<String> player){
+    public Button selectButton(Integer minimumPlayers, Integer maximumPlayers, ArrayList<String> player){
         Button button = new Button("Unselected");
         button.setStyle("-fx-background-color: red; -fx-text-fill: white;");
 
@@ -87,13 +89,13 @@ public class ChoosePlayerWindow {
                 button.setStyle("-fx-background-color: green; -fx-text-fill: white;");
                 nChoosenPlayers++;
                 addToList(player);
-                changeStartButtonStatus(minimumPlayers);
+                changeStartButtonStatus(minimumPlayers, maximumPlayers);
             } else {
                 button.setText("Unselected");
                 button.setStyle("-fx-background-color: red; -fx-text-fill: white;");
                 nChoosenPlayers--;
                 removeFromList(player);
-                changeStartButtonStatus(minimumPlayers);
+                changeStartButtonStatus(minimumPlayers, maximumPlayers);
             }
         });
         return button;
@@ -122,8 +124,8 @@ public class ChoosePlayerWindow {
         choosenPlayerPieces.remove(index);
     }
 
-    public void changeStartButtonStatus(Integer minimumPlayers){
-        if (nChoosenPlayers < minimumPlayers) {
+    public void changeStartButtonStatus(Integer minimumPlayers, Integer maximumPlayers){
+        if (nChoosenPlayers < minimumPlayers || nChoosenPlayers > maximumPlayers) {
             startGameButton.setDisable(true);
         } else {
             startGameButton.setDisable(false);
