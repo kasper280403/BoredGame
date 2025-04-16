@@ -2,11 +2,11 @@ package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceWindow;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.PieceWindow;
+import edu.ntnu.idi.idattx2002.gui.common.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.TilesWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersTilesWindow;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class SnakesAndLadders {
 
   private int playerToMoveID;
   private DiceWindow diceWindow;
-  private PieceWindow pieceWindow;
+  private PlayerIconWindow playerIconWindow;
 
   public SnakesAndLadders(DiceWindow diceWindow) {
     this.board = new Board();
@@ -98,7 +98,7 @@ public class SnakesAndLadders {
   }
 
   //TODO refactor so that a List of Players is stored instead of name and pieceID
-  public void addPlayer(String playerName, int pieceID, TilesWindow tilesView) {
+  public void addPlayer(String playerName, int pieceID, SnakesAndLaddersTilesWindow tilesView) {
     int playerID = players.size() + 1;
     Player player = new Player(playerName, playerID, pieceID);
 

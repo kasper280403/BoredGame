@@ -1,4 +1,5 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
+import edu.ntnu.idi.idattx2002.gui.common.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
@@ -22,7 +23,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public class TilesWindow extends GridPane implements PlayerObserver {
+public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObserver {
 
     Pane parent;
     SnakesAndLadders game;
@@ -30,17 +31,17 @@ public class TilesWindow extends GridPane implements PlayerObserver {
 
     private Map<Integer, StackPane> tileMap;
     private LadderView ladderView;
-    private PieceWindow pieceWindow;
+    private PlayerIconWindow playerIconWindow;
 
     int xDimensions;
     int yDimensions;
 
-    public TilesWindow(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
+    public SnakesAndLaddersTilesWindow(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
         this.parent = parent;
 
         tileMap = new HashMap<>();
         ladderView = new LadderView();
-        pieceWindow = new PieceWindow();
+        playerIconWindow = new PlayerIconWindow(tileSize);
 
         this.game = game;
         this.tileSize = tileSize;
@@ -80,7 +81,7 @@ public class TilesWindow extends GridPane implements PlayerObserver {
 
 
         StackPane tilePane = tileMap.get(tileID);
-        ImageView pieceView = pieceWindow.getImageView(pieceID);
+        ImageView pieceView = playerIconWindow.getImageView(pieceID);
         pause.setOnFinished(event -> {
             // Fjern fra tidligere tile hvis den har en parent
             if (pieceView.getParent() instanceof StackPane oldTile) {
