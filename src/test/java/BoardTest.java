@@ -1,12 +1,12 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Tile;
+import edu.ntnu.idi.idattx2002.logic1.ladderGameLogic.Board.Tile;
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
+import edu.ntnu.idi.idattx2002.logic1.ladderGameLogic.Board.Board;
 
 class BoardTest {
 
