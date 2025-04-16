@@ -1,7 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
-import edu.ntnu.idi.idattx2002.Modules.Board.Actions.LadderAction;
-import edu.ntnu.idi.idattx2002.Modules.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
