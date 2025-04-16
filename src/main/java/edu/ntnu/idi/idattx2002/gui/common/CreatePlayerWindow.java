@@ -1,7 +1,6 @@
-package edu.ntnu.idi.idattx2002.gui.common.Setup;
+package edu.ntnu.idi.idattx2002.gui.common;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
-import edu.ntnu.idi.idattx2002.gui.common.PlayerIconWindow;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

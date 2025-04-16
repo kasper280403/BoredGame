@@ -6,7 +6,7 @@ import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceWindow;
 import edu.ntnu.idi.idattx2002.gui.common.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLadderWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersTilesWindow;
-import edu.ntnu.idi.idattx2002.gui.common.Win.WinWindow;
+import edu.ntnu.idi.idattx2002.gui.common.WinWindow;
 import java.util.List;
 import javafx.stage.Stage;
 
