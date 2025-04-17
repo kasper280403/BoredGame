@@ -31,7 +31,7 @@ public class Chess {
     positionIO = new PositionIO();
 
     players = new ArrayList<>();
-    add2HumanPlayers();
+    //add2HumanPlayers();
 
     board = new ChessBoard();
 
@@ -138,6 +138,15 @@ public class Chess {
     if (observer != null) {
       observer.update(player);
     }
+  }
+
+  public void addHumanPlayers(ArrayList<ArrayList<String>> players) {
+    List<String> player1 = players.get(0);
+    List<String> player2 = players.get(1);
+
+
+    addPlayer(player1.getFirst(), Integer.parseInt(player1.getLast()), ChessColor.WHITE);
+    addPlayer(player2.getFirst(), Integer.parseInt(player2.getLast()), ChessColor.BLACK);
   }
 
   //debug
