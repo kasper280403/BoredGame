@@ -1,6 +1,5 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
-import edu.ntnu.idi.idattx2002.gui.common.controller.GameMenuController;
 import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
@@ -20,7 +19,6 @@ public abstract class GameMenuView extends VBox{
   private Pane contentBox;
 
   public GameMenuView() {
-    init();
   }
 
   public ComboBox<String> getGameModeSelection() {
@@ -50,10 +48,11 @@ public abstract class GameMenuView extends VBox{
     for (String gameMode : gameModes) {
       gameModeSelection.getItems().add(gameMode);
     }
-    contentBox.getChildren().add(gameModeSelection);
+    //contentBox.getChildren().add(gameModeSelection);
+    getChildren().add(gameModeSelection);
   }
 
-  private void init() {
+  public void init() {
     contentBox = new HBox();
     setBackground(new Background(new BackgroundFill(Color.ROSYBROWN.darker().darker(), null, null)));
     setAlignment(Pos.CENTER);
