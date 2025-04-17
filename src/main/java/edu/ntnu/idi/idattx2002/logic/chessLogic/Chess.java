@@ -42,8 +42,8 @@ public class Chess {
     this.observer = observer;
   }
 
-  public void addPlayer(String name, ChessColor chessColor) {
-    ChessPlayer player = new HumanChessPlayer(name, 1, chessColor);
+  public void addPlayer(String name, int iconId, ChessColor chessColor) {
+    ChessPlayer player = new HumanChessPlayer(name, iconId, chessColor);
     players.add(player);
 
     playerToMove = getPlayer(ChessColor.WHITE);
@@ -142,8 +142,8 @@ public class Chess {
 
   //debug
   public void add2HumanPlayers() {
-    addPlayer("Player1", ChessColor.WHITE);
-    addPlayer("Player2", ChessColor.BLACK);
+    addPlayer("Player1", 1, ChessColor.WHITE);
+    addPlayer("Player2", 2, ChessColor.BLACK);
   }
 
 }

@@ -118,6 +118,7 @@ public class BoardView extends GridPane implements SquareObserver {
 
   public void init() {
     setAlignment(Pos.CENTER);
+
     createSquares(ChessColor.WHITE);
   }
 

@@ -1,8 +1,8 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.controller;
-
 import java.io.IOException;
 import java.util.Map;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.BoardView;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.SideBarView;
@@ -27,9 +27,7 @@ public class BoardController {
 
   public BoardController(Chess chess, Pane mainPane) {
     this.chess = chess;
-    boardView = new BoardView(chess, mainPane);
-    sideBarView = new SideBarView(mainPane, this);
-    init();
+    init(mainPane);
   }
 
   public void showView() {
@@ -37,9 +35,12 @@ public class BoardController {
     sideBarView.show();
   }
 
-  private void init() {
+  private void init(Pane mainPane) {
     colorPerspective = chess.getPlayerToMove().getColor();
     autoFlip = false;
+
+    boardView = new BoardView(chess, mainPane);
+    sideBarView = new SideBarView(mainPane, this);
 
     initClickableSquares();
   }
