@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idattx2002;
 
-import edu.ntnu.idi.idattx2002.gui.chessGui.controller.MainController;
+import edu.ntnu.idi.idattx2002.gui.chessGui.controller.MainChessController;
 import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
 import edu.ntnu.idi.idattx2002.gui.common.view.CreatePlayerWindow;
 import java.io.IOException;
@@ -73,7 +73,7 @@ public class Start1 extends Application {
     }
 
     public void startChess() throws IOException {
-        MainController mainController = new MainController();
+        MainChessController mainController = new MainChessController();
         Scene scene = new Scene(mainController.getView(), 320, 240);
         primaryStage.setScene(scene);
     }

@@ -12,15 +12,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import edu.ntnu.idi.idattx2002.gui.chessGui.controller.MainController;
+import edu.ntnu.idi.idattx2002.gui.chessGui.controller.MainChessController;
 
 public class MainView extends StackPane {
 
-  private MainController mainController;
+  private MainChessController mainController;
 
   private ComboBox<String> gameModeSelection;
 
-  public MainView(MainController mainController) {
+  public MainView(MainChessController mainController) {
     this.mainController = mainController;
     init();
   }

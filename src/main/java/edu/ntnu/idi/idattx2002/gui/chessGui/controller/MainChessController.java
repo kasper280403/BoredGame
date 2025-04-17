@@ -7,12 +7,12 @@ import edu.ntnu.idi.idattx2002.gui.chessGui.view.MainView;
 import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 
-public class MainController {
+public class MainChessController {
 
   private MainView mainPane;
   private PositionIO positionIO;
 
-  public MainController() throws IOException {
+  public MainChessController() throws IOException {
     positionIO = new PositionIO();
     this.mainPane = new MainView(this);
   }
