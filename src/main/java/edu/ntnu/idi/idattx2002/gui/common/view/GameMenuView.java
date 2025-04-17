@@ -18,7 +18,23 @@ public abstract class GameMenuView extends VBox{
   private ComboBox<String> gameModeSelection;
   private Pane contentBox;
 
+  public HBox topBox;
+  public HBox middleBox;
+  public HBox bottomBox;
+
   public GameMenuView() {
+  }
+
+  public Pane getTopBox() {
+    return topBox;
+  }
+
+  public Pane getMiddleBox() {
+    return middleBox;
+  }
+
+  public Pane getBottomBox() {
+    return bottomBox;
   }
 
   public ComboBox<String> getGameModeSelection() {
@@ -39,7 +55,7 @@ public abstract class GameMenuView extends VBox{
     titlePane.getChildren().addAll(mainText, accentText);
     accentText.setTranslateY(-10);
 
-    getChildren().add(titlePane);
+    topBox.getChildren().add(titlePane);
   }
 
   public void createGameModeSelection(List<String> gameModes) {
@@ -49,14 +65,25 @@ public abstract class GameMenuView extends VBox{
       gameModeSelection.getItems().add(gameMode);
     }
     //contentBox.getChildren().add(gameModeSelection);
-    getChildren().add(gameModeSelection);
+    middleBox.getChildren().add(gameModeSelection);
   }
 
   public void init() {
-    contentBox = new HBox();
     setBackground(new Background(new BackgroundFill(Color.ROSYBROWN.darker().darker(), null, null)));
     setAlignment(Pos.CENTER);
     setSpacing(20);
+
+    topBox = new HBox();
+    middleBox = new HBox();
+    bottomBox = new HBox();
+
+    topBox.setAlignment(Pos.CENTER);
+    middleBox.setAlignment(Pos.CENTER);
+    bottomBox.setAlignment(Pos.CENTER);
+
+    middleBox.setSpacing(60);
+
+    getChildren().addAll(topBox, middleBox, bottomBox);
   }
 
 }

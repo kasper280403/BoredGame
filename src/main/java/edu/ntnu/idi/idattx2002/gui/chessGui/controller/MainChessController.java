@@ -17,7 +17,7 @@ public class MainChessController {
   public MainChessController() throws IOException {
     positionIO = new PositionIO();
     this.mainPane = new ChessMenuView(this);
-    choosePlayerController = new ChoosePlayerController(mainPane, 2, 2);
+    choosePlayerController = new ChoosePlayerController(mainPane.getMiddleBox(), 2, 2);
     choosePlayerController.showView();
   }
 
@@ -30,15 +30,21 @@ public class MainChessController {
   }
 
   public void startGame() throws IOException {
-    Chess chess = new Chess();
-    chess.addHumanPlayers(choosePlayerController.getPlayerList());
+    int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
+    System.out.println(amountOfPlayers + "amount");
+    System.out.println(choosePlayerController.getMinPlayers() + "min");
+    System.out.println(choosePlayerController.getMaxPlayers() + "max");
+    if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
+      Chess chess = new Chess();
+      chess.addHumanPlayers(choosePlayerController.getChosenPlayers());
 
-    String positionPath = mainPane.getGameModeSelection().getValue();
-    chess.initPosition(positionPath);
+      String positionPath = mainPane.getGameModeSelection().getValue();
+      chess.initPosition(positionPath);
 
-    ChessController chessController = new ChessController(mainPane, chess);
+      ChessController chessController = new ChessController(mainPane, chess);
 
-    mainPane.getChildren().clear();
-    chessController.showView();
+      mainPane.getChildren().clear();
+      chessController.showView();
+    }
   }
 }

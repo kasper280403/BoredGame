@@ -25,7 +25,7 @@ public class ChessMenuView extends GameMenuView {
         throw new RuntimeException(ex);
       }
     });
-    getChildren().add(startButton);
+    bottomBox.getChildren().add(startButton);
   }
 
   @Override

@@ -140,7 +140,7 @@ public class Chess {
     }
   }
 
-  public void addHumanPlayers(ArrayList<ArrayList<String>> players) {
+  public void addHumanPlayers(List<List<String>> players) {
     List<String> player1 = players.get(0);
     List<String> player2 = players.get(1);
 

@@ -18,8 +18,7 @@ public class ChoosePlayerController {
 
   private PlayerIO playerIO;
 
-  private List<String> chosenPlayerNames;
-  private List<Integer> chosenPlayerPieces;
+  private List<List<String>> chosenPlayers;
 
   //TODO remove nr and just check size of array
   private int minPlayers;
@@ -32,8 +31,7 @@ public class ChoosePlayerController {
     this.maxPlayers = maxPlayers;
 
     //Init method?
-    chosenPlayerNames = new ArrayList<>();
-    chosenPlayerPieces = new ArrayList<>();
+    chosenPlayers = new ArrayList<>();
     playerIO = new PlayerIO();
 
     choosePlayerView = new ChoosePlayerView(mainPane, this);
@@ -49,6 +47,10 @@ public class ChoosePlayerController {
 
   public ArrayList<ArrayList<String>> getPlayerList() throws IOException {
     return playerIO.getPlayers();
+  }
+
+  public List<List<String>> getChosenPlayers() {
+    return chosenPlayers;
   }
 
   public void handlePlayerBtnClick(ArrayList<String> player, Button btn) {
@@ -73,14 +75,11 @@ public class ChoosePlayerController {
   }
 
   public void addToList(ArrayList<String> player) {
-    chosenPlayerNames.add(player.get(0));
-    chosenPlayerPieces.add(Integer.parseInt(player.get(1)));
+    chosenPlayers.add(player);
   }
 
   public void removeFromList(ArrayList<String> player) {
-    int playerIndex = chosenPlayerNames.indexOf(player.get(0));
-    chosenPlayerNames.remove(playerIndex);
-    chosenPlayerPieces.remove(playerIndex);
+    chosenPlayers.remove(player);
   }
 
   /*
