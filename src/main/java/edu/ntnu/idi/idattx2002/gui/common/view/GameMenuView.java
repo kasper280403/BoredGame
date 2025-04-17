@@ -41,15 +41,15 @@ public abstract class GameMenuView extends VBox{
     return gameModeSelection;
   }
 
-  public void createTitle(String title) {
+  public void createTitle(String title, double size) {
     StackPane titlePane = new StackPane();
 
     Text mainText = new Text(title);
-    mainText.setFont(new Font("Helvetica", 150));
+    mainText.setFont(new Font("Helvetica", size));
     mainText.setFill(Color.INDIANRED);
 
     Text accentText = new Text(title);
-    accentText.setFont(new Font("Helvetica", 150));
+    accentText.setFont(new Font("Helvetica", size));
     accentText.setFill(Color.WHITESMOKE);
 
     titlePane.getChildren().addAll(mainText, accentText);
