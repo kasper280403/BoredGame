@@ -1,8 +1,8 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.controller;
-
 import java.io.IOException;
 import java.util.Map;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.BoardView;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.SideBarView;
@@ -10,7 +10,7 @@ import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Move;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 
 public class BoardController {
 
@@ -18,7 +18,7 @@ public class BoardController {
 
   private BoardView boardView;
   private SideBarView sideBarView;
-  private Square selectedSquare;
+  private ChessSquare selectedSquare;
   private Pane selectedTile;
 
   private ChessColor colorPerspective;
@@ -27,9 +27,7 @@ public class BoardController {
 
   public BoardController(Chess chess, Pane mainPane) {
     this.chess = chess;
-    boardView = new BoardView(chess, mainPane);
-    sideBarView = new SideBarView(mainPane, this);
-    init();
+    init(mainPane);
   }
 
   public void showView() {
@@ -37,23 +35,26 @@ public class BoardController {
     sideBarView.show();
   }
 
-  private void init() {
+  private void init(Pane mainPane) {
     colorPerspective = chess.getPlayerToMove().getColor();
     autoFlip = false;
+
+    boardView = new BoardView(chess, mainPane);
+    sideBarView = new SideBarView(mainPane, this);
 
     initClickableSquares();
   }
 
   private void initClickableSquares() {
-    for (Map.Entry<Square, Pane> entry : boardView.getTileMap().entrySet()) {
-      Square square = entry.getKey();
+    for (Map.Entry<ChessSquare, Pane> entry : boardView.getTileMap().entrySet()) {
+      ChessSquare square = entry.getKey();
       Pane tile = entry.getValue();
 
       tile.setOnMouseClicked(e -> handleSquareClick(square, tile));
     }
   }
 
-  private void handleSquareClick(Square square, Pane tile) {
+  private void handleSquareClick(ChessSquare square, Pane tile) {
     System.out.println("Clicked");
     if(selectedSquare == null && selectedTile == null && square.hasPiece()) {
       System.out.println("Has piece");
@@ -97,7 +98,7 @@ public class BoardController {
     }
   }
 
-  public void executeMove(Square square, Pane tile) {
+  public void executeMove(ChessSquare square, Pane tile) {
     Move move = new Move(selectedSquare, square, chess);
     chess.playMove(move);
 

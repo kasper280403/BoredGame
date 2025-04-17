@@ -3,12 +3,12 @@ package edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceWindow;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.PieceWindow;
+import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLadderWindow;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.TilesWindow;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Win.WinWindow;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersTilesWindow;
+import edu.ntnu.idi.idattx2002.gui.common.view.WinWindow;
 import java.util.List;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
 public class SnakesAndLaddersController {
 
@@ -16,30 +16,30 @@ public class SnakesAndLaddersController {
 
   //Maybe move
   private SnakesAndLadderWindow snakesAndLadderWindow;
-  private PieceWindow pieceView;
+  private PlayerIconWindow pieceView;
   private DiceWindow diceView;
-  private TilesWindow tilesView;
+  private SnakesAndLaddersTilesWindow tilesView;
   private WinWindow winView;
 
 
-  public SnakesAndLaddersController(Stage mainStage, List<String> players, List<Integer> pieces) {
+  public SnakesAndLaddersController(Pane mainPane, List<List<String>> players) {
     //Maybe move
-    snakesAndLadderWindow = new SnakesAndLadderWindow(mainStage, this);
+    snakesAndLadderWindow = new SnakesAndLadderWindow(mainPane, this);
     diceView = new DiceWindow(snakesAndLadderWindow);
     game = new SnakesAndLadders(diceView);
 
     diceView = new DiceWindow(snakesAndLadderWindow);
-    pieceView = new PieceWindow();
-    tilesView = new TilesWindow(10, 9, 50, game, snakesAndLadderWindow);
+    pieceView = new PlayerIconWindow(50);
+    tilesView = new SnakesAndLaddersTilesWindow(10, 9, 50, game, snakesAndLadderWindow);
     winView = new WinWindow();
 
-    setUpGame(players, pieces);
+    setUpGame(players);
     startGame();
   }
 
-  public void setUpGame(List<String> players, List<Integer> pieces) {
-    for (int i = 0; i < players.size(); i++) {
-      game.addPlayer(players.get(i), pieces.get(i), tilesView);
+  public void setUpGame(List<List<String>> players) {
+    for (List<String> player : players) {
+      game.addPlayer(player, tilesView);
 
     }
     for (Dice dice : game.getDices()) {

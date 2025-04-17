@@ -4,33 +4,33 @@ import java.util.Collections;
 import java.util.HashMap;
 
 
-public class Board {
+public class SnakesAndLaddersBoard {
 
-  private final HashMap<Integer, Tile> tiles;
+  private final HashMap<Integer, SnakesAndLaddersSquare> squareMap;
 
-  public Board() {
-    this.tiles = new HashMap<>();
+  public SnakesAndLaddersBoard() {
+    this.squareMap = new HashMap<>();
   }
 
-  public HashMap<Integer, Tile> getTiles() {
-    return tiles;
+  public HashMap<Integer, SnakesAndLaddersSquare> getSquareMap() {
+    return squareMap;
   }
 
-  public Tile getTile(int tileId) {
-    Tile tile = tiles.get(tileId);
+  public SnakesAndLaddersSquare getTile(int tileId) {
+    SnakesAndLaddersSquare tile = squareMap.get(tileId);
     if (tile == null) {
       throw new IllegalArgumentException("Tile with id " + tileId + " does not exist");
     }
     return tile;
   }
 
-  public Tile getLastTile() {
-    int lastTileID = Collections.max(tiles.keySet());
-    return tiles.get(lastTileID);
+  public SnakesAndLaddersSquare getLastTile() {
+    int lastTileID = Collections.max(squareMap.keySet());
+    return squareMap.get(lastTileID);
   }
 
-  public void addTile(Tile tile) {
-    tiles.put(tile.getTileId(), tile);
+  public void addTile(SnakesAndLaddersSquare tile) {
+    squareMap.put(tile.getSquareId(), tile);
   }
 
   public void createBoard(int numberOfRows, int numberOfColumns) {
@@ -39,7 +39,7 @@ public class Board {
 
 
     for (int i = 1; i < numberOfRows*numberOfColumns+1; i++){
-           addTile(new Tile(i));
+           addTile(new SnakesAndLaddersSquare(i));
     }
 
   }

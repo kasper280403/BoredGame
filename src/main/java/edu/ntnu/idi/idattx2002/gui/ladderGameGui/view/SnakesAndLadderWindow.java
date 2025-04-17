@@ -4,6 +4,7 @@ import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -12,10 +13,10 @@ import javafx.util.Duration;
 public class SnakesAndLadderWindow extends HBox{
 
     private final SnakesAndLaddersController controller;
-    public static Stage primaryStage;
+    public static Pane mainPane;
 
-    public SnakesAndLadderWindow(Stage stage, SnakesAndLaddersController controller) {
-        primaryStage = stage;
+    public SnakesAndLadderWindow(Pane mainPane, SnakesAndLaddersController controller) {
+        this.mainPane = mainPane;
         this.controller = controller;
 
         init();
@@ -43,15 +44,12 @@ public class SnakesAndLadderWindow extends HBox{
     public void init() {
         getChildren().add(createLeftSide());
 
-        Scene scene = new Scene(this, 900, 600);
-
-        primaryStage.setTitle("Snakes and Ladders");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(this);
     }
 
     public static void closeStage(){
-        primaryStage.close();
+        //primaryStage.close();
     }
 
 }

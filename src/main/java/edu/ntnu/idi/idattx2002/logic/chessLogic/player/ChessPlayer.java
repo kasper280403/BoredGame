@@ -1,27 +1,29 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic.player;
 
+import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
 import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Board;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessBoard;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.*;
 
-public abstract class Player {
+public abstract class ChessPlayer extends Player {
 
   private ChessColor chessColor;
 
   private List<Piece> pieces;
 
-  public Player(ChessColor chessColor) {
+  public ChessPlayer(String name, int iconId, ChessColor chessColor) {
+    super(name, iconId);
     this.chessColor = chessColor;
   }
 
-  public void initPieces(Board board) {
+  public void initPieces(ChessBoard board) {
     pieces = new ArrayList<>();
 
     Piece piece;
-    for (Square square : board.getSquareMap().values()) {
+    for (ChessSquare square : board.getSquareMap().values()) {
       if(square.hasPiece()) {
         piece = square.getPiece();
         if(piece.getColor() == chessColor) {
@@ -61,6 +63,5 @@ public abstract class Player {
   public ChessColor getColor() {
     return chessColor;
   }
-
 
 }

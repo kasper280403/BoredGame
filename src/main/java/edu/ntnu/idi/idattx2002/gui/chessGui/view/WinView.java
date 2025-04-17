@@ -11,8 +11,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.WinObserver;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanPlayer;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.Player;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.player.ChessPlayer;
 
 public class WinView implements WinObserver {
 
@@ -47,9 +47,9 @@ public class WinView implements WinObserver {
     stage.setScene(scene);
   }
 
-  public void update(Player player) {
-    if (player instanceof HumanPlayer) {
-      winnerText.setText(((HumanPlayer) player).getName());
+  public void update(ChessPlayer player) {
+    if (player instanceof HumanChessPlayer) {
+      winnerText.setText(((HumanChessPlayer) player).getName());
     }
     else {
       winnerText.setText("BOT WINS");

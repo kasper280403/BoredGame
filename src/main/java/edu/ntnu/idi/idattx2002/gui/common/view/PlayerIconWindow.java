@@ -1,17 +1,17 @@
-package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
+package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class PieceWindow {
+public class PlayerIconWindow {
 
   public static Map<Integer, ImageView> imageViewMap;
 
-  public PieceWindow() {
+  public PlayerIconWindow(double imageSize) {
     imageViewMap = new HashMap<>();
-    createPieces(50);
+    createPieces(imageSize);
   }
 
   public void createPieces(double imageViewSize) {

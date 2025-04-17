@@ -1,30 +1,30 @@
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Tile;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersSquare;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 
-public class TileTest {
+public class SnakesAndLaddersSquareTest {
 
   @Test
   void testValidTileId() {
     //arrange
-    Tile tile = new Tile(1);
+    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
     //assert
-    Assertions.assertEquals(1, tile.getTileId());
+    Assertions.assertEquals(1, tile.getSquareId());
   }
 
   @Test
   void testInvalidTileId() {
     Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      new Tile(-1);
+      new SnakesAndLaddersSquare(-1);
     });
   }
 
   @Test
   void testSetLandAction() {
     //arrange
-    Tile tile = new Tile(1);
+    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
     LadderAction ladderAction = new LadderAction(20);
     //act
     tile.setLandAction(ladderAction);
@@ -35,7 +35,7 @@ public class TileTest {
   @Test
   void testNoLandAction() {
     //arrange
-    Tile tile = new Tile(1);
+    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
     //assert
     Assertions.assertFalse(tile.hasLandAction());
   }
@@ -43,24 +43,24 @@ public class TileTest {
   @Test
   void testLandPlayerOnTileWithLandAction() {
     //arrange
-    Player player = new Player("TestPlayer", 1, 1);
-    Tile tile = new Tile(1);
+    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer("TestPlayer", 1, 1);
+    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
     LadderAction ladderAction = new LadderAction(20);
     tile.setLandAction(ladderAction);
     //act
     tile.landPlayer(player);
     //assert
-    Assertions.assertEquals(20, player.getCurrentTile());
+    Assertions.assertEquals(20, player.getCurrentTileId());
   }
 
   @Test
   void testLandPlayerOnTileWithoutLandAction() {
     //arrange
-    Player player = new Player("TestPlayer", 1, 1);
-    Tile tile = new Tile(1);
+    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer("TestPlayer", 1, 1);
+    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
     //act
     tile.landPlayer(player);
     //assert
-    Assertions.assertEquals(1, player.getCurrentTile());
+    Assertions.assertEquals(1, player.getCurrentTileId());
   }
 }

@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.board.SquareObserver;
 
 public class BoardView extends GridPane implements SquareObserver {
@@ -19,7 +19,7 @@ public class BoardView extends GridPane implements SquareObserver {
   private Chess chess;
   private Pane parent;
 
-  private Map<Square, Pane> tileMap;
+  private Map<ChessSquare, Pane> tileMap;
   private int tilesize;
 
   public BoardView(Chess chess, Pane parent) {
@@ -33,7 +33,7 @@ public class BoardView extends GridPane implements SquareObserver {
     init();
   }
 
-  public Map<Square, Pane> getTileMap() {
+  public Map<ChessSquare, Pane> getTileMap() {
     return tileMap;
   }
 
@@ -52,7 +52,7 @@ public class BoardView extends GridPane implements SquareObserver {
       yAdjustment = 0;
     }
 
-    for(Square square : chess.getBoard().getSquareMap().values()) {
+    for(ChessSquare square : chess.getBoard().getSquareMap().values()) {
       square.setObserver(this);
       Rectangle tile = new Rectangle(tilesize, tilesize);
       tile.setFill(getSquareColor(square));
@@ -73,12 +73,12 @@ public class BoardView extends GridPane implements SquareObserver {
   }
 
   public void refreshAllTiles() {
-    for(Square square : tileMap.keySet()) {
+    for(ChessSquare square : tileMap.keySet()) {
       refreshTile(tileMap.get(square), square);
     }
   }
 
-  public void refreshTile(Pane tile, Square square) {
+  public void refreshTile(Pane tile, ChessSquare square) {
     tile.getChildren().clear();
 
     Rectangle background = new Rectangle(tilesize, tilesize);
@@ -90,7 +90,7 @@ public class BoardView extends GridPane implements SquareObserver {
     }
   }
 
-  private Color getSquareColor(Square square) {
+  private Color getSquareColor(ChessSquare square) {
     if((square.getXCoordinate() + square.getYCoordinate()) % 2 != 0) {
       return Color.WHITESMOKE;
     }
@@ -112,12 +112,13 @@ public class BoardView extends GridPane implements SquareObserver {
     createSquares(colorPerspective);
   }
 
-  public void update(Square square) {
+  public void update(ChessSquare square) {
     refreshTile(tileMap.get(square), square);
   }
 
   public void init() {
     setAlignment(Pos.CENTER);
+
     createSquares(ChessColor.WHITE);
   }
 

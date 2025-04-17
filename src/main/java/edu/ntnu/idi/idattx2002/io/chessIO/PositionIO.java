@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.*;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Piece;
 
@@ -28,7 +28,7 @@ public class PositionIO {
     String positionString = "";
     positionString += "M" + getColorNotation(chess.getPlayerToMove().getColor());
 
-    for (Square square : chess.getBoard().getSquareMap().values()) {
+    for (ChessSquare square : chess.getBoard().getSquareMap().values()) {
       if (square.hasPiece()) {
         positionString += "\n" + getSquareNotation(square);
       }
@@ -56,7 +56,7 @@ public class PositionIO {
     ChessColor color = colorString.equals("w") ? ChessColor.WHITE : ChessColor.BLACK;
 
     int id = Integer.parseInt(idString);
-    Square square = chess.getBoard().getSquare(id);
+    ChessSquare square = chess.getBoard().getSquare(id);
 
     Piece piece;
     if(pieceString.equals("P")) {
@@ -98,7 +98,7 @@ public class PositionIO {
     return playerNotation;
   }
 
-  private String getSquareNotation(Square square) {
+  private String getSquareNotation(ChessSquare square) {
     Piece piece = square.getPiece();
 
     String pieceNotation;

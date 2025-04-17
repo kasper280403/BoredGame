@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Board {
+public class ChessBoard {
 
-  private Map<Integer, Square> squareMap;
+  private Map<Integer, ChessSquare> squareMap;
 
-  public Board() {
+  public ChessBoard() {
     initSquares();
   }
 
-  public boolean isPathClear(Square square1, Square square2) {
-    for (Square square : getPath(square1, square2)) {
+  public boolean isPathClear(ChessSquare square1, ChessSquare square2) {
+    for (ChessSquare square : getPath(square1, square2)) {
       if (square.hasPiece()) {
         return false;
       }
@@ -22,8 +22,8 @@ public class Board {
     return true;
   }
 
-  public List<Square> getPath(Square square1, Square square2) {
-    List<Square> path = new ArrayList<>();
+  public List<ChessSquare> getPath(ChessSquare square1, ChessSquare square2) {
+    List<ChessSquare> path = new ArrayList<>();
 
     int xDiff = square1.getXCoordinate() - square2.getXCoordinate();
     int yDiff = square1.getYCoordinate() - square2.getYCoordinate();
@@ -38,8 +38,8 @@ public class Board {
     return path;
   }
 
-  private List<Square> getStraightPath(Square square1, Square square2) {
-    List<Square> path = new ArrayList<>();
+  private List<ChessSquare> getStraightPath(ChessSquare square1, ChessSquare square2) {
+    List<ChessSquare> path = new ArrayList<>();
 
     int xDiff = square1.getXCoordinate() - square2.getXCoordinate();
     int yDiff = square1.getYCoordinate() - square2.getYCoordinate();
@@ -68,8 +68,8 @@ public class Board {
     return path;
   }
 
-  private List<Square> getDiagPath(Square square1, Square square2) {
-    List<Square> path = new ArrayList<>();
+  private List<ChessSquare> getDiagPath(ChessSquare square1, ChessSquare square2) {
+    List<ChessSquare> path = new ArrayList<>();
 
     int xDiff = square1.getXCoordinate() - square2.getXCoordinate();
     int yDiff = square1.getYCoordinate() - square2.getYCoordinate();
@@ -90,21 +90,21 @@ public class Board {
     squareMap = new HashMap<>();
     for(int x = 1; x <= 8; x++) {
       for(int y = 1; y <= 8; y++) {
-        Square square = new Square(x, y);
+        ChessSquare square = new ChessSquare(x, y);
         squareMap.put(square.getSquareId(), square);
       }
     }
   }
 
-  public Map<Integer, Square> getSquareMap() {
+  public Map<Integer, ChessSquare> getSquareMap() {
     return squareMap;
   }
 
-  public Square getSquare(int squareId) {
+  public ChessSquare getSquare(int squareId) {
     return getSquareMap().get(squareId);
   }
 
-  public Square getSquareByCords(int x, int y) {
+  public ChessSquare getSquareByCords(int x, int y) {
     return getSquare((y-1)*8 + x);
   }
 

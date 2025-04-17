@@ -4,7 +4,7 @@ import java.util.Random;
 
 import static edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders.players;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.LandAction;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 
 public class SwitchWithRandomAction implements LandAction {
 
@@ -15,14 +15,14 @@ public class SwitchWithRandomAction implements LandAction {
   }
 
   @Override
-  public void perform(Player player) {
-      Player playerToSwitch;
+  public void perform(SnakesAndLaddersPlayer player) {
+      SnakesAndLaddersPlayer playerToSwitch;
       do {
           playerToSwitch = players.get(random.nextInt(players.size()) + 1);
       } while (playerToSwitch.getPlayerID() == player.getPlayerID());
 
-      int playerTileId = player.getCurrentTile();
-      int playerToSwitchTileId = playerToSwitch.getCurrentTile();
+      int playerTileId = player.getCurrentTileId();
+      int playerToSwitchTileId = playerToSwitch.getCurrentTileId();
 
       player.movePlayerToTile(playerToSwitchTileId);
       playerToSwitch.movePlayerToTile(playerTileId);

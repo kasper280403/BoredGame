@@ -1,11 +1,11 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic.analysis;
 
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.Player;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.player.ChessPlayer;
 import java.util.HashMap;
 import java.util.Map;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Square;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.*;
 
 public class PositionEvaluator {
@@ -31,7 +31,7 @@ public class PositionEvaluator {
     return evaluation;
   }
 
-  public double getMaterialScore(Player player) {
+  public double getMaterialScore(ChessPlayer player) {
     double pieceScore = 0;
     for(Piece piece : player.getAlivePieces()) {
       pieceScore += pieceValueMap.get(piece.getClass());
@@ -40,7 +40,7 @@ public class PositionEvaluator {
     return pieceScore;
   }
 
-  public double getMobilityScore(Player player) {
+  public double getMobilityScore(ChessPlayer player) {
     double mobilityScore = 0;
 
     for(Piece piece : player.getAlivePieces()) {
@@ -52,7 +52,7 @@ public class PositionEvaluator {
 
   public int nrOfLegalMoves(Piece piece) {
     int nrOfMoves = 0;
-    for(Square square : chess.getBoard().getSquareMap().values()) {
+    for(ChessSquare square : chess.getBoard().getSquareMap().values()) {
       if(piece.isMoveLegal(square, chess)) {
         nrOfMoves += 1;
       }

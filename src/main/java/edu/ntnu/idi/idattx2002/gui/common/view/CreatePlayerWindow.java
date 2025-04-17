@@ -1,7 +1,6 @@
-package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.Setup;
+package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.PieceWindow;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,8 +25,9 @@ public class CreatePlayerWindow{
     Stage createPlayerStage = new Stage();
     PlayerIO playerIO;
     //Remove
-    PieceWindow pieceWindow = new PieceWindow();
+    PlayerIconWindow playerIconWindow = new PlayerIconWindow(50);
 
+    //TODO implement controller pattern
     public CreatePlayerWindow(){
         playerIO = new PlayerIO();
     }
@@ -116,10 +116,10 @@ public class CreatePlayerWindow{
     public HashMap<Integer, ImageView> getPiecesImg() {
         HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
 
-        imageViewMap.put(1, pieceWindow.getImageView(1));
-        imageViewMap.put(2, pieceWindow.getImageView(2));
-        imageViewMap.put(3, pieceWindow.getImageView(3));
-        imageViewMap.put(4, pieceWindow.getImageView(4));
+        imageViewMap.put(1, playerIconWindow.getImageView(1));
+        imageViewMap.put(2, playerIconWindow.getImageView(2));
+        imageViewMap.put(3, playerIconWindow.getImageView(3));
+        imageViewMap.put(4, playerIconWindow.getImageView(4));
 
         return imageViewMap;
     }

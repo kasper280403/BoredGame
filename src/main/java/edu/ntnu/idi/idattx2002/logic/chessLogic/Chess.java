@@ -4,22 +4,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.Board;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessBoard;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.King;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Pawn;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Piece;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanPlayer;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.Player;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.player.ChessPlayer;
 
 public class Chess {
 
-  private Board board;
-  private List<Player> players;
+  private ChessBoard board;
+  private List<ChessPlayer> players;
   private PositionIO positionIO;
 
   private List<String> positionHistory;
 
-  private Player playerToMove;
+  private ChessPlayer playerToMove;
 
   private WinObserver observer;
 
@@ -31,9 +31,9 @@ public class Chess {
     positionIO = new PositionIO();
 
     players = new ArrayList<>();
-    add2HumanPlayers();
+    //add2HumanPlayers();
 
-    board = new Board();
+    board = new ChessBoard();
 
     positionHistory = new ArrayList<>();
   }
@@ -42,8 +42,8 @@ public class Chess {
     this.observer = observer;
   }
 
-  public void addPlayer(String name, ChessColor chessColor) {
-    Player player = new HumanPlayer(name, chessColor);
+  public void addPlayer(String name, int iconId, ChessColor chessColor) {
+    ChessPlayer player = new HumanChessPlayer(name, iconId, chessColor);
     players.add(player);
 
     playerToMove = getPlayer(ChessColor.WHITE);
@@ -51,7 +51,7 @@ public class Chess {
 
   public void initPosition(String pathToPosition) throws IOException {
     positionIO.loadPosition(this, pathToPosition);
-    for(Player player : players) {
+    for(ChessPlayer player : players) {
       player.initPieces(board);
     }
     whiteKing = getPlayer(ChessColor.WHITE).getKing();
@@ -64,7 +64,7 @@ public class Chess {
     //positionIO.loadPositionFromString(this, positionHistory.get(4));
     positionIO.loadPosition(this, "startPositions/standardPosition.txt");
 
-    for(Player player : players) {
+    for(ChessPlayer player : players) {
       player.initPieces(board);
     }
     whiteKing = getPlayer(ChessColor.WHITE).getKing();
@@ -93,16 +93,16 @@ public class Chess {
     }
   }
 
-  public Board getBoard() {
+  public ChessBoard getBoard() {
     return board;
   }
 
-  public List<Player> getPlayers() {
+  public List<ChessPlayer> getPlayers() {
     return players;
   }
 
-  public Player getPlayer(ChessColor chessColor) {
-    for (Player player : players) {
+  public ChessPlayer getPlayer(ChessColor chessColor) {
+    for (ChessPlayer player : players) {
       if(player.getColor() == chessColor) {
         return player;
       }
@@ -111,7 +111,7 @@ public class Chess {
 
   }
 
-  public Player getPlayerToMove() {
+  public ChessPlayer getPlayerToMove() {
     return playerToMove;
   }
 
@@ -134,16 +134,25 @@ public class Chess {
     }
   }
 
-  private void notifyObserver(Player player) {
+  private void notifyObserver(ChessPlayer player) {
     if (observer != null) {
       observer.update(player);
     }
   }
 
+  public void addHumanPlayers(List<List<String>> players) {
+    List<String> player1 = players.get(0);
+    List<String> player2 = players.get(1);
+
+
+    addPlayer(player1.getFirst(), Integer.parseInt(player1.getLast()), ChessColor.WHITE);
+    addPlayer(player2.getFirst(), Integer.parseInt(player2.getLast()), ChessColor.BLACK);
+  }
+
   //debug
   public void add2HumanPlayers() {
-    addPlayer("Player1", ChessColor.WHITE);
-    addPlayer("Player2", ChessColor.BLACK);
+    addPlayer("Player1", 1, ChessColor.WHITE);
+    addPlayer("Player2", 2, ChessColor.BLACK);
   }
 
 }

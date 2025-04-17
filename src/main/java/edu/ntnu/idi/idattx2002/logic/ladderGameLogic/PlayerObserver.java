@@ -1,9 +1,9 @@
 package edu.ntnu.idi.idattx2002.logic.ladderGameLogic;
 
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 
 public interface PlayerObserver {
 
-  void update(Player player);
+  void update(SnakesAndLaddersPlayer player);
 
 }

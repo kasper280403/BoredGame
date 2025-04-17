@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions;
 
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.LandAction;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 
 public class LadderAction implements LandAction {
 
@@ -23,7 +23,7 @@ public class LadderAction implements LandAction {
   }
 
   @Override
-  public void perform(Player player) {
+  public void perform(SnakesAndLaddersPlayer player) {
     player.movePlayerToTile(this.destinationTileId);
   }
 }

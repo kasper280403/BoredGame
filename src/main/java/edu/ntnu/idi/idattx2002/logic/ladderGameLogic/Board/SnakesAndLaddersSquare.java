@@ -1,26 +1,14 @@
 package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board;
 
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.common.Board.Square;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 
-public class Tile {
+public class SnakesAndLaddersSquare extends Square {
 
-  private final int tileId;
   private LandAction landAction;
 
-  public Tile (int tileId) {
-    validateTileId(tileId);
-
-    this.tileId = tileId;
-   }
-
-   private void validateTileId(int tileId) {
-    if (tileId < 0) {
-      throw new IllegalArgumentException("TileId has to be an positive integer");
-    }
-   }
-
-   public int getTileId() {
-    return this.tileId;
+  public SnakesAndLaddersSquare(int squareId) {
+    super(squareId);
    }
 
    public LandAction getLandAction(){
@@ -39,7 +27,7 @@ public class Tile {
     return this.landAction != null;
   }
 
-  public void landPlayer(Player player) {
+  public void landPlayer(SnakesAndLaddersPlayer player) {
     if (hasLandAction()) {
       landAction.perform(player);
     }

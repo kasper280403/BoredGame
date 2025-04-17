@@ -1,26 +1,28 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Tile;
+import edu.ntnu.idi.idattx2002.logic.common.Board.Square;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersSquare;
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Board;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 
-class BoardTest {
+class ChessSnakesAndLaddersBoardTest {
 
-  Board board;
+  SnakesAndLaddersBoard board;
 
   @BeforeEach
   void setUp() {
-    board = new Board();
+    board = new SnakesAndLaddersBoard();
   }
 
   @Test
   void testAddTile() {
     //arrange
-    Tile tile1 = new Tile(1);
+    SnakesAndLaddersSquare tile1 = new SnakesAndLaddersSquare(1);
     //act
     board.addTile(tile1);
     //assert
@@ -30,7 +32,7 @@ class BoardTest {
   @Test
   void testGetTile() {
     //arrange
-    Tile tile1 = new Tile(1);
+    SnakesAndLaddersSquare tile1 = new SnakesAndLaddersSquare(1);
     //act
     board.addTile(tile1);
     //assert
@@ -42,13 +44,13 @@ class BoardTest {
     //arrange
     board.createBoard(9, 10);
     //act
-    Tile tile1 = board.getTile(1);
-    Tile tile10 = board.getTile(10);
-    Tile tile24 = board.getTile(24);
+    SnakesAndLaddersSquare tile1 = board.getTile(1);
+    SnakesAndLaddersSquare tile10 = board.getTile(10);
+    SnakesAndLaddersSquare tile24 = board.getTile(24);
     //assert
-    Assertions.assertEquals(10, tile10.getTileId());
-    Assertions.assertEquals(1, tile1.getTileId());
-    Assertions.assertEquals(24, tile24.getTileId());
+    Assertions.assertEquals(10, tile10.getSquareId());
+    Assertions.assertEquals(1, tile1.getSquareId());
+    Assertions.assertEquals(24, tile24.getSquareId());
   }
 
   @Test
@@ -72,7 +74,7 @@ class BoardTest {
     //arrange
     board.createBoard(2, 2);
     //act
-    HashMap<Integer, Tile> tiles = board.getTiles();
+    HashMap<Integer, SnakesAndLaddersSquare> tiles = board.getSquareMap();
     //assert
     assertEquals(4, tiles.size());
   }
@@ -82,8 +84,8 @@ class BoardTest {
     //arrange
     board.createBoard(3, 3);
     //act
-    Tile lastTile = board.getLastTile();
+    SnakesAndLaddersSquare lastTile = board.getLastTile();
     //assert
-    assertEquals(9, lastTile.getTileId());
+    assertEquals(9, lastTile.getSquareId());
   }
 }
