@@ -8,13 +8,13 @@ import javafx.scene.layout.Pane;
 import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 
-public class MainChessController {
+public class ChessMenuController {
 
   private ChessMenuView mainPane;
   private PositionIO positionIO;
   private ChoosePlayerController choosePlayerController;
 
-  public MainChessController() throws IOException {
+  public ChessMenuController() throws IOException {
     positionIO = new PositionIO();
     this.mainPane = new ChessMenuView(this);
     choosePlayerController = new ChoosePlayerController(mainPane.getMiddleBox(), 2, 2);
@@ -31,9 +31,7 @@ public class MainChessController {
 
   public void startGame() throws IOException {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
-    System.out.println(amountOfPlayers + "amount");
-    System.out.println(choosePlayerController.getMinPlayers() + "min");
-    System.out.println(choosePlayerController.getMaxPlayers() + "max");
+
     if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
       Chess chess = new Chess();
       chess.addHumanPlayers(choosePlayerController.getChosenPlayers());

@@ -22,7 +22,7 @@ public class SnakesAndLaddersController {
   private WinWindow winView;
 
 
-  public SnakesAndLaddersController(Pane mainPane, List<String> players, List<Integer> pieces) {
+  public SnakesAndLaddersController(Pane mainPane, List<List<String>> players) {
     //Maybe move
     snakesAndLadderWindow = new SnakesAndLadderWindow(mainPane, this);
     diceView = new DiceWindow(snakesAndLadderWindow);
@@ -33,13 +33,13 @@ public class SnakesAndLaddersController {
     tilesView = new SnakesAndLaddersTilesWindow(10, 9, 50, game, snakesAndLadderWindow);
     winView = new WinWindow();
 
-    setUpGame(players, pieces);
+    setUpGame(players);
     startGame();
   }
 
-  public void setUpGame(List<String> players, List<Integer> pieces) {
-    for (int i = 0; i < players.size(); i++) {
-      game.addPlayer(players.get(i), pieces.get(i), tilesView);
+  public void setUpGame(List<List<String>> players) {
+    for (List<String> player : players) {
+      game.addPlayer(player, tilesView);
 
     }
     for (Dice dice : game.getDices()) {

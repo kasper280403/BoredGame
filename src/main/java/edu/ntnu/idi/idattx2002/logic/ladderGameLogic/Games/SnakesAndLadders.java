@@ -97,13 +97,13 @@ public class SnakesAndLadders {
     return player.getCurrentTileId() >= board.getSquareMap().size();
   }
 
-  //TODO refactor so that a List of Players is stored instead of name and pieceID
-  public void addPlayer(String playerName, int pieceID, SnakesAndLaddersTilesWindow tilesView) {
+  //TODO refactor so that Player object is created and observer added in controller
+  public void addPlayer(List<String> player, SnakesAndLaddersTilesWindow tilesView) {
     int playerID = players.size() + 1;
-    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer(playerName, playerID, pieceID);
+    SnakesAndLaddersPlayer newPlayer = new SnakesAndLaddersPlayer(player.getFirst(), playerID, Integer.parseInt(player.getLast()));
 
-    player.addObserver(tilesView);
-    players.put(playerID, player);
+    newPlayer.addObserver(tilesView);
+    players.put(playerID, newPlayer);
   }
 
   public void setActions(String gameID) {

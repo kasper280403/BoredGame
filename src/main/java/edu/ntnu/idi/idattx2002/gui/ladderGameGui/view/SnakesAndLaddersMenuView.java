@@ -1,16 +1,16 @@
-package edu.ntnu.idi.idattx2002.gui.chessGui.view;
+package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
 
-import edu.ntnu.idi.idattx2002.gui.chessGui.controller.ChessMenuController;
 import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersMenuController;
 import java.io.IOException;
 import javafx.scene.control.Button;
 
-public class ChessMenuView extends GameMenuView {
+public class SnakesAndLaddersMenuView extends GameMenuView {
 
-  private ChessMenuController controller;
+  private SnakesAndLaddersMenuController controller;
 
-  public ChessMenuView(ChessMenuController chessMenuController) {
-    controller = chessMenuController;
+  public SnakesAndLaddersMenuView(SnakesAndLaddersMenuController controller) {
+    this.controller = controller;
     init();
   }
 
@@ -31,8 +31,8 @@ public class ChessMenuView extends GameMenuView {
   @Override
   public void init() {
     super.init();
-    createTitle("CHESS");
-    createGameModeSelection(controller.getStartPositions());
+    createTitle("SNAKES & LADDERS");
+    //createGameModeSelection(controller.getStartPositions());
     createStartButton();
   }
 
