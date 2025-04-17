@@ -20,7 +20,6 @@ public class ChoosePlayerController {
 
   private List<List<String>> chosenPlayers;
 
-  //TODO remove nr and just check size of array
   private int minPlayers;
   private int maxPlayers;
 
@@ -60,7 +59,6 @@ public class ChoosePlayerController {
       btn.setTextFill(Color.WHITESMOKE);
 
       addToList(player);
-      //updateStartBtn();
     }
     else {
       btn.setText("Unselected");
@@ -68,7 +66,6 @@ public class ChoosePlayerController {
       btn.setTextFill(Color.WHITESMOKE);
 
       removeFromList(player);
-      //updateStartBtn();
     }
 
 
@@ -81,26 +78,6 @@ public class ChoosePlayerController {
   public void removeFromList(ArrayList<String> player) {
     chosenPlayers.remove(player);
   }
-
-  /*
-  //Should be moved into gameMenuControllers
-  public void updateStartBtn() {
-    if (nrOfPlayerChosen < minPlayers || nrOfPlayerChosen > maxPlayers) {
-      choosePlayerView.getStartBtn().setDisable(true);
-    } else {
-      choosePlayerView.getStartBtn().setDisable(false);
-    }
-  }
-
-   */
-
-  /*
-  //not in use anymor!!!!!
-  public void startGame() {
-    new SnakesAndLaddersController(mainPane, chosenPlayerNames, chosenPlayerPieces);
-  }
-
-   */
 
   public void showView() {
     choosePlayerView.show();

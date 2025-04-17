@@ -64,7 +64,6 @@ public abstract class GameMenuView extends VBox{
     for (String gameMode : gameModes) {
       gameModeSelection.getItems().add(gameMode);
     }
-    //contentBox.getChildren().add(gameModeSelection);
     middleBox.getChildren().add(gameModeSelection);
   }
 

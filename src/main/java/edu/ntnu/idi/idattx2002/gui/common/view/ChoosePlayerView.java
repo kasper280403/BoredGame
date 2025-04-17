@@ -28,10 +28,6 @@ public class ChoosePlayerView extends VBox {
     init();
   }
 
-  public Button getStartBtn() {
-    return startBtn;
-  }
-
   public Pane createHeading() {
     VBox headingBox = new VBox();
     headingBox.setAlignment(Pos.CENTER);
@@ -85,18 +81,6 @@ public class ChoosePlayerView extends VBox {
   public String playerToString(ArrayList<String> player) {
     return player.get(0) + " (Piece " + player.get(1) + ")";
   }
-
-  /*
-  public Button createStartBtn() {
-    startBtn = new Button("Start Game");
-
-    startBtn.setOnAction(e -> controller.startGame());
-
-    startBtn.setDisable(true);
-
-    return startBtn;
-  }
-   */
 
   public void show() {
     mainPane.getChildren().add(this);
