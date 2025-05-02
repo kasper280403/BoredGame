@@ -4,12 +4,14 @@ import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersMenuController;
 import java.io.IOException;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 public class SnakesAndLaddersMenuView extends GameMenuView {
 
   private SnakesAndLaddersMenuController controller;
 
-  public SnakesAndLaddersMenuView(SnakesAndLaddersMenuController controller) {
+  public SnakesAndLaddersMenuView(SnakesAndLaddersMenuController controller, Pane mainPane) {
+    super(mainPane);
     this.controller = controller;
     init();
   }
@@ -20,7 +22,7 @@ public class SnakesAndLaddersMenuView extends GameMenuView {
     startButton.setMaxSize(80, 40);
     startButton.setOnAction(e -> {
       try {
-        controller.startGame();
+        controller.startGame(mainPane);
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }

@@ -15,6 +15,8 @@ import javafx.scene.text.Text;
 
 public abstract class GameMenuView extends VBox{
 
+  public Pane mainPane;
+
   private ComboBox<String> gameModeSelection;
   private Pane contentBox;
 
@@ -22,7 +24,8 @@ public abstract class GameMenuView extends VBox{
   public HBox middleBox;
   public HBox bottomBox;
 
-  public GameMenuView() {
+  public GameMenuView(Pane mainPane) {
+    this.mainPane = mainPane;
   }
 
   public Pane getTopBox() {
@@ -68,7 +71,6 @@ public abstract class GameMenuView extends VBox{
   }
 
   public void init() {
-    setBackground(new Background(new BackgroundFill(Color.ROSYBROWN.darker().darker(), null, null)));
     setAlignment(Pos.CENTER);
     setSpacing(20);
 
@@ -84,5 +86,11 @@ public abstract class GameMenuView extends VBox{
 
     getChildren().addAll(topBox, middleBox, bottomBox);
   }
+
+  public void show() {
+    mainPane.getChildren().clear();
+    mainPane.getChildren().add(this);
+  }
+
 
 }

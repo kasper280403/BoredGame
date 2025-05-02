@@ -4,12 +4,14 @@ import edu.ntnu.idi.idattx2002.gui.chessGui.controller.ChessMenuController;
 import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
 import java.io.IOException;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 public class ChessMenuView extends GameMenuView {
 
   private ChessMenuController controller;
 
-  public ChessMenuView(ChessMenuController chessMenuController) {
+  public ChessMenuView(ChessMenuController chessMenuController, Pane mainPane) {
+    super(mainPane);
     controller = chessMenuController;
     init();
   }
@@ -20,7 +22,7 @@ public class ChessMenuView extends GameMenuView {
     startButton.setMaxSize(80, 40);
     startButton.setOnAction(e -> {
       try {
-        controller.startGame();
+        controller.startGame(mainPane);
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
