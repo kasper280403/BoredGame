@@ -13,7 +13,7 @@ import javafx.util.Duration;
 public class SnakesAndLadderWindow extends HBox{
 
     private final SnakesAndLaddersController controller;
-    public static Pane mainPane;
+    public Pane mainPane;
 
     public SnakesAndLadderWindow(Pane mainPane, SnakesAndLaddersController controller) {
         this.mainPane = mainPane;
@@ -30,7 +30,6 @@ public class SnakesAndLadderWindow extends HBox{
             controller.playTurn();
             playTurn.setDisable(true);
             pause.play();
-
         });
         return playTurn;
     }
@@ -43,13 +42,11 @@ public class SnakesAndLadderWindow extends HBox{
 
     public void init() {
         getChildren().add(createLeftSide());
-
-        mainPane.getChildren().clear();
-        mainPane.getChildren().add(this);
     }
 
-    public static void closeStage(){
-        //primaryStage.close();
+    public void show() {
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(this);
     }
 
 }

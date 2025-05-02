@@ -94,12 +94,8 @@ public class Start1 extends Application {
 
     public void startSnakesAndLadders() throws IOException {
         SnakesAndLaddersMenuController mainController = new SnakesAndLaddersMenuController(mainPane);
-
-        mainPane.getChildren().clear();
-        mainPane.getChildren().add(mainController.getView());
+        mainController.getView().show();
     }
-
-
 
     public static void main(String[] args) {
         launch(args);

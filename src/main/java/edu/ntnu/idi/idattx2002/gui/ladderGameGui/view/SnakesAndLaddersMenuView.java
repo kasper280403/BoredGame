@@ -22,7 +22,7 @@ public class SnakesAndLaddersMenuView extends GameMenuView {
     startButton.setMaxSize(80, 40);
     startButton.setOnAction(e -> {
       try {
-        controller.startGame();
+        controller.startGame(mainPane);
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }

@@ -15,7 +15,7 @@ public class SnakesAndLaddersController {
   private SnakesAndLadders game;
 
   //Maybe move
-  private SnakesAndLadderWindow snakesAndLadderWindow;
+  private SnakesAndLadderWindow snakesAndLadderView;
   private PlayerIconWindow pieceView;
   private DiceWindow diceView;
   private SnakesAndLaddersTilesWindow tilesView;
@@ -24,13 +24,13 @@ public class SnakesAndLaddersController {
 
   public SnakesAndLaddersController(Pane mainPane, List<List<String>> players) {
     //Maybe move
-    snakesAndLadderWindow = new SnakesAndLadderWindow(mainPane, this);
-    diceView = new DiceWindow(snakesAndLadderWindow);
+    snakesAndLadderView = new SnakesAndLadderWindow(mainPane, this);
+    diceView = new DiceWindow(snakesAndLadderView);
     game = new SnakesAndLadders(diceView);
 
-    diceView = new DiceWindow(snakesAndLadderWindow);
+    diceView = new DiceWindow(snakesAndLadderView);
     pieceView = new PlayerIconWindow(50);
-    tilesView = new SnakesAndLaddersTilesWindow(10, 9, 50, game, snakesAndLadderWindow);
+    tilesView = new SnakesAndLaddersTilesWindow(10, 9, 50, game, snakesAndLadderView);
     winView = new WinWindow();
 
     setUpGame(players);
@@ -52,6 +52,7 @@ public class SnakesAndLaddersController {
   public void startGame() {
     double size = 50;
 
+    snakesAndLadderView.show();
     pieceView.createPieces(size);
     diceView.show();
     tilesView.show();
@@ -60,5 +61,4 @@ public class SnakesAndLaddersController {
   public void playTurn() {
     game.playTurn();
   }
-
 }
