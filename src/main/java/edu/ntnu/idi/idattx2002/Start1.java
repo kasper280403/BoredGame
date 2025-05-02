@@ -48,6 +48,7 @@ public class Start1 extends Application {
 
         Scene scene = new Scene(mainPane, 300, 200);
         primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
@@ -83,14 +84,12 @@ public class Start1 extends Application {
     }
 
     public void startChess() throws IOException {
-        ChessMenuController mainController = new ChessMenuController();
-
-        mainPane.getChildren().clear();
-        mainPane.getChildren().add(mainController.getView());
+        ChessMenuController mainController = new ChessMenuController(mainPane);
+        mainController.getView().show();
     }
 
     public void startSnakesAndLadders() throws IOException {
-        SnakesAndLaddersMenuController mainController = new SnakesAndLaddersMenuController();
+        SnakesAndLaddersMenuController mainController = new SnakesAndLaddersMenuController(mainPane);
 
         mainPane.getChildren().clear();
         mainPane.getChildren().add(mainController.getView());
