@@ -10,13 +10,17 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Start1 extends Application {
 
     public Stage primaryStage;
+    private StackPane mainPane;
     public CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -36,11 +40,13 @@ public class Start1 extends Application {
         Button createPlayerButton = new Button("Create Player");
         createPlayerButton.setOnAction(e -> createPlayerWindow.openPlayerInput());
 
-        VBox layout = new VBox(10);
+        mainPane = new StackPane();
+        VBox layout = new VBox();
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(label, createPlayerButton,  chooseGameButton);
+        mainPane.getChildren().add(layout);
 
-        Scene scene = new Scene(layout, 300, 200);
+        Scene scene = new Scene(mainPane, 300, 200);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -50,8 +56,6 @@ public class Start1 extends Application {
     private void openGamesWindow() throws IOException {
         VBox layout = new VBox(10);
         Label heading = new Label("Choose Game");
-        //ChoosePlayerWindow choosePlayerWindow = new ChoosePlayerWindow(layout);
-        ChoosePlayerController choosePlayerController = new ChoosePlayerController(layout, 2, 6);
 
         Button snakesAndLaddersBtn = new Button("Snakes and ladders");
         Button chessBtn = new Button("Chess");
@@ -71,23 +75,25 @@ public class Start1 extends Application {
           }
         });
 
+        mainPane.getChildren().clear();
         layout.getChildren().addAll(heading, snakesAndLaddersBtn, chessBtn);
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(10);
-        Scene scene = new Scene(layout, 500, 400);
-        primaryStage.setScene(scene);
+        mainPane.getChildren().add(layout);
     }
 
     public void startChess() throws IOException {
         ChessMenuController mainController = new ChessMenuController();
-        Scene scene = new Scene(mainController.getView(), 320, 240);
-        primaryStage.setScene(scene);
+
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(mainController.getView());
     }
 
     public void startSnakesAndLadders() throws IOException {
         SnakesAndLaddersMenuController mainController = new SnakesAndLaddersMenuController();
-        Scene scene = new Scene(mainController.getView(), 320, 240);
-        primaryStage.setScene(scene);
+
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(mainController.getView());
     }
 
 
