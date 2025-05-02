@@ -30,7 +30,7 @@ public class ChessMenuController {
     return positionIO.getAllStartPositionEndPaths();
   }
 
-  public void startGame() throws IOException {
+  public void startGame(Pane mainPane) throws IOException {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
 
     if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
@@ -40,9 +40,8 @@ public class ChessMenuController {
       String positionPath = chessMenuView.getGameModeSelection().getValue();
       chess.initPosition(positionPath);
 
-      ChessController chessController = new ChessController(chessMenuView, chess);
+      ChessController chessController = new ChessController(mainPane, chess);
 
-      chessMenuView.getChildren().clear();
       chessController.showView();
     }
   }

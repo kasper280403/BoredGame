@@ -10,9 +10,12 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Start1 extends Application {
@@ -41,6 +44,7 @@ public class Start1 extends Application {
         createPlayerButton.setOnAction(e -> createPlayerWindow.openPlayerInput());
 
         mainPane = new StackPane();
+        mainPane.setBackground(new Background(new BackgroundFill(Color.ROSYBROWN.darker().darker(), null, null)));
         VBox layout = new VBox();
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(label, createPlayerButton,  chooseGameButton);

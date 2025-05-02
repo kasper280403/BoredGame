@@ -71,7 +71,6 @@ public abstract class GameMenuView extends VBox{
   }
 
   public void init() {
-    setBackground(new Background(new BackgroundFill(Color.ROSYBROWN.darker().darker(), null, null)));
     setAlignment(Pos.CENTER);
     setSpacing(20);
 
