@@ -16,7 +16,7 @@ public class ChessView extends HBox {
   private ChessController chessController;
   private Pane parent;
 
-  public ChessView(Pane parent) throws IOException {
+  public ChessView(Pane parent) {
     this.parent = parent;
     init();
   }

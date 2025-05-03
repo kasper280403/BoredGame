@@ -5,6 +5,7 @@ import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.DiceObserver;
 import java.util.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
 
-public class DiceWindow extends HBox implements DiceObserver{
+public class DiceView extends HBox implements DiceObserver{
 
     private Pane parent;
 
@@ -24,7 +25,7 @@ public class DiceWindow extends HBox implements DiceObserver{
     private Map<Integer, Image> greenDiceImageMap;
     private HashMap<Integer, Image> orangeDiceImageMap;
 
-    public DiceWindow(Pane parent) {
+    public DiceView(Pane parent) {
         this.parent = parent;
         init();
     }
@@ -33,30 +34,30 @@ public class DiceWindow extends HBox implements DiceObserver{
         String standardLocation = "/ladderGameResources/images/dices/";
         if (diceMap2.isEmpty()) {
             greenDiceImageMap.put(1, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "greenDice1.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "greenDice1.png"))));
             greenDiceImageMap.put(2, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "greenDice2.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "greenDice2.png"))));
             greenDiceImageMap.put(3, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "greenDice3.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "greenDice3.png"))));
             greenDiceImageMap.put(4, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "greenDice4.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "greenDice4.png"))));
             greenDiceImageMap.put(5, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "greenDice5.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "greenDice5.png"))));
             greenDiceImageMap.put(6, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "greenDice6.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "greenDice6.png"))));
 
             orangeDiceImageMap.put(1, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "orangeDice1.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "orangeDice1.png"))));
             orangeDiceImageMap.put(2, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "orangeDice2.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "orangeDice2.png"))));
             orangeDiceImageMap.put(3, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "orangeDice3.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "orangeDice3.png"))));
             orangeDiceImageMap.put(4, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "orangeDice4.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "orangeDice4.png"))));
             orangeDiceImageMap.put(5, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "orangeDice5.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "orangeDice5.png"))));
             orangeDiceImageMap.put(6, new Image(Objects.requireNonNull(
-                DiceWindow.class.getResourceAsStream(standardLocation + "orangeDice6.png"))));
+                DiceView.class.getResourceAsStream(standardLocation + "orangeDice6.png"))));
         }
     }
 
@@ -112,6 +113,7 @@ public class DiceWindow extends HBox implements DiceObserver{
         loadDiceImages();
 
         setSpacing(10);
+        setAlignment(Pos.CENTER);
     }
 
     public void update(Dice dice) {
@@ -119,7 +121,7 @@ public class DiceWindow extends HBox implements DiceObserver{
     }
 
     public void show() {
-        parent.getChildren().add(this);
+        parent.getChildren().add(0, this);
     }
 }
 

@@ -3,6 +3,7 @@ package edu.ntnu.idi.idattx2002;
 import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
 import edu.ntnu.idi.idattx2002.gui.common.view.CreatePlayerWindow;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;

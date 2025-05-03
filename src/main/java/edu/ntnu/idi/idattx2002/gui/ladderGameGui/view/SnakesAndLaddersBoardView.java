@@ -11,6 +11,7 @@ import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlay
 import java.util.ArrayList;
 import java.util.Map;
 import javafx.animation.PauseTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -23,7 +24,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObserver {
+public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserver {
 
     Pane parent;
     SnakesAndLadders game;
@@ -36,7 +37,7 @@ public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObser
     int xDimensions;
     int yDimensions;
 
-    public SnakesAndLaddersTilesWindow(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
+    public SnakesAndLaddersBoardView(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
         this.parent = parent;
 
         tileMap = new HashMap<>();
@@ -78,7 +79,6 @@ public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObser
 
     public void displayPieceAtTile(int tileID, int pieceID) {
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
-
 
         StackPane tilePane = tileMap.get(tileID);
         ImageView pieceView = playerIconWindow.getImageView(pieceID);
@@ -156,12 +156,7 @@ public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObser
         }
     }
 
-    @Override
-    public void update(SnakesAndLaddersPlayer player) {
-        displayPieceAtTile(player.getCurrentTileId(), player.getIconId());
-    }
-
-    public void init() {
+    private void initBoard() {
         int tileID = 1;
         boolean leftToRight = true;
 
@@ -185,6 +180,18 @@ public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObser
                 tileID += yDimensions + 1;
             }
         }
+    }
+
+    @Override
+    public void update(SnakesAndLaddersPlayer player) {
+        displayPieceAtTile(player.getCurrentTileId(), player.getIconId());
+    }
+
+    //TODO refactor board creation into own method
+    public void init() {
+        setAlignment(Pos.CENTER);
+
+        initBoard();
         displayLandActionsAtTile(tileSize, game);
     }
 
