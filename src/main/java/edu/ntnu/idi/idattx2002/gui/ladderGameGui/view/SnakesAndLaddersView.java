@@ -23,6 +23,8 @@ public class SnakesAndLaddersView extends HBox{
     private VBox centerPane;
     private VBox rightPane;
 
+    private Text moveInfo;
+
 
     public SnakesAndLaddersView(Pane mainPane, SnakesAndLaddersController controller) {
         this.mainPane = mainPane;
@@ -55,13 +57,19 @@ public class SnakesAndLaddersView extends HBox{
         return playTurn;
     }
 
+    private void createMoveInfo() {
+        moveInfo = new Text("MOVEINFO MOVEINFO MOVEINFO");
+    }
+
     private void createLeftPane() {
         leftPane = new VBox(10);
         leftPane.setAlignment(Pos.CENTER);
         leftPane.setSpacing(50);
         leftPane.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
 
-        leftPane.getChildren().addAll(createPlayTurnButton());
+        createMoveInfo();
+
+        leftPane.getChildren().addAll(createPlayTurnButton(), moveInfo);
     }
 
     private void createCenterPane() {
@@ -105,7 +113,6 @@ public class SnakesAndLaddersView extends HBox{
         mainPane.getChildren().clear();
         mainPane.getChildren().add(this);
     }
-
 }
 
 
