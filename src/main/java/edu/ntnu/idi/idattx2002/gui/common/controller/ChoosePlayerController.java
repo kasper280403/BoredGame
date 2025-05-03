@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.gui.common.controller;
 
 import edu.ntnu.idi.idattx2002.gui.common.view.ChoosePlayerView;
+import edu.ntnu.idi.idattx2002.gui.common.view.CreatePlayerWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
 import java.io.IOException;
@@ -69,6 +70,11 @@ public class ChoosePlayerController {
     }
 
 
+  }
+
+  public void openCreatePlayerWindow() {
+    CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
+    createPlayerWindow.openPlayerInput();
   }
 
   public void addToList(ArrayList<String> player) {
