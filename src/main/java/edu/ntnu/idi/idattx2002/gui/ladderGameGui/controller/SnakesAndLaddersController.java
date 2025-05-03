@@ -5,7 +5,7 @@ import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;
 import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersView;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersTilesView;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersBoardView;
 import edu.ntnu.idi.idattx2002.gui.common.view.WinWindow;
 import java.util.List;
 import javafx.scene.layout.Pane;
@@ -18,7 +18,7 @@ public class SnakesAndLaddersController {
   private SnakesAndLaddersView snakesAndLadderView;
   private PlayerIconWindow pieceView;
   private DiceView diceView;
-  private SnakesAndLaddersTilesView tilesView;
+  private SnakesAndLaddersBoardView tilesView;
   private WinWindow winView;
 
 
@@ -29,8 +29,7 @@ public class SnakesAndLaddersController {
     game = new SnakesAndLadders(diceView);
 
     diceView = new DiceView(snakesAndLadderView);
-    pieceView = new PlayerIconWindow(50);
-    tilesView = new SnakesAndLaddersTilesView(10, 9, 50, game, snakesAndLadderView);
+    tilesView = new SnakesAndLaddersBoardView(10, 9, 75, game, snakesAndLadderView);
     winView = new WinWindow();
 
     setUpGame(players);
@@ -50,10 +49,7 @@ public class SnakesAndLaddersController {
   }
 
   public void startGame() {
-    double size = 50;
-
     snakesAndLadderView.show();
-    pieceView.createPieces(size);
     diceView.show();
     tilesView.show();
   }

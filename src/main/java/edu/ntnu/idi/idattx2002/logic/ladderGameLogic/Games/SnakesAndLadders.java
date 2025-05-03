@@ -6,7 +6,7 @@ import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersTilesView;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersBoardView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,7 +98,7 @@ public class SnakesAndLadders {
   }
 
   //TODO refactor so that Player object is created and observer added in controller
-  public void addPlayer(List<String> player, SnakesAndLaddersTilesView tilesView) {
+  public void addPlayer(List<String> player, SnakesAndLaddersBoardView tilesView) {
     int playerID = players.size() + 1;
     SnakesAndLaddersPlayer newPlayer = new SnakesAndLaddersPlayer(player.getFirst(), playerID, Integer.parseInt(player.getLast()));
 

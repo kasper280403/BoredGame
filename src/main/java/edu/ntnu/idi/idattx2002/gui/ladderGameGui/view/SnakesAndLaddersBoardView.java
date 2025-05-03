@@ -23,7 +23,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public class SnakesAndLaddersTilesView extends GridPane implements PlayerObserver {
+public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserver {
 
     Pane parent;
     SnakesAndLadders game;
@@ -36,7 +36,7 @@ public class SnakesAndLaddersTilesView extends GridPane implements PlayerObserve
     int xDimensions;
     int yDimensions;
 
-    public SnakesAndLaddersTilesView(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
+    public SnakesAndLaddersBoardView(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
         this.parent = parent;
 
         tileMap = new HashMap<>();
@@ -78,7 +78,6 @@ public class SnakesAndLaddersTilesView extends GridPane implements PlayerObserve
 
     public void displayPieceAtTile(int tileID, int pieceID) {
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
-
 
         StackPane tilePane = tileMap.get(tileID);
         ImageView pieceView = playerIconWindow.getImageView(pieceID);
@@ -161,6 +160,7 @@ public class SnakesAndLaddersTilesView extends GridPane implements PlayerObserve
         displayPieceAtTile(player.getCurrentTileId(), player.getIconId());
     }
 
+    //TODO refactor board creation into own method
     public void init() {
         int tileID = 1;
         boolean leftToRight = true;
