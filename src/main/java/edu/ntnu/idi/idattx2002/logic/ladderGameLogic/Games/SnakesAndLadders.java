@@ -3,6 +3,7 @@ package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games;
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;
 import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
+import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
@@ -97,13 +98,8 @@ public class SnakesAndLadders {
     return player.getCurrentTileId() >= board.getSquareMap().size();
   }
 
-  //TODO refactor so that Player object is created and observer added in controller
-  public void addPlayer(List<String> player, SnakesAndLaddersBoardView tilesView) {
-    int playerID = players.size() + 1;
-    SnakesAndLaddersPlayer newPlayer = new SnakesAndLaddersPlayer(player.getFirst(), playerID, Integer.parseInt(player.getLast()));
-
-    newPlayer.addObserver(tilesView);
-    players.put(playerID, newPlayer);
+  public void addPlayer(SnakesAndLaddersPlayer player) {
+    players.put(player.getPlayerID(), player);
   }
 
   public void setActions(String gameID) {

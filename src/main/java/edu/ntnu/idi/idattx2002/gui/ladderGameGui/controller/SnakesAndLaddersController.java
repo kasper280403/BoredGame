@@ -7,6 +7,7 @@ import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersBoardView;
 import edu.ntnu.idi.idattx2002.gui.common.view.WinWindow;
+import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 import java.util.List;
 import javafx.scene.layout.Pane;
 
@@ -37,15 +38,19 @@ public class SnakesAndLaddersController {
   }
 
   public void setUpGame(List<List<String>> players) {
-    for (List<String> player : players) {
-      game.addPlayer(player, tilesView);
+    int playerID = 1;
+    for (List<String> playerString : players) {
+      SnakesAndLaddersPlayer newPlayer = new SnakesAndLaddersPlayer(playerString.getFirst(), playerID, Integer.parseInt(playerString.getLast()));
+      game.addPlayer(newPlayer);
+      newPlayer.addObserver(tilesView);
 
+      playerID ++;
     }
+
     for (Dice dice : game.getDices()) {
       dice.addObserver(diceView);
       diceView.initDice(dice);
     }
-
   }
 
   public void startGame() {
