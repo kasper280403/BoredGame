@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
 import javafx.animation.PauseTransition;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -9,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 
@@ -72,6 +74,20 @@ public class SnakesAndLaddersView extends HBox{
         rightPane = new VBox(10);
         rightPane.setAlignment(Pos.CENTER);
         rightPane.setSpacing(50);
+        rightPane.setPadding(new Insets(20));
+        rightPane.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, null, null)));
+
+        String rules = """
+            YOLO YOLO YOLO YOLO
+            YOLO YOLO YOLO YOLO
+            YOLO YOLO YOLO YOLO
+            YOLO YOLO YOLO YOLO
+            YOLO YOLO YOLO YOLO
+            YODO ...
+            """;
+
+        Text rulesText = new Text(rules);
+        rightPane.getChildren().add(rulesText);
     }
 
     public void init() {
@@ -82,7 +98,7 @@ public class SnakesAndLaddersView extends HBox{
         createCenterPane();
         createRightPane();
 
-        getChildren().addAll(leftPane, centerPane);
+        getChildren().addAll(leftPane, centerPane, rightPane);
     }
 
     public void show() {
