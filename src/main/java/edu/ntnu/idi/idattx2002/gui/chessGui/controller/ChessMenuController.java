@@ -11,9 +11,9 @@ import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 
 public class ChessMenuController {
 
-  private ChessMenuView chessMenuView;
-  private PositionIO positionIO;
-  private ChoosePlayerController choosePlayerController;
+  private final ChessMenuView chessMenuView;
+  private final PositionIO positionIO;
+  private final ChoosePlayerController choosePlayerController;
 
   public ChessMenuController(Pane mainPane) throws IOException {
     positionIO = new PositionIO();
