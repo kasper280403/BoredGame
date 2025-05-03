@@ -22,7 +22,6 @@ public class ChoosePlayerView extends HBox {
 
   private Pane mainPane;
   private ChoosePlayerController controller;
-  private Button startBtn;
   private VBox choosePlayerPane;
 
   public ChoosePlayerView(Pane mainPane, ChoosePlayerController controller) throws IOException {
@@ -138,5 +137,4 @@ public class ChoosePlayerView extends HBox {
     setSpacing(50);
     getChildren().addAll(choosePlayerPane, createMakePlayerBtn());
   }
-
 }
