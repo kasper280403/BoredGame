@@ -1,8 +1,14 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -40,18 +46,48 @@ public class StartMenuView extends VBox {
     return titlePane;
   }
 
-  private Button createStartChessBtn() {
-    Button startBtn = new Button("CHESS");
-    startBtn.setOnAction(e -> controller.openChessMenu());
+  private VBox createStartChessBtn() {
+    VBox btn = new VBox();
+    btn.setMaxSize(500, 500);
+    btn.setSpacing(10);
+    btn.setAlignment(Pos.CENTER);
+    btn.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(10), new Insets(5))));
 
-    return startBtn;
+    Text header = new Text("CHESS");
+    header.setFont(new Font("Helvetica", 50));
+    header.setFill(Color.WHITESMOKE);
+
+    Image sNlImage = new Image(getClass().getResource("/chessResources/chessLogo.png").toExternalForm());
+    ImageView sNlImageView = new ImageView(sNlImage);
+    sNlImageView.setFitWidth(100);
+    sNlImageView.setFitHeight(100);
+
+    btn.getChildren().addAll(header, sNlImageView);
+    btn.setOnMouseClicked(e -> controller.openChessMenu());
+
+    return btn;
   }
 
-  private Button createStartSnakesAndLAddersBtn() {
-    Button startBtn = new Button("SNAKES & LADDERS");
-    startBtn.setOnAction(e -> controller.openSnakesAndLaddersMenu());
+  private VBox createStartSnakesAndLAddersBtn() {
+    VBox btn = new VBox();
+    btn.setMaxSize(500, 500);
+    btn.setSpacing(10);
+    btn.setAlignment(Pos.CENTER);
+    btn.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(10), new Insets(5))));
 
-    return startBtn;
+    Text header = new Text("SNAKES & LADDERS");
+    header.setFont(new Font("Helvetica", 50));
+    header.setFill(Color.WHITESMOKE);
+
+    Image sNlImage = new Image(getClass().getResource("/ladderGameResources/images/snakesAndLaddersLogo.png").toExternalForm());
+    ImageView sNlImageView = new ImageView(sNlImage);
+    sNlImageView.setFitWidth(100);
+    sNlImageView.setFitHeight(100);
+
+    btn.getChildren().addAll(header, sNlImageView);
+    btn.setOnMouseClicked(e -> controller.openSnakesAndLaddersMenu());
+
+    return btn;
   }
 
   private HBox createSelectGamePane() {
@@ -65,7 +101,7 @@ public class StartMenuView extends VBox {
 
   private void init() {
     setAlignment(Pos.CENTER);
-    setSpacing(10);
+    setSpacing(50);
 
     getChildren().addAll(createTitle(150), createSelectGamePane());
   }
