@@ -28,8 +28,8 @@ public class SnakesAndLaddersController {
     diceView = new DiceView(snakesAndLadderView);
     game = new SnakesAndLadders(diceView);
 
-    diceView = new DiceView(snakesAndLadderView);
-    tilesView = new SnakesAndLaddersBoardView(10, 9, 75, game, snakesAndLadderView);
+    diceView = new DiceView(snakesAndLadderView.getLeftPane());
+    tilesView = new SnakesAndLaddersBoardView(10, 9, 75, game, snakesAndLadderView.getCenterPane());
     winView = new WinWindow();
 
     setUpGame(players);

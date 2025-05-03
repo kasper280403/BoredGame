@@ -11,6 +11,7 @@ import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlay
 import java.util.ArrayList;
 import java.util.Map;
 import javafx.animation.PauseTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -155,13 +156,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
         }
     }
 
-    @Override
-    public void update(SnakesAndLaddersPlayer player) {
-        displayPieceAtTile(player.getCurrentTileId(), player.getIconId());
-    }
-
-    //TODO refactor board creation into own method
-    public void init() {
+    private void initBoard() {
         int tileID = 1;
         boolean leftToRight = true;
 
@@ -185,6 +180,18 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
                 tileID += yDimensions + 1;
             }
         }
+    }
+
+    @Override
+    public void update(SnakesAndLaddersPlayer player) {
+        displayPieceAtTile(player.getCurrentTileId(), player.getIconId());
+    }
+
+    //TODO refactor board creation into own method
+    public void init() {
+        setAlignment(Pos.CENTER);
+
+        initBoard();
         displayLandActionsAtTile(tileSize, game);
     }
 

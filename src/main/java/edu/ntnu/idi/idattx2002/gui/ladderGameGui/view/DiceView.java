@@ -5,6 +5,7 @@ import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.DiceObserver;
 import java.util.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -112,6 +113,7 @@ public class DiceView extends HBox implements DiceObserver{
         loadDiceImages();
 
         setSpacing(10);
+        setAlignment(Pos.CENTER);
     }
 
     public void update(Dice dice) {
@@ -119,7 +121,7 @@ public class DiceView extends HBox implements DiceObserver{
     }
 
     public void show() {
-        parent.getChildren().add(this);
+        parent.getChildren().add(0, this);
     }
 }
 

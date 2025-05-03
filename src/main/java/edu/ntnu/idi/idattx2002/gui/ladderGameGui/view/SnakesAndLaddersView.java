@@ -1,23 +1,44 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
 import javafx.animation.PauseTransition;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 
 public class SnakesAndLaddersView extends HBox{
 
     private final SnakesAndLaddersController controller;
-    public Pane mainPane;
+    private final Pane mainPane;
+
+    private VBox leftPane;
+    private VBox centerPane;
+    private VBox rightPane;
+
 
     public SnakesAndLaddersView(Pane mainPane, SnakesAndLaddersController controller) {
         this.mainPane = mainPane;
         this.controller = controller;
 
         init();
+    }
+
+    public Pane getLeftPane() {
+        return leftPane;
+    }
+
+    public Pane getCenterPane() {
+        return centerPane;
+    }
+
+    public VBox getRightPane() {
+        return rightPane;
     }
 
     private Button createPlayTurnButton() {
@@ -32,14 +53,36 @@ public class SnakesAndLaddersView extends HBox{
         return playTurn;
     }
 
-    public VBox createLeftSide() {
-        VBox leftSide = new VBox(10);
-        leftSide.getChildren().addAll(createPlayTurnButton());
-        return leftSide;
+    private void createLeftPane() {
+        leftPane = new VBox(10);
+        leftPane.setAlignment(Pos.CENTER);
+        leftPane.setSpacing(50);
+        leftPane.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+
+        leftPane.getChildren().addAll(createPlayTurnButton());
+    }
+
+    private void createCenterPane() {
+        centerPane = new VBox(10);
+        centerPane.setAlignment(Pos.CENTER);
+        centerPane.setSpacing(50);
+    }
+
+    private void createRightPane() {
+        rightPane = new VBox(10);
+        rightPane.setAlignment(Pos.CENTER);
+        rightPane.setSpacing(50);
     }
 
     public void init() {
-        getChildren().add(createLeftSide());
+        setSpacing(50);
+        setAlignment(Pos.CENTER);
+
+        createLeftPane();
+        createCenterPane();
+        createRightPane();
+
+        getChildren().addAll(leftPane, centerPane);
     }
 
     public void show() {
