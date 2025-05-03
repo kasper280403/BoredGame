@@ -6,8 +6,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -20,7 +24,7 @@ public class SnakesAndLaddersView extends HBox{
     private final Pane mainPane;
 
     private VBox leftPane;
-    private VBox centerPane;
+    private StackPane centerPane;
     private VBox rightPane;
 
     private Text moveInfo;
@@ -62,28 +66,39 @@ public class SnakesAndLaddersView extends HBox{
     }
 
     private void createLeftPane() {
-        leftPane = new VBox(10);
+        leftPane = new VBox();
         leftPane.setAlignment(Pos.CENTER);
         leftPane.setSpacing(50);
-        leftPane.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+
+        Color backgroundColor = Color.web("#5CE1E6").deriveColor(1, 1, 1, 0.3);
+        leftPane.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
         createMoveInfo();
 
         leftPane.getChildren().addAll(createPlayTurnButton(), moveInfo);
+
+        leftPane.setMaxHeight(750);
+        leftPane.setMinHeight(750);
     }
 
     private void createCenterPane() {
-        centerPane = new VBox(10);
+        centerPane = new StackPane();
         centerPane.setAlignment(Pos.CENTER);
-        centerPane.setSpacing(50);
+        centerPane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        centerPane.setBackground(new Background(new BackgroundFill(Color.PINK, null, null)));
     }
 
     private void createRightPane() {
-        rightPane = new VBox(10);
+        rightPane = new VBox();
         rightPane.setAlignment(Pos.CENTER);
         rightPane.setSpacing(50);
         rightPane.setPadding(new Insets(20));
-        rightPane.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, null, null)));
+
+        Color backgroundColor = Color.web("#5CE1E6").deriveColor(1, 1, 1, 0.3);
+        rightPane.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
+
+        rightPane.setMaxHeight(750);
+        rightPane.setMinHeight(750);
 
         String rules = """
             YOLO YOLO YOLO YOLO
@@ -99,11 +114,13 @@ public class SnakesAndLaddersView extends HBox{
     }
 
     public void init() {
+        setBackground(new Background(new BackgroundFill(Color.web("#1B263B"), null, null)));
+
         setSpacing(50);
         setAlignment(Pos.CENTER);
 
-        createLeftPane();
         createCenterPane();
+        createLeftPane();
         createRightPane();
 
         getChildren().addAll(leftPane, centerPane, rightPane);
