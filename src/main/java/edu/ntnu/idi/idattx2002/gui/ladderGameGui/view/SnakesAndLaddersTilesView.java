@@ -23,7 +23,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObserver {
+public class SnakesAndLaddersTilesView extends GridPane implements PlayerObserver {
 
     Pane parent;
     SnakesAndLadders game;
@@ -36,7 +36,7 @@ public class SnakesAndLaddersTilesWindow extends GridPane implements PlayerObser
     int xDimensions;
     int yDimensions;
 
-    public SnakesAndLaddersTilesWindow(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
+    public SnakesAndLaddersTilesView(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
         this.parent = parent;
 
         tileMap = new HashMap<>();

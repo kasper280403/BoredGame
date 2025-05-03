@@ -1,21 +1,19 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.view;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
 import javafx.animation.PauseTransition;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-public class SnakesAndLadderWindow extends HBox{
+public class SnakesAndLaddersView extends HBox{
 
     private final SnakesAndLaddersController controller;
     public Pane mainPane;
 
-    public SnakesAndLadderWindow(Pane mainPane, SnakesAndLaddersController controller) {
+    public SnakesAndLaddersView(Pane mainPane, SnakesAndLaddersController controller) {
         this.mainPane = mainPane;
         this.controller = controller;
 
