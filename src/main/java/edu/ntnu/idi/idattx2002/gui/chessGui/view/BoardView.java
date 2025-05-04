@@ -92,10 +92,10 @@ public class BoardView extends GridPane implements SquareObserver {
 
   private Color getSquareColor(ChessSquare square) {
     if((square.getXCoordinate() + square.getYCoordinate()) % 2 != 0) {
-      return Color.WHITESMOKE;
+      return Color.web("#D4EAF7");
     }
     else{
-      return Color.INDIANRED;
+      return Color.web("#6A8BA4");
     }
   }
 
