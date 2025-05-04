@@ -70,7 +70,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
     }
 
     private Color getTileColor(int row, int col) {
-        return (row + col) % 2 == 0 ? Color.LIGHTGRAY : Color.DARKGRAY;
+        return (row + col) % 2 == 0 ? Color.web("#D4EAF7") : Color.web("#6A8BA4");
     }
 
     private int tileIDUpdateAtColChange(boolean leftToRight) {
