@@ -85,7 +85,6 @@ public class SnakesAndLaddersView extends HBox{
         centerPane = new StackPane();
         centerPane.setAlignment(Pos.CENTER);
         centerPane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-        centerPane.setBackground(new Background(new BackgroundFill(Color.PINK, null, null)));
     }
 
     private void createRightPane() {
