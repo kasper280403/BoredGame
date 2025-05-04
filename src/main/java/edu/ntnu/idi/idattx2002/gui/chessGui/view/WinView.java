@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.view;
 
+import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
@@ -10,9 +11,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.WinObserver;
+import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.ChessPlayer;
 
 public class WinView implements WinObserver {
 
@@ -47,7 +47,7 @@ public class WinView implements WinObserver {
     stage.setScene(scene);
   }
 
-  public void update(ChessPlayer player) {
+  public void update(Player player) {
     if (player instanceof HumanChessPlayer) {
       winnerText.setText(((HumanChessPlayer) player).getName());
     }

@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller;
 
+import edu.ntnu.idi.idattx2002.gui.common.view.WinView2;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;
@@ -20,7 +21,7 @@ public class SnakesAndLaddersController {
   private PlayerIconWindow pieceView;
   private DiceView diceView;
   private SnakesAndLaddersBoardView tilesView;
-  private WinWindow winView;
+  private WinView2 winView;
 
 
   public SnakesAndLaddersController(Pane mainPane, List<List<String>> players) {
@@ -31,7 +32,7 @@ public class SnakesAndLaddersController {
 
     diceView = new DiceView(snakesAndLadderView.getLeftPane());
     tilesView = new SnakesAndLaddersBoardView(10, 9, 75, game, snakesAndLadderView.getCenterPane());
-    winView = new WinWindow();
+    winView = new WinView2(mainPane);
 
     setUpGame(players);
     startGame();
