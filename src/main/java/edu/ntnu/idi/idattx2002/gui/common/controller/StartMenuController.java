@@ -12,13 +12,13 @@ public final class StartMenuController {
 
   private final StartMenuView view;
   private final MainView mainPane;
-  private final MusicPlayer musicPlayer;
 
   public StartMenuController() {
-    musicPlayer = new MusicPlayer();
-
     mainPane = new MainView(this);
     view = new StartMenuView(this, mainPane.getContentPane());
+
+    MusicController musicController = new MusicController(mainPane);
+    musicController.getView().show();
 
     view.show();
   }
@@ -29,14 +29,6 @@ public final class StartMenuController {
 
   public MainView getMainPane() {
     return mainPane;
-  }
-
-  public void playMusic() {
-    musicPlayer.playNext();
-  }
-
-  public void pauseMusic() {
-   musicPlayer.pause();
   }
 
   public void openChessMenu() {
