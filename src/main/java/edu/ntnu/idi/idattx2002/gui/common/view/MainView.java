@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -35,7 +36,9 @@ public class MainView extends StackPane {
 
   public VBox createUtilityPane() {
     VBox utilityPane = new VBox();
-    utilityPane.setAlignment(Pos.BOTTOM_RIGHT);
+    utilityPane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+
+    StackPane.setAlignment(utilityPane, Pos.BOTTOM_RIGHT);
 
     utilityPane.getChildren().add(createStartMenuBtn());
     return utilityPane;
