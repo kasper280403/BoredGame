@@ -4,8 +4,6 @@ import edu.ntnu.idi.idattx2002.gui.chessGui.controller.ChessMenuController;
 import edu.ntnu.idi.idattx2002.gui.common.view.MainView;
 import edu.ntnu.idi.idattx2002.gui.common.view.StartMenuView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersMenuController;
-import java.io.IOException;
-import javafx.scene.layout.Pane;
 
 public final class StartMenuController {
 
@@ -15,6 +13,10 @@ public final class StartMenuController {
   public StartMenuController() {
     mainPane = new MainView(this);
     view = new StartMenuView(this, mainPane.getContentPane());
+
+    MusicController musicController = new MusicController(mainPane);
+    musicController.getView().show();
+
     view.show();
   }
 
