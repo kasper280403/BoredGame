@@ -2,6 +2,7 @@ package edu.ntnu.idi.idattx2002;
 
 import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
 import edu.ntnu.idi.idattx2002.gui.common.view.CreatePlayerWindow;
+import edu.ntnu.idi.idattx2002.gui.common.view.MainView;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.iq80.snappy.Main;
 
 public class Start1 extends Application {
 
@@ -20,13 +22,12 @@ public class Start1 extends Application {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("BORED GAMES");
 
-        StackPane mainPane = new StackPane();
-        mainPane.setBackground(new Background(new BackgroundFill(Color.ROSYBROWN.darker().darker(), null, null)));
+        MainView mainView = new MainView();
 
-        StartMenuController startMenuController = new StartMenuController(mainPane);
+        StartMenuController startMenuController = new StartMenuController(mainView);
         startMenuController.getView().show();
 
-        Scene scene = new Scene(mainPane, 300, 200);
+        Scene scene = new Scene(mainView, 300, 200);
         primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();

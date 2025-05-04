@@ -114,8 +114,6 @@ public class SnakesAndLaddersView extends HBox{
     }
 
     public void init() {
-        setBackground(new Background(new BackgroundFill(Color.web("#1B263B"), null, null)));
-
         setSpacing(50);
         setAlignment(Pos.CENTER);
 
