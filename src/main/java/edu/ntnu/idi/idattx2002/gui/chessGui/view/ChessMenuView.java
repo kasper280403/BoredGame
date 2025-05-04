@@ -34,7 +34,7 @@ public class ChessMenuView extends GameMenuView {
   public void init() {
     super.init();
     createTitle("CHESS", 150);
-    createGameModeSelection(controller.getStartPositions());
+    createGameModeSelectionPane(controller.getStartPositions());
     createStartButton();
   }
 

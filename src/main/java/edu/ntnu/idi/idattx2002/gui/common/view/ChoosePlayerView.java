@@ -125,7 +125,7 @@ public class ChoosePlayerView extends HBox {
 
     double opacity = 0.2;
     Color backgroundColor = Color.NAVAJOWHITE.deriveColor(0, 1, 1, opacity);
-    choosePlayerPane.setBackground(new Background(new BackgroundFill(backgroundColor, null, null)));
+    choosePlayerPane.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
     choosePlayerPane.setPadding(new Insets(20));
     choosePlayerPane.setAlignment(Pos.CENTER);
