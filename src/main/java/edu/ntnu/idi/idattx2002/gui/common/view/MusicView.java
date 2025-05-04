@@ -10,7 +10,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -91,7 +90,7 @@ public class MusicView extends VBox implements MusicObserver {
     setSpacing(5);
     setPadding(new Insets(15));
     setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), null)));
-    setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+    setMaxSize(200, 75);
 
     StackPane.setAlignment(this, Pos.BOTTOM_LEFT);
 
