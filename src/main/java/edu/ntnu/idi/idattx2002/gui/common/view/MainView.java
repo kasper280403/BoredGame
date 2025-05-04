@@ -1,12 +1,15 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -16,9 +19,10 @@ import javafx.scene.paint.Color;
 public class MainView extends StackPane {
 
   private StackPane contentPane;
-  private StartMenuController startMenuController;
+  private StartMenuController controller;
 
-  public MainView() {
+  public MainView(StartMenuController controller) {
+    this.controller = controller;
 
     init();
   }
@@ -27,22 +31,30 @@ public class MainView extends StackPane {
     return contentPane;
   }
 
+  public Button createCloseAppBtn() {
+    Button closeAppBtn = new Button("Close App");
+    closeAppBtn.setOnAction(e -> Platform.exit());
+
+    return closeAppBtn;
+  }
+
   public Button createStartMenuBtn() {
-    Button startMenuBtn = new Button("Go to Start Menu");
-    startMenuBtn.setOnAction(e-> {
-      startMenuController.getView().show();
-    });
+    Button startMenuBtn = new Button("Start Menu");
+    startMenuBtn.setOnAction(e-> controller.getStartMenuView().show());
 
     return startMenuBtn;
   }
 
   public VBox createUtilityPane() {
     VBox utilityPane = new VBox();
+    utilityPane.setSpacing(10);
+    utilityPane.setPadding(new Insets(15));
+    utilityPane.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), null)));
     utilityPane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
     StackPane.setAlignment(utilityPane, Pos.BOTTOM_RIGHT);
 
-    utilityPane.getChildren().add(createStartMenuBtn());
+    utilityPane.getChildren().addAll(createStartMenuBtn(), createCloseAppBtn());
     return utilityPane;
   }
 
@@ -73,8 +85,5 @@ public class MainView extends StackPane {
     setBackground();
     initContentPane();
     getChildren().add(createUtilityPane());
-
-    startMenuController = new StartMenuController(contentPane);
-    startMenuController.getView().show();
   }
 }

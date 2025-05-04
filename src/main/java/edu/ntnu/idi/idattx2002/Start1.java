@@ -22,9 +22,9 @@ public class Start1 extends Application {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("BORED GAMES");
 
-        MainView mainView = new MainView();
+        StartMenuController startMenuController = new StartMenuController();
 
-        Scene scene = new Scene(mainView, 300, 200);
+        Scene scene = new Scene(startMenuController.getMainPane(), 300, 200);
         primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
