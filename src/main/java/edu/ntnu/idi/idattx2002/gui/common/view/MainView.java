@@ -11,7 +11,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import org.iq80.snappy.Main;
 
 public class MainView extends StackPane {
 
@@ -47,7 +46,7 @@ public class MainView extends StackPane {
   private void setBackground() {
     setBackground(new Background(new BackgroundFill(Color.web("#4C82A8"), null, null)));
 
-    Image backgroundImage = new Image("background4.jpg");
+    Image backgroundImage = new Image("background.jpg");
     ImageView backgroundImageView = new ImageView(backgroundImage);
 
     backgroundImageView.setFitWidth(getWidth());
