@@ -7,7 +7,6 @@ import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;
 import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersBoardView;
-import edu.ntnu.idi.idattx2002.gui.common.view.WinWindow;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 import java.util.List;
 import javafx.scene.layout.Pane;

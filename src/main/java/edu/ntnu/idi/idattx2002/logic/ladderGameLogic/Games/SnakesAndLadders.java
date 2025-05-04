@@ -1,15 +1,11 @@
 package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games;
 
-import edu.ntnu.idi.idattx2002.gui.common.view.WinWindow;
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;
-import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
-import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
 import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersBoardView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +24,6 @@ public class SnakesAndLadders {
 
   private int playerToMoveID;
   private DiceView diceView;
-  private PlayerIconWindow playerIconWindow;
 
   public SnakesAndLadders() {
     this.board = new SnakesAndLaddersBoard();
