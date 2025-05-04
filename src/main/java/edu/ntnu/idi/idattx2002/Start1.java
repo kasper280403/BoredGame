@@ -24,9 +24,6 @@ public class Start1 extends Application {
 
         MainView mainView = new MainView();
 
-        StartMenuController startMenuController = new StartMenuController(mainView.getContentPane());
-        startMenuController.getView().show();
-
         Scene scene = new Scene(mainView, 300, 200);
         primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);

@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
+import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -15,8 +16,10 @@ import javafx.scene.paint.Color;
 public class MainView extends StackPane {
 
   private StackPane contentPane;
+  private StartMenuController startMenuController;
 
   public MainView() {
+
     init();
   }
 
@@ -27,7 +30,7 @@ public class MainView extends StackPane {
   public Button createStartMenuBtn() {
     Button startMenuBtn = new Button("Go to Start Menu");
     startMenuBtn.setOnAction(e-> {
-      contentPane.getChildren().clear();
+      startMenuController.getView().show();
     });
 
     return startMenuBtn;
@@ -70,5 +73,8 @@ public class MainView extends StackPane {
     setBackground();
     initContentPane();
     getChildren().add(createUtilityPane());
+
+    startMenuController = new StartMenuController(contentPane);
+    startMenuController.getView().show();
   }
 }
