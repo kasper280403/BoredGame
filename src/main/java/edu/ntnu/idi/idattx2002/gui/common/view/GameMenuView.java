@@ -3,12 +3,10 @@ package edu.ntnu.idi.idattx2002.gui.common.view;
 import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.Glow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -51,14 +49,16 @@ public abstract class GameMenuView extends VBox{
 
     Text mainText = new Text(title);
     mainText.setFont(new Font("Helvetica", size));
-    mainText.setFill(Color.INDIANRED);
+    mainText.setFill(Color.web("#F4C400"));
+    mainText.setEffect(new Glow(0.5));
 
     Text accentText = new Text(title);
     accentText.setFont(new Font("Helvetica", size));
-    accentText.setFill(Color.WHITESMOKE);
+    accentText.setFill(Color.web("#A83232"));
+    accentText.setEffect(new GaussianBlur(5));
 
-    titlePane.getChildren().addAll(mainText, accentText);
-    accentText.setTranslateY(-10);
+    titlePane.getChildren().addAll(accentText, mainText);
+    accentText.setTranslateY(size/20);
 
     topBox.getChildren().add(titlePane);
   }

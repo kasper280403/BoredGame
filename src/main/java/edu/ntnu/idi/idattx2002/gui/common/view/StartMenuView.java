@@ -3,6 +3,9 @@ package edu.ntnu.idi.idattx2002.gui.common.view;
 import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -33,14 +36,16 @@ public class StartMenuView extends VBox {
 
     Text mainText = new Text("BORED GAMES");
     mainText.setFont(new Font("Helvetica", size));
-    mainText.setFill(Color.INDIANRED);
+    mainText.setFill(Color.web("#F4C400"));
+    mainText.setEffect(new Glow(0.5));
 
     Text accentText = new Text("BORED GAMES");
     accentText.setFont(new Font("Helvetica", size));
-    accentText.setFill(Color.WHITESMOKE);
+    accentText.setFill(Color.web("#A83232"));
+    accentText.setEffect(new GaussianBlur(5));
 
-    titlePane.getChildren().addAll(mainText, accentText);
-    accentText.setTranslateY(-10);
+    titlePane.getChildren().addAll(accentText, mainText);
+    accentText.setTranslateY(size/20);
 
     return titlePane;
   }
