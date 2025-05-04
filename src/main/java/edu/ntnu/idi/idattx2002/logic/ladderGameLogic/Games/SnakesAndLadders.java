@@ -26,13 +26,12 @@ public class SnakesAndLadders {
   private DiceView diceView;
   private PlayerIconWindow playerIconWindow;
 
-  public SnakesAndLadders(DiceView diceView) {
+  public SnakesAndLadders() {
     this.board = new SnakesAndLaddersBoard();
     players = new HashMap<>();
     playerToMoveID = 1;
 
     initDices();
-    //this.diceWindow = diceWindow;
 
     //Move into init
     createBoard();
@@ -115,18 +114,4 @@ public class SnakesAndLadders {
     dices.add(dice1);
     dices.add(dice2);
   }
-
-
-  /*
-  public void winSequence(Player player) {
-    PauseTransition pause = new PauseTransition(Duration.millis(5000));
-    pause.setOnFinished(event -> {
-      SnakesAndLadderWindow.closeStage();
-      winView.createStage(player.getPieceID(), player.getPlayerName());
-    });
-
-    pause.play();
-
-  }
-   */
 }

@@ -27,7 +27,7 @@ public class SnakesAndLaddersController {
     //Maybe move
     snakesAndLadderView = new SnakesAndLaddersView(mainPane, this);
     diceView = new DiceView(snakesAndLadderView);
-    game = new SnakesAndLadders(diceView);
+    game = new SnakesAndLadders();
 
     diceView = new DiceView(snakesAndLadderView.getLeftPane());
     tilesView = new SnakesAndLaddersBoardView(10, 9, 75, game, snakesAndLadderView.getCenterPane());
