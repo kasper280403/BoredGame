@@ -2,12 +2,10 @@ package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;
-import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
-import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
+import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersBoardView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,20 +20,24 @@ public class SnakesAndLadders {
   private Dice dice2;
   private List<Dice> dices;
 
+  private WinObserver observer;
+
   private int playerToMoveID;
   private DiceView diceView;
-  private PlayerIconWindow playerIconWindow;
 
-  public SnakesAndLadders(DiceView diceView) {
+  public SnakesAndLadders() {
     this.board = new SnakesAndLaddersBoard();
     players = new HashMap<>();
     playerToMoveID = 1;
 
     initDices();
-    //this.diceWindow = diceWindow;
 
     //Move into init
     createBoard();
+  }
+
+  public void addObserver(WinObserver observer) {
+    this.observer = observer;
   }
 
   public List<Dice> getDices() {
@@ -74,11 +76,7 @@ public class SnakesAndLadders {
 
     player.movePlayerBySteps(steps);
 
-    if (checkForWin(player)) {
-      System.out.println("Win hit!");
-      player.movePlayerToTile(board.getLastTile().getSquareId());
-      //winSequence(player);
-    }
+    checkForWin(player);
 
     board.getTile(player.getCurrentTileId()).landPlayer(player);
 
@@ -94,8 +92,10 @@ public class SnakesAndLadders {
     }
   }
 
-  public boolean checkForWin(SnakesAndLaddersPlayer player) {
-    return player.getCurrentTileId() >= board.getSquareMap().size();
+  public void checkForWin(SnakesAndLaddersPlayer player) {
+    if (player.getCurrentTileId() >= board.getSquareMap().size()) {
+      observer.update(player);
+    }
   }
 
   public void addPlayer(SnakesAndLaddersPlayer player) {
@@ -115,18 +115,4 @@ public class SnakesAndLadders {
     dices.add(dice1);
     dices.add(dice2);
   }
-
-
-  /*
-  public void winSequence(Player player) {
-    PauseTransition pause = new PauseTransition(Duration.millis(5000));
-    pause.setOnFinished(event -> {
-      SnakesAndLadderWindow.closeStage();
-      winView.createStage(player.getPieceID(), player.getPlayerName());
-    });
-
-    pause.play();
-
-  }
-   */
 }

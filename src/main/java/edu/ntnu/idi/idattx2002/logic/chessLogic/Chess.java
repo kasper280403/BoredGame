@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic;
 
+import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
