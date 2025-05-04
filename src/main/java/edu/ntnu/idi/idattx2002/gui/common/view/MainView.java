@@ -1,11 +1,14 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.iq80.snappy.Main;
 
@@ -19,6 +22,23 @@ public class MainView extends StackPane {
 
   public Pane getContentPane() {
     return contentPane;
+  }
+
+  public Button createStartMenuBtn() {
+    Button startMenuBtn = new Button("Go to Start Menu");
+    startMenuBtn.setOnAction(e-> {
+      contentPane.getChildren().clear();
+    });
+
+    return startMenuBtn;
+  }
+
+  public VBox createUtilityPane() {
+    VBox utilityPane = new VBox();
+    utilityPane.setAlignment(Pos.BOTTOM_RIGHT);
+
+    utilityPane.getChildren().add(createStartMenuBtn());
+    return utilityPane;
   }
 
   private void setBackground() {
@@ -47,5 +67,6 @@ public class MainView extends StackPane {
   private void init() {
     setBackground();
     initContentPane();
+    getChildren().add(createUtilityPane());
   }
 }
