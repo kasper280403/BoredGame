@@ -71,7 +71,10 @@ public class MusicView extends VBox implements MusicObserver {
 
   private Button createStopBtn() {
     Button stopMusicBtn = new Button("Stop");
-    stopMusicBtn.setOnAction(e -> controller.pauseMusic());
+    stopMusicBtn.setOnAction(e -> {
+      controller.pauseMusic();
+      currentlyPlayingText.setText("Nothing :/");
+    });
 
     return stopMusicBtn;
   }
