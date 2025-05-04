@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.gui.common.controller;
 
 import edu.ntnu.idi.idattx2002.gui.chessGui.controller.ChessMenuController;
+import edu.ntnu.idi.idattx2002.gui.common.MusicPlayer;
 import edu.ntnu.idi.idattx2002.gui.common.view.MainView;
 import edu.ntnu.idi.idattx2002.gui.common.view.StartMenuView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersMenuController;
@@ -11,10 +12,14 @@ public final class StartMenuController {
 
   private final StartMenuView view;
   private final MainView mainPane;
+  private final MusicPlayer musicPlayer;
 
   public StartMenuController() {
+    musicPlayer = new MusicPlayer();
+
     mainPane = new MainView(this);
     view = new StartMenuView(this, mainPane.getContentPane());
+
     view.show();
   }
 
@@ -24,6 +29,14 @@ public final class StartMenuController {
 
   public MainView getMainPane() {
     return mainPane;
+  }
+
+  public void playMusic() {
+    musicPlayer.playNext();
+  }
+
+  public void pauseMusic() {
+   musicPlayer.pause();
   }
 
   public void openChessMenu() {

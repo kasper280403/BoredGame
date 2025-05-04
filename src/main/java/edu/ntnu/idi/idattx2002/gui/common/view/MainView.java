@@ -45,6 +45,13 @@ public class MainView extends StackPane {
     return startMenuBtn;
   }
 
+  public Button createPlayMusicBtn() {
+    Button playMusicBtn = new Button("Play Music");
+    playMusicBtn.setOnAction(e -> controller.playMusic());
+
+    return playMusicBtn;
+  }
+
   public VBox createUtilityPane() {
     VBox utilityPane = new VBox();
     utilityPane.setSpacing(10);
@@ -54,7 +61,7 @@ public class MainView extends StackPane {
 
     StackPane.setAlignment(utilityPane, Pos.BOTTOM_RIGHT);
 
-    utilityPane.getChildren().addAll(createStartMenuBtn(), createCloseAppBtn());
+    utilityPane.getChildren().addAll(createPlayMusicBtn(), createStartMenuBtn(), createCloseAppBtn());
     return utilityPane;
   }
 
