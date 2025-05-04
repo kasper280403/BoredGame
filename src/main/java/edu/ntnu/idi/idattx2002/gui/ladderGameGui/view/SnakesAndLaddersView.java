@@ -70,7 +70,7 @@ public class SnakesAndLaddersView extends HBox{
         leftPane.setAlignment(Pos.CENTER);
         leftPane.setSpacing(50);
 
-        Color backgroundColor = Color.web("#5CE1E6").deriveColor(1, 1, 1, 0.3);
+        Color backgroundColor = Color.BLACK.deriveColor(1, 1, 1, 0.4);
         leftPane.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
         createMoveInfo();
@@ -93,7 +93,7 @@ public class SnakesAndLaddersView extends HBox{
         rightPane.setSpacing(50);
         rightPane.setPadding(new Insets(20));
 
-        Color backgroundColor = Color.web("#5CE1E6").deriveColor(1, 1, 1, 0.3);
+        Color backgroundColor = Color.BLACK.deriveColor(1, 1, 1, 0.4);
         rightPane.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
         rightPane.setMaxHeight(750);
