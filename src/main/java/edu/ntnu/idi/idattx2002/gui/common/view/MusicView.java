@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import edu.ntnu.idi.idattx2002.gui.common.controller.MusicController;
+import edu.ntnu.idi.idattx2002.logic.common.music.MusicObserver;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -16,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class MusicView extends VBox {
+public class MusicView extends VBox implements MusicObserver {
 
   private MusicController controller;
   private Pane mainPane;
@@ -99,6 +100,11 @@ public class MusicView extends VBox {
 
   public void show() {
     mainPane.getChildren().add(this);
+  }
+
+  @Override
+  public void update(String songName) {
+    currentlyPlayingText.setText(songName);
   }
 
 }

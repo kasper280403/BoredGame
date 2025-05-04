@@ -1,12 +1,9 @@
 package edu.ntnu.idi.idattx2002.gui.common.controller;
 
 import edu.ntnu.idi.idattx2002.gui.chessGui.controller.ChessMenuController;
-import edu.ntnu.idi.idattx2002.gui.common.MusicPlayer;
 import edu.ntnu.idi.idattx2002.gui.common.view.MainView;
 import edu.ntnu.idi.idattx2002.gui.common.view.StartMenuView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersMenuController;
-import java.io.IOException;
-import javafx.scene.layout.Pane;
 
 public final class StartMenuController {
 

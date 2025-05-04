@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.gui.common;
+package edu.ntnu.idi.idattx2002.logic.common.music;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,15 +10,18 @@ import javafx.scene.media.MediaPlayer;
 public class MusicPlayer {
 
   private MediaPlayer mediaPlayer;
-
   private Random random;
-
   private List<File> musicList;
 
-  private int currentSongID;
+  private MusicObserver observer;
+
 
   public MusicPlayer() {
     init();
+  }
+
+  public void addObserver(MusicObserver observer) {
+    this.observer = observer;
   }
 
   public void playNext() {
@@ -43,6 +46,8 @@ public class MusicPlayer {
     mediaPlayer.play();
     mediaPlayer.setOnEndOfMedia(this::playNext);
     musicList.remove(randomSongId);
+
+    observer.update(songFile.getName());
   }
 
   public void pause() {
@@ -60,12 +65,8 @@ public class MusicPlayer {
   }
 
   private void init() {
-    currentSongID = 0;
-
     random = new Random();
-
     musicList = new ArrayList<>();
-
     loadMusic();
   }
 
