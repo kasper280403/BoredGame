@@ -2,8 +2,10 @@ package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
 import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
+import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -20,6 +22,7 @@ public class WinView extends VBox implements WinObserver {
   private Text createPlayerText(Player player) {
     Text username = new Text(player.getName());
     username.setFont(new Font ("Helvetica", 80));
+    username.setFill(Color.PURPLE);
 
     return username;
   }
@@ -27,11 +30,15 @@ public class WinView extends VBox implements WinObserver {
   private Text createWinText() {
     Text winText = new Text("THE WINNER IS:");
     winText.setFont(new Font("Helvetica", 80));
+    winText.setFill(Color.PURPLE);
 
     return winText;
   }
 
   private void init() {
+    setAlignment(Pos.CENTER);
+    setSpacing(50);
+
     getChildren().add(createWinText());
   }
 
