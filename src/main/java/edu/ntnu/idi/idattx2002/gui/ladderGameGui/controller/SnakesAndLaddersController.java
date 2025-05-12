@@ -26,7 +26,6 @@ public class SnakesAndLaddersController {
   public SnakesAndLaddersController(Pane mainPane, List<List<String>> players) {
     //Maybe move
     snakesAndLadderView = new SnakesAndLaddersView(mainPane, this);
-    diceView = new DiceView(snakesAndLadderView);
     game = new SnakesAndLadders();
 
     diceView = new DiceView(snakesAndLadderView.getLeftPane());
