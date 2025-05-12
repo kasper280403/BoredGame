@@ -4,5 +4,5 @@ import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 
 public interface DiceObserver {
 
-  public void update(Dice dice);
+  void update(Dice dice);
 }
