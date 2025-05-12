@@ -28,7 +28,7 @@ public class Chess {
   King whiteKing;
   King blackKing;
 
-  public Chess() throws IOException {
+  public Chess() {
     positionIO = new PositionIO();
 
     players = new ArrayList<>();
@@ -50,7 +50,7 @@ public class Chess {
     playerToMove = getPlayer(ChessColor.WHITE);
   }
 
-  public void initPosition(String pathToPosition) throws IOException {
+  public void initPosition(String pathToPosition) {
     positionIO.loadPosition(this, pathToPosition);
     for(ChessPlayer player : players) {
       player.initPieces(board);
@@ -59,20 +59,6 @@ public class Chess {
     blackKing = getPlayer(ChessColor.BLACK).getKing();
 
     positionHistory.add(positionIO.getPositionString(this));
-  }
-
-  public void revertMove() throws IOException {
-    //positionIO.loadPositionFromString(this, positionHistory.get(4));
-    positionIO.loadPosition(this, "startPositions/standardPosition.txt");
-
-    for(ChessPlayer player : players) {
-      player.initPieces(board);
-    }
-    whiteKing = getPlayer(ChessColor.WHITE).getKing();
-    blackKing = getPlayer(ChessColor.BLACK).getKing();
-
-    //positionHistory.removeFirst();
-
   }
 
   public void playMove(Move move) {

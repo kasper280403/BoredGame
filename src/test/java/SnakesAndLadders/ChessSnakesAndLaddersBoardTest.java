@@ -1,10 +1,10 @@
+package SnakesAndLadders;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import edu.ntnu.idi.idattx2002.logic.common.Board.Square;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersSquare;
 import java.util.HashMap;
-import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

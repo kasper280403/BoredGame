@@ -13,7 +13,7 @@ public class ChessController {
   private ChessView chessView;
   private WinView winView;
 
-  public ChessController(Pane mainPane, Chess chess) throws IOException {
+  public ChessController(Pane mainPane, Chess chess) {
     this.chess = chess;
     chessView = new ChessView(mainPane);
     boardController = new BoardController(chess, chessView);

@@ -1,3 +1,5 @@
+package SnakesAndLadders;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestSwitchWithRandomAction {

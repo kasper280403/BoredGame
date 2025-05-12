@@ -1,3 +1,5 @@
+package SnakesAndLadders;
+
 import static org.junit.Assert.assertEquals;
 
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;

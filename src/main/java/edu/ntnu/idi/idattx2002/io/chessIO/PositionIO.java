@@ -147,7 +147,7 @@ public class PositionIO {
     }
   }
 
-  public void loadPosition(Chess chess, String fileName) throws IOException {
+  public void loadPosition(Chess chess, String fileName) {
     String path = basePath + fileName;
 
     try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -167,6 +167,9 @@ public class PositionIO {
           loadSquare(chess, squareNotation);
         }
       }
+    }
+    catch (Exception e) {
+      throw new RuntimeException("Error Parsing position file");
     }
   }
 
