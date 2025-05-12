@@ -17,11 +17,11 @@ public abstract class ChessPlayer extends Player {
   public ChessPlayer(String name, int iconId, ChessColor chessColor) {
     super(name, iconId);
     this.chessColor = chessColor;
+    pieces = new ArrayList<>();
   }
 
+  //TODO refactor out of Player and use addPiece instead
   public void initPieces(ChessBoard board) {
-    pieces = new ArrayList<>();
-
     Piece piece;
     for (ChessSquare square : board.getSquareMap().values()) {
       if(square.hasPiece()) {

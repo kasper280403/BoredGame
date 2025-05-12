@@ -37,7 +37,7 @@ class ChessSnakesAndLaddersPlayerTest {
     @Test
     void testGetPlayerName() {
         //act
-        String name = player.getPlayerName();
+        String name = player.getName();
         //assert
         assertEquals("Kasper", name);
     }
