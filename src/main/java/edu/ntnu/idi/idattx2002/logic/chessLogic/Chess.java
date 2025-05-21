@@ -22,7 +22,7 @@ public class Chess {
 
   private WinObserver observer;
 
-  public Chess() throws IOException {
+  public Chess() {
     positionIO = new PositionIO();
     players = new ArrayList<>();
     board = new ChessBoard();
@@ -61,7 +61,7 @@ public class Chess {
     playerToMove = getPlayer(ChessColor.WHITE);
   }
 
-  public void initPosition(String pathToPosition) throws IOException {
+  public void initPosition(String pathToPosition) {
     positionIO.loadPosition(this, pathToPosition);
     for(ChessPlayer player : players) {
       player.initPieces(board);

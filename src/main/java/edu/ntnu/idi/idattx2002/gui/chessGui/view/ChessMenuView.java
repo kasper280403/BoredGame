@@ -20,13 +20,11 @@ public class ChessMenuView extends GameMenuView {
     Button startButton = new Button("START");
     startButton.setMinSize(80, 40);
     startButton.setMaxSize(80, 40);
+
     startButton.setOnAction(e -> {
-      try {
         controller.startGame(mainPane);
-      } catch (IOException ex) {
-        throw new RuntimeException(ex);
-      }
     });
+
     bottomBox.getChildren().add(startButton);
   }
 

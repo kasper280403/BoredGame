@@ -23,7 +23,7 @@ public class ChoosePlayerController {
   private final int minPlayers;
   private final int maxPlayers;
 
-  public ChoosePlayerController(Pane mainPane, int minPlayers, int maxPlayers) throws IOException {
+  public ChoosePlayerController(Pane mainPane, int minPlayers, int maxPlayers) {
     this.mainPane = mainPane;
 
     this.minPlayers = minPlayers;
@@ -44,7 +44,7 @@ public class ChoosePlayerController {
     return minPlayers;
   }
 
-  public List<List<String>> getPlayerList() throws IOException {
+  public List<List<String>> getPlayerList() {
     return playerIO.getPlayers();
   }
 

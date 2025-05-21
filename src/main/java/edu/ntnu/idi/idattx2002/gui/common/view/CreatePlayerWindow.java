@@ -34,7 +34,7 @@ public class CreatePlayerWindow{
         playerIconWindow = new PlayerIconWindow(50);
     }
 
-    public ListView<String> getPlayersListView() throws IOException {
+    public ListView<String> getPlayersListView() {
         List<List<String>> playerList = playerIO.getPlayers();
         ListView<String> playerListView = new ListView<>();
 
@@ -45,7 +45,7 @@ public class CreatePlayerWindow{
         return playerListView;
     }
 
-    public List<String> getPlayerNames() throws IOException {
+    public List<String> getPlayerNames() {
         List<List<String>> playerList = playerIO.getPlayers();
         List<String> playerNames = new ArrayList<>();
 
@@ -57,11 +57,8 @@ public class CreatePlayerWindow{
     }
 
     public void openPlayerInput(){
-        try {
-            playerNames = getPlayerNames();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        playerNames = getPlayerNames();
+
         VBox layout = new VBox(10);
         Label heading = new Label("Add players!");
         Region spacing = new Region();
@@ -76,13 +73,7 @@ public class CreatePlayerWindow{
 
         HBox pieces = new HBox(10);
 
-
-        ListView<String> playerListView = null;
-        try {
-            playerListView = getPlayersListView();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        ListView<String> playerListView = getPlayersListView();
 
         HashMap<Integer, ImageView> images = getPiecesImg();
 
@@ -118,11 +109,8 @@ public class CreatePlayerWindow{
                 playerNames.add(name);
                 finalPlayerListView.getItems().add(name + " (Piece " + selectedPiece[0] + ")");
                 playerNameField.clear();
-                try {
-                    updateDAO(name, selectedPiece[0]);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+
+                updateDAO(name, selectedPiece[0]);
             }
         });
 
@@ -151,8 +139,7 @@ public class CreatePlayerWindow{
         createPlayerStage.close();
     }
 
-    private void updateDAO(String playerName, int selectedPiece) throws IOException {
+    private void updateDAO(String playerName, int selectedPiece) {
         playerIO.writePlayer(playerName, selectedPiece);
     }
-
 }
