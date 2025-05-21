@@ -10,13 +10,16 @@ import javafx.scene.media.MediaPlayer;
 public class MusicPlayer {
 
   private MediaPlayer mediaPlayer;
-  private Random random;
-  private List<File> musicList;
+  private final Random random;
+  private final List<File> musicList;
 
   private MusicObserver observer;
 
 
   public MusicPlayer() {
+    random = new Random();
+    musicList = new ArrayList<>();
+
     init();
   }
 
@@ -65,8 +68,6 @@ public class MusicPlayer {
   }
 
   private void init() {
-    random = new Random();
-    musicList = new ArrayList<>();
     loadMusic();
   }
 }
