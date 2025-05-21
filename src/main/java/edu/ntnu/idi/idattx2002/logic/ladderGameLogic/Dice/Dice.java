@@ -8,7 +8,7 @@ public class Dice {
 
   private final Random randomNumberGenerator;
 
-  private List<DiceObserver> observers;
+  private final List<DiceObserver> observers;
   private int currentValue;
 
   public Dice() {
