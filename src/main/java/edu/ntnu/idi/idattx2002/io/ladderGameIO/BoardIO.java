@@ -2,6 +2,7 @@ package edu.ntnu.idi.idattx2002.io.ladderGameIO;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,100 +14,98 @@ import java.util.Map;
 
 public class BoardIO {
 
-    SnakesAndLaddersBoard board;
-    ArrayList<String> actionNames;
-    ArrayList<ArrayList<ArrayList<Integer>>> actions;
-    Map<String, BiConsumer<Integer, Integer>> actionMethods = new HashMap<>();
-
-
+    private final SnakesAndLaddersBoard board;
+    private final List<String> actionNames;
+    private final List<List<List<Integer>>> actions;
+    private final Map<String, BiConsumer<Integer, Integer>> actionMethods;
 
     public BoardIO(SnakesAndLaddersBoard board) {
         this.board = board;
         actionNames = new ArrayList<>();
         actions = new ArrayList<>();
+
+         actionMethods = new HashMap<>();
+
         actionMethods.put("LadderActions", this::ladderAction);
-        actionMethods.put("SwitchActions", (a, b) -> switchWithRandomAction(a, b));
+        actionMethods.put("SwitchActions", (a, b) -> switchWithRandomAction(a));
 
     }
 
     public void setActions(String gameID){
-        try {
-            readFile(gameID);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        readFile(gameID);
 
         int index = 0;
         for (String actionName : actionNames) {
-            ArrayList<ArrayList<Integer>> thisAction = actions.get(index);
-            for (ArrayList<Integer> oneAction : thisAction) {
+            List<List<Integer>> thisAction = actions.get(index);
+            for (List<Integer> oneAction : thisAction) {
                 actionMethods.get(actionName).accept(oneAction.get(0), oneAction.get(1));
             }
             index++;
         }
-
     }
 
-    public void readFile(String gameID) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("GameData/boardSetUp.csv"));
-        String line;
-        boolean insideTargetGame = false;
-        boolean insideAction = false;
+    private void readFile(String gameID)  {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("GameData/boardSetUp.csv"));
+            String line;
+            boolean insideTargetGame = false;
+            boolean insideAction = false;
 
+            int actionTypeIndex = -1;
 
-        int actionTypeIndex = -1;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
 
-        while ((line = reader.readLine()) != null) {
-            line = line.trim();
-
-            if (line.startsWith(gameID + "(")) {
-                insideTargetGame = true;
-                continue;
-            }
-
-            if (insideTargetGame) {
-                if (line.equals(")")) {
-                    break;
-                }
-
-                if (line.startsWith("{") && !insideAction) {
-                    // Starter ny action-type
-                    insideAction = true;
-                    String name = line.substring(1); // fjerner {
-                    actionNames.add(name);
-                    actions.add(new ArrayList<>());
-                    actionTypeIndex++;
+                if (line.startsWith(gameID + "(")) {
+                    insideTargetGame = true;
                     continue;
                 }
 
-                if (line.startsWith("}")) {
-                    insideAction = false;
-                    continue;
-                }
+                if (insideTargetGame) {
+                    if (line.equals(")")) {
+                        break;
+                    }
 
-                if (insideAction) {
-                    String[] parts = line.split(",");
-                    ArrayList<Integer> entry = new ArrayList<>();
-                    for (String part : parts) {
-                        entry.add(Integer.parseInt(part.trim()));
+                    if (line.startsWith("{") && !insideAction) {
+                        insideAction = true;
+                        String name = line.substring(1); // fjerner {
+                        actionNames.add(name);
+                        actions.add(new ArrayList<>());
+                        actionTypeIndex++;
+                        continue;
                     }
-                    if (entry.size() == 1){
-                        entry.add(0);
+
+                    if (line.startsWith("}")) {
+                        insideAction = false;
+                        continue;
                     }
-                    actions.get(actionTypeIndex).add(entry);
+
+                    if (insideAction) {
+                        String[] parts = line.split(",");
+                        ArrayList<Integer> entry = new ArrayList<>();
+                        for (String part : parts) {
+                            entry.add(Integer.parseInt(part.trim()));
+                        }
+                        if (entry.size() == 1) {
+                            entry.add(0);
+                        }
+                        actions.get(actionTypeIndex).add(entry);
+                    }
                 }
             }
+
+            reader.close();
+        } catch(IOException e) {
+            throw new IllegalArgumentException("Could not read from file");
         }
-
-        reader.close();
     }
 
-    public void ladderAction(int tile, int destination){
+    private void ladderAction(int tile, int destination){
         System.out.println("Ladder action: " + tile + ", " + destination);
         board.getTile(tile).setLandAction(new LadderAction(destination));
     }
 
-    public void switchWithRandomAction(int tile, int dummy){
+    private void switchWithRandomAction(int tile){
         System.out.println("Switch action: " + tile);
         board.getTile(tile).setLandAction(new SwitchWithRandomAction());
     }

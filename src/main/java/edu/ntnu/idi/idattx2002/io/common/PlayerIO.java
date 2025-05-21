@@ -1,11 +1,12 @@
-package edu.ntnu.idi.idattx2002.io.ladderGameIO;
+package edu.ntnu.idi.idattx2002.io.common;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerIO {
 
-    public PlayerIO() {}
+    public PlayerIO() {
+    }
 
 
     public void writePlayer(String name, int imgID) throws IOException {

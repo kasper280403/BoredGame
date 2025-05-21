@@ -2,8 +2,7 @@ package edu.ntnu.idi.idattx2002.gui.common.controller;
 
 import edu.ntnu.idi.idattx2002.gui.common.view.ChoosePlayerView;
 import edu.ntnu.idi.idattx2002.gui.common.view.CreatePlayerWindow;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller.SnakesAndLaddersController;
-import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
+import edu.ntnu.idi.idattx2002.io.common.PlayerIO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
