@@ -69,5 +69,4 @@ public class MusicPlayer {
     musicList = new ArrayList<>();
     loadMusic();
   }
-
 }
