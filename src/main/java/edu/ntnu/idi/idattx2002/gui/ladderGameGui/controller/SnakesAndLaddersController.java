@@ -21,9 +21,10 @@ public class SnakesAndLaddersController {
   private final WinView winView;
 
 
-  public SnakesAndLaddersController(Pane mainPane, List<List<String>> players) {
+  public SnakesAndLaddersController(Pane mainPane, List<List<String>> players, String selectedGamemode) {
     snakesAndLadderView = new SnakesAndLaddersView(mainPane, this);
     game = new SnakesAndLadders();
+    game.createBoard(selectedGamemode);
 
     diceView = new DiceView(snakesAndLadderView.getLeftPane());
     tilesView = new SnakesAndLaddersBoardView(10, 9, 75, game, snakesAndLadderView.getCenterPane());
