@@ -74,7 +74,7 @@ class ChessSnakesAndLaddersBoardTest {
     //arrange
     board.createBoard(2, 2);
     //act
-    HashMap<Integer, SnakesAndLaddersSquare> tiles = board.getSquareMap();
+    Map<Integer, SnakesAndLaddersSquare> tiles = board.getSquareMap();
     //assert
     assertEquals(4, tiles.size());
   }

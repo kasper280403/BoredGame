@@ -15,15 +15,13 @@ import edu.ntnu.idi.idattx2002.logic.chessLogic.board.SquareObserver;
 
 public class BoardView extends GridPane implements SquareObserver {
 
-  private PieceView pieceView;
-  private Chess chess;
+  private final PieceView pieceView;
   private Pane parent;
 
   private Map<ChessSquare, Pane> tileMap;
   private int tilesize;
 
-  public BoardView(Chess chess, Pane parent) {
-    this.chess = chess;
+  public BoardView(Pane parent) {
     this.parent = parent;
 
     tileMap = new HashMap<>();
@@ -37,7 +35,7 @@ public class BoardView extends GridPane implements SquareObserver {
     return tileMap;
   }
 
-  private void createSquares(ChessColor colorPerspective) {
+  public void createSquares(ChessColor colorPerspective, Chess chess) {
     int x;
     int y;
     int xAdjustment;
@@ -107,9 +105,9 @@ public class BoardView extends GridPane implements SquareObserver {
     tile.getChildren().add(highlight);
   }
 
-  public void refresh(ChessColor colorPerspective) {
+  public void refresh(ChessColor colorPerspective, Chess chess) {
     getChildren().clear();
-    createSquares(colorPerspective);
+    createSquares(colorPerspective, chess);
   }
 
   public void update(ChessSquare square) {
@@ -118,8 +116,6 @@ public class BoardView extends GridPane implements SquareObserver {
 
   public void init() {
     setAlignment(Pos.CENTER);
-
-    createSquares(ChessColor.WHITE);
   }
 
   public void show() {

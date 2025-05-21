@@ -38,7 +38,7 @@ public class Pawn extends Piece{
             (currentSquare.getYCoordinate() == 5 && chessColor == ChessColor.WHITE));
   }
 
-  public boolean checkForEnPassant(Chess chess, ChessSquare square) {
+  private boolean checkForEnPassant(Chess chess, ChessSquare square) {
     if(!squareForEnPassant()) {
       return false;
     }
@@ -62,7 +62,7 @@ public class Pawn extends Piece{
     }
   }
 
-  public void performEnPassant(ChessSquare square, Chess chess) {
+  private void performEnPassant(ChessSquare square, Chess chess) {
     int yOffsett = square.getXCoordinate() == 4 ? 1 : -1;
     ChessSquare enemySquare = chess.getBoard().getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
     Piece enemyPiece = enemySquare.getPiece();
@@ -75,14 +75,14 @@ public class Pawn extends Piece{
     setCurrentSquare(square);
   }
 
-  public boolean isDiagMovePossible(ChessSquare square) {
+  private boolean isDiagMovePossible(ChessSquare square) {
     if(square.hasPiece()) {
       return square.getPiece().getColor() != chessColor;
     }
     return false;
   }
 
-  public boolean isStraightMovePossible(ChessSquare square) {
+  private boolean isStraightMovePossible(ChessSquare square) {
     int yDiff = currentSquare.getYCoordinate() - square.getYCoordinate();
     int xDiff = currentSquare.getXCoordinate() - square.getXCoordinate();
     if(chessColor == ChessColor.WHITE) {
@@ -100,9 +100,9 @@ public class Pawn extends Piece{
   }
 
   //TODO Allow for user input somewhere
-  public void promote(Chess chess, String pieceType) {
+  private void promote(Chess chess, String pieceType) {
     if(currentSquare.getYCoordinate() != 1 && currentSquare.getYCoordinate() != 8) {
-      throw new IllegalArgumentException("Pawn witch isnt on the final rank shouldnt be promoted");
+      throw new IllegalArgumentException("Pawn which isnt on the final rank shouldnt be promoted");
     }
 
     currentSquare.removePiece();
@@ -153,7 +153,6 @@ public class Pawn extends Piece{
     return (xDiff == 1 && yDiff == 1) && super.threatens(square, chess);
   }
 
-  //TODO fix bug where pawn hinders enemy king of moving infront of it
   @Override
   public boolean isMoveLegal(ChessSquare square, Chess chess) {
     return isMovePossible(square) && super.isMoveLegal(square, chess);
@@ -166,7 +165,7 @@ public class Pawn extends Piece{
       updateStatus();
 
       if(currentSquare.getYCoordinate() == 1 || currentSquare.getYCoordinate() == 8) {
-        promote(chess, "HORSE");
+        promote(chess, "QUEEN");
       }
     }
     else if (Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate()) == 1 &&

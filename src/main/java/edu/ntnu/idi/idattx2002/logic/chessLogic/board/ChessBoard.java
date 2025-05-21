@@ -7,10 +7,23 @@ import java.util.Map;
 
 public class ChessBoard {
 
-  private Map<Integer, ChessSquare> squareMap;
+  private final Map<Integer, ChessSquare> squareMap;
 
   public ChessBoard() {
+    squareMap = new HashMap<>();
     initSquares();
+  }
+
+  public Map<Integer, ChessSquare> getSquareMap() {
+    return squareMap;
+  }
+
+  public ChessSquare getSquare(int squareId) {
+    return getSquareMap().get(squareId);
+  }
+
+  public ChessSquare getSquareByCords(int x, int y) {
+    return getSquare((y-1)*8 + x);
   }
 
   public boolean isPathClear(ChessSquare square1, ChessSquare square2) {
@@ -87,7 +100,6 @@ public class ChessBoard {
   }
 
   private void initSquares() {
-    squareMap = new HashMap<>();
     for(int x = 1; x <= 8; x++) {
       for(int y = 1; y <= 8; y++) {
         ChessSquare square = new ChessSquare(x, y);
@@ -95,17 +107,4 @@ public class ChessBoard {
       }
     }
   }
-
-  public Map<Integer, ChessSquare> getSquareMap() {
-    return squareMap;
-  }
-
-  public ChessSquare getSquare(int squareId) {
-    return getSquareMap().get(squareId);
-  }
-
-  public ChessSquare getSquareByCords(int x, int y) {
-    return getSquare((y-1)*8 + x);
-  }
-
 }

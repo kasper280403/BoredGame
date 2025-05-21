@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SnakesAndLaddersPlayer extends Player {
-    int playerID;
-    int currentTileId;
-    List<PlayerObserver> playerObservers;
+
+    private final int playerID;
+    private int currentTileId;
+    private final List<PlayerObserver> playerObservers;
 
     public SnakesAndLaddersPlayer(String playerName, int playerID, int iconID) {
         super(playerName, iconID);
@@ -18,9 +19,16 @@ public class SnakesAndLaddersPlayer extends Player {
         playerObservers = new ArrayList<>();
     }
 
+    public int getCurrentTileId(){
+        return currentTileId;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
     public void addObserver(PlayerObserver playerObserver) {
         playerObservers.add(playerObserver);
-        System.out.println("Added observer");
     }
 
     public void movePlayerBySteps(int numberOfSteps){
@@ -34,18 +42,8 @@ public class SnakesAndLaddersPlayer extends Player {
     }
 
     private void notifyObservers() {
-        System.out.println("Entered notify observers");
         for(PlayerObserver playerObserver : playerObservers) {
             playerObserver.update(this);
         }
     }
-
-    public int getCurrentTileId(){
-        return currentTileId;
-    }
-
-    public int getPlayerID() {
-        return playerID;
-    }
-
 }

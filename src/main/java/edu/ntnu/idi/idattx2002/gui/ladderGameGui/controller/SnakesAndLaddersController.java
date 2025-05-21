@@ -5,7 +5,6 @@ import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersMenuView;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;
-import edu.ntnu.idi.idattx2002.gui.common.view.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersBoardView;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
@@ -14,25 +13,21 @@ import javafx.scene.layout.Pane;
 
 public class SnakesAndLaddersController {
 
-  private SnakesAndLadders game;
+  private final SnakesAndLadders game;
 
-  //Maybe move
-  private SnakesAndLaddersView snakesAndLadderView;
-  private PlayerIconWindow pieceView;
-  private DiceView diceView;
-  private SnakesAndLaddersBoardView tilesView;
-  private WinView winView;
+  private final SnakesAndLaddersView snakesAndLadderView;
+  private final DiceView diceView;
+  private final SnakesAndLaddersBoardView tilesView;
+  private final WinView winView;
 
 
   public SnakesAndLaddersController(Pane mainPane, List<List<String>> players) {
-    //Maybe move
     snakesAndLadderView = new SnakesAndLaddersView(mainPane, this);
-
-    String boardSetup = SnakesAndLaddersMenuView.getGameMode();
-    game = new SnakesAndLadders(boardSetup);
+    game = new SnakesAndLadders();
 
     diceView = new DiceView(snakesAndLadderView.getLeftPane());
     tilesView = new SnakesAndLaddersBoardView(10, 9, 75, game, snakesAndLadderView.getCenterPane());
+    tilesView.displayLandActionsAtTile(game);
 
     winView = new WinView(mainPane);
     game.addObserver(winView);
@@ -41,7 +36,7 @@ public class SnakesAndLaddersController {
     startGame();
   }
 
-  public void setUpGame(List<List<String>> players) {
+  private void setUpGame(List<List<String>> players) {
     int playerID = 1;
     for (List<String> playerString : players) {
       SnakesAndLaddersPlayer newPlayer = new SnakesAndLaddersPlayer(playerString.getFirst(), playerID, Integer.parseInt(playerString.getLast()));
@@ -57,7 +52,7 @@ public class SnakesAndLaddersController {
     }
   }
 
-  public void startGame() {
+  private void startGame() {
     snakesAndLadderView.show();
     diceView.show();
     tilesView.show();

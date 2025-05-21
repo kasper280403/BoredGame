@@ -2,8 +2,8 @@ package edu.ntnu.idi.idattx2002.logic.common.Player;
 
 public abstract class Player {
 
-  public String name;
-  public int iconId;
+  private final String name;
+  private final int iconId;
 
   public Player(String name, int iconId) {
     this.name = name;

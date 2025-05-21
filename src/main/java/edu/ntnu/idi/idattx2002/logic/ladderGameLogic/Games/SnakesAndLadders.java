@@ -1,7 +1,6 @@
 package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
-import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;
 import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
@@ -11,39 +10,32 @@ import java.util.List;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SnakesAndLadders {
 
+  public static Map<Integer, SnakesAndLaddersPlayer> players;
+
   private final SnakesAndLaddersBoard board;
-  public static HashMap<Integer, SnakesAndLaddersPlayer> players;
+
   private Dice dice1;
   private Dice dice2;
   private List<Dice> dices;
 
-  private WinObserver observer;
-
   private int playerToMoveID;
 
-  public SnakesAndLadders(String boardSetup) {
+  private WinObserver observer;
+
+  public SnakesAndLadders() {
     this.board = new SnakesAndLaddersBoard();
     players = new HashMap<>();
     playerToMoveID = 1;
 
-    initDices();
-
-    createBoard(boardSetup);
-  }
-
-  public void addObserver(WinObserver observer) {
-    this.observer = observer;
+    init();
   }
 
   public List<Dice> getDices() {
     return dices;
-  }
-
-  public HashMap<Integer, SnakesAndLaddersPlayer> getPlayers() {
-    return players;
   }
 
   public SnakesAndLaddersBoard getBoard() {
@@ -54,13 +46,21 @@ public class SnakesAndLadders {
     return players.get(playerToMoveID);
   }
 
-  public void createBoard(String boardSetup) {
-    board.createBoard(9, 10);
-    setActions(boardSetup);
+  public void addObserver(WinObserver observer) {
+    this.observer = observer;
   }
 
+  //TODO Refactor so that parameter can be taken for gameID
+  public void createBoard() {
+    board.createBoard(9, 10);
+
+    //gameID has to be choosen from the available games in the BoardSetUp.csv
+    String gameID = "RegularSnakesAndLadders";
+    setActions(gameID);
+  }
+
+
   public void playTurn() {
-    System.out.println("PlayTurn");
     SnakesAndLaddersPlayer player = getPlayerToMove();
 
     int steps = 0;
@@ -69,10 +69,7 @@ public class SnakesAndLadders {
     }
 
     player.movePlayerBySteps(steps);
-
     checkForWin(player);
-
-    board.getTile(player.getCurrentTileId()).landPlayer(player);
 
     board.getTile(player.getCurrentTileId()).landPlayer(player);
     updatePlayerToMove();
@@ -96,7 +93,7 @@ public class SnakesAndLadders {
     players.put(player.getPlayerID(), player);
   }
 
-  public void setActions(String gameID) {
+  private void setActions(String gameID) {
     BoardIO boardIO = new BoardIO(board);
     boardIO.setActions(gameID);
   }
@@ -108,5 +105,10 @@ public class SnakesAndLadders {
     dices = new ArrayList<>();
     dices.add(dice1);
     dices.add(dice2);
+  }
+
+  private void init() {
+    initDices();
+    createBoard();
   }
 }

@@ -111,7 +111,7 @@ public class SnakesAndLaddersView extends HBox{
         rightPane.getChildren().add(rulesText);
     }
 
-    public void init() {
+    private void init() {
         setSpacing(50);
         setAlignment(Pos.CENTER);
 

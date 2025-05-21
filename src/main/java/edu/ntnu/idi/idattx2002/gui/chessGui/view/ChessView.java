@@ -1,20 +1,12 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.view;
 
-
-import java.io.IOException;
 import javafx.geometry.Pos;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import edu.ntnu.idi.idattx2002.gui.chessGui.controller.ChessController;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 public class ChessView extends HBox {
 
-  private ChessController chessController;
-  private Pane parent;
+  private final Pane parent;
 
   public ChessView(Pane parent) {
     this.parent = parent;

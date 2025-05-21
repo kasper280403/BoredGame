@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 
 public class SnakesAndLaddersMenuView extends GameMenuView {
 
-  private SnakesAndLaddersMenuController controller;
+  private final SnakesAndLaddersMenuController controller;
 
   public SnakesAndLaddersMenuView(SnakesAndLaddersMenuController controller, Pane mainPane) {
     super(mainPane);
@@ -37,9 +37,4 @@ public class SnakesAndLaddersMenuView extends GameMenuView {
     createGameModeSelectionPane(controller.getStartPositions());
     createStartButton();
   }
-
-  public static String getGameMode(){
-    return gameModeSelection.getValue();
-  }
-
 }

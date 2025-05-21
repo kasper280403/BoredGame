@@ -27,7 +27,4 @@ public class SwitchWithRandomAction implements LandAction {
       player.movePlayerToTile(playerToSwitchTileId);
       playerToSwitch.movePlayerToTile(playerTileId);
   }
-
-
-
 }

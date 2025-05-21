@@ -33,7 +33,7 @@ public final class StartMenuController {
       ChessMenuController mainController = new ChessMenuController(mainPane.getContentPane());
       mainController.getView().show();
     } catch (Exception ex) {
-      System.out.println(ex.getMessage());
+      throw new RuntimeException("Couldnt open game menu");
     }
   }
 
@@ -42,7 +42,7 @@ public final class StartMenuController {
       SnakesAndLaddersMenuController mainController = new SnakesAndLaddersMenuController(mainPane.getContentPane());
       mainController.getView().show();
     } catch (Exception ex) {
-      System.out.println(ex.getMessage());
+      throw new RuntimeException("Couldnt open game menu");
     }
   }
 

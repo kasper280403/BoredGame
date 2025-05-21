@@ -2,17 +2,18 @@ package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class SnakesAndLaddersBoard {
 
-  private final HashMap<Integer, SnakesAndLaddersSquare> squareMap;
+  private final Map<Integer, SnakesAndLaddersSquare> squareMap;
 
   public SnakesAndLaddersBoard() {
     this.squareMap = new HashMap<>();
   }
 
-  public HashMap<Integer, SnakesAndLaddersSquare> getSquareMap() {
+  public Map<Integer, SnakesAndLaddersSquare> getSquareMap() {
     return squareMap;
   }
 
@@ -36,15 +37,12 @@ public class SnakesAndLaddersBoard {
   public void createBoard(int numberOfRows, int numberOfColumns) {
     validateRowsAndColumns(numberOfRows, numberOfColumns);
 
-
-
     for (int i = 1; i < numberOfRows*numberOfColumns+1; i++){
            addTile(new SnakesAndLaddersSquare(i));
     }
-
   }
 
-  public void validateRowsAndColumns(int numberOfRows, int numberOfColumns) {
+  private void validateRowsAndColumns(int numberOfRows, int numberOfColumns) {
     if (numberOfColumns < 1 || numberOfRows < 1) {
       throw new IllegalArgumentException("Rows and columns has to be greater then zero");
     }

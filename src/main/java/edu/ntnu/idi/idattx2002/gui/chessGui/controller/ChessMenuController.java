@@ -22,7 +22,7 @@ public class ChessMenuController {
     choosePlayerController.showView();
   }
 
-  public GameMenuView getView() {
+  public ChessMenuView getView() {
     return chessMenuView;
   }
 

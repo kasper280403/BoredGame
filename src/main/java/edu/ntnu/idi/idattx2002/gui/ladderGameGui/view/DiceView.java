@@ -18,21 +18,26 @@ import java.util.Random;
 
 public class DiceView extends HBox implements DiceObserver{
 
-    private Pane parent;
+    private final Pane parent;
 
-    private Random random;
-    private Map<Dice, ImageView> diceMap2;
-    private Map<Integer, Image> greenDiceImageMap;
-    private HashMap<Integer, Image> orangeDiceImageMap;
+    private final Random random;
+    private final Map<Dice, ImageView> diceMap;
+    private final Map<Integer, Image> greenDiceImageMap;
+    private final Map<Integer, Image> orangeDiceImageMap;
 
     public DiceView(Pane parent) {
+        random = new Random();
+        diceMap = new HashMap<>();
+        greenDiceImageMap = new HashMap<>();
+        orangeDiceImageMap = new HashMap<>();
+
         this.parent = parent;
         init();
     }
 
     private void loadDiceImages() {
         String standardLocation = "/ladderGameResources/images/dices/";
-        if (diceMap2.isEmpty()) {
+        if (diceMap.isEmpty()) {
             greenDiceImageMap.put(1, new Image(Objects.requireNonNull(
                 DiceView.class.getResourceAsStream(standardLocation + "greenDice1.png"))));
             greenDiceImageMap.put(2, new Image(Objects.requireNonNull(
@@ -64,7 +69,7 @@ public class DiceView extends HBox implements DiceObserver{
     private KeyFrame getDiceKeyFrame(Dice dice, int diceValue, Map<Integer, Image> diceImageMap,  double wait) {
       return new KeyFrame(Duration.millis(wait), e -> {
           Image diceImage = diceImageMap.get(diceValue);
-          ImageView diceImageView = diceMap2.get(dice);
+          ImageView diceImageView = diceMap.get(dice);
 
           if (diceImageView != null) {
               diceImageView.setImage(diceImage);
@@ -101,15 +106,11 @@ public class DiceView extends HBox implements DiceObserver{
     }
 
     public void initDice(Dice dice) {
-        diceMap2.put(dice, getDiceImage(dice, greenDiceImageMap));
-        getChildren().add(diceMap2.get(dice));
+        diceMap.put(dice, getDiceImage(dice, greenDiceImageMap));
+        getChildren().add(diceMap.get(dice));
     }
 
-    public void init(){
-        random = new Random();
-        diceMap2 = new HashMap<>();
-        greenDiceImageMap = new HashMap<>();
-        orangeDiceImageMap = new HashMap<>();
+    private void init(){
         loadDiceImages();
 
         setSpacing(10);
@@ -121,7 +122,7 @@ public class DiceView extends HBox implements DiceObserver{
     }
 
     public void show() {
-        parent.getChildren().add(0, this);
+        parent.getChildren().addFirst(this);
     }
 }
 

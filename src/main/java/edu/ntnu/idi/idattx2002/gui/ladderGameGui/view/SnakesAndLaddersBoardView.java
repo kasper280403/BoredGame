@@ -26,16 +26,15 @@ import java.util.HashMap;
 
 public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserver {
 
-    Pane parent;
-    SnakesAndLadders game;
-    double tileSize;
+    private final Pane parent;
+    private final double tileSize;
 
-    private Map<Integer, StackPane> tileMap;
-    private LadderView ladderView;
-    private PlayerIconWindow playerIconWindow;
+    private final Map<Integer, StackPane> tileMap;
+    private final LadderView ladderView;
+    private final PlayerIconWindow playerIconWindow;
 
-    int xDimensions;
-    int yDimensions;
+    private final int xDimensions;
+    private final int yDimensions;
 
     public SnakesAndLaddersBoardView(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
         this.parent = parent;
@@ -44,7 +43,6 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
         ladderView = new LadderView();
         playerIconWindow = new PlayerIconWindow(tileSize);
 
-        this.game = game;
         this.tileSize = tileSize;
 
         this.xDimensions = xDimensions;
@@ -77,13 +75,12 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
         return leftToRight ? 1 : -1;
     }
 
-    public void displayPieceAtTile(int tileID, int pieceID) {
+    private void displayPieceAtTile(int tileID, int pieceID) {
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
 
         StackPane tilePane = tileMap.get(tileID);
         ImageView pieceView = playerIconWindow.getImageView(pieceID);
         pause.setOnFinished(event -> {
-            // Fjern fra tidligere tile hvis den har en parent
             if (pieceView.getParent() instanceof StackPane oldTile) {
                 oldTile.getChildren().remove(pieceView);
             }
@@ -93,8 +90,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
         pause.play();
     }
 
-    //TODO should be refactored
-    private void displayLandActionsAtTile(double tileSize, SnakesAndLadders game) {
+    public void displayLandActionsAtTile(SnakesAndLadders game) {
         SnakesAndLaddersBoard board = game.getBoard();
         SnakesAndLaddersSquare tile;
         LandAction landAction;
@@ -144,7 +140,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
         return colorList;
     }
 
-    public void changeTileColor(int tileID, Color color) {
+    private void changeTileColor(int tileID, Color color) {
         StackPane tilePane = tileMap.get(tileID);
         if (tilePane != null) {
             for (Node node : tilePane.getChildren()) {
@@ -187,12 +183,9 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
         displayPieceAtTile(player.getCurrentTileId(), player.getIconId());
     }
 
-    //TODO refactor board creation into own method
-    public void init() {
+    private void init() {
         setAlignment(Pos.CENTER);
-
         initBoard();
-        displayLandActionsAtTile(tileSize, game);
     }
 
     public void show() {
