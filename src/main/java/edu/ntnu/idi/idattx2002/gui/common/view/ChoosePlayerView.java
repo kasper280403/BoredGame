@@ -25,7 +25,7 @@ public class ChoosePlayerView extends HBox {
   private ChoosePlayerController controller;
   private VBox choosePlayerPane;
 
-  public ChoosePlayerView(Pane mainPane, ChoosePlayerController controller) throws IOException {
+  public ChoosePlayerView(Pane mainPane, ChoosePlayerController controller) {
     this.controller = controller;
     this.mainPane = mainPane;
 
@@ -78,7 +78,7 @@ public class ChoosePlayerView extends HBox {
     return headingBox;
   }
 
-  public Pane createPlayerList() throws IOException {
+  public Pane createPlayerList() {
     VBox playerList = new VBox();
     playerList.setSpacing(15);
 
@@ -121,7 +121,7 @@ public class ChoosePlayerView extends HBox {
     mainPane.getChildren().add(this);
   }
 
-  public void init() throws IOException {
+  public void init() {
     choosePlayerPane = new VBox();
 
     double opacity = 0.2;

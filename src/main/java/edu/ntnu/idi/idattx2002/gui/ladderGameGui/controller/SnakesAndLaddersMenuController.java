@@ -15,7 +15,7 @@ public class SnakesAndLaddersMenuController {
   private final SnakesAndLaddersMenuView menuView;
   private final ChoosePlayerController choosePlayerController;
 
-  public SnakesAndLaddersMenuController(Pane mainPane) throws IOException {
+  public SnakesAndLaddersMenuController(Pane mainPane) {
     menuView = new SnakesAndLaddersMenuView(this, mainPane);
     choosePlayerController = new ChoosePlayerController(menuView.getMiddleBox(), 2, 6);
     choosePlayerController.showView();
@@ -29,7 +29,7 @@ public class SnakesAndLaddersMenuController {
     return menuView;
   }
 
-  public void startGame(Pane mainPane) throws IOException {
+  public void startGame(Pane mainPane) {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
 
     if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {

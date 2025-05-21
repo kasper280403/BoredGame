@@ -15,7 +15,7 @@ public class ChessMenuController {
   private final PositionIO positionIO;
   private final ChoosePlayerController choosePlayerController;
 
-  public ChessMenuController(Pane mainPane) throws IOException {
+  public ChessMenuController(Pane mainPane) {
     positionIO = new PositionIO();
     this.chessMenuView = new ChessMenuView(this, mainPane);
     choosePlayerController = new ChoosePlayerController(chessMenuView.getMiddleBox(), 2, 2);
@@ -30,7 +30,7 @@ public class ChessMenuController {
     return positionIO.getAllStartPositionEndPaths();
   }
 
-  public void startGame(Pane mainPane) throws IOException {
+  public void startGame(Pane mainPane) {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
 
     if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {

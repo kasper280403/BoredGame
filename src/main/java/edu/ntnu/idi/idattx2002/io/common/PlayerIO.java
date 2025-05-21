@@ -9,31 +9,39 @@ public class PlayerIO {
     }
 
 
-    public void writePlayer(String name, int imgID) throws IOException {
-        FileWriter writer = new FileWriter("GameData/playerData.csv", true);
-        writer.write(name +","+imgID+"\n");
-        writer.close();
+    public void writePlayer(String name, int imgID) {
+        try {
+            FileWriter writer = new FileWriter("GameData/playerData.csv", true);
+            writer.write(name + "," + imgID + "\n");
+            writer.close();
+        } catch(IOException e) {
+            throw new RuntimeException("could not write player data");
+        }
     }
 
-    public List<List<String>> getPlayers() throws IOException {
+    public List<List<String>> getPlayers() {
         List<List<String>> players = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new FileReader("GameData/playerData.csv"));
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("GameData/playerData.csv"));
 
-        String line;
-        while ((line = reader.readLine()) != null) {
-            ArrayList<String> player = new ArrayList<>();
-            String[] parts = line.split(",");
-            player.add(parts[0]);
-            player.add(parts[1]);
-            players.add(player);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                ArrayList<String> player = new ArrayList<>();
+                String[] parts = line.split(",");
+                player.add(parts[0]);
+                player.add(parts[1]);
+                players.add(player);
+            }
+
+            reader.close();
+            return players;
+        }catch (IOException e) {
+            throw new RuntimeException("couldnt read playerdata");
         }
-
-        reader.close();
-        return players;
     }
 
-    public void deletePlayer(String nameToDelete) throws IOException {
+    public void deletePlayer(String nameToDelete) {
         ArrayList<String> updatedLines = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("GameData/playerData.csv"))) {
@@ -45,8 +53,7 @@ public class PlayerIO {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
-            return;
+            throw new RuntimeException("Could not manage to delete player");
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("GameData/playerData.csv"))) {
