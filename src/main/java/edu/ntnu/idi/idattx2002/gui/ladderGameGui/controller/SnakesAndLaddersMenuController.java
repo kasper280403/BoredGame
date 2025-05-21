@@ -12,8 +12,8 @@ import javafx.scene.layout.Pane;
 
 public class SnakesAndLaddersMenuController {
 
-  private SnakesAndLaddersMenuView menuView;
-  private ChoosePlayerController choosePlayerController;
+  private final SnakesAndLaddersMenuView menuView;
+  private final ChoosePlayerController choosePlayerController;
 
   public SnakesAndLaddersMenuController(Pane mainPane) throws IOException {
     menuView = new SnakesAndLaddersMenuView(this, mainPane);
@@ -22,11 +22,7 @@ public class SnakesAndLaddersMenuController {
   }
 
   public List<String> getStartPositions() {
-      try {
-          return BoardIO.getBoards();
-      } catch (IOException e) {
-          throw new RuntimeException(e);
-      }
+    return BoardIO.getBoards();
   }
 
   public GameMenuView getView() {
@@ -37,7 +33,7 @@ public class SnakesAndLaddersMenuController {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
 
     if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
-      new SnakesAndLaddersController(mainPane, choosePlayerController.getChosenPlayers() );
+      new SnakesAndLaddersController(mainPane, choosePlayerController.getChosenPlayers(), menuView.getGameModeSelection().getValue());
     }
   }
 

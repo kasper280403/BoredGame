@@ -50,13 +50,9 @@ public class SnakesAndLadders {
     this.observer = observer;
   }
 
-  //TODO Refactor so that parameter can be taken for gameID
-  public void createBoard() {
+  public void createBoard(String gamemode) {
     board.createBoard(9, 10);
-
-    //gameID has to be choosen from the available games in the BoardSetUp.csv
-    String gameID = "RegularSnakesAndLadders";
-    setActions(gameID);
+    setActions(gamemode);
   }
 
 
@@ -109,6 +105,5 @@ public class SnakesAndLadders {
 
   private void init() {
     initDices();
-    createBoard();
   }
 }
