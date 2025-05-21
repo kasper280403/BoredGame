@@ -80,8 +80,6 @@ public class PositionIO {
     else {
       throw new RuntimeException("Error resolving piecetype to: " + pieceString);
     }
-    System.out.println("load: " + squareNotation);
-    System.out.println("Piece: " + piece.getColor());
   }
 
   private String getColorNotation(ChessColor color) {

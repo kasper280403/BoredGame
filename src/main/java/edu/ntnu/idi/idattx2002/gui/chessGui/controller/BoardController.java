@@ -49,9 +49,7 @@ public class BoardController {
   }
 
   private void handleSquareClick(ChessSquare square, Pane tile) {
-    System.out.println("Clicked");
     if(selectedSquare == null && selectedTile == null && square.hasPiece()) {
-      System.out.println("Has piece");
       selectedSquare = square;
       selectedTile = tile;
       boardView.highlightTile(selectedTile);

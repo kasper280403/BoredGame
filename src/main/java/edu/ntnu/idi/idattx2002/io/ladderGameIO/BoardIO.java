@@ -101,12 +101,10 @@ public class BoardIO {
     }
 
     private void ladderAction(int tile, int destination){
-        System.out.println("Ladder action: " + tile + ", " + destination);
         board.getTile(tile).setLandAction(new LadderAction(destination));
     }
 
     private void switchWithRandomAction(int tile){
-        System.out.println("Switch action: " + tile);
         board.getTile(tile).setLandAction(new SwitchWithRandomAction());
     }
 
