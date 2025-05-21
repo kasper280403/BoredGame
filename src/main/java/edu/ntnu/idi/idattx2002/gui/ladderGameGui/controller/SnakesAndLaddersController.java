@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller;
 
 import edu.ntnu.idi.idattx2002.gui.common.view.WinView;
+import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersMenuView;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games.SnakesAndLadders;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.DiceView;

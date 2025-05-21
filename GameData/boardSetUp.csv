@@ -1,6 +1,4 @@
 
-
-
 RegularSnakesAndLadders(
 {LadderActions
 24,5
@@ -18,5 +16,13 @@ RegularSnakesAndLadders(
 9
 66
 87
+}
+)
+
+BoringSnakesAndLadders(
+{LadderActions
+10,80
+}
+{SwitchActions
 }
 )
