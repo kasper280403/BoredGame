@@ -17,13 +17,13 @@ import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Piece;
 
 public class PositionIO {
 
-  private String basePath;
+  private final String basePath;
 
   public PositionIO() {
     basePath = "src/main/resources/chessResources/chessPositions/";
   }
 
-  public String getPositionString(Chess chess) {
+  private String getPositionString(Chess chess) {
 
     String positionString = "";
     positionString += "M" + getColorNotation(chess.getPlayerToMove().getColor());
@@ -127,7 +127,7 @@ public class PositionIO {
     return square.getSquareId() + pieceNotation + getColorNotation(piece.getColor());
   }
 
-  public void loadPositionFromString(Chess chess, String positionString) {
+  private void loadPositionFromString(Chess chess, String positionString) {
     String[] lines = positionString.split("\\R");
 
     for (String line : lines) {
@@ -147,7 +147,7 @@ public class PositionIO {
     }
   }
 
-  public void loadPosition(Chess chess, String fileName) throws IOException {
+  public void loadPosition(Chess chess, String fileName) {
     String path = basePath + fileName;
 
     try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -168,16 +168,18 @@ public class PositionIO {
         }
       }
     }
+    catch(IOException e) {
+      throw new IllegalArgumentException("Couldnt read position file");
+    }
   }
 
-  public void savePosition(String fileName, Chess chess) throws IOException {
+  public void savePosition(String fileName, Chess chess) {
     String path = basePath + "customPositions/" + fileName;
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
       writer.write(getPositionString(chess));
     } catch (IOException e) {
-      // optionally log or rethrow
-      throw new IOException("Couldnt savePosition");
+      throw new IllegalArgumentException("Couldnt savePosition");
     }
   }
 
