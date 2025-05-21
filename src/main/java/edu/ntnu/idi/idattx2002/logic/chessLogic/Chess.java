@@ -14,36 +14,47 @@ import edu.ntnu.idi.idattx2002.logic.chessLogic.player.ChessPlayer;
 
 public class Chess {
 
-  private ChessBoard board;
-  private List<ChessPlayer> players;
-  private PositionIO positionIO;
-
-  private List<String> positionHistory;
+  private final ChessBoard board;
+  private final List<ChessPlayer> players;
+  private final PositionIO positionIO;
 
   private ChessPlayer playerToMove;
 
   private WinObserver observer;
 
-  //Debugg
-  King whiteKing;
-  King blackKing;
-
   public Chess() throws IOException {
     positionIO = new PositionIO();
-
     players = new ArrayList<>();
-    //add2HumanPlayers();
-
     board = new ChessBoard();
 
-    positionHistory = new ArrayList<>();
+  }
+
+  public ChessPlayer getPlayer(ChessColor chessColor) {
+    for (ChessPlayer player : players) {
+      if(player.getColor() == chessColor) {
+        return player;
+      }
+    }
+    throw new NullPointerException("Player not found");
+  }
+
+  public ChessPlayer getPlayerToMove() {
+    return playerToMove;
+  }
+
+  public ChessBoard getBoard() {
+    return board;
+  }
+
+  public List<ChessPlayer> getPlayers() {
+    return players;
   }
 
   public void addObserver(WinObserver observer) {
     this.observer = observer;
   }
 
-  public void addPlayer(String name, int iconId, ChessColor chessColor) {
+  private void addPlayer(String name, int iconId, ChessColor chessColor) {
     ChessPlayer player = new HumanChessPlayer(name, iconId, chessColor);
     players.add(player);
 
@@ -55,24 +66,6 @@ public class Chess {
     for(ChessPlayer player : players) {
       player.initPieces(board);
     }
-    whiteKing = getPlayer(ChessColor.WHITE).getKing();
-    blackKing = getPlayer(ChessColor.BLACK).getKing();
-
-    positionHistory.add(positionIO.getPositionString(this));
-  }
-
-  public void revertMove() throws IOException {
-    //positionIO.loadPositionFromString(this, positionHistory.get(4));
-    positionIO.loadPosition(this, "startPositions/standardPosition.txt");
-
-    for(ChessPlayer player : players) {
-      player.initPieces(board);
-    }
-    whiteKing = getPlayer(ChessColor.WHITE).getKing();
-    blackKing = getPlayer(ChessColor.BLACK).getKing();
-
-    //positionHistory.removeFirst();
-
   }
 
   public void playMove(Move move) {
@@ -81,39 +74,13 @@ public class Chess {
       checkForWin();
       updatePlayerToMove();
       updatePieceStatuses();
-      positionHistory.addFirst(positionIO.getPositionString(this));
-      System.out.println("__________________ \n" + positionIO.getPositionString(this));
     }
   }
 
   private void checkForWin() {
-    if(whiteKing.isInCheck(this) || blackKing.isInCheck(this)){
-      if(whiteKing.isInCheckMate(this) || blackKing.isInCheckMate(this)) {
-        notifyObserver(playerToMove);
-      }
+    if(players.getFirst().getKing().isInCheckMate(this) || players.getLast().getKing().isInCheckMate(this)) {
+      notifyObserver(playerToMove);
     }
-  }
-
-  public ChessBoard getBoard() {
-    return board;
-  }
-
-  public List<ChessPlayer> getPlayers() {
-    return players;
-  }
-
-  public ChessPlayer getPlayer(ChessColor chessColor) {
-    for (ChessPlayer player : players) {
-      if(player.getColor() == chessColor) {
-        return player;
-      }
-    }
-    throw new NullPointerException("Player not found");
-
-  }
-
-  public ChessPlayer getPlayerToMove() {
-    return playerToMove;
   }
 
   public void updatePlayerToMove() {
@@ -149,11 +116,4 @@ public class Chess {
     addPlayer(player1.getFirst(), Integer.parseInt(player1.getLast()), ChessColor.WHITE);
     addPlayer(player2.getFirst(), Integer.parseInt(player2.getLast()), ChessColor.BLACK);
   }
-
-  //debug
-  public void add2HumanPlayers() {
-    addPlayer("Player1", 1, ChessColor.WHITE);
-    addPlayer("Player2", 2, ChessColor.BLACK);
-  }
-
 }

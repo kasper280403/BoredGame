@@ -32,21 +32,6 @@ public class SideBarView extends VBox {
     init();
   }
 
-  private Button createRevertButton() {
-    Button revertBtn = new Button("Revert Move");
-    revertBtn.setMinSize(buttonWidth, buttonHeight);
-    revertBtn.setMaxSize(buttonWidth, buttonHeight);
-    revertBtn.setOnAction(e -> {
-      try {
-        boardController.revertMove();
-      } catch (IOException ex) {
-        throw new RuntimeException(ex);
-      }
-    });
-
-    return revertBtn;
-  }
-
   private Button createFlipButton() {
     Button switchBtn = new Button("Flip");
     switchBtn.setMinSize(buttonWidth, buttonHeight);
@@ -106,7 +91,7 @@ public class SideBarView extends VBox {
     setSize(300, 800);
     setBackground();
 
-    getChildren().addAll(createFlipButton(), createAutoFlipButton(), createSavePositionButton(), createRevertButton());
+    getChildren().addAll(createFlipButton(), createAutoFlipButton(), createSavePositionButton());
   }
 
   public void show() {

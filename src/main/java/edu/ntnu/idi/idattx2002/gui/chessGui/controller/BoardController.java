@@ -87,10 +87,6 @@ public class BoardController {
     }
   }
 
-  public void revertMove() throws IOException {
-    chess.revertMove();
-  }
-
   private void autoFlip() {
     if(autoFlip) {
       boardView.refresh(chess.getPlayerToMove().getColor());
