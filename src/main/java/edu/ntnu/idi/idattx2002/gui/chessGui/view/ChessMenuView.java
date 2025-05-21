@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 
 public class ChessMenuView extends GameMenuView {
 
-  private ChessMenuController controller;
+  private final ChessMenuController controller;
 
   public ChessMenuView(ChessMenuController chessMenuController, Pane mainPane) {
     super(mainPane);

@@ -16,11 +16,11 @@ import edu.ntnu.idi.idattx2002.gui.chessGui.controller.BoardController;
 
 public class SideBarView extends VBox {
 
-  private Pane parent;
-  private BoardController boardController;
+  private final Pane parent;
+  private final BoardController boardController;
 
-  int buttonWidth;
-  int buttonHeight;
+  private final int buttonWidth;
+  private final int buttonHeight;
 
   public SideBarView(Pane parent, BoardController boardController) {
     this.boardController = boardController;
@@ -58,21 +58,6 @@ public class SideBarView extends VBox {
     return autoFlipBox;
   }
 
-  private Button createSavePositionButton() {
-    Button savePositionBtn = new Button("Save Position");
-    savePositionBtn.setMinSize(buttonWidth, buttonHeight);
-    savePositionBtn.setMaxSize(buttonWidth, buttonHeight);
-    savePositionBtn.setOnAction(e -> {
-      try {
-        boardController.savePosition();
-      } catch (IOException ex) {
-        throw new RuntimeException(ex);
-      }
-    });
-
-    return savePositionBtn;
-  }
-
   private void setSize(int xSize, int ySize) {
     setMinSize(xSize, ySize);
     setMaxSize(xSize, ySize);
@@ -91,7 +76,7 @@ public class SideBarView extends VBox {
     setSize(300, 800);
     setBackground();
 
-    getChildren().addAll(createFlipButton(), createAutoFlipButton(), createSavePositionButton());
+    getChildren().addAll(createFlipButton(), createAutoFlipButton());
   }
 
   public void show() {

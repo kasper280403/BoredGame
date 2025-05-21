@@ -14,11 +14,12 @@ import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 
 public class BoardController {
 
-  private Chess chess;
+  private final Chess chess;
 
-  private BoardView boardView;
-  private SideBarView sideBarView;
-  private ChessSquare selectedSquare;
+  private final BoardView boardView;
+  private final SideBarView sideBarView;
+
+  private  ChessSquare selectedSquare;
   private Pane selectedTile;
 
   private ChessColor colorPerspective;
@@ -27,24 +28,15 @@ public class BoardController {
 
   public BoardController(Chess chess, Pane mainPane) {
     this.chess = chess;
-    init(mainPane);
-  }
 
-  public void showView() {
-    boardView.show();
-    sideBarView.show();
-  }
-
-  private void init(Pane mainPane) {
     colorPerspective = chess.getPlayerToMove().getColor();
-    autoFlip = false;
 
     boardView = new BoardView(mainPane);
     boardView.createSquares(colorPerspective, chess);
 
     sideBarView = new SideBarView(mainPane, this);
 
-    initClickableSquares();
+    init();
   }
 
   private void initClickableSquares() {
@@ -96,7 +88,7 @@ public class BoardController {
     }
   }
 
-  public void executeMove(ChessSquare square, Pane tile) {
+  private void executeMove(ChessSquare square, Pane tile) {
     Move move = new Move(selectedSquare, square, chess);
     chess.playMove(move);
 
@@ -112,8 +104,15 @@ public class BoardController {
     selectedSquare = null;
   }
 
-  public void savePosition() throws IOException {
-    PositionIO positionIO = new PositionIO();
-    positionIO.savePosition("testSave.txt", chess);
+  public void showView() {
+    boardView.show();
+    sideBarView.show();
   }
+
+  private void init() {
+    autoFlip = false;
+
+    initClickableSquares();
+  }
+
 }

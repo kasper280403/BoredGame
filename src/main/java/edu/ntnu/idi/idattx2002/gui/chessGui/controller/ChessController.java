@@ -8,21 +8,19 @@ import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 
 public class ChessController {
 
-  private Chess chess;
-  private BoardController boardController;
-  private ChessView chessView;
-  private WinView winView;
+  private final BoardController boardController;
+  private final ChessView chessView;
+  private final WinView winView;
 
-  public ChessController(Pane mainPane, Chess chess) throws IOException {
-    this.chess = chess;
+  public ChessController(Pane mainPane, Chess chess) {
     chessView = new ChessView(mainPane);
     boardController = new BoardController(chess, chessView);
+
     winView = new WinView(mainPane);
     chess.addObserver(winView);
   }
 
   public void showView() {
-    //chessView.getChildren().add(new PlayerInfoView(chess.getPlayer(ChessColor.BLACK)));
     chessView.showView();
     boardController.showView();
   }

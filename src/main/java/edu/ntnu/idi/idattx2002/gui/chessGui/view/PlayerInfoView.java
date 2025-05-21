@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 
 public class PlayerInfoView extends HBox {
 
-  private Player player;
+  private final Player player;
 
   public PlayerInfoView(Player player) {
     this.player = player;

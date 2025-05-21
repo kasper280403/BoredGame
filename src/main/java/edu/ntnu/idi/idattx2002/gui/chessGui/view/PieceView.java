@@ -9,8 +9,8 @@ import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.*;
 
 public class PieceView {
 
-  private int size;
-  private String standardLocation;
+  private final int size;
+  private final String standardLocation;
 
   public PieceView(int pieceSize) {
     size = pieceSize;
@@ -37,7 +37,6 @@ public class PieceView {
       case King k -> pieceString = "king";
       default -> pieceString = "null";
     }
-    System.out.println("Piece type: " + piece.getClass().getName() + " -> filename: " + pieceString);
     return pieceString;
   }
 

@@ -16,7 +16,6 @@ import edu.ntnu.idi.idattx2002.logic.chessLogic.board.SquareObserver;
 public class BoardView extends GridPane implements SquareObserver {
 
   private final PieceView pieceView;
-  private Chess chess;
   private Pane parent;
 
   private Map<ChessSquare, Pane> tileMap;
