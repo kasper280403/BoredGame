@@ -18,8 +18,10 @@ public class SnakesAndLaddersSquare extends Square {
     return null;
    }
 
-   //TODO exeption handling if tileAction exists
    public void setLandAction(LandAction landAction) {
+    if (hasLandAction()) {
+      throw new IllegalArgumentException("LandAction is already set");
+    }
     this.landAction = landAction;
    }
 
