@@ -34,8 +34,12 @@ public class SnakesAndLaddersMenuView extends GameMenuView {
   public void init() {
     super.init();
     createTitle("SNAKES & LADDERS", 120);
-    //createGameModeSelection(controller.getStartPositions());
+    createGameModeSelectionPane(controller.getStartPositions());
     createStartButton();
+  }
+
+  public static String getGameMode(){
+    return gameModeSelection.getValue();
   }
 
 }

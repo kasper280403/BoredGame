@@ -29,6 +29,29 @@ public class BoardIO {
 
     }
 
+    public static ArrayList<String> getBoards() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("GameData/boardSetUp.csv"));
+        String line;
+        boolean insideTarget = false;
+        ArrayList<String> boardNames = new ArrayList<>();
+
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+
+            if (line.endsWith("(")) {
+                if (!insideTarget) {
+                    boardNames.add(line.substring(0, line.length() - 1));
+                }
+                insideTarget = true;
+            }
+            if (line.endsWith(")")) {
+                insideTarget = false;
+            }
+        }
+        reader.close();
+        return boardNames;
+    }
+
     public void setActions(String gameID){
         try {
             readFile(gameID);
@@ -102,12 +125,10 @@ public class BoardIO {
     }
 
     public void ladderAction(int tile, int destination){
-        System.out.println("Ladder action: " + tile + ", " + destination);
         board.getTile(tile).setLandAction(new LadderAction(destination));
     }
 
     public void switchWithRandomAction(int tile, int dummy){
-        System.out.println("Switch action: " + tile);
         board.getTile(tile).setLandAction(new SwitchWithRandomAction());
     }
 

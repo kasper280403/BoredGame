@@ -22,7 +22,7 @@ public abstract class GameMenuView extends VBox{
 
   public Pane mainPane;
 
-  private ComboBox<String> gameModeSelection;
+  public static ComboBox<String> gameModeSelection;
   private Pane contentBox;
 
   public HBox topBox;

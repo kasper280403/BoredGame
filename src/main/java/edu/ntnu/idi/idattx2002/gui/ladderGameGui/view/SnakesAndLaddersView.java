@@ -33,7 +33,6 @@ public class SnakesAndLaddersView extends HBox{
     public SnakesAndLaddersView(Pane mainPane, SnakesAndLaddersController controller) {
         this.mainPane = mainPane;
         this.controller = controller;
-
         init();
     }
 

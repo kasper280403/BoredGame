@@ -23,17 +23,15 @@ public class SnakesAndLadders {
   private WinObserver observer;
 
   private int playerToMoveID;
-  private DiceView diceView;
 
-  public SnakesAndLadders() {
+  public SnakesAndLadders(String boardSetup) {
     this.board = new SnakesAndLaddersBoard();
     players = new HashMap<>();
     playerToMoveID = 1;
 
     initDices();
 
-    //Move into init
-    createBoard();
+    createBoard(boardSetup);
   }
 
   public void addObserver(WinObserver observer) {
@@ -56,14 +54,10 @@ public class SnakesAndLadders {
     return players.get(playerToMoveID);
   }
 
-  public void createBoard() {
+  public void createBoard(String boardSetup) {
     board.createBoard(9, 10);
-
-    //gameID has to be choosen from the available games in the BoardSetUp.csv
-    String gameID = "RegularSnakesAndLadders";
-    setActions(gameID);
+    setActions(boardSetup);
   }
-
 
   public void playTurn() {
     System.out.println("PlayTurn");

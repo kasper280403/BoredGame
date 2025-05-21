@@ -19,3 +19,11 @@ RegularSnakesAndLadders(
 87
 }
 )
+
+BoringSnakesAndLadders(
+{LadderActions
+10,80
+}
+{SwitchActions
+}
+)

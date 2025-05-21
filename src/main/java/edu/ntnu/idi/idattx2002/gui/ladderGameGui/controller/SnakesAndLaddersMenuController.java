@@ -4,6 +4,10 @@ import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
 import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersMenuView;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
 import javafx.scene.layout.Pane;
 
 public class SnakesAndLaddersMenuController {
@@ -17,6 +21,14 @@ public class SnakesAndLaddersMenuController {
     choosePlayerController.showView();
   }
 
+  public List<String> getStartPositions() {
+      try {
+          return BoardIO.getBoards();
+      } catch (IOException e) {
+          throw new RuntimeException(e);
+      }
+  }
+
   public GameMenuView getView() {
     return menuView;
   }
@@ -25,7 +37,7 @@ public class SnakesAndLaddersMenuController {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
 
     if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
-      new SnakesAndLaddersController(mainPane, choosePlayerController.getChosenPlayers());
+      new SnakesAndLaddersController(mainPane, choosePlayerController.getChosenPlayers() );
     }
   }
 
