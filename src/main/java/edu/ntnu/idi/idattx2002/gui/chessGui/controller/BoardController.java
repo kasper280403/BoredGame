@@ -39,7 +39,9 @@ public class BoardController {
     colorPerspective = chess.getPlayerToMove().getColor();
     autoFlip = false;
 
-    boardView = new BoardView(chess, mainPane);
+    boardView = new BoardView(mainPane);
+    boardView.createSquares(colorPerspective, chess);
+
     sideBarView = new SideBarView(mainPane, this);
 
     initClickableSquares();
@@ -70,7 +72,7 @@ public class BoardController {
   public void flipBoard() {
     if(!autoFlip) {
       colorPerspective = colorPerspective == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
-      boardView.refresh(colorPerspective);
+      boardView.refresh(colorPerspective, chess);
       initClickableSquares();
     }
   }
@@ -89,7 +91,7 @@ public class BoardController {
 
   private void autoFlip() {
     if(autoFlip) {
-      boardView.refresh(chess.getPlayerToMove().getColor());
+      boardView.refresh(chess.getPlayerToMove().getColor(), chess);
       initClickableSquares();
     }
   }
