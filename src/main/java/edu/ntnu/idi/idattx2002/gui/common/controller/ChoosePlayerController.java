@@ -14,15 +14,15 @@ import javafx.scene.paint.Color;
 
 public class ChoosePlayerController {
 
-  private Pane mainPane;
-  private ChoosePlayerView choosePlayerView;
+  private final Pane mainPane;
+  private final ChoosePlayerView choosePlayerView;
 
-  private PlayerIO playerIO;
+  private final PlayerIO playerIO;
 
-  private List<List<String>> chosenPlayers;
+  private final List<List<String>> chosenPlayers;
 
-  private int minPlayers;
-  private int maxPlayers;
+  private final int minPlayers;
+  private final int maxPlayers;
 
   public ChoosePlayerController(Pane mainPane, int minPlayers, int maxPlayers) throws IOException {
     this.mainPane = mainPane;
@@ -45,7 +45,7 @@ public class ChoosePlayerController {
     return minPlayers;
   }
 
-  public ArrayList<ArrayList<String>> getPlayerList() throws IOException {
+  public List<List<String>> getPlayerList() throws IOException {
     return playerIO.getPlayers();
   }
 
@@ -53,7 +53,7 @@ public class ChoosePlayerController {
     return chosenPlayers;
   }
 
-  public void handlePlayerBtnClick(ArrayList<String> player, Button btn) {
+  public void handlePlayerBtnClick(List<String> player, Button btn) {
     if ("Unselected".equals(btn.getText())) {
       btn.setText("Selected");
       btn.setBackground(Background.fill(Color.GREEN));
@@ -77,11 +77,11 @@ public class ChoosePlayerController {
     createPlayerWindow.openPlayerInput();
   }
 
-  public void addToList(ArrayList<String> player) {
+  private void addToList(List<String> player) {
     chosenPlayers.add(player);
   }
 
-  public void removeFromList(ArrayList<String> player) {
+  private void removeFromList(List<String> player) {
     chosenPlayers.remove(player);
   }
 

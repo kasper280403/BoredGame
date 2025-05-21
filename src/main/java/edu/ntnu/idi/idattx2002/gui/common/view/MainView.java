@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 public class MainView extends StackPane {
 
   private StackPane contentPane;
-  private StartMenuController controller;
+  private final StartMenuController controller;
 
   public MainView(StartMenuController controller) {
     this.controller = controller;
@@ -31,21 +31,21 @@ public class MainView extends StackPane {
     return contentPane;
   }
 
-  public Button createCloseAppBtn() {
+  private Button createCloseAppBtn() {
     Button closeAppBtn = new Button("Close App");
     closeAppBtn.setOnAction(e -> Platform.exit());
 
     return closeAppBtn;
   }
 
-  public Button createStartMenuBtn() {
+  private Button createStartMenuBtn() {
     Button startMenuBtn = new Button("Start Menu");
     startMenuBtn.setOnAction(e-> controller.getStartMenuView().show());
 
     return startMenuBtn;
   }
 
-  public VBox createUtilityPane() {
+  private VBox createUtilityPane() {
     VBox utilityPane = new VBox();
     utilityPane.setSpacing(10);
     utilityPane.setPadding(new Insets(15));

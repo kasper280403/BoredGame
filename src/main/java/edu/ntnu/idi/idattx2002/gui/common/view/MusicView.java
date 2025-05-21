@@ -18,8 +18,8 @@ import javafx.scene.text.Text;
 
 public class MusicView extends VBox implements MusicObserver {
 
-  private MusicController controller;
-  private Pane mainPane;
+  private final MusicController controller;
+  private final Pane mainPane;
 
   private Text currentlyPlayingText;
 

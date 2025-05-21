@@ -1,9 +1,7 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -21,8 +19,8 @@ import javafx.scene.text.Text;
 
 public class StartMenuView extends VBox {
 
-  private StartMenuController controller;
-  private Pane mainPane;
+  private final StartMenuController controller;
+  private final Pane mainPane;
 
   public StartMenuView(StartMenuController controller, Pane mainPane) {
     this.controller = controller;

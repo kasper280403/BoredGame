@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.PlayerIO;
+import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,20 +21,42 @@ import java.util.HashMap;
 
 public class CreatePlayerWindow{
 
-    public ArrayList<String> playerNames;
+    public List<String> playerNames;
 
-    Stage createPlayerStage = new Stage();
-    PlayerIO playerIO;
-    //Remove
-    PlayerIconWindow playerIconWindow = new PlayerIconWindow(50);
+    private final Stage createPlayerStage;
+    private final PlayerIO playerIO;
+    private final PlayerIconWindow playerIconWindow;
 
     //TODO implement controller pattern
     public CreatePlayerWindow(){
+        createPlayerStage = new Stage();
         playerIO = new PlayerIO();
+        playerIconWindow = new PlayerIconWindow(50);
+    }
+
+    public ListView<String> getPlayersListView() throws IOException {
+        List<List<String>> playerList = playerIO.getPlayers();
+        ListView<String> playerListView = new ListView<>();
+
+        for (List<String> player : playerList) {
+            playerListView.getItems().add(player.get(0) + " (Piece " + player.get(1) + ")");
+        }
+
+        return playerListView;
+    }
+
+    public List<String> getPlayerNames() throws IOException {
+        List<List<String>> playerList = playerIO.getPlayers();
+        List<String> playerNames = new ArrayList<>();
+
+        for (List<String> player : playerList) {
+            playerNames.add(player.get(0));
+        }
+
+        return playerNames;
     }
 
     public void openPlayerInput(){
-
         try {
             playerNames = getPlayerNames();
         } catch (IOException e) {
@@ -113,7 +136,7 @@ public class CreatePlayerWindow{
         createPlayerStage.show();
     }
 
-    public HashMap<Integer, ImageView> getPiecesImg() {
+    private HashMap<Integer, ImageView> getPiecesImg() {
         HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
 
         imageViewMap.put(1, playerIconWindow.getImageView(1));
@@ -124,31 +147,11 @@ public class CreatePlayerWindow{
         return imageViewMap;
     }
 
-    public void goBack() {}
-
-    public ListView<String> getPlayersListView() throws IOException {
-        ArrayList<ArrayList<String>> playerList = playerIO.getPlayers();
-        ListView<String> playerListView = new ListView<>();
-
-        for (ArrayList<String> player : playerList) {
-            playerListView.getItems().add(player.get(0) + " (Piece " + player.get(1) + ")");
-        }
-
-        return playerListView;
+    private void goBack() {
+        createPlayerStage.close();
     }
 
-    public ArrayList<String> getPlayerNames() throws IOException {
-        ArrayList<ArrayList<String>> playerList = playerIO.getPlayers();
-        ArrayList<String> playerNames = new ArrayList<>();
-
-        for (ArrayList<String> player : playerList) {
-            playerNames.add(player.get(0));
-        }
-
-        return playerNames;
-    }
-
-    public void updateDAO(String playerName, int selectedPiece) throws IOException {
+    private void updateDAO(String playerName, int selectedPiece) throws IOException {
         playerIO.writePlayer(playerName, selectedPiece);
     }
 

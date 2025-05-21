@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.io.ladderGameIO;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerIO {
 
@@ -13,8 +14,8 @@ public class PlayerIO {
         writer.close();
     }
 
-    public ArrayList<ArrayList<String>> getPlayers() throws IOException {
-        ArrayList<ArrayList<String>> players = new ArrayList<>();
+    public List<List<String>> getPlayers() throws IOException {
+        List<List<String>> players = new ArrayList<>();
 
         BufferedReader reader = new BufferedReader(new FileReader("GameData/playerData.csv"));
 
@@ -28,7 +29,6 @@ public class PlayerIO {
         }
 
         reader.close();
-
         return players;
     }
 

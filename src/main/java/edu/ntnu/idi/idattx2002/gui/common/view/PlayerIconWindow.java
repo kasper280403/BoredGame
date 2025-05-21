@@ -7,14 +7,18 @@ import javafx.scene.image.ImageView;
 
 public class PlayerIconWindow {
 
-  public static Map<Integer, ImageView> imageViewMap;
+  public Map<Integer, ImageView> imageViewMap;
 
   public PlayerIconWindow(double imageSize) {
     imageViewMap = new HashMap<>();
     createPieces(imageSize);
   }
 
-  public void createPieces(double imageViewSize) {
+  public ImageView getImageView(int pieceID) {
+    return imageViewMap.get(pieceID);
+  }
+
+  private void createPieces(double imageViewSize) {
     String standardPath = "ladderGameResources/images/pieces/";
     Image pieceImage1 = new Image(standardPath + "frogPiece.png");
     Image pieceImage2 = new Image(standardPath + "catPiece.png");
@@ -37,13 +41,9 @@ public class PlayerIconWindow {
     imageViewMap.put(4, imageView4);
   }
 
-  public void setImageSize(double imageViewSize, ImageView imageView) {
+  private void setImageSize(double imageViewSize, ImageView imageView) {
     imageView.setFitHeight(imageViewSize);
     imageView.setFitWidth(imageViewSize);
-  }
-
-  public ImageView getImageView(int pieceID) {
-    return imageViewMap.get(pieceID);
   }
 }
 

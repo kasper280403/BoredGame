@@ -3,6 +3,7 @@ package edu.ntnu.idi.idattx2002.gui.common.view;
 import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -81,14 +82,14 @@ public class ChoosePlayerView extends HBox {
     VBox playerList = new VBox();
     playerList.setSpacing(15);
 
-    for (ArrayList<String> player: controller.getPlayerList()) {
+    for (List<String> player: controller.getPlayerList()) {
       playerList.getChildren().add(createPlayerBox(player));
     }
 
     return playerList;
   }
 
-  public Pane createPlayerBox(ArrayList<String> player) {
+  public Pane createPlayerBox(List<String> player) {
     HBox playerBox = new HBox();
     playerBox.setSpacing(15);
 
@@ -101,7 +102,7 @@ public class ChoosePlayerView extends HBox {
     return playerBox;
   }
 
-  public Button createSelectPlayerBtn(ArrayList<String> player) {
+  public Button createSelectPlayerBtn(List<String> player) {
     Button button = new Button("Unselected");
     button.setBackground(Background.fill(Color.RED));
     button.setTextFill(Color.WHITESMOKE);
@@ -112,7 +113,7 @@ public class ChoosePlayerView extends HBox {
   }
 
   //TODO should this be in controller maybe?
-  public String playerToString(ArrayList<String> player) {
+  public String playerToString(List<String> player) {
     return player.get(0) + " (Piece " + player.get(1) + ")";
   }
 

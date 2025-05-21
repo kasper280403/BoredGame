@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 
 public class WinView extends VBox implements WinObserver {
 
-  private Pane mainPane;
+  private final Pane mainPane;
 
   public WinView(Pane mainPane) {
     this.mainPane = mainPane;
@@ -22,7 +22,7 @@ public class WinView extends VBox implements WinObserver {
   private Text createPlayerText(Player player) {
     Text username = new Text(player.getName());
     username.setFont(new Font ("Helvetica", 80));
-    username.setFill(Color.PURPLE);
+    username.setFill(Color.YELLOW);
 
     return username;
   }
