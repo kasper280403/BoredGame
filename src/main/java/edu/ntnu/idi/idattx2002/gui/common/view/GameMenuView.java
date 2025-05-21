@@ -20,16 +20,20 @@ import javafx.scene.text.Text;
 
 public abstract class GameMenuView extends VBox{
 
-  private final Pane mainPane;
+  public final Pane mainPane;
 
-  private ComboBox<String> gameModeSelection;
+  public ComboBox<String> gameModeSelection;
 
-  private HBox topBox;
-  private HBox middleBox;
-  private HBox bottomBox;
+  public HBox topBox;
+  public HBox middleBox;
+  public HBox bottomBox;
 
   public GameMenuView(Pane mainPane) {
     this.mainPane = mainPane;
+  }
+
+  public Pane getMainPane() {
+    return mainPane;
   }
 
   public Pane getTopBox() {
