@@ -49,7 +49,7 @@ public class King extends Piece {
     return true;
   }
 
-  public boolean isCastleLegal(ChessSquare square, Chess chess) {
+  private boolean isCastleLegal(ChessSquare square, Chess chess) {
     if(isInCheck(chess) || hasMoved || Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate()) < 2) {
       return false;
     }
@@ -71,7 +71,7 @@ public class King extends Piece {
     return canCastle;
   }
 
-  public boolean canCastleWithRook(ChessSquare square, Rook rook, Chess chess) {
+  private boolean canCastleWithRook(ChessSquare square, Rook rook, Chess chess) {
     boolean canCastle = false;
 
     ChessColor enemyChessColor = chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
@@ -98,7 +98,7 @@ public class King extends Piece {
     return canCastle;
   }
 
-  public void castle(ChessSquare square, Chess chess) {
+  private void castle(ChessSquare square, Chess chess) {
     List<Rook> rooks = new ArrayList<>();
     for (Piece piece : chess.getPlayer(chessColor).getAlivePieces()) {
       if(piece instanceof Rook) {

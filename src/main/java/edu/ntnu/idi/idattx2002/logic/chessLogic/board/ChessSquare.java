@@ -19,16 +19,6 @@ public class ChessSquare extends Square {
     this.yCoordinate = yCoordinate;
   }
 
-  public void setObserver(SquareObserver observer) {
-    this.observer = observer;
-  }
-
-  public void verifyCoordinates(int x, int y) {
-    if(x < 1 || x > 8 || y < 1 || y > 8) {
-      throw new IllegalArgumentException("Square coordinates are invalid");
-    }
-  }
-
   public int getYCoordinate() {
     return yCoordinate;
   }
@@ -37,15 +27,25 @@ public class ChessSquare extends Square {
     return xCoordinate;
   }
 
-  public boolean hasPiece() {
-    return (piece != null);
-  }
-
   public Piece getPiece() {
     if(piece != null) {
       return piece;
     }
     return null;
+  }
+
+  private void verifyCoordinates(int x, int y) {
+    if(x < 1 || x > 8 || y < 1 || y > 8) {
+      throw new IllegalArgumentException("Square coordinates are invalid");
+    }
+  }
+
+  public void setObserver(SquareObserver observer) {
+    this.observer = observer;
+  }
+
+  public boolean hasPiece() {
+    return (piece != null);
   }
 
   public void placePiece(Piece piece) {
