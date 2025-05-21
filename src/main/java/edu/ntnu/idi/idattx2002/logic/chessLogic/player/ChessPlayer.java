@@ -19,20 +19,6 @@ public abstract class ChessPlayer extends Player {
     this.chessColor = chessColor;
   }
 
-  public void initPieces(ChessBoard board) {
-    pieces = new ArrayList<>();
-
-    Piece piece;
-    for (ChessSquare square : board.getSquareMap().values()) {
-      if(square.hasPiece()) {
-        piece = square.getPiece();
-        if(piece.getColor() == chessColor) {
-          pieces.add(piece);
-        }
-      }
-    }
-  }
-
   public List<Piece> getAlivePieces() {
     List<Piece> alivePieces = new ArrayList<>();
     for (Piece piece : pieces) {
@@ -50,6 +36,20 @@ public abstract class ChessPlayer extends Player {
       }
     }
     throw new NullPointerException("King not found");
+  }
+
+  public void initPieces(ChessBoard board) {
+    pieces = new ArrayList<>();
+
+    Piece piece;
+    for (ChessSquare square : board.getSquareMap().values()) {
+      if(square.hasPiece()) {
+        piece = square.getPiece();
+        if(piece.getColor() == chessColor) {
+          pieces.add(piece);
+        }
+      }
+    }
   }
 
   public void addPiece(Piece piece) {

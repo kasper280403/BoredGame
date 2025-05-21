@@ -102,6 +102,9 @@ public abstract class Piece{
   }
 
   public boolean isMoveLegal(ChessSquare square, Chess chess) {
+    if(chess.getPlayerToMove().getColor() != chessColor) {
+      return false;
+    }
     if (!stopsCheck(square, chess)) {
       return false;
     }

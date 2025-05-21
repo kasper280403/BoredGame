@@ -19,21 +19,8 @@ public class Move {
     pieceToMove = startSquare.getPiece();
   }
 
-  //TODO move into Piece class
-  private boolean isMoveLegal() {
-    return chess.getPlayerToMove().getColor() == pieceToMove.getColor();
-  }
-
   public void execute() {
-    if (isMoveLegal()) {
-      if(pieceToMove.getCurrentSquare() == null) {
-        System.out.println("DEN SUGER");
-      }
-      else {
-        System.out.println(pieceToMove.getCurrentSquare().getSquareId());
-      }
-      pieceToMove.move(endSquare, chess);
-    }
+    pieceToMove.move(endSquare, chess);
   }
 
   public boolean successful() {
