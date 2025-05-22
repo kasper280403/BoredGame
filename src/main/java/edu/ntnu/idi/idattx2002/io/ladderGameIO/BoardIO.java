@@ -18,6 +18,7 @@ public class BoardIO {
     private final List<String> actionNames;
     private final List<List<List<Integer>>> actions;
     private final Map<String, BiConsumer<Integer, Integer>> actionMethods;
+    private final String filePath;
 
     public BoardIO(SnakesAndLaddersBoard board) {
         this.board = board;
@@ -29,11 +30,12 @@ public class BoardIO {
         actionMethods.put("LadderActions", this::ladderAction);
         actionMethods.put("SwitchActions", (a, b) -> switchWithRandomAction(a));
 
+        filePath = "src/main/resources/ladderGameResources/ladderGamePositions/boardSetUp.csv";
     }
 
     public static ArrayList<String> getBoards()  {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("GameData/boardSetUp.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/ladderGameResources/ladderGamePositions/boardSetUp.csv"));
             String line;
             boolean insideTarget = false;
             ArrayList<String> boardNames = new ArrayList<>();
@@ -74,7 +76,7 @@ public class BoardIO {
 
     private void readFile(String gameID)  {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("GameData/boardSetUp.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/ladderGameResources/ladderGamePositions/boardSetUp.csv"));
             String line;
             boolean insideTargetGame = false;
             boolean insideAction = false;
