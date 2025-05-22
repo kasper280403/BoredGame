@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic;
 
 import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,7 +66,15 @@ public class Chess {
   public void initPosition(String pathToPosition) {
     positionIO.loadPosition(this, pathToPosition);
     for(ChessPlayer player : players) {
-      player.initPieces(board);
+      Piece piece;
+      for (ChessSquare square : board.getSquareMap().values()) {
+        if(square.hasPiece()) {
+          piece = square.getPiece();
+          if(piece.getColor() == player.getColor()) {
+            player.addPiece(piece);
+          }
+        }
+      }
     }
   }
 

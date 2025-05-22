@@ -4,19 +4,18 @@ import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
 import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessBoard;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.*;
 
 public abstract class ChessPlayer extends Player {
 
-  private ChessColor chessColor;
+  private final ChessColor chessColor;
 
-  private List<Piece> pieces;
+  private final List<Piece> pieces;
 
   public ChessPlayer(String name, int iconId, ChessColor chessColor) {
     super(name, iconId);
     this.chessColor = chessColor;
+    pieces = new ArrayList<>();
   }
 
   public List<Piece> getAlivePieces() {
@@ -38,25 +37,17 @@ public abstract class ChessPlayer extends Player {
     throw new NullPointerException("King not found");
   }
 
-  public void initPieces(ChessBoard board) {
-    pieces = new ArrayList<>();
-
-    Piece piece;
-    for (ChessSquare square : board.getSquareMap().values()) {
-      if(square.hasPiece()) {
-        piece = square.getPiece();
-        if(piece.getColor() == chessColor) {
-          pieces.add(piece);
-        }
-      }
-    }
-  }
-
   public void addPiece(Piece piece) {
+    if(piece.getColor() != chessColor) {
+      throw new IllegalArgumentException("Piece color has to match player color");
+    }
     pieces.add(piece);
   }
 
   public void removePiece(Piece piece) {
+    if(!pieces.contains(piece)) {
+      throw new NullPointerException("Cannot remove Piece wich isnt a part of pieces");
+    }
     pieces.remove(piece);
   }
 
