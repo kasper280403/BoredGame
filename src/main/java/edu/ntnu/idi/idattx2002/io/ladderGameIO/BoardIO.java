@@ -35,7 +35,7 @@ public class BoardIO {
 
     public ArrayList<String> getBoards()  {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/ladderGameResources/ladderGamePositions/boardSetUp.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             boolean insideTarget = false;
             ArrayList<String> boardNames = new ArrayList<>();
@@ -76,7 +76,7 @@ public class BoardIO {
 
     private void readFile(String gameID)  {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/ladderGameResources/ladderGamePositions/boardSetUp.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             boolean insideTargetGame = false;
             boolean insideAction = false;
