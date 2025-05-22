@@ -1,4 +1,4 @@
-package chess;
+package chess.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 

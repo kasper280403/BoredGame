@@ -56,10 +56,8 @@ public class Chess {
     this.observer = observer;
   }
 
-  private void addPlayer(String name, int iconId, ChessColor chessColor) {
-    ChessPlayer player = new HumanChessPlayer(name, iconId, chessColor);
+  public void addPlayer(HumanChessPlayer player) {
     players.add(player);
-
     playerToMove = getPlayer(ChessColor.WHITE);
   }
 
@@ -119,14 +117,5 @@ public class Chess {
     if (observer != null) {
       observer.update(player);
     }
-  }
-
-  public void addHumanPlayers(List<List<String>> players) {
-    List<String> player1 = players.get(0);
-    List<String> player2 = players.get(1);
-
-
-    addPlayer(player1.getFirst(), Integer.parseInt(player1.getLast()), ChessColor.WHITE);
-    addPlayer(player2.getFirst(), Integer.parseInt(player2.getLast()), ChessColor.BLACK);
   }
 }
