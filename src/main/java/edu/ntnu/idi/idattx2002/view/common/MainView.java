@@ -16,6 +16,16 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * Root view container for the application.
+ * <p>
+ * Provides a consistent layout including a background, utility buttons (Start Menu, Close App),
+ * and a content pane for loading game-specific views.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class MainView extends StackPane {
 
   private StackPane contentPane;

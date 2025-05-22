@@ -16,7 +16,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-
+/**
+ * Main view for the Snakes and Ladders game.
+ * <p>
+ * Displays the game board, move information, and control elements such as the dice button.
+ * </p>
+ *
+ * @author Sindre Mjøs and Kasper Karlsen
+ * @version 1.0
+ */
 public class SnakesAndLaddersView extends HBox{
 
     private final LadderGameController controller;

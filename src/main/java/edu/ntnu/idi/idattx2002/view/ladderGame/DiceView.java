@@ -16,6 +16,17 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * View component for displaying animated dice rolls in Snakes and Ladders.
+ * <p>
+ * Implements {@code DiceObserver} to react to dice updates. Uses a {@code Timeline} animation
+ * to visually simulate the dice rolling, displaying interim and final dice face images.
+ * </p>
+ *
+ * @author Sindre Mjøs and Kasper Karlsen
+ * @version 1.0
+ */
+
 public class DiceView extends HBox implements DiceObserver{
 
     private final Pane parent;

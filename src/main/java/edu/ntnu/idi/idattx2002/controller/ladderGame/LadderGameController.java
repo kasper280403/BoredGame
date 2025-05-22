@@ -10,6 +10,15 @@ import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 import java.util.List;
 import javafx.scene.layout.Pane;
 
+/**
+ * Controller for the Snakes and Ladders game module.
+ * <p>
+ * Manages game initialization, player setup, view coordination, and game turn execution.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class LadderGameController {
 
   private final LadderGame game;

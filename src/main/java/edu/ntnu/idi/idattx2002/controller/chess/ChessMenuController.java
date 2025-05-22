@@ -11,6 +11,15 @@ import javafx.scene.layout.Pane;
 import edu.ntnu.idi.idattx2002.io.chess.PositionIO;
 import edu.ntnu.idi.idattx2002.module.chess.Chess;
 
+/**
+ * Controller for the chess game setup menu.
+ * <p>
+ * Handles player selection, start position loading, and game initialization for the chess module.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class ChessMenuController {
 
   private final ChessMenuView chessMenuView;

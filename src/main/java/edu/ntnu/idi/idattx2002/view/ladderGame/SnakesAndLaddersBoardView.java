@@ -1,5 +1,5 @@
 package edu.ntnu.idi.idattx2002.view.ladderGame;
-import edu.ntnu.idi.idattx2002.view.common.PlayerIconWindow;
+import edu.ntnu.idi.idattx2002.view.common.PlayerIconView;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LadderGameBoard;
@@ -24,6 +24,16 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
+/**
+ * View component for displaying the Snakes and Ladders game board.
+ * <p>
+ * Generates a grid-based board with alternating tile colors, renders special tile actions like portals and switches,
+ * and updates player piece positions based on game state. Implements {@code PlayerObserver} to respond to player movement.
+ * </p>
+ *
+ * @author Sindre Mjøs and Kasper Karlsen
+ * @version 1.0
+ */
 public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserver {
 
     private final Pane parent;
@@ -31,7 +41,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
 
     private final Map<Integer, StackPane> tileMap;
     private final LadderView ladderView;
-    private final PlayerIconWindow playerIconWindow;
+    private final PlayerIconView playerIconView;
 
     private final int xDimensions;
     private final int yDimensions;
@@ -41,7 +51,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
 
         tileMap = new HashMap<>();
         ladderView = new LadderView();
-        playerIconWindow = new PlayerIconWindow(tileSize);
+        playerIconView = new PlayerIconView(tileSize);
 
         this.tileSize = tileSize;
 
@@ -79,7 +89,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
 
         StackPane tilePane = tileMap.get(tileID);
-        ImageView pieceView = playerIconWindow.getImageView(pieceID);
+        ImageView pieceView = playerIconView.getImageView(pieceID);
         pause.setOnFinished(event -> {
             if (pieceView.getParent() instanceof StackPane oldTile) {
                 oldTile.getChildren().remove(pieceView);

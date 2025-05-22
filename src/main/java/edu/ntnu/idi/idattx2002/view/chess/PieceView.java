@@ -6,6 +6,15 @@ import javafx.scene.image.ImageView;
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.pieces.*;
 
+/**
+ * Utility class for generating image views of chess pieces.
+ * <p>
+ * Maps each {@code Piece} to its corresponding image based on type and color, and returns it as a scaled {@code ImageView}.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class PieceView {
 
   private final int size;

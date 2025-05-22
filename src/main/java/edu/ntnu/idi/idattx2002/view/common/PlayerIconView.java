@@ -5,11 +5,20 @@ import java.util.Map;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class PlayerIconWindow {
+/**
+ * Utility class for loading and managing player icon images.
+ * <p>
+ * Provides a mapping from icon IDs to {@code ImageView} objects, used for displaying player pieces.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
+public class PlayerIconView {
 
   public Map<Integer, ImageView> imageViewMap;
 
-  public PlayerIconWindow(double imageSize) {
+  public PlayerIconView(double imageSize) {
     imageViewMap = new HashMap<>();
     createPieces(imageSize);
   }

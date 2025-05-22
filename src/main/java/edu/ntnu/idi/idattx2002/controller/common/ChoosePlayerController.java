@@ -10,6 +10,16 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+/**
+ * Controller for handling player selection logic.
+ * <p>
+ * Manages interaction between the player selection view and internal player data,
+ * including selection toggles, constraints, and player creation.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class ChoosePlayerController {
 
   private final Pane mainPane;
@@ -86,5 +96,4 @@ public class ChoosePlayerController {
   public void showView() {
     choosePlayerView.show();
   }
-
 }

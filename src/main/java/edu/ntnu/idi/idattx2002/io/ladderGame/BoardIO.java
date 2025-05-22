@@ -11,7 +11,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * Handles loading and applying board configurations for the LadderGame.
+ * <p>
+ * Board actions are defined in a configuration file and applied to the game board.
+ * This class supports parsing different types of actions and associating them
+ * with specific tiles using a predefined file format.
+ * </p>
+ *
+ * <p>
+ * File Format (boardSetUp.csv):
+ * <pre>
+ * GameName(
+ * {ActionType
+ * tile,destination
+ * tile
+ * }
+ * )
+ * </pre>
+ * </p>
+ *
+ * @author Kasper Karlsen
+ * @version 1.0
+ */
 public class BoardIO {
 
     private final LadderGameBoard board;
@@ -20,6 +42,11 @@ public class BoardIO {
     private final Map<String, BiConsumer<Integer, Integer>> actionMethods;
     private final String filePath;
 
+    /**
+     * Constructs a {@code BoardIO} handler for the specified LadderGameBoard.
+     *
+     * @param board the game board to apply actions to
+     */
     public BoardIO(LadderGameBoard board) {
         this.board = board;
         actionNames = new ArrayList<>();
@@ -33,6 +60,11 @@ public class BoardIO {
         filePath = "src/main/resources/ladderGameResources/ladderGamePositions/boardSetUp.csv";
     }
 
+    /**
+     * Returns a list of all available board configuration names from the file.
+     *
+     * @return list of game board names
+     */
     public ArrayList<String> getBoards()  {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -61,6 +93,11 @@ public class BoardIO {
         }
     }
 
+    /**
+     * Sets up board actions for a specific game configuration by name.
+     *
+     * @param gameID the identifier of the board configuration to apply
+     */
     public void setActions(String gameID){
         readFile(gameID);
 

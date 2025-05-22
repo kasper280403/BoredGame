@@ -17,20 +17,27 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * View for selecting and creating players.
+ * <p>
+ * Displays a list of existing players with selection buttons and a panel for creating new players.
+ * </p>
+ *
+ * @author Kasper Karlsen
+ * @version 1.0
+ */
 public class CreatePlayerWindow{
 
     public List<String> playerNames;
 
     private final Stage createPlayerStage;
     private final PlayerIO playerIO;
-    private final PlayerIconWindow playerIconWindow;
+    private final PlayerIconView playerIconView;
 
-    //TODO implement controller pattern
     public CreatePlayerWindow(){
         createPlayerStage = new Stage();
         playerIO = new PlayerIO();
-        playerIconWindow = new PlayerIconWindow(50);
+        playerIconView = new PlayerIconView(50);
     }
 
     public ListView<String> getPlayersListView() {
@@ -142,10 +149,10 @@ public class CreatePlayerWindow{
     private HashMap<Integer, ImageView> getPiecesImg() {
         HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
 
-        imageViewMap.put(1, playerIconWindow.getImageView(1));
-        imageViewMap.put(2, playerIconWindow.getImageView(2));
-        imageViewMap.put(3, playerIconWindow.getImageView(3));
-        imageViewMap.put(4, playerIconWindow.getImageView(4));
+        imageViewMap.put(1, playerIconView.getImageView(1));
+        imageViewMap.put(2, playerIconView.getImageView(2));
+        imageViewMap.put(3, playerIconView.getImageView(3));
+        imageViewMap.put(4, playerIconView.getImageView(4));
 
         return imageViewMap;
     }

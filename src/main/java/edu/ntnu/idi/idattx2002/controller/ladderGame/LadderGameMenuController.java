@@ -10,6 +10,15 @@ import java.util.List;
 import edu.ntnu.idi.idattx2002.io.ladderGame.BoardIO;
 import javafx.scene.layout.Pane;
 
+/**
+ * Controller for the Snakes and Ladders game setup menu.
+ * <p>
+ * Handles player selection, game mode loading, and game initialization.
+ * </p>
+ *
+ * @author Sindre Mjøs and Kasper Karlsen
+ * @version 1.0
+ */
 public class LadderGameMenuController {
 
   private final SnakesAndLaddersMenuView menuView;

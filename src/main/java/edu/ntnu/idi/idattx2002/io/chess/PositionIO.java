@@ -15,12 +15,102 @@ import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.module.chess.pieces.*;
 import edu.ntnu.idi.idattx2002.module.chess.pieces.Piece;
 
+/**
+ * Handles loading and saving of chess board positions from and to file.
+ * <p>
+ * The format used includes encoded strings indicating the piece type, color,
+ * and board square, along with which player is to move.
+ * </p>
+ *
+ * <p>Supports predefined and custom board positions.</p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class PositionIO {
 
   private final String basePath;
 
+  /**
+   * Constructs a new {@code PositionIO} and sets the default base path for position files.
+   */
   public PositionIO() {
     basePath = "src/main/resources/chessResources/chessPositions/";
+  }
+
+  /**
+   * Loads a position from a file and populates the given chess instance.
+   *
+   * @param chess the chess game to populate
+   * @param fileName the name of the position file (relative to basePath)
+   */
+  public void loadPosition(Chess chess, String fileName) {
+    String path = basePath + fileName;
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        String squareNotation = line.trim();
+
+        if (squareNotation.equals("Mw")) {
+          if (chess.getPlayerToMove().getColor() != ChessColor.WHITE) {
+            chess.updatePlayerToMove();
+          }
+        } else if (squareNotation.equals("Mb")) {
+          if (chess.getPlayerToMove().getColor() != ChessColor.BLACK) {
+            chess.updatePlayerToMove();
+          }
+        } else {
+          loadSquare(chess, squareNotation);
+        }
+      }
+    }
+    catch(IOException e) {
+      throw new IllegalArgumentException("Couldnt read position file");
+    }
+  }
+
+  /**
+   * Saves the current board position to a custom position file.
+   *
+   * @param fileName the file name to save to
+   * @param chess the chess game whose state to save
+   */
+  public void savePosition(String fileName, Chess chess) {
+    String path = basePath + "customPositions/" + fileName;
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+      writer.write(getPositionString(chess));
+    } catch (IOException e) {
+      throw new IllegalArgumentException("Couldnt savePosition");
+    }
+  }
+
+  /**
+   * Retrieves the relative paths to all predefined start position files.
+   *
+   * @return a list of file paths relative to the resource folder
+   */
+  public List<String> getAllStartPositionEndPaths(){
+    List<String> fileNames = new ArrayList<>();
+    ClassLoader loader = getClass().getClassLoader();
+
+    String path = "startPositions";
+
+    URL url = loader.getResource("chessResources/chessPositions/" + path);
+    if (url == null) {
+      throw new IllegalArgumentException("Couldnt resolve resource folder");
+    }
+
+    File positionFolder = new File(url.getFile());
+    File[] files = positionFolder.listFiles();
+
+    if(files != null) {
+      for(File file : files) {
+        fileNames.add(path + "/" + file.getName());
+      }
+    }
+    return fileNames;
   }
 
   private String getPositionString(Chess chess) {
@@ -144,63 +234,4 @@ public class PositionIO {
       }
     }
   }
-
-  public void loadPosition(Chess chess, String fileName) {
-    String path = basePath + fileName;
-
-    try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-      String line;
-      while ((line = reader.readLine()) != null) {
-        String squareNotation = line.trim();
-
-        if (squareNotation.equals("Mw")) {
-          if (chess.getPlayerToMove().getColor() != ChessColor.WHITE) {
-            chess.updatePlayerToMove();
-          }
-        } else if (squareNotation.equals("Mb")) {
-          if (chess.getPlayerToMove().getColor() != ChessColor.BLACK) {
-            chess.updatePlayerToMove();
-          }
-        } else {
-          loadSquare(chess, squareNotation);
-        }
-      }
-    }
-    catch(IOException e) {
-      throw new IllegalArgumentException("Couldnt read position file");
-    }
-  }
-
-  public void savePosition(String fileName, Chess chess) {
-    String path = basePath + "customPositions/" + fileName;
-
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-      writer.write(getPositionString(chess));
-    } catch (IOException e) {
-      throw new IllegalArgumentException("Couldnt savePosition");
-    }
-  }
-
-  public List<String> getAllStartPositionEndPaths(){
-    List<String> fileNames = new ArrayList<>();
-    ClassLoader loader = getClass().getClassLoader();
-
-    String path = "startPositions";
-
-    URL url = loader.getResource("chessResources/chessPositions/" + path);
-    if (url == null) {
-      throw new IllegalArgumentException("Couldnt resolve resource folder");
-    }
-
-    File positionFolder = new File(url.getFile());
-    File[] files = positionFolder.listFiles();
-
-    if(files != null) {
-      for(File file : files) {
-        fileNames.add(path + "/" + file.getName());
-      }
-    }
-    return fileNames;
-  }
-
 }

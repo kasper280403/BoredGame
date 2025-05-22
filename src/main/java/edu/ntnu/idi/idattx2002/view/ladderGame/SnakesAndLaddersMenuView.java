@@ -5,6 +5,15 @@ import edu.ntnu.idi.idattx2002.controller.ladderGame.LadderGameMenuController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
+/**
+ * Menu view for setting up a Snakes and Ladders game.
+ * <p>
+ * Allows players to select a game mode and start the game. Extends {@code GameMenuView}.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class SnakesAndLaddersMenuView extends GameMenuView {
 
   private final LadderGameMenuController controller;
