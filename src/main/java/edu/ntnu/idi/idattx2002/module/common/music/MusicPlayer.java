@@ -7,6 +7,16 @@ import java.util.Random;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * Handles playback of music files from a local directory.
+ * <p>
+ * Supports playing a random MP3 file, pausing playback, and notifying an observer
+ * when a new track is played.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class MusicPlayer {
 
   private MediaPlayer mediaPlayer;
@@ -16,6 +26,9 @@ public class MusicPlayer {
   private MusicObserver observer;
 
 
+  /**
+   * Constructs a new MusicPlayer and loads available music files.
+   */
   public MusicPlayer() {
     random = new Random();
     musicList = new ArrayList<>();
@@ -23,10 +36,20 @@ public class MusicPlayer {
     init();
   }
 
+  /**
+   * Registers an observer to be notified when a new song is played.
+   *
+   * @param observer the observer to notify
+   */
   public void addObserver(MusicObserver observer) {
     this.observer = observer;
   }
 
+  /**
+   * Stops the current song if playing or paused, plays a new random song,
+   * and notifies the observer. Automatically continues with the next song
+   * when the current one ends.
+   */
   public void playNext() {
     if (mediaPlayer != null) {
       MediaPlayer.Status status = mediaPlayer.getStatus();
@@ -53,10 +76,16 @@ public class MusicPlayer {
     observer.update(songFile.getName());
   }
 
+  /**
+   * Pauses the currently playing song.
+   */
   public void pause() {
     mediaPlayer.pause();
   }
 
+  /**
+   * Loads all MP3 files from the predefined music directory.
+   */
   private void loadMusic() {
     File musicFolder = new File("GameData/music");
 
@@ -67,6 +96,9 @@ public class MusicPlayer {
     }
   }
 
+  /**
+   * Initializes the player by loading music files.
+   */
   private void init() {
     loadMusic();
   }
