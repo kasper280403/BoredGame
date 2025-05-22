@@ -47,7 +47,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
   private final int yDimensions;
 
   public SnakesAndLaddersBoardView(
-      int xDimensions, int yDimensions, double tileSize, LadderGame game, Pane parent) {
+      int xDimensions, int yDimensions, double tileSize, Pane parent) {
     this.parent = parent;
 
     tileMap = new HashMap<>();

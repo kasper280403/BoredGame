@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idattx2002.view.common;
 
 import edu.ntnu.idi.idattx2002.controller.common.StartMenuController;
+import java.util.Objects;
 import javafx.geometry.Pos;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Glow;
@@ -51,7 +52,7 @@ public class StartMenuView extends VBox {
     accentText.setEffect(new GaussianBlur(5));
 
     titlePane.getChildren().addAll(accentText, mainText);
-    accentText.setTranslateY(size / 20);
+    accentText.setTranslateY((double) size / 20);
 
     return titlePane;
   }
@@ -71,7 +72,7 @@ public class StartMenuView extends VBox {
     header.setFill(Color.WHITESMOKE);
 
     Image sNlImage =
-        new Image(getClass().getResource("/chessResources/chessLogo.png").toExternalForm());
+        new Image(Objects.requireNonNull(getClass().getResource("/chessResources/chessLogo.png")).toExternalForm());
     ImageView sNlImageView = new ImageView(sNlImage);
 
     sNlImageView.setFitWidth(290);
@@ -99,8 +100,8 @@ public class StartMenuView extends VBox {
 
     Image sNlImage =
         new Image(
-            getClass()
-                .getResource("/ladderGameResources/images/snakesAndLaddersLogo.png")
+            Objects.requireNonNull(getClass()
+                    .getResource("/ladderGameResources/images/snakesAndLaddersLogo.png"))
                 .toExternalForm());
     ImageView sNlImageView = new ImageView(sNlImage);
 

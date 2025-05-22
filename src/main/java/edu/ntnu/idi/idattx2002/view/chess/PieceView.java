@@ -2,6 +2,7 @@ package edu.ntnu.idi.idattx2002.view.chess;
 
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.pieces.*;
+import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -48,7 +49,8 @@ public class PieceView {
   }
 
   private ImageView createImageView(String location) {
-    ImageView piece = new ImageView(new Image(getClass().getResource(location).toExternalForm()));
+    ImageView piece = new ImageView(new Image(
+        Objects.requireNonNull(getClass().getResource(location)).toExternalForm()));
 
     piece.setFitWidth(size);
     piece.setFitHeight(size);

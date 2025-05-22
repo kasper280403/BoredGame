@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
  */
 public class LadderView {
 
-  private String standardPath;
+  private final String standardPath;
 
   public LadderView() {
     standardPath = "ladderGameResources/images/tiles/";

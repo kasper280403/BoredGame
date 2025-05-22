@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Represents the main game logic for a ladder game.
@@ -26,8 +27,6 @@ public class LadderGame {
 
   private final LadderGameBoard board;
 
-  private Dice dice1;
-  private Dice dice2;
   private List<Dice> dices;
 
   private int playerToMoveID;
@@ -104,7 +103,12 @@ public class LadderGame {
     player.movePlayerBySteps(steps);
     checkForWin(player);
 
-    board.getTile(player.getCurrentTileId()).landPlayer(player);
+    if(player.getCurrentTileId() > board.getLastTile().getSquareId()) {
+      board.getLastTile().landPlayer(player);
+    }
+    else {
+      board.getTile(player.getCurrentTileId()).landPlayer(player);
+    }
     updatePlayerToMove();
   }
 
@@ -147,7 +151,7 @@ public class LadderGame {
    */
   private void validatePlayer(LadderGamePlayer player) {
     for (LadderGamePlayer existingPlayer : players.values()) {
-      if (player.getName() == existingPlayer.getName()) {
+      if (Objects.equals(player.getName(), existingPlayer.getName())) {
         throw new IlliegalGameArgumentException("Two players can not have the same name");
       }
       if (player.getIconId() == existingPlayer.getIconId()) {
@@ -168,8 +172,8 @@ public class LadderGame {
 
   /** Initializes the dice used in the game. */
   private void initDices() {
-    this.dice1 = new Dice();
-    this.dice2 = new Dice();
+    Dice dice1 = new Dice();
+    Dice dice2 = new Dice();
 
     dices = new ArrayList<>();
     dices.add(dice1);

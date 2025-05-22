@@ -33,7 +33,7 @@ public class LadderGameController {
     game.createBoard(selectedGamemode);
 
     diceView = new DiceView(snakesAndLadderView.getLeftPane());
-    tilesView = new SnakesAndLaddersBoardView(10, 9, 75, game, snakesAndLadderView.getCenterPane());
+    tilesView = new SnakesAndLaddersBoardView(10, 9, 75, snakesAndLadderView.getCenterPane());
     tilesView.displayLandActionsAtTile(game);
 
     winView = new WinView(mainPane);

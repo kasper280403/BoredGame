@@ -90,7 +90,7 @@ public class PlayerIO {
         writer.newLine();
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException("Couldnt write to file");
     }
   }
 }

@@ -82,11 +82,7 @@ public class Pawn extends Piece {
     if (!(pieceToCapture instanceof Pawn)) {
       return false;
     }
-    if (((Pawn) pieceToCapture).getFirstMoved()) {
-      return true;
-    } else {
-      return false;
-    }
+    return ((Pawn) pieceToCapture).getFirstMoved();
   }
 
   private void performEnPassant(ChessSquare square, Chess chess) {

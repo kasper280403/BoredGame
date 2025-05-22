@@ -24,10 +24,10 @@ import javafx.scene.shape.Rectangle;
 public class BoardView extends GridPane implements SquareObserver {
 
   private final PieceView pieceView;
-  private Pane parent;
+  private final Pane parent;
 
-  private Map<ChessSquare, Pane> tileMap;
-  private int tilesize;
+  private final Map<ChessSquare, Pane> tileMap;
+  private final int tilesize;
 
   public BoardView(Pane parent) {
     this.parent = parent;
@@ -74,12 +74,6 @@ public class BoardView extends GridPane implements SquareObserver {
 
       add(squarePane, x, y);
       tileMap.put(square, squarePane);
-    }
-  }
-
-  public void refreshAllTiles() {
-    for (ChessSquare square : tileMap.keySet()) {
-      refreshTile(tileMap.get(square), square);
     }
   }
 
