@@ -29,21 +29,13 @@ public final class StartMenuController {
   }
 
   public void openChessMenu() {
-    try {
-      ChessMenuController mainController = new ChessMenuController(mainPane.getContentPane());
-      mainController.getView().show();
-    } catch (Exception ex) {
-      throw new RuntimeException("Couldnt open game menu");
-    }
+    ChessMenuController mainController = new ChessMenuController(mainPane.getContentPane());
+    mainController.getView().show();
   }
 
   public void openSnakesAndLaddersMenu() {
-    try {
-      SnakesAndLaddersMenuController mainController = new SnakesAndLaddersMenuController(mainPane.getContentPane());
-      mainController.getView().show();
-    } catch (Exception ex) {
-      throw new RuntimeException("Couldnt open game menu");
-    }
+    SnakesAndLaddersMenuController mainController = new SnakesAndLaddersMenuController(mainPane.getContentPane());
+    mainController.getView().show();
   }
 
 }
