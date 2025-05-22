@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
+import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
 import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,7 +27,9 @@ public abstract class GameMenuView extends VBox{
 
   public HBox topBox;
   public HBox middleBox;
-  public HBox bottomBox;
+  public VBox bottomBox;
+
+  public Text userFeedback;
 
   public GameMenuView(Pane mainPane) {
     this.mainPane = mainPane;
@@ -48,7 +51,14 @@ public abstract class GameMenuView extends VBox{
     return bottomBox;
   }
 
+  public void setUserFeedback(String message) {
+    userFeedback.setText(message);
+  }
+
   public ComboBox<String> getGameModeSelection() {
+    if(gameModeSelection.getValue() == null) {
+      throw new IlliegalGameArgumentException("No Gamemode is chosen");
+    }
     return gameModeSelection;
   }
 
@@ -104,19 +114,30 @@ public abstract class GameMenuView extends VBox{
     }
   }
 
+  private void initUserFeedbackText() {
+    userFeedback = new Text();
+    userFeedback.setFont(new Font("Helvetica", 20));
+    userFeedback.setFill(Color.WHITE);
+  }
+
   public void init() {
     setAlignment(Pos.CENTER);
     setSpacing(20);
 
+    initUserFeedbackText();
+
     topBox = new HBox();
     middleBox = new HBox();
-    bottomBox = new HBox();
+    bottomBox = new VBox();
 
     topBox.setAlignment(Pos.CENTER);
     middleBox.setAlignment(Pos.CENTER);
     bottomBox.setAlignment(Pos.CENTER);
 
     middleBox.setSpacing(60);
+    bottomBox.setSpacing(20);
+
+    bottomBox.getChildren().add(userFeedback);
 
     getChildren().addAll(topBox, middleBox, bottomBox);
   }

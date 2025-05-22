@@ -1,5 +1,8 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.controller;
 
+import edu.ntnu.idi.idattx2002.exception.GameException;
+import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
+import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.ChessMenuView;
 import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
 import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
@@ -33,16 +36,24 @@ public class ChessMenuController {
   public void startGame(Pane mainPane) {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
 
-    if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
-      Chess chess = new Chess();
-      chess.addHumanPlayers(choosePlayerController.getChosenPlayers());
+    try {
+      if (amountOfPlayers >= choosePlayerController.getMinPlayers()
+          && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
+        Chess chess = new Chess();
+        chess.addHumanPlayers(choosePlayerController.getChosenPlayers());
 
-      String positionPath = chessMenuView.getGameModeSelection().getValue();
-      chess.initPosition(positionPath);
+        String positionPath = chessMenuView.getGameModeSelection().getValue();
+        chess.initPosition(positionPath);
 
-      ChessController chessController = new ChessController(mainPane, chess);
+        ChessController chessController = new ChessController(mainPane, chess);
 
-      chessController.showView();
+        chessController.showView();
+      }
+      else {
+        throw new IlliegalGameArgumentException("Wrong number of chosen players");
+      }
+    } catch(GameException e) {
+      chessMenuView.setUserFeedback(e.getMessage());
     }
   }
 }

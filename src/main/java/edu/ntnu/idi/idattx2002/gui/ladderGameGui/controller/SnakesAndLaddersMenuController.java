@@ -1,5 +1,7 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller;
 
+import edu.ntnu.idi.idattx2002.exception.GameException;
+import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
 import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
 import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersMenuView;
@@ -32,8 +34,17 @@ public class SnakesAndLaddersMenuController {
   public void startGame(Pane mainPane) {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
 
-    if(amountOfPlayers >= choosePlayerController.getMinPlayers() && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
-      new SnakesAndLaddersController(mainPane, choosePlayerController.getChosenPlayers(), menuView.getGameModeSelection().getValue());
+    try {
+      if (amountOfPlayers >= choosePlayerController.getMinPlayers()
+          && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
+        new SnakesAndLaddersController(mainPane, choosePlayerController.getChosenPlayers(),
+            menuView.getGameModeSelection().getValue());
+      }
+      else {
+        throw new IlliegalGameArgumentException("Wrong number of chosen players");
+      }
+    } catch (GameException e) {
+      menuView.setUserFeedback(e.getMessage());
     }
   }
 

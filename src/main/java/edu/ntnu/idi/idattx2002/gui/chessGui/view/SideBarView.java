@@ -19,6 +19,8 @@ public class SideBarView extends VBox {
   private final Pane parent;
   private final BoardController boardController;
 
+  private Text userFeedback;
+
   private final int buttonWidth;
   private final int buttonHeight;
 
@@ -30,6 +32,14 @@ public class SideBarView extends VBox {
     buttonHeight = 30;
 
     init();
+  }
+
+  public void setUserExceptionFeedback(String message) {
+    userFeedback.setText(userFeedback.getText() + "\n" + message);
+  }
+
+  public void setUserFeedback(String message) {
+    userFeedback.setText(message);
   }
 
   private Button createFlipButton() {
@@ -70,13 +80,21 @@ public class SideBarView extends VBox {
     setBackground(new Background(new BackgroundFill(backgroundColor, null, null)));
   }
 
+  private void initUserFeedback() {
+    userFeedback = new Text();
+    userFeedback.setFill(Color.WHITE);
+    userFeedback.setFont(new Font("Helvatica", 20));
+  }
+
   private void init() {
     setAlignment(Pos.CENTER);
     setSpacing(20);
     setSize(300, 800);
     setBackground();
 
-    getChildren().addAll(createFlipButton(), createAutoFlipButton());
+    initUserFeedback();
+
+    getChildren().addAll(userFeedback, createFlipButton(), createAutoFlipButton());
   }
 
   public void show() {
