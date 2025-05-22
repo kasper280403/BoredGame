@@ -100,6 +100,21 @@ public class CreatePlayerWindow{
         pieces.setAlignment(Pos.CENTER);
 
         Button addPlayerButton = new Button("Add player");
+
+        TextField nameToRemoveField = new TextField();
+        nameToRemoveField.setPromptText("Write name to remove..");
+        Button removePlayerButton = new Button("Remove player");
+
+        removePlayerButton.setOnAction(e -> {
+            String playerName = nameToRemoveField.getText();
+            playerIO.deletePlayer(playerName);
+            refresh();
+        });
+
+        HBox removeField = new HBox(10);
+        removeField.getChildren().addAll(nameToRemoveField, removePlayerButton);
+        removeField.setAlignment(Pos.CENTER);
+
         Button goBackButton = new Button("BACK");
 
         ListView<String> finalPlayerListView = playerListView;
@@ -111,12 +126,13 @@ public class CreatePlayerWindow{
                 playerNameField.clear();
 
                 updateDAO(name, selectedPiece[0]);
+                refresh();
             }
         });
 
         goBackButton.setOnAction(e -> goBack());
 
-        layout.getChildren().addAll(heading, playerNameHBox, pieces, spacing, addPlayerButton, playerListView, goBackButton);
+        layout.getChildren().addAll(heading, playerNameHBox, pieces, spacing, addPlayerButton, removeField, playerListView, goBackButton);
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(10);
         Scene scene = new Scene(layout, 500, 400);
@@ -139,7 +155,15 @@ public class CreatePlayerWindow{
         createPlayerStage.close();
     }
 
+    private void refresh(){
+        goBack();
+        CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
+        createPlayerWindow.openPlayerInput();
+    }
+
     private void updateDAO(String playerName, int selectedPiece) {
         playerIO.writePlayer(playerName, selectedPiece);
     }
 }
+
+
