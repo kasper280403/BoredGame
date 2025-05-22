@@ -14,9 +14,10 @@ Download the latest release from the [Releases](https://github.com/kasper280403/
 2. Run the app using the terminal:
 
 ```bash
-java -jar BoredGame.jar
+java --module-path /path/to/javafx-sdk-<version>/lib \
+     --add-modules javafx.controls,javafx.fxml \
+     -jar BoredGame-1.0-SNAPSHOT-shaded.jar
 ```
-
 ---
 
 ## 🛠️ Development
@@ -103,7 +104,7 @@ BoredGame/
 ---
 ## 👤 Author
 
-**Sindre Mjøs and Kasper KArlsen**  
+**Sindre Mjøs and Kasper Karlsen**  
 _Developed for IDATT2002 at NTNU_  
 [GitHub Profile](https://github.com/sindrelm)
 [GitHub Profile](https://github.com/kasper280403)
