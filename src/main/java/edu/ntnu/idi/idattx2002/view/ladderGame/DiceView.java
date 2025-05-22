@@ -131,7 +131,6 @@ public class DiceView extends HBox implements DiceObserver {
     diceImageView.setFitWidth(diceImage.getWidth() * 0.15);
     diceImageView.setFitHeight(diceImage.getHeight() * 0.15);
     diceImageView.setPreserveRatio(true);
-    ;
 
     return diceImageView;
   }

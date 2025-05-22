@@ -3,6 +3,7 @@ package edu.ntnu.idi.idattx2002.module.common.music;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -80,7 +81,7 @@ public class MusicPlayer {
   private void loadMusic() {
     File musicFolder = new File("gameData/music");
 
-    for (File file : musicFolder.listFiles()) {
+    for (File file : Objects.requireNonNull(musicFolder.listFiles())) {
       if (file.getName().toLowerCase().endsWith(".mp3")) {
         musicList.add(file);
       }

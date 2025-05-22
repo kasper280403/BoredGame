@@ -55,7 +55,7 @@ public class CreatePlayerWindow {
     List<String> playerNames = new ArrayList<>();
 
     for (List<String> player : playerList) {
-      playerNames.add(player.get(0));
+      playerNames.add(player.getFirst());
     }
 
     return playerNames;
@@ -123,13 +123,12 @@ public class CreatePlayerWindow {
 
     Button goBackButton = new Button("BACK");
 
-    ListView<String> finalPlayerListView = playerListView;
     addPlayerButton.setOnAction(
         e -> {
           String name = playerNameField.getText().trim();
           if (!name.isEmpty() && !playerNames.contains(name)) {
             playerNames.add(name);
-            finalPlayerListView.getItems().add(name + " (Piece " + selectedPiece[0] + ")");
+            playerListView.getItems().add(name + " (Piece " + selectedPiece[0] + ")");
             playerNameField.clear();
 
             updateDAO(name, selectedPiece[0]);

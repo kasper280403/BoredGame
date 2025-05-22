@@ -15,8 +15,8 @@ import javafx.scene.layout.Pane;
  */
 public class MusicController {
 
-  private MusicPlayer musicPlayer;
-  private MusicView musicView;
+  private final MusicPlayer musicPlayer;
+  private final MusicView musicView;
 
   public MusicController(Pane mainPane) {
     musicView = new MusicView(this, mainPane);
