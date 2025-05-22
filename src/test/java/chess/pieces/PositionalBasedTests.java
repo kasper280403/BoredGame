@@ -3,14 +3,14 @@ package chess.pieces;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.ntnu.idi.idattx2002.exception.IllegalMoveException;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.Move;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessBoard;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.King;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Pawn;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Queen;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
+import edu.ntnu.idi.idattx2002.module.chess.Chess;
+import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
+import edu.ntnu.idi.idattx2002.module.chess.Move;
+import edu.ntnu.idi.idattx2002.module.chess.board.ChessBoard;
+import edu.ntnu.idi.idattx2002.module.chess.pieces.King;
+import edu.ntnu.idi.idattx2002.module.chess.pieces.Pawn;
+import edu.ntnu.idi.idattx2002.module.chess.pieces.Queen;
+import edu.ntnu.idi.idattx2002.module.chess.player.HumanChessPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

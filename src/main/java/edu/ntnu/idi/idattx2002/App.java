@@ -1,6 +1,6 @@
 package edu.ntnu.idi.idattx2002;
 
-import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
+import edu.ntnu.idi.idattx2002.controller.common.StartMenuController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
