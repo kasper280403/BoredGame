@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller;
 
+import edu.ntnu.idi.idattx2002.exception.GameException;
 import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
 import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
 import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
@@ -42,7 +43,7 @@ public class SnakesAndLaddersMenuController {
       else {
         throw new IlliegalGameArgumentException("Wrong number of chosen players");
       }
-    } catch (IlliegalGameArgumentException e) {
+    } catch (GameException e) {
       menuView.setUserFeedback(e.getMessage());
     }
   }

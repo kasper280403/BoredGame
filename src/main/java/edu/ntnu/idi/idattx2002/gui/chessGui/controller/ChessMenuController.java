@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.controller;
 
+import edu.ntnu.idi.idattx2002.exception.GameException;
 import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
 import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.ChessMenuView;
@@ -51,7 +52,7 @@ public class ChessMenuController {
       else {
         throw new IlliegalGameArgumentException("Wrong number of chosen players");
       }
-    } catch(IlliegalGameArgumentException e) {
+    } catch(GameException e) {
       chessMenuView.setUserFeedback(e.getMessage());
     }
   }

@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.common.view;
 
+import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
 import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -54,7 +55,10 @@ public abstract class GameMenuView extends VBox{
     userFeedback.setText(message);
   }
 
-  public ComboBox<String> getGameModeSelection() {
+  public ComboBox<String> getGameModeSelection() throws IlliegalGameArgumentException {
+    if(gameModeSelection.getValue() == null) {
+      throw new IlliegalGameArgumentException("No Gamemode is chosen");
+    }
     return gameModeSelection;
   }
 
