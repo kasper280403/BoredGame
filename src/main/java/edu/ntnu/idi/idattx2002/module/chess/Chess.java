@@ -12,6 +12,19 @@ import edu.ntnu.idi.idattx2002.module.chess.pieces.Piece;
 import edu.ntnu.idi.idattx2002.module.chess.player.HumanChessPlayer;
 import edu.ntnu.idi.idattx2002.module.chess.player.ChessPlayer;
 
+/**
+ * Represents the core chess game logic and state.
+ * <p>
+ * Manages the board, players, current turn, move execution, position initialization, and win condition.
+ * </p>
+ *
+ * <p>
+ * This class also supports an observer to notify when a win condition is met.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class Chess {
 
   private final ChessBoard board;
@@ -22,6 +35,11 @@ public class Chess {
 
   private WinObserver observer;
 
+
+  /**
+   * Constructs a new {@code Chess} game instance.
+   * Initializes the board, player list, and position I/O.
+   */
   public Chess() {
     positionIO = new PositionIO();
     players = new ArrayList<>();
@@ -29,6 +47,13 @@ public class Chess {
 
   }
 
+  /**
+   * Returns the player with the specified chess color.
+   *
+   * @param chessColor the color of the player to retrieve
+   * @return the corresponding {@code ChessPlayer}
+   * @throws NullPointerException if no player with the given color exists
+   */
   public ChessPlayer getPlayer(ChessColor chessColor) {
     for (ChessPlayer player : players) {
       if(player.getColor() == chessColor) {
@@ -38,27 +63,61 @@ public class Chess {
     throw new NullPointerException("Player not found");
   }
 
+  /**
+   * Returns the player whose turn it currently is.
+   *
+   * @return the current player
+   */
   public ChessPlayer getPlayerToMove() {
     return playerToMove;
   }
 
+
+  /**
+   * Returns the current game board.
+   *
+   * @return the {@code ChessBoard}
+   */
   public ChessBoard getBoard() {
     return board;
   }
 
+  /**
+   * Returns the list of players participating in the game.
+   *
+   * @return the list of {@code ChessPlayer} objects
+   */
   public List<ChessPlayer> getPlayers() {
     return players;
   }
 
+
+  /**
+   * Registers a win observer to be notified when the game is won.
+   *
+   * @param observer the observer to register
+   */
   public void addObserver(WinObserver observer) {
     this.observer = observer;
   }
 
+  /**
+   * Adds a human player to the game.
+   * Automatically sets WHITE to move first.
+   *
+   * @param player the player to add
+   */
   public void addPlayer(HumanChessPlayer player) {
     players.add(player);
     playerToMove = getPlayer(ChessColor.WHITE);
   }
 
+  /**
+   * Initializes the board position using data from the given file path.
+   * Also assigns pieces to their corresponding players.
+   *
+   * @param pathToPosition path to the position file
+   */
   public void initPosition(String pathToPosition) {
     positionIO.loadPosition(this, pathToPosition);
     for(ChessPlayer player : players) {
@@ -74,6 +133,12 @@ public class Chess {
     }
   }
 
+  /**
+   * Executes a given move and handles game logic including turn change, win check, and pawn status.
+   *
+   * @param move the move to play
+   * @throws IllegalMoveException if the move is not successful
+   */
   public void playMove(Move move) {
     move.execute();
     if(move.successful()) {
@@ -86,12 +151,18 @@ public class Chess {
     }
   }
 
+  /**
+   * Checks for checkmate conditions and notifies the observer if a player has won.
+   */
   private void checkForWin() {
     if(players.getFirst().getKing().isInCheckMate(this) || players.getLast().getKing().isInCheckMate(this)) {
       notifyObserver(playerToMove);
     }
   }
 
+  /**
+   * Switches the current player to move to the opponent.
+   */
   public void updatePlayerToMove() {
     if (playerToMove.getColor() == ChessColor.WHITE) {
       playerToMove = getPlayer(ChessColor.BLACK);
@@ -101,6 +172,9 @@ public class Chess {
     }
   }
 
+  /**
+   * Updates the status of pawns (e.g. disabling en passant after one turn).
+   */
   private void updatePieceStatuses() {
     for(Piece piece : getPlayerToMove().getAlivePieces()) {
       if(piece instanceof Pawn) {
@@ -111,6 +185,11 @@ public class Chess {
     }
   }
 
+  /**
+   * Notifies the registered observer that a player has won.
+   *
+   * @param player the winning player
+   */
   private void notifyObserver(ChessPlayer player) {
     if (observer != null) {
       observer.update(player);
