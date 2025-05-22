@@ -21,7 +21,7 @@ public class RookTest {
   }
 
   @Test
-  void testIsMoveLegal() {
+  void testIsMovePossible() {
     //arrange
     ChessSquare whiteRookDestination = new ChessSquare(4, 1);
     ChessSquare blackRookDestination = new ChessSquare(7, 8);
