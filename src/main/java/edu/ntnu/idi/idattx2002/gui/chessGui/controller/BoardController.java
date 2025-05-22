@@ -1,4 +1,5 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.controller;
+import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
 import java.io.IOException;
 import java.util.Map;
 import javafx.scene.control.ToggleButton;
@@ -88,11 +89,20 @@ public class BoardController {
 
   private void executeMove(ChessSquare square, Pane tile) {
     Move move = new Move(selectedSquare, square, chess);
-    chess.playMove(move);
+
+    try {
+      chess.playMove(move);
+    } catch(IlliegalMoveException e) {
+      sideBarView.setUserExceptionFeedback(e.getMessage());
+    }
 
     if(!move.successful()) {
       boardView.refreshTile(selectedTile, selectedSquare);
       boardView.refreshTile(tile, square);
+    }
+
+    else {
+      sideBarView.setUserFeedback("To Move: " + chess.getPlayerToMove().getColor());
     }
 
     if(autoFlip) {

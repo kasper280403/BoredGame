@@ -7,11 +7,5 @@ public class GameException extends RuntimeException {
 
   public GameException(String massage) {
     super(massage);
-
-    Alert alert = new Alert(AlertType.ERROR);
-    alert.setTitle("Game Error");
-    alert.setHeaderText(null);
-    alert.setContentText(this.getMessage());
-    alert.showAndWait();
   }
 }
