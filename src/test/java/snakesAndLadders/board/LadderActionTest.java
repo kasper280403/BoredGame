@@ -1,8 +1,9 @@
-import static org.junit.Assert.assertEquals;
+package snakesAndLadders.board;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class LadderActionTest {
@@ -15,12 +16,12 @@ public class LadderActionTest {
     //act
     ladderTo10.perform(player);
     //Assert
-    Assertions.assertEquals(10, player.getCurrentTileId());
+    assertEquals(10, player.getCurrentTileId());
   }
 
   @Test
   void testInvalidDestinationTileId() {
     //Assert
-    Assertions.assertThrows(IllegalArgumentException.class, () -> new LadderAction(-1));
+    assertThrows(IllegalArgumentException.class, () -> new LadderAction(-1));
   }
 }

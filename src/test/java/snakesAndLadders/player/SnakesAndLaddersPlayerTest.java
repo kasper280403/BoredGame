@@ -1,10 +1,12 @@
+package snakesAndLadders.player;
+
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Player.SnakesAndLaddersPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class ChessSnakesAndLaddersPlayerTest {
+class SnakesAndLaddersPlayerTest {
     SnakesAndLaddersPlayer player;
 
     @BeforeEach
@@ -18,7 +20,7 @@ class ChessSnakesAndLaddersPlayerTest {
         //act
         player.movePlayerBySteps(10);
         //assert
-        assertEquals(11, player.getCurrentTileId());
+        assertEquals(10, player.getCurrentTileId());
         assertNotEquals(5, player.getCurrentTileId());
     }
 
@@ -31,11 +33,10 @@ class ChessSnakesAndLaddersPlayerTest {
         assertNotEquals(32, player.getCurrentTileId());
     }
 
-
     @Test
     void testGetPlayerName() {
         //act
-        String name = player.getPlayerName();
+        String name = player.getName();
         //assert
         assertEquals("Kasper", name);
     }

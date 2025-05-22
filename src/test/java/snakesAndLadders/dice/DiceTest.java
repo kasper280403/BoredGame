@@ -1,3 +1,5 @@
+package snakesAndLadders.dice;
+
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
