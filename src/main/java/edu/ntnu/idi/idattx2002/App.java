@@ -3,7 +3,9 @@ package edu.ntnu.idi.idattx2002;
 import edu.ntnu.idi.idattx2002.gui.common.controller.StartMenuController;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.geometry.Rectangle2D;
 
 public class App extends Application {
 
@@ -16,10 +18,11 @@ public class App extends Application {
 
         StartMenuController startMenuController = new StartMenuController();
 
-        Scene scene = new Scene(startMenuController.getMainPane(), 300, 200);
-        primaryStage.setFullScreen(true);
+        Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+        Scene scene = new Scene(startMenuController.getMainPane(), screenSize.getWidth(), screenSize.getHeight());
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setFullScreen(true);
     }
 
     public static void main(String[] args) {
