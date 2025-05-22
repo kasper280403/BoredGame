@@ -4,6 +4,15 @@ import edu.ntnu.idi.idattx2002.module.common.music.MusicPlayer;
 import edu.ntnu.idi.idattx2002.view.common.MusicView;
 import javafx.scene.layout.Pane;
 
+/**
+ * Controller for managing background music playback.
+ * <p>
+ * Connects the {@code MusicPlayer} logic with the user interface and handles user actions like play and pause.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class MusicController {
 
   private MusicPlayer musicPlayer;
@@ -27,7 +36,4 @@ public class MusicController {
   public void pauseMusic() {
     musicPlayer.pause();
   }
-
-
-
 }

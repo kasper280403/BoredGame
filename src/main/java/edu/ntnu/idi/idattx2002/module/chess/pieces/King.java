@@ -6,15 +6,37 @@ import edu.ntnu.idi.idattx2002.module.chess.Chess;
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 
+/**
+ * Represents the King piece in chess.
+ * <p>
+ * The king can move one square in any direction and is the most important piece in the game.
+ * This class includes logic for checking, checkmate, and castling.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class King extends Piece {
 
   private boolean hasMoved;
 
+  /**
+   * Constructs a {@code King} with a starting square and color.
+   *
+   * @param startSquare the square the king starts on
+   * @param chessColor the color of the king
+   */
   public King(ChessSquare startSquare, ChessColor chessColor) {
     super(startSquare, chessColor);
     hasMoved = false;
   }
 
+  /**
+   * Returns a list of enemy pieces currently putting this king in check.
+   *
+   * @param chess the current game state
+   * @return list of pieces threatening the king
+   */
   public List<Piece> getPutsInCheck(Chess chess) {
     List<Piece> putsInCheck = new ArrayList<>();
 
@@ -29,11 +51,22 @@ public class King extends Piece {
     return putsInCheck;
   }
 
+  /**
+   * Checks whether this king is currently in check.
+   *
+   * @param chess the current game state
+   * @return {@code true} if in check, {@code false} otherwise
+   */
   public boolean isInCheck(Chess chess) {
     return !getPutsInCheck(chess).isEmpty();
   }
 
-  //TODO refactor by implementing stopsCheck() ?
+  /**
+   * Checks whether this king is in checkmate.
+   *
+   * @param chess the current game state
+   * @return {@code true} if in checkmate, {@code false} otherwise
+   */
   public boolean isInCheckMate(Chess chess) {
     if (!isInCheck(chess)) {
       return false;
@@ -48,6 +81,13 @@ public class King extends Piece {
     return true;
   }
 
+  /**
+   * Determines whether castling to the given square is legal for this king.
+   *
+   * @param square the destination square
+   * @param chess the current game state
+   * @return {@code true} if castling is legal, {@code false} otherwise
+   */
   private boolean isCastleLegal(ChessSquare square, Chess chess) {
     if(isInCheck(chess) || hasMoved || Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate()) < 2) {
       return false;
@@ -74,7 +114,7 @@ public class King extends Piece {
     boolean canCastle = false;
 
     ChessColor enemyChessColor = chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
-    if (!rook.hasMoved) {
+    if (!rook.hasMoved()) {
       ChessSquare rookSquare = rook.getCurrentSquare();
       List<ChessSquare> castlePath = chess.getBoard().getPath(getCurrentSquare(), rookSquare);
 
@@ -128,7 +168,7 @@ public class King extends Piece {
         setCurrentSquare(newKingSquare);
         rook.setCurrentSquare(newRookSquare);
 
-        rook.hasMoved = true;
+        rook.setMoved(true);
         hasMoved = true;
 
         performed = true;
@@ -137,6 +177,13 @@ public class King extends Piece {
 
   }
 
+  /**
+   * Checks whether a basic move (non-castling) is valid for the king.
+   * The king can move one square in any direction.
+   *
+   * @param square the target square
+   * @return {@code true} if the move is possible, {@code false} otherwise
+   */
   @Override
   public boolean isMovePossible(ChessSquare square) {
     int xDiff = Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate());
@@ -144,7 +191,13 @@ public class King extends Piece {
     return xDiff <= 1 && yDiff <= 1;
   }
 
-  //TODO simplify by removing second if statement
+  /**
+   * Determines whether moving to a given square prevents check.
+   *
+   * @param square the square to move to
+   * @param chess the current game state
+   * @return {@code true} if the move prevents check, {@code false} otherwise
+   */
   @Override
   public boolean stopsCheck(ChessSquare square, Chess chess) {
     ChessColor enemyChessColor = chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
@@ -160,16 +213,37 @@ public class King extends Piece {
     return true;
   }
 
+  /**
+   * Determines whether this king threatens the given square.
+   *
+   * @param square the square to check
+   * @param chess the current game state
+   * @return {@code true} if the king threatens the square, {@code false} otherwise
+   */
   @Override
   public boolean threatens(ChessSquare square, Chess chess) {
     return isMovePossible(square) && super.threatens(square, chess);
   }
 
+  /**
+   * Checks whether a move is legal for the king, including checks for threats and friendly pieces.
+   *
+   * @param square the destination square
+   * @param chess the current game
+   * @return {@code true} if the move is legal, {@code false} otherwise
+   */
   @Override
   public boolean isMoveLegal(ChessSquare square, Chess chess) {
     return isMovePossible(square) && super.isMoveLegal(square, chess);
   }
 
+  /**
+   * Moves the king to the specified square if the move is legal.
+   * If castling is legal, performs castling instead.
+   *
+   * @param square the destination square
+   * @param chess the current game state
+   */
   @Override
   public void move(ChessSquare square, Chess chess) {
     if(isMoveLegal(square, chess)) {

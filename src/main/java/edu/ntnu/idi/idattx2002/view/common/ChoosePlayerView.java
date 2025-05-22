@@ -15,10 +15,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * View for selecting and creating players.
+ * <p>
+ * Displays a list of existing players with selection buttons and a panel for creating new players.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class ChoosePlayerView extends HBox {
 
-  private Pane mainPane;
-  private ChoosePlayerController controller;
+  private final Pane mainPane;
+  private final ChoosePlayerController controller;
   private VBox choosePlayerPane;
 
   public ChoosePlayerView(Pane mainPane, ChoosePlayerController controller) {
@@ -41,7 +50,7 @@ public class ChoosePlayerView extends HBox {
     header.setFont(new Font("Helvetica", 20));
     header.setFill(Color.LIGHTGREY);
 
-    PlayerIconWindow playerIconView = new PlayerIconWindow(60);
+    PlayerIconView playerIconView = new PlayerIconView(60);
     HBox playerIconImages = new HBox();
     playerIconImages.setSpacing(3);
     playerIconImages.setAlignment(Pos.CENTER);
@@ -108,7 +117,6 @@ public class ChoosePlayerView extends HBox {
     return button;
   }
 
-  //TODO should this be in controller maybe?
   public String playerToString(List<String> player) {
     return player.get(0) + " (Piece " + player.get(1) + ")";
   }

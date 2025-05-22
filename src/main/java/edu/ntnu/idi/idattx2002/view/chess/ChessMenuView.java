@@ -5,6 +5,15 @@ import edu.ntnu.idi.idattx2002.view.common.GameMenuView;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
+/**
+ * View for the Chess game setup menu.
+ * <p>
+ * Extends {@code GameMenuView} and initializes UI components for selecting game modes and starting a new game.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class ChessMenuView extends GameMenuView {
 
   private final ChessMenuController controller;

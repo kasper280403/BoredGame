@@ -16,6 +16,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * View component for controlling and displaying background music status.
+ * <p>
+ * Provides play, skip, and stop buttons, and displays the currently playing song.
+ * Implements {@code MusicObserver} to receive updates from the music player.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class MusicView extends VBox implements MusicObserver {
 
   private final MusicController controller;

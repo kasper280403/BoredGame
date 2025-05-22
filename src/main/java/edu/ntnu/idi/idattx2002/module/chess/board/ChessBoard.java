@@ -5,27 +5,64 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents an 8x8 chess board composed of {@code ChessSquare} instances.
+ * <p>
+ * Provides methods for retrieving squares, checking for clear paths, and computing movement paths.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class ChessBoard {
 
   private final Map<Integer, ChessSquare> squareMap;
 
+  /**
+   * Constructs a new chess board and initializes all squares.
+   */
   public ChessBoard() {
     squareMap = new HashMap<>();
     initSquares();
   }
 
+  /**
+   * Returns the internal map of square IDs to chess squares.
+   *
+   * @return the map of squares
+   */
   public Map<Integer, ChessSquare> getSquareMap() {
     return squareMap;
   }
 
+  /**
+   * Retrieves a square by its unique square ID.
+   *
+   * @param squareId the ID of the square
+   * @return the corresponding {@code ChessSquare}
+   */
   public ChessSquare getSquare(int squareId) {
     return getSquareMap().get(squareId);
   }
 
+  /**
+   * Retrieves a square using 1-based board coordinates.
+   *
+   * @param x the x-coordinate (file)
+   * @param y the y-coordinate (rank)
+   * @return the corresponding {@code ChessSquare}
+   */
   public ChessSquare getSquareByCords(int x, int y) {
     return getSquare((y-1)*8 + x);
   }
 
+  /**
+   * Checks if the path between two squares is clear (i.e., no pieces in between).
+   *
+   * @param square1 the starting square
+   * @param square2 the ending square
+   * @return {@code true} if the path is clear, {@code false} otherwise
+   */
   public boolean isPathClear(ChessSquare square1, ChessSquare square2) {
     for (ChessSquare square : getPath(square1, square2)) {
       if (square.hasPiece()) {
@@ -35,6 +72,14 @@ public class ChessBoard {
     return true;
   }
 
+  /**
+   * Returns the list of squares in the path between two given squares.
+   * Supports straight and diagonal paths.
+   *
+   * @param square1 the starting square
+   * @param square2 the ending square
+   * @return a list of {@code ChessSquare} objects forming the path
+   */
   public List<ChessSquare> getPath(ChessSquare square1, ChessSquare square2) {
     List<ChessSquare> path = new ArrayList<>();
 
@@ -51,6 +96,13 @@ public class ChessBoard {
     return path;
   }
 
+  /**
+   * Returns the straight-line path (horizontal or vertical) between two squares.
+   *
+   * @param square1 the starting square
+   * @param square2 the ending square
+   * @return a list of {@code ChessSquare} objects in the path
+   */
   private List<ChessSquare> getStraightPath(ChessSquare square1, ChessSquare square2) {
     List<ChessSquare> path = new ArrayList<>();
 
@@ -81,6 +133,13 @@ public class ChessBoard {
     return path;
   }
 
+  /**
+   * Returns the diagonal path between two squares.
+   *
+   * @param square1 the starting square
+   * @param square2 the ending square
+   * @return a list of {@code ChessSquare} objects in the diagonal path
+   */
   private List<ChessSquare> getDiagPath(ChessSquare square1, ChessSquare square2) {
     List<ChessSquare> path = new ArrayList<>();
 
@@ -99,6 +158,9 @@ public class ChessBoard {
     return path;
   }
 
+  /**
+   * Initializes all 64 squares on the chess board and maps them by ID.
+   */
   private void initSquares() {
     for(int x = 1; x <= 8; x++) {
       for(int y = 1; y <= 8; y++) {

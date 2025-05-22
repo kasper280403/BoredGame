@@ -12,6 +12,16 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import edu.ntnu.idi.idattx2002.controller.chess.BoardController;
 
+/**
+ * Sidebar view for the Chess game.
+ * <p>
+ * Displays user feedback and provides controls such as board flipping and auto-flip toggling.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
+
 public class SideBarView extends VBox {
 
   private final Pane parent;

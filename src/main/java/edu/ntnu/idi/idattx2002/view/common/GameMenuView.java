@@ -19,6 +19,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * Abstract base view for game setup menus.
+ * <p>
+ * Provides common layout structure and UI components for selecting game modes, displaying feedback,
+ * and organizing subviews (top, middle, bottom).
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public abstract class GameMenuView extends VBox{
 
   public final Pane mainPane;

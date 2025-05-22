@@ -9,6 +9,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * View for displaying the game winner.
+ * <p>
+ * Implements {@code WinObserver} to respond to win events and show a victory message with the player's name.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class WinView extends VBox implements WinObserver {
 
   private final Pane mainPane;

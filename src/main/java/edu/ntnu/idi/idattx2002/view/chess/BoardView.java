@@ -13,6 +13,15 @@ import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.module.chess.board.SquareObserver;
 
+/**
+ * Controller for the Snakes and Ladders game setup menu.
+ * <p>
+ * Handles player selection, game mode loading, and game initialization.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class BoardView extends GridPane implements SquareObserver {
 
   private final PieceView pieceView;

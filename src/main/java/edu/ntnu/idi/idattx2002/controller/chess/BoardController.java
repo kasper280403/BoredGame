@@ -10,6 +10,15 @@ import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.Move;
 import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 
+/**
+ * Controller class for handling interaction and logic on the chess board view.
+ * <p>
+ * Manages user input, board updates, and move execution in coordination with the model and view.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class BoardController {
 
   private final Chess chess;
@@ -119,5 +128,4 @@ public class BoardController {
 
     initClickableSquares();
   }
-
 }

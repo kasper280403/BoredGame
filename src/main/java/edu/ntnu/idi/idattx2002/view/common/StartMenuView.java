@@ -17,6 +17,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * View for the application's start menu.
+ * <p>
+ * Displays the game selection screen where users can choose between Chess and Snakes & Ladders.
+ * </p>
+ *
+ * @author Sindre Mjøs
+ * @version 1.0
+ */
 public class StartMenuView extends VBox {
 
   private final StartMenuController controller;
