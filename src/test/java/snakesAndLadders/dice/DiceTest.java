@@ -21,8 +21,7 @@ public class DiceTest {
             //act
             int result = dice.throwDice();
             //assert
-            assertTrue(result >= 1 && result <= 6, "Dice shows invalid int: " + result);
+            assertTrue(result >= 1 && result <= 6);
         }
     }
-
 }

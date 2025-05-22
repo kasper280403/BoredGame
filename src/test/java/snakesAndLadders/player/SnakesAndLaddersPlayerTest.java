@@ -16,6 +16,14 @@ class SnakesAndLaddersPlayerTest {
     }
 
     @Test
+    void testGetCurrentTileId() {
+        //arrange
+        player.movePlayerToTile(14);
+        //assert
+        assertEquals(player.getCurrentTileId(), 14);
+    }
+
+    @Test
     void testMovePlayerBySteps(){
         //act
         player.movePlayerBySteps(10);
