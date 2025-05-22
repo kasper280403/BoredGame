@@ -104,7 +104,12 @@ public class LadderGame {
     player.movePlayerBySteps(steps);
     checkForWin(player);
 
-    board.getTile(player.getCurrentTileId()).landPlayer(player);
+    if(player.getCurrentTileId() > board.getLastTile().getSquareId()) {
+      board.getLastTile().landPlayer(player);
+    }
+    else {
+      board.getTile(player.getCurrentTileId()).landPlayer(player);
+    }
     updatePlayerToMove();
   }
 
