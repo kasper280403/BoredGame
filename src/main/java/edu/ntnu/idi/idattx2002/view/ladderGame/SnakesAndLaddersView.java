@@ -1,5 +1,5 @@
 package edu.ntnu.idi.idattx2002.view.ladderGame;
-import edu.ntnu.idi.idattx2002.controller.ladderGame.SnakesAndLaddersController;
+import edu.ntnu.idi.idattx2002.controller.ladderGame.LadderGameController;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -19,7 +19,7 @@ import javafx.util.Duration;
 
 public class SnakesAndLaddersView extends HBox{
 
-    private final SnakesAndLaddersController controller;
+    private final LadderGameController controller;
     private final Pane mainPane;
 
     private VBox leftPane;
@@ -28,7 +28,7 @@ public class SnakesAndLaddersView extends HBox{
     private Text moveInfo;
 
 
-    public SnakesAndLaddersView(Pane mainPane, SnakesAndLaddersController controller) {
+    public SnakesAndLaddersView(Pane mainPane, LadderGameController controller) {
         this.mainPane = mainPane;
         this.controller = controller;
         init();

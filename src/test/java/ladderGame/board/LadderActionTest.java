@@ -3,7 +3,7 @@ package ladderGame.board;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.LadderAction;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.SnakesAndLaddersPlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 import org.junit.jupiter.api.Test;
 
 public class LadderActionTest {
@@ -12,7 +12,7 @@ public class LadderActionTest {
   void testPerform() {
     //Arrange
     LadderAction ladderTo10 = new LadderAction(10);
-    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer("Kasper", 1, 1);
+    LadderGamePlayer player = new LadderGamePlayer("Kasper", 1, 1);
     //act
     ladderTo10.perform(player);
     //Assert

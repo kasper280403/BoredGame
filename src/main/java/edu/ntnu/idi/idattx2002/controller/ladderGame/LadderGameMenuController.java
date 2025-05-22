@@ -10,12 +10,12 @@ import java.util.List;
 import edu.ntnu.idi.idattx2002.io.ladderGame.BoardIO;
 import javafx.scene.layout.Pane;
 
-public class SnakesAndLaddersMenuController {
+public class LadderGameMenuController {
 
   private final SnakesAndLaddersMenuView menuView;
   private final ChoosePlayerController choosePlayerController;
 
-  public SnakesAndLaddersMenuController(Pane mainPane) {
+  public LadderGameMenuController(Pane mainPane) {
     menuView = new SnakesAndLaddersMenuView(this, mainPane);
     choosePlayerController = new ChoosePlayerController(menuView.getMiddleBox(), 2, 6);
     choosePlayerController.showView();
@@ -36,7 +36,7 @@ public class SnakesAndLaddersMenuController {
     try {
       if (amountOfPlayers >= choosePlayerController.getMinPlayers()
           && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
-        new SnakesAndLaddersController(mainPane, choosePlayerController.getChosenPlayers(),
+        new LadderGameController(mainPane, choosePlayerController.getChosenPlayers(),
             menuView.getGameModeSelection().getValue());
       }
       else {

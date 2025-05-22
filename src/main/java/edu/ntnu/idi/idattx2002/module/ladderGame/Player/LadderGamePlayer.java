@@ -5,13 +5,13 @@ import edu.ntnu.idi.idattx2002.module.ladderGame.PlayerObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SnakesAndLaddersPlayer extends Player {
+public class LadderGamePlayer extends Player {
 
     private final int playerID;
     private int currentTileId;
     private final List<PlayerObserver> playerObservers;
 
-    public SnakesAndLaddersPlayer(String playerName, int playerID, int iconID) {
+    public LadderGamePlayer(String playerName, int playerID, int iconID) {
         super(playerName, iconID);
         this.playerID = playerID;
         this.currentTileId = 0;

@@ -2,17 +2,17 @@ package edu.ntnu.idi.idattx2002.controller.ladderGame;
 
 import edu.ntnu.idi.idattx2002.view.common.WinView;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Dice.Dice;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Games.SnakesAndLadders;
+import edu.ntnu.idi.idattx2002.module.ladderGame.LadderGame;
 import edu.ntnu.idi.idattx2002.view.ladderGame.DiceView;
 import edu.ntnu.idi.idattx2002.view.ladderGame.SnakesAndLaddersView;
 import edu.ntnu.idi.idattx2002.view.ladderGame.SnakesAndLaddersBoardView;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.SnakesAndLaddersPlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 import java.util.List;
 import javafx.scene.layout.Pane;
 
-public class SnakesAndLaddersController {
+public class LadderGameController {
 
-  private final SnakesAndLadders game;
+  private final LadderGame game;
 
   private final SnakesAndLaddersView snakesAndLadderView;
   private final DiceView diceView;
@@ -20,9 +20,9 @@ public class SnakesAndLaddersController {
   private final WinView winView;
 
 
-  public SnakesAndLaddersController(Pane mainPane, List<List<String>> players, String selectedGamemode) {
+  public LadderGameController(Pane mainPane, List<List<String>> players, String selectedGamemode) {
     snakesAndLadderView = new SnakesAndLaddersView(mainPane, this);
-    game = new SnakesAndLadders();
+    game = new LadderGame();
     game.createBoard(selectedGamemode);
 
     diceView = new DiceView(snakesAndLadderView.getLeftPane());
@@ -39,7 +39,7 @@ public class SnakesAndLaddersController {
   private void setUpGame(List<List<String>> players) {
     int playerID = 1;
     for (List<String> playerString : players) {
-      SnakesAndLaddersPlayer newPlayer = new SnakesAndLaddersPlayer(playerString.getFirst(), playerID, Integer.parseInt(playerString.getLast()));
+      LadderGamePlayer newPlayer = new LadderGamePlayer(playerString.getFirst(), playerID, Integer.parseInt(playerString.getLast()));
       game.addPlayer(newPlayer);
       newPlayer.addObserver(tilesView);
 

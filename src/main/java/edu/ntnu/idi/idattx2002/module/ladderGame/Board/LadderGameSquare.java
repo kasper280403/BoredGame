@@ -1,13 +1,13 @@
 package edu.ntnu.idi.idattx2002.module.ladderGame.Board;
 
 import edu.ntnu.idi.idattx2002.module.common.Board.Square;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.SnakesAndLaddersPlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 
-public class SnakesAndLaddersSquare extends Square {
+public class LadderGameSquare extends Square {
 
   private LandAction landAction;
 
-  public SnakesAndLaddersSquare(int squareId) {
+  public LadderGameSquare(int squareId) {
     super(squareId);
    }
 
@@ -29,7 +29,7 @@ public class SnakesAndLaddersSquare extends Square {
     return this.landAction != null;
   }
 
-  public void landPlayer(SnakesAndLaddersPlayer player) {
+  public void landPlayer(LadderGamePlayer player) {
     if (hasLandAction()) {
       landAction.perform(player);
     }

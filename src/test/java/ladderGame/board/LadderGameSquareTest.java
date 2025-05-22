@@ -2,17 +2,17 @@ package ladderGame.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.SnakesAndLaddersSquare;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.SnakesAndLaddersPlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LadderGameSquare;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 import org.junit.jupiter.api.Test;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.LadderAction;
 
-public class SnakesAndLaddersSquareTest {
+public class LadderGameSquareTest {
 
   @Test
   void testGetSquareid() {
     //arrange
-    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(17);
+    LadderGameSquare tile = new LadderGameSquare(17);
     //assert
     assertEquals(17, tile.getSquareId());
   }
@@ -20,7 +20,7 @@ public class SnakesAndLaddersSquareTest {
   @Test
   void testValidTileId() {
     //arrange
-    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
+    LadderGameSquare tile = new LadderGameSquare(1);
     //assert
     assertEquals(1, tile.getSquareId());
   }
@@ -28,14 +28,14 @@ public class SnakesAndLaddersSquareTest {
   @Test
   void testInvalidTileId() {
     assertThrows(IllegalArgumentException.class, () -> {
-      new SnakesAndLaddersSquare(-1);
+      new LadderGameSquare(-1);
     });
   }
 
   @Test
   void testSetLandAction() {
     //arrange
-    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
+    LadderGameSquare tile = new LadderGameSquare(1);
     LadderAction ladderAction = new LadderAction(20);
     //act
     tile.setLandAction(ladderAction);
@@ -46,7 +46,7 @@ public class SnakesAndLaddersSquareTest {
   @Test
   void testNoLandAction() {
     //arrange
-    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
+    LadderGameSquare tile = new LadderGameSquare(1);
     //assert
     assertFalse(tile.hasLandAction());
   }
@@ -54,8 +54,8 @@ public class SnakesAndLaddersSquareTest {
   @Test
   void testLandPlayerOnTileWithLandAction() {
     //arrange
-    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer("TestPlayer", 1, 1);
-    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(1);
+    LadderGamePlayer player = new LadderGamePlayer("TestPlayer", 1, 1);
+    LadderGameSquare tile = new LadderGameSquare(1);
     LadderAction ladderAction = new LadderAction(20);
     tile.setLandAction(ladderAction);
     //act
@@ -67,8 +67,8 @@ public class SnakesAndLaddersSquareTest {
   @Test
   void testLandPlayerOnTileWithoutLandAction() {
     //arrange
-    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer("TestPlayer", 1, 1);
-    SnakesAndLaddersSquare tile = new SnakesAndLaddersSquare(5);
+    LadderGamePlayer player = new LadderGamePlayer("TestPlayer", 1, 1);
+    LadderGameSquare tile = new LadderGameSquare(5);
     //act
     tile.landPlayer(player);
     //assert

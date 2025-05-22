@@ -1,18 +1,18 @@
 package ladderGame.player;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.SnakesAndLaddersPlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class SnakesAndLaddersPlayerTest {
-    SnakesAndLaddersPlayer player;
+class LadderGamePlayerTest {
+    LadderGamePlayer player;
 
     @BeforeEach
     //arrange
     void setUp(){
-        player =  new SnakesAndLaddersPlayer("Kasper", 1, 1);
+        player =  new LadderGamePlayer("Kasper", 1, 1);
     }
 
     @Test

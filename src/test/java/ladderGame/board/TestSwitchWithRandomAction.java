@@ -3,8 +3,8 @@ package ladderGame.board;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.SwitchWithRandomAction;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Games.SnakesAndLadders;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.SnakesAndLaddersPlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.LadderGame;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 import org.junit.jupiter.api.Test;
 
 public class TestSwitchWithRandomAction {
@@ -13,15 +13,15 @@ public class TestSwitchWithRandomAction {
   void testPerform() {
     //arrange
     SwitchWithRandomAction switchWithRandomAction = new SwitchWithRandomAction();
-    SnakesAndLaddersPlayer player1 = new SnakesAndLaddersPlayer("Sindre", 1, 1);
-    SnakesAndLaddersPlayer player2 = new SnakesAndLaddersPlayer("Kasper", 2, 2);
-    SnakesAndLadders snakesAndLadders = new SnakesAndLadders();
+    LadderGamePlayer player1 = new LadderGamePlayer("Sindre", 1, 1);
+    LadderGamePlayer player2 = new LadderGamePlayer("Kasper", 2, 2);
+    LadderGame ladderGame = new LadderGame();
 
     player1.movePlayerToTile(4);
     player2.movePlayerToTile(20);
 
-    snakesAndLadders.addPlayer(player1);
-    snakesAndLadders.addPlayer(player2);
+    ladderGame.addPlayer(player1);
+    ladderGame.addPlayer(player2);
 
     //act
     switchWithRandomAction.perform(player1);

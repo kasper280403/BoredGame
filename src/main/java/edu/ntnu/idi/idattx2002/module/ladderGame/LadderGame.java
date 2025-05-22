@@ -1,11 +1,11 @@
-package edu.ntnu.idi.idattx2002.module.ladderGame.Games;
+package edu.ntnu.idi.idattx2002.module.ladderGame;
 
 import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
 import edu.ntnu.idi.idattx2002.io.ladderGame.BoardIO;
 import edu.ntnu.idi.idattx2002.module.common.WinObserver;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.SnakesAndLaddersBoard;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LadderGameBoard;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Dice.Dice;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.SnakesAndLaddersPlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SnakesAndLadders {
+public class LadderGame {
 
-  public static Map<Integer, SnakesAndLaddersPlayer> players;
+  public static Map<Integer, LadderGamePlayer> players;
 
-  private final SnakesAndLaddersBoard board;
+  private final LadderGameBoard board;
 
   private Dice dice1;
   private Dice dice2;
@@ -27,8 +27,8 @@ public class SnakesAndLadders {
 
   private WinObserver observer;
 
-  public SnakesAndLadders() {
-    this.board = new SnakesAndLaddersBoard();
+  public LadderGame() {
+    this.board = new LadderGameBoard();
     players = new HashMap<>();
     playerToMoveID = 1;
 
@@ -39,11 +39,11 @@ public class SnakesAndLadders {
     return dices;
   }
 
-  public SnakesAndLaddersBoard getBoard() {
+  public LadderGameBoard getBoard() {
     return board;
   }
 
-  public SnakesAndLaddersPlayer getPlayerToMove() {
+  public LadderGamePlayer getPlayerToMove() {
     return players.get(playerToMoveID);
   }
 
@@ -58,7 +58,7 @@ public class SnakesAndLadders {
 
 
   public void playTurn() {
-    SnakesAndLaddersPlayer player = getPlayerToMove();
+    LadderGamePlayer player = getPlayerToMove();
 
     int steps = 0;
     for (Dice dice : dices) {
@@ -80,19 +80,19 @@ public class SnakesAndLadders {
     }
   }
 
-  public void checkForWin(SnakesAndLaddersPlayer player) {
+  public void checkForWin(LadderGamePlayer player) {
     if (player.getCurrentTileId() >= board.getSquareMap().size()) {
       observer.update(player);
     }
   }
 
-  public void addPlayer(SnakesAndLaddersPlayer player) {
+  public void addPlayer(LadderGamePlayer player) {
     validatePlayer(player);
     players.put(player.getPlayerID(), player);
   }
 
-  private void validatePlayer(SnakesAndLaddersPlayer player) {
-    for (SnakesAndLaddersPlayer existingPlayer : players.values()) {
+  private void validatePlayer(LadderGamePlayer player) {
+    for (LadderGamePlayer existingPlayer : players.values()) {
       if(player.getName() == existingPlayer.getName()) {
         throw new IlliegalGameArgumentException("Two players can not have the same name");
       }

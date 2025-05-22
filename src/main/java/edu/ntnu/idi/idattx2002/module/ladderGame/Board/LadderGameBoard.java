@@ -5,32 +5,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SnakesAndLaddersBoard {
+public class LadderGameBoard {
 
-  private final Map<Integer, SnakesAndLaddersSquare> squareMap;
+  private final Map<Integer, LadderGameSquare> squareMap;
 
-  public SnakesAndLaddersBoard() {
+  public LadderGameBoard() {
     this.squareMap = new HashMap<>();
   }
 
-  public Map<Integer, SnakesAndLaddersSquare> getSquareMap() {
+  public Map<Integer, LadderGameSquare> getSquareMap() {
     return squareMap;
   }
 
-  public SnakesAndLaddersSquare getTile(int tileId) {
-    SnakesAndLaddersSquare tile = squareMap.get(tileId);
+  public LadderGameSquare getTile(int tileId) {
+    LadderGameSquare tile = squareMap.get(tileId);
     if (tile == null) {
       throw new IllegalArgumentException("Tile with id " + tileId + " does not exist");
     }
     return tile;
   }
 
-  public SnakesAndLaddersSquare getLastTile() {
+  public LadderGameSquare getLastTile() {
     int lastTileID = Collections.max(squareMap.keySet());
     return squareMap.get(lastTileID);
   }
 
-  public void addTile(SnakesAndLaddersSquare tile) {
+  public void addTile(LadderGameSquare tile) {
     squareMap.put(tile.getSquareId(), tile);
   }
 
@@ -38,7 +38,7 @@ public class SnakesAndLaddersBoard {
     validateRowsAndColumns(numberOfRows, numberOfColumns);
 
     for (int i = 1; i < numberOfRows*numberOfColumns+1; i++){
-           addTile(new SnakesAndLaddersSquare(i));
+           addTile(new LadderGameSquare(i));
     }
   }
 

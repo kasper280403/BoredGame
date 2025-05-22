@@ -2,25 +2,25 @@ package ladderGame.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.SnakesAndLaddersSquare;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LadderGameSquare;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.SnakesAndLaddersBoard;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LadderGameBoard;
 
-class SnakesAndLaddersBoardTest {
+class LadderGameBoardTest {
 
-  SnakesAndLaddersBoard board;
+  LadderGameBoard board;
 
   @BeforeEach
   void setUp() {
-    board = new SnakesAndLaddersBoard();
+    board = new LadderGameBoard();
   }
 
   @Test
   void testAddTile() {
     //arrange
-    SnakesAndLaddersSquare tile1 = new SnakesAndLaddersSquare(1);
+    LadderGameSquare tile1 = new LadderGameSquare(1);
     //act
     board.addTile(tile1);
     //assert
@@ -30,7 +30,7 @@ class SnakesAndLaddersBoardTest {
   @Test
   void testGetTile() {
     //arrange
-    SnakesAndLaddersSquare tile1 = new SnakesAndLaddersSquare(1);
+    LadderGameSquare tile1 = new LadderGameSquare(1);
     //act
     board.addTile(tile1);
     //assert
@@ -50,9 +50,9 @@ class SnakesAndLaddersBoardTest {
     //arrange
     board.createBoard(9, 10);
     //act
-    SnakesAndLaddersSquare tile1 = board.getTile(1);
-    SnakesAndLaddersSquare tile10 = board.getTile(10);
-    SnakesAndLaddersSquare tile24 = board.getTile(24);
+    LadderGameSquare tile1 = board.getTile(1);
+    LadderGameSquare tile10 = board.getTile(10);
+    LadderGameSquare tile24 = board.getTile(24);
     //assert
     assertEquals(10, tile10.getSquareId());
     assertEquals(1, tile1.getSquareId());
@@ -80,7 +80,7 @@ class SnakesAndLaddersBoardTest {
     //arrange
     board.createBoard(2, 2);
     //act
-    Map<Integer, SnakesAndLaddersSquare> tiles = board.getSquareMap();
+    Map<Integer, LadderGameSquare> tiles = board.getSquareMap();
     //assert
     assertEquals(4, tiles.size());
   }
@@ -90,7 +90,7 @@ class SnakesAndLaddersBoardTest {
     //arrange
     board.createBoard(3, 3);
     //act
-    SnakesAndLaddersSquare lastTile = board.getLastTile();
+    LadderGameSquare lastTile = board.getLastTile();
     //assert
     assertEquals(9, lastTile.getSquareId());
   }

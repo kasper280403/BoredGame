@@ -1,15 +1,15 @@
 package edu.ntnu.idi.idattx2002.view.ladderGame;
 
 import edu.ntnu.idi.idattx2002.view.common.GameMenuView;
-import edu.ntnu.idi.idattx2002.controller.ladderGame.SnakesAndLaddersMenuController;
+import edu.ntnu.idi.idattx2002.controller.ladderGame.LadderGameMenuController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 public class SnakesAndLaddersMenuView extends GameMenuView {
 
-  private final SnakesAndLaddersMenuController controller;
+  private final LadderGameMenuController controller;
 
-  public SnakesAndLaddersMenuView(SnakesAndLaddersMenuController controller, Pane mainPane) {
+  public SnakesAndLaddersMenuView(LadderGameMenuController controller, Pane mainPane) {
     super(mainPane);
     this.controller = controller;
     init();

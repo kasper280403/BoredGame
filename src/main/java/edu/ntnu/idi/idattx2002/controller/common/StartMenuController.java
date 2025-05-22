@@ -3,7 +3,7 @@ package edu.ntnu.idi.idattx2002.controller.common;
 import edu.ntnu.idi.idattx2002.controller.chess.ChessMenuController;
 import edu.ntnu.idi.idattx2002.view.common.MainView;
 import edu.ntnu.idi.idattx2002.view.common.StartMenuView;
-import edu.ntnu.idi.idattx2002.controller.ladderGame.SnakesAndLaddersMenuController;
+import edu.ntnu.idi.idattx2002.controller.ladderGame.LadderGameMenuController;
 
 public final class StartMenuController {
 
@@ -34,7 +34,7 @@ public final class StartMenuController {
   }
 
   public void openSnakesAndLaddersMenu() {
-    SnakesAndLaddersMenuController mainController = new SnakesAndLaddersMenuController(mainPane.getContentPane());
+    LadderGameMenuController mainController = new LadderGameMenuController(mainPane.getContentPane());
     mainController.getView().show();
   }
 

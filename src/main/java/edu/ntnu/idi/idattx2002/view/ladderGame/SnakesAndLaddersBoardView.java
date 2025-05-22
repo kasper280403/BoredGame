@@ -2,12 +2,12 @@ package edu.ntnu.idi.idattx2002.view.ladderGame;
 import edu.ntnu.idi.idattx2002.view.common.PlayerIconWindow;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.LadderAction;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.SwitchWithRandomAction;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.SnakesAndLaddersBoard;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LadderGameBoard;
 import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LandAction;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.SnakesAndLaddersSquare;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Games.SnakesAndLadders;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LadderGameSquare;
+import edu.ntnu.idi.idattx2002.module.ladderGame.LadderGame;
 import edu.ntnu.idi.idattx2002.module.ladderGame.PlayerObserver;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.SnakesAndLaddersPlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
 import java.util.ArrayList;
 import java.util.Map;
 import javafx.animation.PauseTransition;
@@ -36,7 +36,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
     private final int xDimensions;
     private final int yDimensions;
 
-    public SnakesAndLaddersBoardView(int xDimensions, int yDimensions, double tileSize, SnakesAndLadders game, Pane parent) {
+    public SnakesAndLaddersBoardView(int xDimensions, int yDimensions, double tileSize, LadderGame game, Pane parent) {
         this.parent = parent;
 
         tileMap = new HashMap<>();
@@ -90,9 +90,9 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
         pause.play();
     }
 
-    public void displayLandActionsAtTile(SnakesAndLadders game) {
-        SnakesAndLaddersBoard board = game.getBoard();
-        SnakesAndLaddersSquare tile;
+    public void displayLandActionsAtTile(LadderGame game) {
+        LadderGameBoard board = game.getBoard();
+        LadderGameSquare tile;
         LandAction landAction;
 
         ArrayList<Color> colorList = getColorList();
@@ -179,7 +179,7 @@ public class SnakesAndLaddersBoardView extends GridPane implements PlayerObserve
     }
 
     @Override
-    public void update(SnakesAndLaddersPlayer player) {
+    public void update(LadderGamePlayer player) {
         displayPieceAtTile(player.getCurrentTileId(), player.getIconId());
     }
 
