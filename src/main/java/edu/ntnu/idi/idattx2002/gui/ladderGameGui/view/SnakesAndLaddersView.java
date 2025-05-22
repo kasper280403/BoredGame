@@ -26,7 +26,6 @@ public class SnakesAndLaddersView extends HBox{
 
     private VBox leftPane;
     private StackPane centerPane;
-    private VBox rightPane;
 
     private Text moveInfo;
 
@@ -43,10 +42,6 @@ public class SnakesAndLaddersView extends HBox{
 
     public Pane getCenterPane() {
         return centerPane;
-    }
-
-    public VBox getRightPane() {
-        return rightPane;
     }
 
     public void setMoveInfo(String message) {
@@ -93,40 +88,14 @@ public class SnakesAndLaddersView extends HBox{
         centerPane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
     }
 
-    private void createRightPane() {
-        rightPane = new VBox();
-        rightPane.setAlignment(Pos.CENTER);
-        rightPane.setSpacing(50);
-        rightPane.setPadding(new Insets(20));
-
-        Color backgroundColor = Color.BLACK.deriveColor(1, 1, 1, 0.4);
-        rightPane.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
-
-        rightPane.setMaxHeight(750);
-        rightPane.setMinHeight(750);
-
-        String rules = """
-            YOLO YOLO YOLO YOLO
-            YOLO YOLO YOLO YOLO
-            YOLO YOLO YOLO YOLO
-            YOLO YOLO YOLO YOLO
-            YOLO YOLO YOLO YOLO
-            YODO ...
-            """;
-
-        Text rulesText = new Text(rules);
-        rightPane.getChildren().add(rulesText);
-    }
-
     private void init() {
         setSpacing(50);
         setAlignment(Pos.CENTER);
 
         createCenterPane();
         createLeftPane();
-        createRightPane();
 
-        getChildren().addAll(leftPane, centerPane, rightPane);
+        getChildren().addAll(leftPane, centerPane);
     }
 
     public void show() {
