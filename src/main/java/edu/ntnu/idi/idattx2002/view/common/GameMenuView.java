@@ -21,15 +21,14 @@ import javafx.scene.text.Text;
 
 /**
  * Abstract base view for game setup menus.
- * <p>
- * Provides common layout structure and UI components for selecting game modes, displaying feedback,
- * and organizing subviews (top, middle, bottom).
- * </p>
+ *
+ * <p>Provides common layout structure and UI components for selecting game modes, displaying
+ * feedback, and organizing subviews (top, middle, bottom).
  *
  * @author Sindre Mjøs
  * @version 1.0
  */
-public abstract class GameMenuView extends VBox{
+public abstract class GameMenuView extends VBox {
 
   public final Pane mainPane;
 
@@ -66,7 +65,7 @@ public abstract class GameMenuView extends VBox{
   }
 
   public ComboBox<String> getGameModeSelection() {
-    if(gameModeSelection.getValue() == null) {
+    if (gameModeSelection.getValue() == null) {
       throw new IlliegalGameArgumentException("No Gamemode is chosen");
     }
     return gameModeSelection;
@@ -86,7 +85,7 @@ public abstract class GameMenuView extends VBox{
     accentText.setEffect(new GaussianBlur(5));
 
     titlePane.getChildren().addAll(accentText, mainText);
-    accentText.setTranslateY(size/20);
+    accentText.setTranslateY(size / 20);
 
     topBox.getChildren().add(titlePane);
   }
@@ -99,7 +98,8 @@ public abstract class GameMenuView extends VBox{
     gameModePane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
     Color backgroundColor = Color.NAVAJOWHITE.deriveColor(0, 1, 1, 0.2);
-    gameModePane.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
+    gameModePane.setBackground(
+        new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
     initGameModeSelection(gameModes);
 
@@ -156,6 +156,4 @@ public abstract class GameMenuView extends VBox{
     mainPane.getChildren().clear();
     mainPane.getChildren().add(this);
   }
-
-
 }

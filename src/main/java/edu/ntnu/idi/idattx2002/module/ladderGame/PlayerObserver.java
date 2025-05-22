@@ -1,12 +1,11 @@
 package edu.ntnu.idi.idattx2002.module.ladderGame;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.player.LadderGamePlayer;
 
 /**
  * An interface for observers that are notified when a {@code LadderGamePlayer} updates its state.
- * <p>
- * Implementing classes define how to respond to player movements or changes.
- * </p>
+ *
+ * <p>Implementing classes define how to respond to player movements or changes.
  *
  * @author Sindre Mjøs
  * @version 1.0

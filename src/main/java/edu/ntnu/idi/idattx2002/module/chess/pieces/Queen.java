@@ -6,15 +6,14 @@ import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 
 /**
  * Represents a Queen piece in chess.
- * <p>
- * The queen combines the movement abilities of the rook and bishop, allowing it
- * to move any number of squares in a straight line horizontally, vertically, or diagonally.
- * </p>
+ *
+ * <p>The queen combines the movement abilities of the rook and bishop, allowing it to move any
+ * number of squares in a straight line horizontally, vertically, or diagonally.
  *
  * @author Sindre Mjøs
  * @version 1.0
  */
-public class Queen extends Piece{
+public class Queen extends Piece {
 
   /**
    * Constructs a {@code Queen} with a starting square and color.
@@ -27,8 +26,8 @@ public class Queen extends Piece{
   }
 
   /**
-   * Determines whether a move to the given square is possible for the queen.
-   * The move must be straight (vertical or horizontal) or diagonal.
+   * Determines whether a move to the given square is possible for the queen. The move must be
+   * straight (vertical or horizontal) or diagonal.
    *
    * @param square the target square
    * @return {@code true} if the move is valid for a queen, {@code false} otherwise
@@ -72,7 +71,7 @@ public class Queen extends Piece{
    */
   @Override
   public void move(ChessSquare square, Chess chess) {
-    if(isMoveLegal(square, chess)) {
+    if (isMoveLegal(square, chess)) {
       super.move(square, chess);
     }
   }

@@ -1,11 +1,9 @@
 package edu.ntnu.idi.idattx2002.module.common.music;
 
-
 /**
  * An interface for observers that want to receive updates about music changes.
- * <p>
- * Implementing classes should define how they react when a new song is played.
- * </p>
+ *
+ * <p>Implementing classes should define how they react when a new song is played.
  *
  * @author Sindre Mjøs
  * @version 1.0

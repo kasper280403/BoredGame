@@ -17,9 +17,9 @@ import javafx.scene.text.Text;
 
 /**
  * View for selecting and creating players.
- * <p>
- * Displays a list of existing players with selection buttons and a panel for creating new players.
- * </p>
+ *
+ * <p>Displays a list of existing players with selection buttons and a panel for creating new
+ * players.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -44,7 +44,8 @@ public class ChoosePlayerView extends HBox {
     btn.setSpacing(15);
     btn.setAlignment(Pos.CENTER);
     Color backgroundColor = Color.NAVAJOWHITE.deriveColor(0, 1, 1, 0.2);
-    btn.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
+    btn.setBackground(
+        new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
     Text header = new Text("Make A New Player");
     header.setFont(new Font("Helvetica", 20));
@@ -55,11 +56,13 @@ public class ChoosePlayerView extends HBox {
     playerIconImages.setSpacing(3);
     playerIconImages.setAlignment(Pos.CENTER);
 
-    playerIconImages.getChildren().addAll(playerIconView.getImageView(1),
-        playerIconView.getImageView(2),
-        playerIconView.getImageView(3),
-        playerIconView.getImageView(4)
-    );
+    playerIconImages
+        .getChildren()
+        .addAll(
+            playerIconView.getImageView(1),
+            playerIconView.getImageView(2),
+            playerIconView.getImageView(3),
+            playerIconView.getImageView(4));
 
     btn.getChildren().addAll(header, playerIconImages);
     btn.setOnMouseClicked(e -> controller.openCreatePlayerWindow());
@@ -87,7 +90,7 @@ public class ChoosePlayerView extends HBox {
     VBox playerList = new VBox();
     playerList.setSpacing(15);
 
-    for (List<String> player: controller.getPlayerList()) {
+    for (List<String> player : controller.getPlayerList()) {
       playerList.getChildren().add(createPlayerBox(player));
     }
 
@@ -130,7 +133,8 @@ public class ChoosePlayerView extends HBox {
 
     double opacity = 0.2;
     Color backgroundColor = Color.NAVAJOWHITE.deriveColor(0, 1, 1, opacity);
-    choosePlayerPane.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
+    choosePlayerPane.setBackground(
+        new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
     choosePlayerPane.setPadding(new Insets(20));
     choosePlayerPane.setAlignment(Pos.CENTER);

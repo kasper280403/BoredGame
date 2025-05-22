@@ -16,64 +16,67 @@ public class ChessSquareTest {
   @BeforeEach
   void setUp() {
     square = new ChessSquare(1, 1);
-    square2 = new ChessSquare(1,2);
+    square2 = new ChessSquare(1, 2);
   }
 
   @Test
   void tesGetCoordinates() {
-    //act
+    // act
     int x = square.getXCoordinate();
     int y = square.getYCoordinate();
-    //assert
+    // assert
     assertEquals(x, 1);
     assertEquals(y, 1);
   }
 
   @Test
   void testInvalidCoordinates() {
-    //assert
-    assertThrows(IllegalArgumentException.class, () -> {
-      new ChessSquare(9, 1);
-    });
-    assertThrows(IllegalArgumentException.class, () -> {
-      new ChessSquare(0, 0);
-    });
+    // assert
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          new ChessSquare(9, 1);
+        });
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          new ChessSquare(0, 0);
+        });
   }
 
   @Test
   void testGetPiece() {
-    //arrange
+    // arrange
     Pawn piece = new Pawn(square, ChessColor.WHITE);
     square.placePiece(piece);
-    //assert
+    // assert
     assertEquals(square.getPiece(), piece);
     assertNull(square2.getPiece());
   }
 
   @Test
   void testRemovePiece() {
-    //arrange
+    // arrange
     Pawn whitePiece = new Pawn(square, ChessColor.WHITE);
     Pawn blackPiece = new Pawn(square, ChessColor.BLACK);
 
     square.placePiece(whitePiece);
     square2.placePiece(blackPiece);
-    //act
+    // act
     square.removePiece();
 
-    //assert
+    // assert
     assertTrue(square2.hasPiece());
     assertFalse(square.hasPiece());
   }
 
   @Test
   void testHasPiece() {
-    //arrange
+    // arrange
     Pawn piece = new Pawn(square, ChessColor.WHITE);
     square.placePiece(piece);
-    //assert
+    // assert
     assertTrue(square.hasPiece());
     assertFalse(square2.hasPiece());
   }
-
 }

@@ -1,4 +1,4 @@
-package edu.ntnu.idi.idattx2002.module.ladderGame.Board;
+package edu.ntnu.idi.idattx2002.module.ladderGame.board;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -6,10 +6,9 @@ import java.util.Map;
 
 /**
  * Represents the game board for a ladder game.
- * <p>
- * Manages a collection of {@code LadderGameSquare} tiles mapped by their IDs,
- * and provides methods to add, retrieve, and generate tiles for the board.
- * </p>
+ *
+ * <p>Manages a collection of {@code LadderGameSquare} tiles mapped by their IDs, and provides
+ * methods to add, retrieve, and generate tiles for the board.
  *
  * @author Sindre Mjøs and Kasper Karlsen
  * @version 1.0
@@ -18,9 +17,7 @@ public class LadderGameBoard {
 
   private final Map<Integer, LadderGameSquare> squareMap;
 
-  /**
-   * Constructs an empty ladder game board.
-   */
+  /** Constructs an empty ladder game board. */
   public LadderGameBoard() {
     this.squareMap = new HashMap<>();
   }
@@ -33,7 +30,6 @@ public class LadderGameBoard {
   public Map<Integer, LadderGameSquare> getSquareMap() {
     return squareMap;
   }
-
 
   /**
    * Retrieves a tile with the given ID.
@@ -79,8 +75,8 @@ public class LadderGameBoard {
   public void createBoard(int numberOfRows, int numberOfColumns) {
     validateRowsAndColumns(numberOfRows, numberOfColumns);
 
-    for (int i = 1; i < numberOfRows*numberOfColumns+1; i++){
-           addTile(new LadderGameSquare(i));
+    for (int i = 1; i < numberOfRows * numberOfColumns + 1; i++) {
+      addTile(new LadderGameSquare(i));
     }
   }
 

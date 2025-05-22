@@ -6,16 +6,14 @@ import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 
 /**
  * Represents a Knight piece in chess (referred to as "Horse" here).
- * <p>
- * A knight moves in an L-shape: two squares in one direction and one square perpendicular to that.
- * Knights can jump over other pieces.
- * </p>
+ *
+ * <p>A knight moves in an L-shape: two squares in one direction and one square perpendicular to
+ * that. Knights can jump over other pieces.
  *
  * @author Sindre Mjøs
  * @version 1.0
  */
-public class Horse extends Piece{
-
+public class Horse extends Piece {
 
   /**
    * Constructs a {@code Horse} (Knight) with a starting square and color.
@@ -49,7 +47,7 @@ public class Horse extends Piece{
    */
   @Override
   public boolean threatens(ChessSquare square, Chess chess) {
-    return isMovePossible(square) &&  super.threatens(square, chess);
+    return isMovePossible(square) && super.threatens(square, chess);
   }
 
   /**
@@ -61,7 +59,7 @@ public class Horse extends Piece{
    */
   @Override
   public boolean isMoveLegal(ChessSquare square, Chess chess) {
-    return isMovePossible(square) &&  super.isMoveLegal(square, chess);
+    return isMovePossible(square) && super.isMoveLegal(square, chess);
   }
 
   /**
@@ -72,7 +70,7 @@ public class Horse extends Piece{
    */
   @Override
   public void move(ChessSquare square, Chess chess) {
-    if(isMoveLegal(square, chess)) {
+    if (isMoveLegal(square, chess)) {
       super.move(square, chess);
     }
   }

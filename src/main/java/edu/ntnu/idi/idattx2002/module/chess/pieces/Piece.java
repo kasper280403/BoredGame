@@ -1,29 +1,30 @@
 package edu.ntnu.idi.idattx2002.module.chess.pieces;
-import java.util.List;
+
 import edu.ntnu.idi.idattx2002.module.chess.Chess;
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
+import java.util.List;
 
 /**
- * Represents a generic chess piece with core behavior such as movement, capturing, and legality checks.
- * <p>
- * Specific piece types (e.g. Rook, Bishop) must extend this class and implement {@code isMovePossible()}.
- * </p>
+ * Represents a generic chess piece with core behavior such as movement, capturing, and legality
+ * checks.
  *
- * <p>
- * This class handles:
+ * <p>Specific piece types (e.g. Rook, Bishop) must extend this class and implement {@code
+ * isMovePossible()}.
+ *
+ * <p>This class handles:
+ *
  * <ul>
- *   <li>Tracking the piece's position and state (alive/dead)</li>
- *   <li>Determining whether a move is legal</li>
- *   <li>Checking if a move stops or discovers check</li>
- *   <li>Executing movement and updating board state</li>
+ *   <li>Tracking the piece's position and state (alive/dead)
+ *   <li>Determining whether a move is legal
+ *   <li>Checking if a move stops or discovers check
+ *   <li>Executing movement and updating board state
  * </ul>
- * </p>
  *
  * @author Sindre Mjøs
  * @version 1.0
  */
-public abstract class Piece{
+public abstract class Piece {
 
   public ChessSquare currentSquare;
   public ChessColor chessColor;
@@ -82,14 +83,10 @@ public abstract class Piece{
     return alive;
   }
 
-
-  /**
-   * Marks the piece as captured.
-   */
+  /** Marks the piece as captured. */
   public void die() {
     alive = false;
   }
-
 
   /**
    * Determines whether moving to the specified square stops a check on the friendly king.
@@ -106,8 +103,8 @@ public abstract class Piece{
       if (square == enemyPiece.getCurrentSquare()) {
         putsInCheck.remove(enemyPiece);
       } else {
-        for (ChessSquare checkPathSquare : chess.getBoard()
-            .getPath(friendlyKing.getCurrentSquare(), enemyPiece.currentSquare)) {
+        for (ChessSquare checkPathSquare :
+            chess.getBoard().getPath(friendlyKing.getCurrentSquare(), enemyPiece.currentSquare)) {
           if (square == checkPathSquare) {
             putsInCheck.remove(enemyPiece);
           }
@@ -128,7 +125,6 @@ public abstract class Piece{
     return !square.equals(currentSquare) && chess.getBoard().isPathClear(currentSquare, square);
   }
 
-
   /**
    * Determines whether moving this piece would expose the king to a discovered check.
    *
@@ -141,25 +137,25 @@ public abstract class Piece{
     ChessSquare friendlyKingSquare = chess.getPlayer(chessColor).getKing().getCurrentSquare();
 
     for (Piece enemyPiece : chess.getPlayer(enemyColor).getAlivePieces()) {
-      if(enemyPiece.isMovePossible(friendlyKingSquare) && square != enemyPiece.getCurrentSquare()) {
+      if (enemyPiece.isMovePossible(friendlyKingSquare)
+          && square != enemyPiece.getCurrentSquare()) {
 
         boolean thisPieceInPath = false;
         boolean otherPieceInPath = false;
         boolean friendlyPieceStaysInPath = false;
-        for(ChessSquare pathSquare : chess.getBoard().getPath(enemyPiece.getCurrentSquare(), friendlyKingSquare)) {
+        for (ChessSquare pathSquare :
+            chess.getBoard().getPath(enemyPiece.getCurrentSquare(), friendlyKingSquare)) {
 
-            if (square == pathSquare) {
-              friendlyPieceStaysInPath = true;
-            }
-            if (currentSquare == pathSquare) {
-              thisPieceInPath = true;
-            }
-            else if (pathSquare.hasPiece()) {
-              otherPieceInPath = true;
-            }
-
+          if (square == pathSquare) {
+            friendlyPieceStaysInPath = true;
+          }
+          if (currentSquare == pathSquare) {
+            thisPieceInPath = true;
+          } else if (pathSquare.hasPiece()) {
+            otherPieceInPath = true;
+          }
         }
-        if(thisPieceInPath && !otherPieceInPath && !friendlyPieceStaysInPath) {
+        if (thisPieceInPath && !otherPieceInPath && !friendlyPieceStaysInPath) {
           return true;
         }
       }
@@ -169,9 +165,8 @@ public abstract class Piece{
 
   /**
    * Determines whether the piece is allowed to move to the specified square.
-   * <p>
-   * This method must be implemented by all specific piece types.
-   * </p>
+   *
+   * <p>This method must be implemented by all specific piece types.
    *
    * @param square the target square
    * @return {@code true} if the move is possible by rules of the piece
@@ -179,28 +174,30 @@ public abstract class Piece{
   public abstract boolean isMovePossible(ChessSquare square);
 
   /**
-   * Checks if moving to a given square is legal in the current game state.
-   * Considers move rules, check avoidance, and board constraints.
+   * Checks if moving to a given square is legal in the current game state. Considers move rules,
+   * check avoidance, and board constraints.
    *
    * @param square the target square
    * @param chess the current game
    * @return {@code true} if the move is legal, {@code false} otherwise
    */
   public boolean isMoveLegal(ChessSquare square, Chess chess) {
-    if(chess.getPlayerToMove().getColor() != chessColor) {
+    if (chess.getPlayerToMove().getColor() != chessColor) {
       return false;
     }
     if (!stopsCheck(square, chess)) {
       return false;
     }
-    if(discoversCheck(square, chess)) {
+    if (discoversCheck(square, chess)) {
       return false;
     }
-    if(square.getPiece() == null) {
+    if (square.getPiece() == null) {
       return !square.equals(currentSquare) && chess.getBoard().isPathClear(currentSquare, square);
     }
     boolean friendOnSquare = chessColor == square.getPiece().getColor();
-    return !friendOnSquare && !square.equals(currentSquare) && chess.getBoard().isPathClear(currentSquare, square);
+    return !friendOnSquare
+        && !square.equals(currentSquare)
+        && chess.getBoard().isPathClear(currentSquare, square);
   }
 
   /**

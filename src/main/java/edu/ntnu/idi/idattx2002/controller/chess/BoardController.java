@@ -1,20 +1,20 @@
 package edu.ntnu.idi.idattx2002.controller.chess;
+
 import edu.ntnu.idi.idattx2002.exception.IllegalMoveException;
-import java.util.Map;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.Pane;
-import edu.ntnu.idi.idattx2002.view.chess.BoardView;
-import edu.ntnu.idi.idattx2002.view.chess.SideBarView;
 import edu.ntnu.idi.idattx2002.module.chess.Chess;
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.Move;
 import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
+import edu.ntnu.idi.idattx2002.view.chess.BoardView;
+import edu.ntnu.idi.idattx2002.view.chess.SideBarView;
+import java.util.Map;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.Pane;
 
 /**
  * Controller class for handling interaction and logic on the chess board view.
- * <p>
- * Manages user input, board updates, and move execution in coordination with the model and view.
- * </p>
+ *
+ * <p>Manages user input, board updates, and move execution in coordination with the model and view.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -26,12 +26,11 @@ public class BoardController {
   private final BoardView boardView;
   private final SideBarView sideBarView;
 
-  private  ChessSquare selectedSquare;
+  private ChessSquare selectedSquare;
   private Pane selectedTile;
 
   private ChessColor colorPerspective;
   private boolean autoFlip;
-
 
   public BoardController(Chess chess, Pane mainPane) {
     this.chess = chess;
@@ -56,18 +55,17 @@ public class BoardController {
   }
 
   private void handleSquareClick(ChessSquare square, Pane tile) {
-    if(selectedSquare == null && selectedTile == null && square.hasPiece()) {
+    if (selectedSquare == null && selectedTile == null && square.hasPiece()) {
       selectedSquare = square;
       selectedTile = tile;
       boardView.highlightTile(selectedTile);
-    }
-    else if (selectedSquare != null && selectedTile != null) {
+    } else if (selectedSquare != null && selectedTile != null) {
       executeMove(square, tile);
     }
   }
 
   public void flipBoard() {
-    if(!autoFlip) {
+    if (!autoFlip) {
       colorPerspective = colorPerspective == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
       boardView.refresh(colorPerspective, chess);
       initClickableSquares();
@@ -79,15 +77,14 @@ public class BoardController {
       button.setText("On");
       autoFlip = true;
       autoFlip();
-    }
-    else {
+    } else {
       button.setText("Off");
       autoFlip = false;
     }
   }
 
   private void autoFlip() {
-    if(autoFlip) {
+    if (autoFlip) {
       boardView.refresh(chess.getPlayerToMove().getColor(), chess);
       initClickableSquares();
     }
@@ -98,20 +95,23 @@ public class BoardController {
 
     try {
       chess.playMove(move);
-    } catch(IllegalMoveException e) {
+    } catch (IllegalMoveException e) {
       sideBarView.setUserExceptionFeedback(e.getMessage());
     }
 
-    if(!move.successful()) {
+    if (!move.successful()) {
       boardView.refreshTile(selectedTile, selectedSquare);
       boardView.refreshTile(tile, square);
+    } else {
+      sideBarView.setUserFeedback(
+          "To Move: "
+              + chess.getPlayerToMove().getName()
+              + " ("
+              + chess.getPlayerToMove().getColor()
+              + ")");
     }
 
-    else {
-      sideBarView.setUserFeedback("To Move: " + chess.getPlayerToMove().getName() + " (" + chess.getPlayerToMove().getColor() + ")");
-    }
-
-    if(autoFlip) {
+    if (autoFlip) {
       autoFlip();
     }
     selectedTile = null;

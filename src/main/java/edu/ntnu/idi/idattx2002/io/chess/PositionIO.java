@@ -1,5 +1,10 @@
 package edu.ntnu.idi.idattx2002.io.chess;
 
+import edu.ntnu.idi.idattx2002.module.chess.Chess;
+import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
+import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
+import edu.ntnu.idi.idattx2002.module.chess.pieces.*;
+import edu.ntnu.idi.idattx2002.module.chess.pieces.Piece;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,20 +14,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import edu.ntnu.idi.idattx2002.module.chess.Chess;
-import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
-import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
-import edu.ntnu.idi.idattx2002.module.chess.pieces.*;
-import edu.ntnu.idi.idattx2002.module.chess.pieces.Piece;
 
 /**
  * Handles loading and saving of chess board positions from and to file.
- * <p>
- * The format used includes encoded strings indicating the piece type, color,
- * and board square, along with which player is to move.
- * </p>
  *
- * <p>Supports predefined and custom board positions.</p>
+ * <p>The format used includes encoded strings indicating the piece type, color, and board square,
+ * along with which player is to move.
+ *
+ * <p>Supports predefined and custom board positions.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -31,9 +30,7 @@ public class PositionIO {
 
   private final String basePath;
 
-  /**
-   * Constructs a new {@code PositionIO} and sets the default base path for position files.
-   */
+  /** Constructs a new {@code PositionIO} and sets the default base path for position files. */
   public PositionIO() {
     basePath = "src/main/resources/chessResources/chessPositions/";
   }
@@ -64,8 +61,7 @@ public class PositionIO {
           loadSquare(chess, squareNotation);
         }
       }
-    }
-    catch(IOException e) {
+    } catch (IOException e) {
       throw new IllegalArgumentException("Couldnt read position file");
     }
   }
@@ -91,7 +87,7 @@ public class PositionIO {
    *
    * @return a list of file paths relative to the resource folder
    */
-  public List<String> getAllStartPositionEndPaths(){
+  public List<String> getAllStartPositionEndPaths() {
     List<String> fileNames = new ArrayList<>();
     ClassLoader loader = getClass().getClassLoader();
 
@@ -105,8 +101,8 @@ public class PositionIO {
     File positionFolder = new File(url.getFile());
     File[] files = positionFolder.listFiles();
 
-    if(files != null) {
-      for(File file : files) {
+    if (files != null) {
+      for (File file : files) {
         fileNames.add(path + "/" + file.getName());
       }
     }
@@ -131,14 +127,12 @@ public class PositionIO {
     String idString = "";
     String pieceString = "";
     String colorString = "";
-    for(char c : squareNotation.toCharArray()) {
+    for (char c : squareNotation.toCharArray()) {
       if (Character.isDigit(c)) {
         idString += c;
-      }
-      else if (c == 'b' || c == 'w') {
+      } else if (c == 'b' || c == 'w') {
         colorString += c;
-      }
-      else {
+      } else {
         pieceString += c;
       }
     }
@@ -149,38 +143,30 @@ public class PositionIO {
     ChessSquare square = chess.getBoard().getSquare(id);
 
     Piece piece;
-    if(pieceString.equals("P")) {
+    if (pieceString.equals("P")) {
       piece = new Pawn(square, color);
-    }
-    else if(pieceString.equals("R")) {
+    } else if (pieceString.equals("R")) {
       piece = new Rook(square, color);
-    }
-    else if(pieceString.equals("N")) {
+    } else if (pieceString.equals("N")) {
       piece = new Horse(square, color);
-    }
-    else if(pieceString.equals("B")) {
+    } else if (pieceString.equals("B")) {
       piece = new Bishop(square, color);
-    }
-    else if(pieceString.equals("Q")) {
+    } else if (pieceString.equals("Q")) {
       piece = new Queen(square, color);
-    }
-    else if(pieceString.equals("K")) {
+    } else if (pieceString.equals("K")) {
       piece = new King(square, color);
-    }
-    else {
+    } else {
       throw new RuntimeException("Error resolving piecetype to: " + pieceString);
     }
   }
 
   private String getColorNotation(ChessColor color) {
     String playerNotation;
-    if(color == ChessColor.WHITE) {
+    if (color == ChessColor.WHITE) {
       playerNotation = "w";
-    }
-    else if(color == ChessColor.BLACK) {
+    } else if (color == ChessColor.BLACK) {
       playerNotation = "b";
-    }
-    else {
+    } else {
       throw new IllegalArgumentException("Couldn't resolve player color");
     }
     return playerNotation;
@@ -192,23 +178,17 @@ public class PositionIO {
     String pieceNotation;
     if (piece instanceof Pawn) {
       pieceNotation = "P";
-    }
-    else if(piece instanceof Bishop) {
+    } else if (piece instanceof Bishop) {
       pieceNotation = "B";
-    }
-    else if(piece instanceof Horse) {
+    } else if (piece instanceof Horse) {
       pieceNotation = "N";
-    }
-    else if (piece instanceof Rook) {
+    } else if (piece instanceof Rook) {
       pieceNotation = "R";
-    }
-    else if (piece instanceof Queen) {
+    } else if (piece instanceof Queen) {
       pieceNotation = "Q";
-    }
-    else if (piece instanceof King) {
+    } else if (piece instanceof King) {
       pieceNotation = "K";
-    }
-    else {
+    } else {
       throw new IllegalArgumentException("Couldn't resolve pieceNotation");
     }
 

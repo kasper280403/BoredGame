@@ -1,15 +1,15 @@
 package edu.ntnu.idi.idattx2002.controller.common;
 
 import edu.ntnu.idi.idattx2002.controller.chess.ChessMenuController;
+import edu.ntnu.idi.idattx2002.controller.ladderGame.LadderGameMenuController;
 import edu.ntnu.idi.idattx2002.view.common.MainView;
 import edu.ntnu.idi.idattx2002.view.common.StartMenuView;
-import edu.ntnu.idi.idattx2002.controller.ladderGame.LadderGameMenuController;
 
 /**
  * Controller for the start menu of the application.
- * <p>
- * Initializes the main view, music, and navigation to game-specific menus such as Chess and Snakes & Ladders.
- * </p>
+ *
+ * <p>Initializes the main view, music, and navigation to game-specific menus such as Chess and
+ * Snakes & Ladders.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -43,8 +43,8 @@ public final class StartMenuController {
   }
 
   public void openSnakesAndLaddersMenu() {
-    LadderGameMenuController mainController = new LadderGameMenuController(mainPane.getContentPane());
+    LadderGameMenuController mainController =
+        new LadderGameMenuController(mainPane.getContentPane());
     mainController.getView().show();
   }
-
 }

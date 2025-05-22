@@ -18,10 +18,9 @@ import javafx.scene.text.Text;
 
 /**
  * View component for controlling and displaying background music status.
- * <p>
- * Provides play, skip, and stop buttons, and displays the currently playing song.
- * Implements {@code MusicObserver} to receive updates from the music player.
- * </p>
+ *
+ * <p>Provides play, skip, and stop buttons, and displays the currently playing song. Implements
+ * {@code MusicObserver} to receive updates from the music player.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -81,10 +80,11 @@ public class MusicView extends VBox implements MusicObserver {
 
   private Button createStopBtn() {
     Button stopMusicBtn = new Button("Stop");
-    stopMusicBtn.setOnAction(e -> {
-      controller.pauseMusic();
-      currentlyPlayingText.setText("Nothing :/");
-    });
+    stopMusicBtn.setOnAction(
+        e -> {
+          controller.pauseMusic();
+          currentlyPlayingText.setText("Nothing :/");
+        });
 
     return stopMusicBtn;
   }
@@ -118,5 +118,4 @@ public class MusicView extends VBox implements MusicObserver {
   public void update(String songName) {
     currentlyPlayingText.setText(songName);
   }
-
 }

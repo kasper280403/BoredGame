@@ -18,10 +18,9 @@ import javafx.scene.paint.Color;
 
 /**
  * Root view container for the application.
- * <p>
- * Provides a consistent layout including a background, utility buttons (Start Menu, Close App),
+ *
+ * <p>Provides a consistent layout including a background, utility buttons (Start Menu, Close App),
  * and a content pane for loading game-specific views.
- * </p>
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -43,17 +42,18 @@ public class MainView extends StackPane {
 
   private Button createCloseAppBtn() {
     Button closeAppBtn = new Button("Close App");
-    closeAppBtn.setOnAction(e -> {
-      Platform.exit();
-      System.exit(0);
-    });
+    closeAppBtn.setOnAction(
+        e -> {
+          Platform.exit();
+          System.exit(0);
+        });
 
     return closeAppBtn;
   }
 
   private Button createStartMenuBtn() {
     Button startMenuBtn = new Button("Start Menu");
-    startMenuBtn.setOnAction(e-> controller.getStartMenuView().show());
+    startMenuBtn.setOnAction(e -> controller.getStartMenuView().show());
 
     return startMenuBtn;
   }
@@ -62,7 +62,8 @@ public class MainView extends StackPane {
     VBox utilityPane = new VBox();
     utilityPane.setSpacing(10);
     utilityPane.setPadding(new Insets(15));
-    utilityPane.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), null)));
+    utilityPane.setBackground(
+        new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), null)));
     utilityPane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 
     StackPane.setAlignment(utilityPane, Pos.BOTTOM_RIGHT);

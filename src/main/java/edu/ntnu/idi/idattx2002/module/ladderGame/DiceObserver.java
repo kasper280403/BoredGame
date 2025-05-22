@@ -1,12 +1,11 @@
 package edu.ntnu.idi.idattx2002.module.ladderGame;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Dice.Dice;
+import edu.ntnu.idi.idattx2002.module.ladderGame.dice.Dice;
 
 /**
  * An interface for objects that want to be notified when a {@code Dice} is rolled.
- * <p>
- * Implementing classes define behavior triggered by dice value changes.
- * </p>
+ *
+ * <p>Implementing classes define behavior triggered by dice value changes.
  *
  * @author Sindre Mjøs
  * @version 1.0

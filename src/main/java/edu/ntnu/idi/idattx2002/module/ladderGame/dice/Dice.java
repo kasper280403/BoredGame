@@ -1,4 +1,5 @@
-package edu.ntnu.idi.idattx2002.module.ladderGame.Dice;
+package edu.ntnu.idi.idattx2002.module.ladderGame.dice;
+
 import edu.ntnu.idi.idattx2002.module.ladderGame.DiceObserver;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +7,8 @@ import java.util.Random;
 
 /**
  * Represents a standard six-sided dice used in the ladder game.
- * <p>
- * Supports observer registration to notify listeners when the dice is rolled.
- * </p>
+ *
+ * <p>Supports observer registration to notify listeners when the dice is rolled.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -20,10 +20,7 @@ public class Dice {
   private final List<DiceObserver> observers;
   private int currentValue;
 
-
-  /**
-   * Constructs a new {@code Dice} object with an initial value of 6.
-   */
+  /** Constructs a new {@code Dice} object with an initial value of 6. */
   public Dice() {
     randomNumberGenerator = new Random();
     observers = new ArrayList<>();
@@ -39,10 +36,9 @@ public class Dice {
     return currentValue;
   }
 
-
   /**
-   * Rolls the dice to generate a random number between 1 and 6.
-   * Notifies all registered observers of the new value.
+   * Rolls the dice to generate a random number between 1 and 6. Notifies all registered observers
+   * of the new value.
    *
    * @return the newly rolled value
    */
@@ -51,7 +47,6 @@ public class Dice {
     notifyObservers();
     return currentValue;
   }
-
 
   /**
    * Adds an observer to be notified whenever the dice is rolled.
@@ -62,9 +57,7 @@ public class Dice {
     observers.add(diceObserver);
   }
 
-  /**
-   * Notifies all registered observers of the dice's current value.
-   */
+  /** Notifies all registered observers of the dice's current value. */
   public void notifyObservers() {
     for (DiceObserver diceObserver : observers) {
       diceObserver.update(this);

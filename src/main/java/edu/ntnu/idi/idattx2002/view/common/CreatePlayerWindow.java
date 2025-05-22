@@ -1,6 +1,8 @@
 package edu.ntnu.idi.idattx2002.view.common;
 
 import edu.ntnu.idi.idattx2002.io.common.PlayerIO;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,162 +16,169 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * View for selecting and creating players.
- * <p>
- * Displays a list of existing players with selection buttons and a panel for creating new players.
- * </p>
+ *
+ * <p>Displays a list of existing players with selection buttons and a panel for creating new
+ * players.
  *
  * @author Kasper Karlsen
  * @version 1.0
  */
-public class CreatePlayerWindow{
+public class CreatePlayerWindow {
 
-    public List<String> playerNames;
+  public List<String> playerNames;
 
-    private final Stage createPlayerStage;
-    private final PlayerIO playerIO;
-    private final PlayerIconView playerIconView;
+  private final Stage createPlayerStage;
+  private final PlayerIO playerIO;
+  private final PlayerIconView playerIconView;
 
-    public CreatePlayerWindow(){
-        createPlayerStage = new Stage();
-        playerIO = new PlayerIO();
-        playerIconView = new PlayerIconView(50);
+  public CreatePlayerWindow() {
+    createPlayerStage = new Stage();
+    playerIO = new PlayerIO();
+    playerIconView = new PlayerIconView(50);
+  }
+
+  public ListView<String> getPlayersListView() {
+    List<List<String>> playerList = playerIO.getPlayers();
+    ListView<String> playerListView = new ListView<>();
+
+    for (List<String> player : playerList) {
+      playerListView.getItems().add(player.get(0) + " (Piece " + player.get(1) + ")");
     }
 
-    public ListView<String> getPlayersListView() {
-        List<List<String>> playerList = playerIO.getPlayers();
-        ListView<String> playerListView = new ListView<>();
+    return playerListView;
+  }
 
-        for (List<String> player : playerList) {
-            playerListView.getItems().add(player.get(0) + " (Piece " + player.get(1) + ")");
-        }
+  public List<String> getPlayerNames() {
+    List<List<String>> playerList = playerIO.getPlayers();
+    List<String> playerNames = new ArrayList<>();
 
-        return playerListView;
+    for (List<String> player : playerList) {
+      playerNames.add(player.get(0));
     }
 
-    public List<String> getPlayerNames() {
-        List<List<String>> playerList = playerIO.getPlayers();
-        List<String> playerNames = new ArrayList<>();
+    return playerNames;
+  }
 
-        for (List<String> player : playerList) {
-            playerNames.add(player.get(0));
-        }
+  public void openPlayerInput() {
+    playerNames = getPlayerNames();
 
-        return playerNames;
+    VBox layout = new VBox(10);
+    Label heading = new Label("Add players!");
+    Region spacing = new Region();
+    spacing.setMinHeight(20);
+
+    Label playerNameLabel = new Label("Player name:");
+    TextField playerNameField = new TextField();
+    HBox playerNameHBox = new HBox(20);
+    playerNameHBox.setAlignment(Pos.CENTER);
+    playerNameHBox.getChildren().addAll(playerNameLabel, playerNameField);
+
+    HBox pieces = new HBox(10);
+
+    ListView<String> playerListView = getPlayersListView();
+
+    HashMap<Integer, ImageView> images = getPiecesImg();
+
+    HashMap<Integer, Button> pieceButtons = new HashMap<>();
+
+    final int[] selectedPiece = {1};
+
+    for (Integer key : images.keySet()) {
+      VBox pieceBox = new VBox(10);
+      Label imgTxt = new Label("Piece " + key);
+      Button selectPieceButton = new Button("Pick me");
+
+      selectPieceButton.setOnAction(
+          e -> {
+            selectedPiece[0] = key;
+            pieceButtons.values().forEach(b -> b.setDisable(false));
+            selectPieceButton.setDisable(true);
+          });
+
+      pieceBox.getChildren().addAll(images.get(key), imgTxt, selectPieceButton);
+      pieces.getChildren().add(pieceBox);
+      pieceButtons.put(key, selectPieceButton);
     }
 
-    public void openPlayerInput(){
-        playerNames = getPlayerNames();
+    pieces.setAlignment(Pos.CENTER);
 
-        VBox layout = new VBox(10);
-        Label heading = new Label("Add players!");
-        Region spacing = new Region();
-        spacing.setMinHeight(20);
+    Button addPlayerButton = new Button("Add player");
 
-        Label playerNameLabel = new Label("Player name:");
-        TextField playerNameField = new TextField();
-        HBox playerNameHBox = new HBox(20);
-        playerNameHBox.setAlignment(Pos.CENTER);
-        playerNameHBox.getChildren().addAll(playerNameLabel, playerNameField);
+    TextField nameToRemoveField = new TextField();
+    nameToRemoveField.setPromptText("Write name to remove..");
+    Button removePlayerButton = new Button("Remove player");
 
+    removePlayerButton.setOnAction(
+        e -> {
+          String playerName = nameToRemoveField.getText();
+          playerIO.deletePlayer(playerName);
+          refresh();
+        });
 
-        HBox pieces = new HBox(10);
+    HBox removeField = new HBox(10);
+    removeField.getChildren().addAll(nameToRemoveField, removePlayerButton);
+    removeField.setAlignment(Pos.CENTER);
 
-        ListView<String> playerListView = getPlayersListView();
+    Button goBackButton = new Button("BACK");
 
-        HashMap<Integer, ImageView> images = getPiecesImg();
+    ListView<String> finalPlayerListView = playerListView;
+    addPlayerButton.setOnAction(
+        e -> {
+          String name = playerNameField.getText().trim();
+          if (!name.isEmpty() && !playerNames.contains(name)) {
+            playerNames.add(name);
+            finalPlayerListView.getItems().add(name + " (Piece " + selectedPiece[0] + ")");
+            playerNameField.clear();
 
-        HashMap<Integer, Button> pieceButtons = new HashMap<>();
-
-        final int[] selectedPiece = {1};
-
-        for (Integer key : images.keySet()) {
-            VBox pieceBox = new VBox(10);
-            Label imgTxt = new Label("Piece " + key);
-            Button selectPieceButton = new Button("Pick me");
-
-            selectPieceButton.setOnAction(e -> {
-                selectedPiece[0] = key;
-                pieceButtons.values().forEach(b -> b.setDisable(false));
-                selectPieceButton.setDisable(true);
-            });
-
-            pieceBox.getChildren().addAll(images.get(key), imgTxt, selectPieceButton);
-            pieces.getChildren().add(pieceBox);
-            pieceButtons.put(key, selectPieceButton);
-        }
-
-        pieces.setAlignment(Pos.CENTER);
-
-        Button addPlayerButton = new Button("Add player");
-
-        TextField nameToRemoveField = new TextField();
-        nameToRemoveField.setPromptText("Write name to remove..");
-        Button removePlayerButton = new Button("Remove player");
-
-        removePlayerButton.setOnAction(e -> {
-            String playerName = nameToRemoveField.getText();
-            playerIO.deletePlayer(playerName);
+            updateDAO(name, selectedPiece[0]);
             refresh();
+          }
         });
 
-        HBox removeField = new HBox(10);
-        removeField.getChildren().addAll(nameToRemoveField, removePlayerButton);
-        removeField.setAlignment(Pos.CENTER);
+    goBackButton.setOnAction(e -> goBack());
 
-        Button goBackButton = new Button("BACK");
+    layout
+        .getChildren()
+        .addAll(
+            heading,
+            playerNameHBox,
+            pieces,
+            spacing,
+            addPlayerButton,
+            removeField,
+            playerListView,
+            goBackButton);
+    layout.setAlignment(Pos.CENTER);
+    layout.setSpacing(10);
+    Scene scene = new Scene(layout, 500, 400);
+    createPlayerStage.setScene(scene);
+    createPlayerStage.show();
+  }
 
-        ListView<String> finalPlayerListView = playerListView;
-        addPlayerButton.setOnAction(e -> {
-            String name = playerNameField.getText().trim();
-            if (!name.isEmpty() && !playerNames.contains(name)) {
-                playerNames.add(name);
-                finalPlayerListView.getItems().add(name + " (Piece " + selectedPiece[0] + ")");
-                playerNameField.clear();
+  private HashMap<Integer, ImageView> getPiecesImg() {
+    HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
 
-                updateDAO(name, selectedPiece[0]);
-                refresh();
-            }
-        });
+    imageViewMap.put(1, playerIconView.getImageView(1));
+    imageViewMap.put(2, playerIconView.getImageView(2));
+    imageViewMap.put(3, playerIconView.getImageView(3));
+    imageViewMap.put(4, playerIconView.getImageView(4));
 
-        goBackButton.setOnAction(e -> goBack());
+    return imageViewMap;
+  }
 
-        layout.getChildren().addAll(heading, playerNameHBox, pieces, spacing, addPlayerButton, removeField, playerListView, goBackButton);
-        layout.setAlignment(Pos.CENTER);
-        layout.setSpacing(10);
-        Scene scene = new Scene(layout, 500, 400);
-        createPlayerStage.setScene(scene);
-        createPlayerStage.show();
-    }
+  private void goBack() {
+    createPlayerStage.close();
+  }
 
-    private HashMap<Integer, ImageView> getPiecesImg() {
-        HashMap<Integer, ImageView> imageViewMap = new HashMap<>();
+  private void refresh() {
+    goBack();
+    CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
+    createPlayerWindow.openPlayerInput();
+  }
 
-        imageViewMap.put(1, playerIconView.getImageView(1));
-        imageViewMap.put(2, playerIconView.getImageView(2));
-        imageViewMap.put(3, playerIconView.getImageView(3));
-        imageViewMap.put(4, playerIconView.getImageView(4));
-
-        return imageViewMap;
-    }
-
-    private void goBack() {
-        createPlayerStage.close();
-    }
-
-    private void refresh(){
-        goBack();
-        CreatePlayerWindow createPlayerWindow = new CreatePlayerWindow();
-        createPlayerWindow.openPlayerInput();
-    }
-
-    private void updateDAO(String playerName, int selectedPiece) {
-        playerIO.writePlayer(playerName, selectedPiece);
-    }
+  private void updateDAO(String playerName, int selectedPiece) {
+    playerIO.writePlayer(playerName, selectedPiece);
+  }
 }
-
-

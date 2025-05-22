@@ -7,9 +7,9 @@ import javafx.scene.image.ImageView;
 
 /**
  * Utility class for loading and managing player icon images.
- * <p>
- * Provides a mapping from icon IDs to {@code ImageView} objects, used for displaying player pieces.
- * </p>
+ *
+ * <p>Provides a mapping from icon IDs to {@code ImageView} objects, used for displaying player
+ * pieces.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -55,4 +55,3 @@ public class PlayerIconView {
     imageView.setFitWidth(imageViewSize);
   }
 }
-

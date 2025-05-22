@@ -21,11 +21,11 @@ public class BishopTest {
 
   @Test
   void testIsMovePossible() {
-    //arrange
+    // arrange
     ChessSquare whiteBishopDestination = new ChessSquare(8, 6);
     ChessSquare blackBishopDestination = new ChessSquare(5, 6);
 
-    //assert
+    // assert
     assertTrue(whiteBishop.isMovePossible(whiteBishopDestination));
     assertTrue(blackBishop.isMovePossible(blackBishopDestination));
 

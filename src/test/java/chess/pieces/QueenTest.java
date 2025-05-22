@@ -21,34 +21,33 @@ public class QueenTest {
 
   @Test
   void testIsStraightMovePossible() {
-    //arrange
+    // arrange
     ChessSquare destination = new ChessSquare(4, 5);
 
-    //assert
+    // assert
     assertTrue(whiteQueen.isMovePossible(destination));
     assertTrue(blackQueen.isMovePossible(destination));
   }
 
   @Test
   void testIsDiagMovePossible() {
-    //arrange
+    // arrange
     ChessSquare whiteDestination = new ChessSquare(8, 5);
     ChessSquare blackDestination = new ChessSquare(2, 6);
 
-    //assert
+    // assert
     assertTrue(whiteQueen.isMovePossible(whiteDestination));
     assertTrue(blackQueen.isMovePossible(blackDestination));
   }
 
   @Test
   void testIsMovePossibleNegative() {
-    //arrange
+    // arrange
     ChessSquare whiteDestination = new ChessSquare(1, 6);
     ChessSquare blackDestination = new ChessSquare(6, 5);
 
-    //assert
+    // assert
     assertFalse(whiteQueen.isMovePossible(whiteDestination));
     assertFalse(blackQueen.isMovePossible(blackDestination));
   }
-
 }

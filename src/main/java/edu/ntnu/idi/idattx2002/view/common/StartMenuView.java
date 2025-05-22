@@ -19,9 +19,8 @@ import javafx.scene.text.Text;
 
 /**
  * View for the application's start menu.
- * <p>
- * Displays the game selection screen where users can choose between Chess and Snakes & Ladders.
- * </p>
+ *
+ * <p>Displays the game selection screen where users can choose between Chess and Snakes & Ladders.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -52,7 +51,7 @@ public class StartMenuView extends VBox {
     accentText.setEffect(new GaussianBlur(5));
 
     titlePane.getChildren().addAll(accentText, mainText);
-    accentText.setTranslateY(size/20);
+    accentText.setTranslateY(size / 20);
 
     return titlePane;
   }
@@ -64,13 +63,15 @@ public class StartMenuView extends VBox {
     btn.setSpacing(15);
     btn.setAlignment(Pos.CENTER);
     Color backgroundColor = Color.WHITE.deriveColor(0, 1, 1, 0.2);
-    btn.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
+    btn.setBackground(
+        new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
     Text header = new Text("Chess");
     header.setFont(new Font("Helvetica", 35));
     header.setFill(Color.WHITESMOKE);
 
-    Image sNlImage = new Image(getClass().getResource("/chessResources/chessLogo.png").toExternalForm());
+    Image sNlImage =
+        new Image(getClass().getResource("/chessResources/chessLogo.png").toExternalForm());
     ImageView sNlImageView = new ImageView(sNlImage);
 
     sNlImageView.setFitWidth(290);
@@ -89,13 +90,18 @@ public class StartMenuView extends VBox {
     btn.setSpacing(15);
     btn.setAlignment(Pos.CENTER);
     Color backgroundColor = Color.WHITE.deriveColor(0, 1, 1, 0.2);
-    btn.setBackground(new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
+    btn.setBackground(
+        new Background(new BackgroundFill(backgroundColor, new CornerRadii(10), null)));
 
     Text header = new Text("Snakes & Ladders");
     header.setFont(new Font("Helvetica", 35));
     header.setFill(Color.WHITESMOKE);
 
-    Image sNlImage = new Image(getClass().getResource("/ladderGameResources/images/snakesAndLaddersLogo.png").toExternalForm());
+    Image sNlImage =
+        new Image(
+            getClass()
+                .getResource("/ladderGameResources/images/snakesAndLaddersLogo.png")
+                .toExternalForm());
     ImageView sNlImageView = new ImageView(sNlImage);
 
     sNlImageView.setFitWidth(290);

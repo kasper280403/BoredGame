@@ -6,9 +6,9 @@ import javafx.scene.layout.Pane;
 
 /**
  * Layout container for the main Chess game view.
- * <p>
- * Extends {@code HBox} to structure the board and sidebar components side by side, with spacing and alignment.
- * </p>
+ *
+ * <p>Extends {@code HBox} to structure the board and sidebar components side by side, with spacing
+ * and alignment.
  *
  * @author Sindre Mjøs
  * @version 1.0

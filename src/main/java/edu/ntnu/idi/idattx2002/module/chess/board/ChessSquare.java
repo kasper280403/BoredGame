@@ -1,14 +1,13 @@
 package edu.ntnu.idi.idattx2002.module.chess.board;
 
 import edu.ntnu.idi.idattx2002.module.chess.pieces.Piece;
-import edu.ntnu.idi.idattx2002.module.common.Board.Square;
+import edu.ntnu.idi.idattx2002.module.common.board.Square;
 
 /**
  * Represents a single square on a chess board with a specific coordinate.
- * <p>
- * Each square may contain a chess piece and supports observer notification
- * for updates such as piece placement or removal.
- * </p>
+ *
+ * <p>Each square may contain a chess piece and supports observer notification for updates such as
+ * piece placement or removal.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -60,7 +59,7 @@ public class ChessSquare extends Square {
    * @return the piece or {@code null} if empty
    */
   public Piece getPiece() {
-    if(piece != null) {
+    if (piece != null) {
       return piece;
     }
     return null;
@@ -74,7 +73,7 @@ public class ChessSquare extends Square {
    * @throws IllegalArgumentException if coordinates are invalid
    */
   private void verifyCoordinates(int x, int y) {
-    if(x < 1 || x > 8 || y < 1 || y > 8) {
+    if (x < 1 || x > 8 || y < 1 || y > 8) {
       throw new IllegalArgumentException("Square coordinates are invalid");
     }
   }
@@ -87,7 +86,6 @@ public class ChessSquare extends Square {
   public void setObserver(SquareObserver observer) {
     this.observer = observer;
   }
-
 
   /**
    * Checks whether this square currently has a piece.
@@ -104,7 +102,7 @@ public class ChessSquare extends Square {
    * @param piece the piece to place
    */
   public void placePiece(Piece piece) {
-    if(this.piece != null) {
+    if (this.piece != null) {
       this.piece.die();
       piece.setCurrentSquare(null);
       removePiece();
@@ -113,20 +111,15 @@ public class ChessSquare extends Square {
     notifyObserver();
   }
 
-  /**
-   * Removes any piece currently on this square and notifies the observer.
-   */
+  /** Removes any piece currently on this square and notifies the observer. */
   public void removePiece() {
     this.piece = null;
     notifyObserver();
   }
 
-
-  /**
-   * Notifies the registered observer of a change to this square.
-   */
+  /** Notifies the registered observer of a change to this square. */
   private void notifyObserver() {
-    if(observer != null) {
+    if (observer != null) {
       observer.update(this);
     }
   }
