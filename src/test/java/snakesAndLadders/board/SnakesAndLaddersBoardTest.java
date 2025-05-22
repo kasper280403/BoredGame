@@ -1,16 +1,14 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package snakesAndLadders.board;
 
-import edu.ntnu.idi.idattx2002.logic.common.Board.Square;
+import static org.junit.jupiter.api.Assertions.*;
+
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersSquare;
-import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 
-class ChessSnakesAndLaddersBoardTest {
+class SnakesAndLaddersBoardTest {
 
   SnakesAndLaddersBoard board;
 
@@ -26,7 +24,7 @@ class ChessSnakesAndLaddersBoardTest {
     //act
     board.addTile(tile1);
     //assert
-    Assertions.assertEquals(tile1, board.getTile(1));
+    assertEquals(tile1, board.getTile(1));
   }
 
   @Test
@@ -36,7 +34,15 @@ class ChessSnakesAndLaddersBoardTest {
     //act
     board.addTile(tile1);
     //assert
-    Assertions.assertEquals(tile1, board.getTile(1));
+    assertEquals(tile1, board.getTile(1));
+  }
+
+  @Test
+  void testGetInvalidTile() {
+    //Assert
+    assertThrows(IllegalArgumentException.class, () -> {
+      board.getTile(17);
+    });
   }
 
   @Test
@@ -48,23 +54,23 @@ class ChessSnakesAndLaddersBoardTest {
     SnakesAndLaddersSquare tile10 = board.getTile(10);
     SnakesAndLaddersSquare tile24 = board.getTile(24);
     //assert
-    Assertions.assertEquals(10, tile10.getSquareId());
-    Assertions.assertEquals(1, tile1.getSquareId());
-    Assertions.assertEquals(24, tile24.getSquareId());
+    assertEquals(10, tile10.getSquareId());
+    assertEquals(1, tile1.getSquareId());
+    assertEquals(24, tile24.getSquareId());
   }
 
   @Test
   void testValidateRowsAndColumns() {
     //assert
-    Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      board.validateRowsAndColumns(0, 0);
+    assertThrows(IllegalArgumentException.class, () -> {
+      board.createBoard(0, 0);
     });
   }
 
   @Test
   void testGetTileException() {
     //assert
-    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    assertThrows(IllegalArgumentException.class, () -> {
       board.getTile(1);
     });
   }

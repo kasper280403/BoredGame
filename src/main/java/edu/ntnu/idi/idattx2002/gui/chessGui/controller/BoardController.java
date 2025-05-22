@@ -1,13 +1,10 @@
 package edu.ntnu.idi.idattx2002.gui.chessGui.controller;
-import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
-import java.io.IOException;
+import edu.ntnu.idi.idattx2002.exception.IllegalMoveException;
 import java.util.Map;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.BoardView;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.SideBarView;
-import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Chess;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.Move;
@@ -92,7 +89,7 @@ public class BoardController {
 
     try {
       chess.playMove(move);
-    } catch(IlliegalMoveException e) {
+    } catch(IllegalMoveException e) {
       sideBarView.setUserExceptionFeedback(e.getMessage());
     }
 

@@ -97,9 +97,7 @@ public abstract class Piece{
   }
 
   //Meant to be overridden
-  public boolean isMovePossible(ChessSquare square) {
-    return false;
-  }
+  public abstract boolean isMovePossible(ChessSquare square);
 
   public boolean isMoveLegal(ChessSquare square, Chess chess) {
     if(chess.getPlayerToMove().getColor() != chessColor) {

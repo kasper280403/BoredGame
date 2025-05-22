@@ -53,8 +53,7 @@ public class Pawn extends Piece{
     if (!(pieceToCapture instanceof Pawn)) {
       return false;
     }
-
-    if(((Pawn) pieceToCapture).justMoved) {
+    if(((Pawn) pieceToCapture).getFirstMoved()) {
       return true;
     }
     else {
@@ -121,7 +120,6 @@ public class Pawn extends Piece{
     currentSquare.placePiece(promotedPiece);
   }
 
-  //TODO not compatible with discoversCheck maybe.
   @Override
   public boolean isMovePossible(ChessSquare square) {
     boolean legal = false;

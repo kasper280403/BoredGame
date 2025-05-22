@@ -2,11 +2,10 @@ package edu.ntnu.idi.idattx2002.gui.chessGui.controller;
 
 import edu.ntnu.idi.idattx2002.exception.GameException;
 import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
-import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.ChessMenuView;
 import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
-import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
-import java.io.IOException;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
 import java.util.List;
 import javafx.scene.layout.Pane;
 import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
@@ -33,6 +32,17 @@ public class ChessMenuController {
     return positionIO.getAllStartPositionEndPaths();
   }
 
+  private void addPlayers(List<List<String>> players, Chess chess) {
+    List<String> player1 = players.get(0);
+    List<String> player2 = players.get(1);
+
+    HumanChessPlayer chessPlayer1 = new HumanChessPlayer(player1.getFirst(), Integer.parseInt(player1.getLast()), ChessColor.WHITE);
+    HumanChessPlayer chessPlayer2 = new HumanChessPlayer(player2.getFirst(), Integer.parseInt(player2.getLast()), ChessColor.BLACK);
+
+    chess.addPlayer(chessPlayer1);
+    chess.addPlayer(chessPlayer2);
+  }
+
   public void startGame(Pane mainPane) {
     int amountOfPlayers = choosePlayerController.getChosenPlayers().size();
 
@@ -40,7 +50,8 @@ public class ChessMenuController {
       if (amountOfPlayers >= choosePlayerController.getMinPlayers()
           && amountOfPlayers <= choosePlayerController.getMaxPlayers()) {
         Chess chess = new Chess();
-        chess.addHumanPlayers(choosePlayerController.getChosenPlayers());
+
+        addPlayers(choosePlayerController.getChosenPlayers(), chess);
 
         String positionPath = chessMenuView.getGameModeSelection().getValue();
         chess.initPosition(positionPath);

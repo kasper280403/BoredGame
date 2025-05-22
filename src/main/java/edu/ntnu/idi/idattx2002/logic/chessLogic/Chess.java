@@ -1,13 +1,12 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic;
 
-import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
+import edu.ntnu.idi.idattx2002.exception.IllegalMoveException;
+import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessBoard;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.King;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Pawn;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Piece;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
@@ -55,17 +54,23 @@ public class Chess {
     this.observer = observer;
   }
 
-  private void addPlayer(String name, int iconId, ChessColor chessColor) {
-    ChessPlayer player = new HumanChessPlayer(name, iconId, chessColor);
+  public void addPlayer(HumanChessPlayer player) {
     players.add(player);
-
     playerToMove = getPlayer(ChessColor.WHITE);
   }
 
   public void initPosition(String pathToPosition) {
     positionIO.loadPosition(this, pathToPosition);
     for(ChessPlayer player : players) {
-      player.initPieces(board);
+      Piece piece;
+      for (ChessSquare square : board.getSquareMap().values()) {
+        if(square.hasPiece()) {
+          piece = square.getPiece();
+          if(piece.getColor() == player.getColor()) {
+            player.addPiece(piece);
+          }
+        }
+      }
     }
   }
 
@@ -77,7 +82,7 @@ public class Chess {
       updatePieceStatuses();
     }
     else {
-      throw new IlliegalMoveException("Move is not legal");
+      throw new IllegalMoveException("Move is not legal");
     }
   }
 
@@ -110,14 +115,5 @@ public class Chess {
     if (observer != null) {
       observer.update(player);
     }
-  }
-
-  public void addHumanPlayers(List<List<String>> players) {
-    List<String> player1 = players.get(0);
-    List<String> player2 = players.get(1);
-
-
-    addPlayer(player1.getFirst(), Integer.parseInt(player1.getLast()), ChessColor.WHITE);
-    addPlayer(player2.getFirst(), Integer.parseInt(player2.getLast()), ChessColor.BLACK);
   }
 }
