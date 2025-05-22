@@ -2,9 +2,9 @@ package chess.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Pawn;
+import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
+import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
+import edu.ntnu.idi.idattx2002.module.chess.pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

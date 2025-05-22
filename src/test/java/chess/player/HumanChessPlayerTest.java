@@ -2,11 +2,11 @@ package chess.player;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.King;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Pawn;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
+import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
+import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
+import edu.ntnu.idi.idattx2002.module.chess.pieces.King;
+import edu.ntnu.idi.idattx2002.module.chess.pieces.Pawn;
+import edu.ntnu.idi.idattx2002.module.chess.player.HumanChessPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
