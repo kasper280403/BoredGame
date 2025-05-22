@@ -33,7 +33,10 @@ public class MainView extends StackPane {
 
   private Button createCloseAppBtn() {
     Button closeAppBtn = new Button("Close App");
-    closeAppBtn.setOnAction(e -> Platform.exit());
+    closeAppBtn.setOnAction(e -> {
+      Platform.exit();
+      System.exit(0);
+    });
 
     return closeAppBtn;
   }
