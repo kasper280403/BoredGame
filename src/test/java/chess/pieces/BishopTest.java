@@ -14,7 +14,7 @@ public class BishopTest {
   private Bishop blackBishop;
 
   @BeforeEach
-  void setUp() {
+  void bishopSetUp() {
     whiteBishop = new Bishop(new ChessSquare(3, 1), ChessColor.WHITE);
     blackBishop = new Bishop(new ChessSquare(3, 8), ChessColor.BLACK);
   }

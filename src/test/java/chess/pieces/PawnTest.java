@@ -54,4 +54,6 @@ public class PawnTest {
     assertTrue(whitePawn.isMovePossible(whiteDestination));
     assertTrue(blackPawn.isMovePossible(blackDestination));
   }
+
+
 }

@@ -2,13 +2,10 @@ package edu.ntnu.idi.idattx2002.gui.chessGui.controller;
 
 import edu.ntnu.idi.idattx2002.exception.GameException;
 import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
-import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
 import edu.ntnu.idi.idattx2002.gui.chessGui.view.ChessMenuView;
 import edu.ntnu.idi.idattx2002.gui.common.controller.ChoosePlayerController;
-import edu.ntnu.idi.idattx2002.gui.common.view.GameMenuView;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.ChessColor;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
-import java.io.IOException;
 import java.util.List;
 import javafx.scene.layout.Pane;
 import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;

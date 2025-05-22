@@ -120,7 +120,6 @@ public class Pawn extends Piece{
     currentSquare.placePiece(promotedPiece);
   }
 
-  //TODO not compatible with discoversCheck maybe.
   @Override
   public boolean isMovePossible(ChessSquare square) {
     boolean legal = false;

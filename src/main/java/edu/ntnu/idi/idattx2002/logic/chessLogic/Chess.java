@@ -1,14 +1,12 @@
 package edu.ntnu.idi.idattx2002.logic.chessLogic;
 
-import edu.ntnu.idi.idattx2002.exception.IlliegalMoveException;
+import edu.ntnu.idi.idattx2002.exception.IllegalMoveException;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessSquare;
 import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import edu.ntnu.idi.idattx2002.io.chessIO.PositionIO;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.board.ChessBoard;
-import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.King;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Pawn;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.pieces.Piece;
 import edu.ntnu.idi.idattx2002.logic.chessLogic.player.HumanChessPlayer;
@@ -84,7 +82,7 @@ public class Chess {
       updatePieceStatuses();
     }
     else {
-      throw new IlliegalMoveException("Move is not legal");
+      throw new IllegalMoveException("Move is not legal");
     }
   }
 
