@@ -6,15 +6,14 @@ import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 
 /**
  * Represents a Bishop piece in chess.
- * <p>
- * A bishop moves diagonally any number of squares. This class extends the {@code Piece} class
+ *
+ * <p>A bishop moves diagonally any number of squares. This class extends the {@code Piece} class
  * and provides bishop-specific movement logic.
- * </p>
  *
  * @author Sindre Mjøs
  * @version 1.0
  */
-public class Bishop extends Piece{
+public class Bishop extends Piece {
 
   /**
    * Constructs a {@code Bishop} with a starting square and a color.
@@ -27,8 +26,8 @@ public class Bishop extends Piece{
   }
 
   /**
-   * Determines whether a move to the given square is possible for a bishop
-   * (i.e., it lies on the same diagonal).
+   * Determines whether a move to the given square is possible for a bishop (i.e., it lies on the
+   * same diagonal).
    *
    * @param square the target square
    * @return {@code true} if the move is diagonal, {@code false} otherwise
@@ -49,7 +48,7 @@ public class Bishop extends Piece{
    */
   @Override
   public boolean threatens(ChessSquare square, Chess chess) {
-    return isMovePossible(square) &&  super.threatens(square, chess);
+    return isMovePossible(square) && super.threatens(square, chess);
   }
 
   /**
@@ -61,7 +60,7 @@ public class Bishop extends Piece{
    */
   @Override
   public boolean isMoveLegal(ChessSquare square, Chess chess) {
-    return isMovePossible(square) &&  super.isMoveLegal(square, chess);
+    return isMovePossible(square) && super.isMoveLegal(square, chess);
   }
 
   /**
@@ -72,7 +71,7 @@ public class Bishop extends Piece{
    */
   @Override
   public void move(ChessSquare square, Chess chess) {
-    if(isMoveLegal(square, chess)) {
+    if (isMoveLegal(square, chess)) {
       super.move(square, chess);
     }
   }

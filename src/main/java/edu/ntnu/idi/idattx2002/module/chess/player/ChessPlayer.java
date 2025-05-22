@@ -1,19 +1,18 @@
 package edu.ntnu.idi.idattx2002.module.chess.player;
 
-import edu.ntnu.idi.idattx2002.module.common.Player.Player;
-import java.util.ArrayList;
-import java.util.List;
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.pieces.*;
+import edu.ntnu.idi.idattx2002.module.common.player.Player;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a player in a chess game.
- * <p>
- * Each player has a name, icon, color, and a list of pieces under their control.
- * Provides methods to manage and retrieve the player's active pieces, including their king.
- * </p>
  *
- * <p>This class is abstract and intended to be extended by specific player types (e.g. human, AI).</p>
+ * <p>Each player has a name, icon, color, and a list of pieces under their control. Provides
+ * methods to manage and retrieve the player's active pieces, including their king.
+ *
+ * <p>This class is abstract and intended to be extended by specific player types (e.g. human, AI).
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -23,7 +22,6 @@ public abstract class ChessPlayer extends Player {
   private final ChessColor chessColor;
 
   private final List<Piece> pieces;
-
 
   /**
    * Constructs a new {@code ChessPlayer} with the given name, icon ID, and color.
@@ -38,7 +36,6 @@ public abstract class ChessPlayer extends Player {
     pieces = new ArrayList<>();
   }
 
-
   /**
    * Returns a list of all currently alive pieces under the control of this player.
    *
@@ -47,13 +44,12 @@ public abstract class ChessPlayer extends Player {
   public List<Piece> getAlivePieces() {
     List<Piece> alivePieces = new ArrayList<>();
     for (Piece piece : pieces) {
-      if(piece.isAlive()) {
+      if (piece.isAlive()) {
         alivePieces.add(piece);
       }
     }
     return alivePieces;
   }
-
 
   /**
    * Retrieves the king controlled by this player.
@@ -62,8 +58,8 @@ public abstract class ChessPlayer extends Player {
    * @throws NullPointerException if no king is found
    */
   public King getKing() {
-    for(Piece piece : pieces) {
-      if(piece instanceof King) {
+    for (Piece piece : pieces) {
+      if (piece instanceof King) {
         return (King) piece;
       }
     }
@@ -77,7 +73,7 @@ public abstract class ChessPlayer extends Player {
    * @throws IllegalArgumentException if the piece's color doesn't match the player's color
    */
   public void addPiece(Piece piece) {
-    if(piece.getColor() != chessColor) {
+    if (piece.getColor() != chessColor) {
       throw new IllegalArgumentException("Piece color has to match player color");
     }
     pieces.add(piece);
@@ -90,7 +86,7 @@ public abstract class ChessPlayer extends Player {
    * @throws NullPointerException if the piece is not found in the list
    */
   public void removePiece(Piece piece) {
-    if(!pieces.contains(piece)) {
+    if (!pieces.contains(piece)) {
       throw new NullPointerException("Cannot remove Piece wich isnt a part of pieces");
     }
     pieces.remove(piece);

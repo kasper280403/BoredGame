@@ -7,9 +7,9 @@ import javafx.scene.layout.Pane;
 
 /**
  * View for the Chess game setup menu.
- * <p>
- * Extends {@code GameMenuView} and initializes UI components for selecting game modes and starting a new game.
- * </p>
+ *
+ * <p>Extends {@code GameMenuView} and initializes UI components for selecting game modes and
+ * starting a new game.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -29,9 +29,10 @@ public class ChessMenuView extends GameMenuView {
     startButton.setMinSize(80, 40);
     startButton.setMaxSize(80, 40);
 
-    startButton.setOnAction(e -> {
-        controller.startGame(mainPane);
-    });
+    startButton.setOnAction(
+        e -> {
+          controller.startGame(mainPane);
+        });
 
     bottomBox.getChildren().add(startButton);
   }
@@ -43,5 +44,4 @@ public class ChessMenuView extends GameMenuView {
     createGameModeSelectionPane(controller.getStartPositions());
     createStartButton();
   }
-
 }

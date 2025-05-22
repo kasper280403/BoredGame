@@ -1,5 +1,9 @@
 package edu.ntnu.idi.idattx2002.view.chess;
 
+import edu.ntnu.idi.idattx2002.module.chess.Chess;
+import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
+import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
+import edu.ntnu.idi.idattx2002.module.chess.board.SquareObserver;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.geometry.Pos;
@@ -8,16 +12,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import edu.ntnu.idi.idattx2002.module.chess.Chess;
-import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
-import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
-import edu.ntnu.idi.idattx2002.module.chess.board.SquareObserver;
 
 /**
  * Controller for the Snakes and Ladders game setup menu.
- * <p>
- * Handles player selection, game mode loading, and game initialization.
- * </p>
+ *
+ * <p>Handles player selection, game mode loading, and game initialization.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -50,16 +49,15 @@ public class BoardView extends GridPane implements SquareObserver {
     int xAdjustment;
     int yAdjustment;
 
-    if(colorPerspective == ChessColor.WHITE) {
+    if (colorPerspective == ChessColor.WHITE) {
       xAdjustment = 0;
       yAdjustment = -9;
-    }
-    else {
+    } else {
       xAdjustment = -9;
       yAdjustment = 0;
     }
 
-    for(ChessSquare square : chess.getBoard().getSquareMap().values()) {
+    for (ChessSquare square : chess.getBoard().getSquareMap().values()) {
       square.setObserver(this);
       Rectangle tile = new Rectangle(tilesize, tilesize);
       tile.setFill(getSquareColor(square));
@@ -70,7 +68,7 @@ public class BoardView extends GridPane implements SquareObserver {
       Pane squarePane = new StackPane();
       squarePane.getChildren().add(tile);
 
-      if(square.hasPiece()) {
+      if (square.hasPiece()) {
         squarePane.getChildren().add((pieceView.getPieceView(square.getPiece())));
       }
 
@@ -80,7 +78,7 @@ public class BoardView extends GridPane implements SquareObserver {
   }
 
   public void refreshAllTiles() {
-    for(ChessSquare square : tileMap.keySet()) {
+    for (ChessSquare square : tileMap.keySet()) {
       refreshTile(tileMap.get(square), square);
     }
   }
@@ -92,16 +90,15 @@ public class BoardView extends GridPane implements SquareObserver {
     background.setFill(getSquareColor(square));
     tile.getChildren().add(background);
 
-    if(square.hasPiece()) {
+    if (square.hasPiece()) {
       tile.getChildren().add(pieceView.getPieceView(square.getPiece()));
     }
   }
 
   private Color getSquareColor(ChessSquare square) {
-    if((square.getXCoordinate() + square.getYCoordinate()) % 2 != 0) {
+    if ((square.getXCoordinate() + square.getYCoordinate()) % 2 != 0) {
       return Color.web("#D4EAF7");
-    }
-    else{
+    } else {
       return Color.web("#6A8BA4");
     }
   }

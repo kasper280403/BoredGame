@@ -1,20 +1,19 @@
 package edu.ntnu.idi.idattx2002.controller.ladderGame;
 
-import edu.ntnu.idi.idattx2002.view.common.WinView;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Dice.Dice;
 import edu.ntnu.idi.idattx2002.module.ladderGame.LadderGame;
+import edu.ntnu.idi.idattx2002.module.ladderGame.dice.Dice;
+import edu.ntnu.idi.idattx2002.module.ladderGame.player.LadderGamePlayer;
+import edu.ntnu.idi.idattx2002.view.common.WinView;
 import edu.ntnu.idi.idattx2002.view.ladderGame.DiceView;
-import edu.ntnu.idi.idattx2002.view.ladderGame.SnakesAndLaddersView;
 import edu.ntnu.idi.idattx2002.view.ladderGame.SnakesAndLaddersBoardView;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
+import edu.ntnu.idi.idattx2002.view.ladderGame.SnakesAndLaddersView;
 import java.util.List;
 import javafx.scene.layout.Pane;
 
 /**
  * Controller for the Snakes and Ladders game module.
- * <p>
- * Manages game initialization, player setup, view coordination, and game turn execution.
- * </p>
+ *
+ * <p>Manages game initialization, player setup, view coordination, and game turn execution.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -27,7 +26,6 @@ public class LadderGameController {
   private final DiceView diceView;
   private final SnakesAndLaddersBoardView tilesView;
   private final WinView winView;
-
 
   public LadderGameController(Pane mainPane, List<List<String>> players, String selectedGamemode) {
     snakesAndLadderView = new SnakesAndLaddersView(mainPane, this);
@@ -48,11 +46,13 @@ public class LadderGameController {
   private void setUpGame(List<List<String>> players) {
     int playerID = 1;
     for (List<String> playerString : players) {
-      LadderGamePlayer newPlayer = new LadderGamePlayer(playerString.getFirst(), playerID, Integer.parseInt(playerString.getLast()));
+      LadderGamePlayer newPlayer =
+          new LadderGamePlayer(
+              playerString.getFirst(), playerID, Integer.parseInt(playerString.getLast()));
       game.addPlayer(newPlayer);
       newPlayer.addObserver(tilesView);
 
-      playerID ++;
+      playerID++;
     }
 
     for (Dice dice : game.getDices()) {

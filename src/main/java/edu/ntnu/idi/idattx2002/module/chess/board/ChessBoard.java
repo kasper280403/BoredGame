@@ -7,9 +7,9 @@ import java.util.Map;
 
 /**
  * Represents an 8x8 chess board composed of {@code ChessSquare} instances.
- * <p>
- * Provides methods for retrieving squares, checking for clear paths, and computing movement paths.
- * </p>
+ *
+ * <p>Provides methods for retrieving squares, checking for clear paths, and computing movement
+ * paths.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -18,9 +18,7 @@ public class ChessBoard {
 
   private final Map<Integer, ChessSquare> squareMap;
 
-  /**
-   * Constructs a new chess board and initializes all squares.
-   */
+  /** Constructs a new chess board and initializes all squares. */
   public ChessBoard() {
     squareMap = new HashMap<>();
     initSquares();
@@ -53,7 +51,7 @@ public class ChessBoard {
    * @return the corresponding {@code ChessSquare}
    */
   public ChessSquare getSquareByCords(int x, int y) {
-    return getSquare((y-1)*8 + x);
+    return getSquare((y - 1) * 8 + x);
   }
 
   /**
@@ -73,8 +71,8 @@ public class ChessBoard {
   }
 
   /**
-   * Returns the list of squares in the path between two given squares.
-   * Supports straight and diagonal paths.
+   * Returns the list of squares in the path between two given squares. Supports straight and
+   * diagonal paths.
    *
    * @param square1 the starting square
    * @param square2 the ending square
@@ -86,10 +84,9 @@ public class ChessBoard {
     int xDiff = square1.getXCoordinate() - square2.getXCoordinate();
     int yDiff = square1.getYCoordinate() - square2.getYCoordinate();
 
-    if(Math.abs(xDiff) == Math.abs(yDiff)) {
+    if (Math.abs(xDiff) == Math.abs(yDiff)) {
       path = getDiagPath(square1, square2);
-    }
-    else if(xDiff == 0 || yDiff == 0) {
+    } else if (xDiff == 0 || yDiff == 0) {
       path = getStraightPath(square1, square2);
     }
 
@@ -111,21 +108,19 @@ public class ChessBoard {
 
     int upOrDownFactor = xDiff + yDiff > 0 ? 1 : -1;
 
-    if(xDiff == 0) {
+    if (xDiff == 0) {
       int x = square1.getXCoordinate();
       int y;
 
-      for (int i = 1; i < yDiff*upOrDownFactor; i++){
+      for (int i = 1; i < yDiff * upOrDownFactor; i++) {
         y = square1.getYCoordinate() - i * upOrDownFactor;
         path.add(getSquareByCords(x, y));
-        }
       }
-
-    else{
+    } else {
       int y = square1.getYCoordinate();
       int x;
 
-      for (int i = 1; i < xDiff*upOrDownFactor; i++){
+      for (int i = 1; i < xDiff * upOrDownFactor; i++) {
         x = square1.getXCoordinate() - i * upOrDownFactor;
         path.add(getSquareByCords(x, y));
       }
@@ -154,16 +149,14 @@ public class ChessBoard {
       x = square1.getXCoordinate() - i * xFactor;
       y = square1.getYCoordinate() - i * yFactor;
       path.add(getSquareByCords(x, y));
-      }
+    }
     return path;
   }
 
-  /**
-   * Initializes all 64 squares on the chess board and maps them by ID.
-   */
+  /** Initializes all 64 squares on the chess board and maps them by ID. */
   private void initSquares() {
-    for(int x = 1; x <= 8; x++) {
-      for(int y = 1; y <= 8; y++) {
+    for (int x = 1; x <= 8; x++) {
+      for (int y = 1; y <= 8; y++) {
         ChessSquare square = new ChessSquare(x, y);
         squareMap.put(square.getSquareId(), square);
       }

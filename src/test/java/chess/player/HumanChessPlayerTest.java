@@ -23,88 +23,92 @@ public class HumanChessPlayerTest {
 
   @Test
   void testGetName() {
-    //act
+    // act
     String whiteName = whitePlayer.getName();
     String blackName = blackPlayer.getName();
 
-    //assert
+    // assert
     assertEquals(whiteName, "white");
     assertEquals(blackName, "black");
   }
 
   @Test
   void testGetColor() {
-    //act
+    // act
     ChessColor white = whitePlayer.getColor();
     ChessColor black = blackPlayer.getColor();
-    //assert
+    // assert
     assertEquals(white, ChessColor.WHITE);
     assertEquals(black, ChessColor.BLACK);
   }
 
   @Test
   void testAddPiece() {
-    //arrange
+    // arrange
     Pawn piece = new Pawn(new ChessSquare(1, 1), ChessColor.WHITE);
-    //act
+    // act
     whitePlayer.addPiece(piece);
-    //assert
+    // assert
     assertEquals(1, whitePlayer.getAlivePieces().size());
   }
 
   @Test
   void testAddWrongColorPiece() {
-    //arrange
+    // arrange
     Pawn piece = new Pawn(new ChessSquare(1, 1), ChessColor.WHITE);
-    //assert
-    assertThrows(IllegalArgumentException.class, () -> {
-      blackPlayer.addPiece(piece);
-    });
+    // assert
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          blackPlayer.addPiece(piece);
+        });
   }
 
   @Test
   void testGetKing() {
-    //arrange
+    // arrange
     King king = new King(new ChessSquare(1, 1), ChessColor.WHITE);
     whitePlayer.addPiece(king);
-    //assert
+    // assert
     assertEquals(whitePlayer.getKing(), king);
   }
 
   @Test
   void testGetKingNotFound() {
-    //assert
-    assertThrows(NullPointerException.class, () -> {
-      blackPlayer.getKing();
-    });
+    // assert
+    assertThrows(
+        NullPointerException.class,
+        () -> {
+          blackPlayer.getKing();
+        });
   }
 
   @Test
   void testRemovePiece() {
-    //arrange
+    // arrange
     Pawn blackPiece = new Pawn(new ChessSquare(1, 1), ChessColor.BLACK);
     Pawn whitePiece = new Pawn(new ChessSquare(2, 1), ChessColor.WHITE);
 
     whitePlayer.addPiece(whitePiece);
     blackPlayer.addPiece(blackPiece);
 
-    //act
+    // act
     whitePlayer.removePiece(whitePiece);
 
-    //assert
+    // assert
     assertEquals(whitePlayer.getAlivePieces().size(), 0);
     assertEquals(blackPlayer.getAlivePieces().size(), 1);
   }
 
   @Test
   void testRemoveNonExistingPiece() {
-    //arrange
+    // arrange
     Pawn piece = new Pawn(new ChessSquare(1, 1), ChessColor.BLACK);
-    //assert
-    assertThrows(NullPointerException.class, () -> {
-      blackPlayer.removePiece(piece);
-    });
+    // assert
+    assertThrows(
+        NullPointerException.class,
+        () -> {
+          blackPlayer.removePiece(piece);
+        });
   }
-
-
 }

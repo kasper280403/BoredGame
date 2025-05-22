@@ -4,22 +4,18 @@ import edu.ntnu.idi.idattx2002.module.chess.Chess;
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 
-
 /**
  * Represents a Rook piece in chess.
- * <p>
- * A rook moves any number of squares horizontally or vertically.
- * It plays a key role in castling and tracks whether it has moved during the game.
- * </p>
  *
- * <p>
- * This class includes support for castling checks via the {@code hasMoved} flag.
- * </p>
+ * <p>A rook moves any number of squares horizontally or vertically. It plays a key role in castling
+ * and tracks whether it has moved during the game.
+ *
+ * <p>This class includes support for castling checks via the {@code hasMoved} flag.
  *
  * @author Sindre Mjøs
  * @version 1.0
  */
-public class Rook extends Piece{
+public class Rook extends Piece {
 
   private boolean hasMoved;
 
@@ -53,8 +49,8 @@ public class Rook extends Piece{
   }
 
   /**
-   * Determines whether a move to the given square is possible for a rook.
-   * The move must be in a straight line (horizontal or vertical).
+   * Determines whether a move to the given square is possible for a rook. The move must be in a
+   * straight line (horizontal or vertical).
    *
    * @param square the target square
    * @return {@code true} if the move is valid for a rook, {@code false} otherwise
@@ -90,17 +86,16 @@ public class Rook extends Piece{
     return isMovePossible(square) && super.isMoveLegal(square, chess);
   }
 
-
   /**
-   * Moves the rook to the specified square if the move is legal,
-   * and marks the rook as having moved.
+   * Moves the rook to the specified square if the move is legal, and marks the rook as having
+   * moved.
    *
    * @param square the destination square
    * @param chess the current game state
    */
   @Override
   public void move(ChessSquare square, Chess chess) {
-    if(isMoveLegal(square, chess)) {
+    if (isMoveLegal(square, chess)) {
       super.move(square, chess);
       hasMoved = true;
     }

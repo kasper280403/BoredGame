@@ -6,16 +6,15 @@ import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
 
 /**
  * Represents a Pawn piece in chess.
- * <p>
- * Pawns can move forward, capture diagonally, perform en passant captures,
- * and promote upon reaching the final rank. This class implements all
- * relevant pawn behavior including move validation, state tracking, and promotion.
- * </p>
+ *
+ * <p>Pawns can move forward, capture diagonally, perform en passant captures, and promote upon
+ * reaching the final rank. This class implements all relevant pawn behavior including move
+ * validation, state tracking, and promotion.
  *
  * @author Sindre Mjøs
  * @version 1.0
  */
-public class Pawn extends Piece{
+public class Pawn extends Piece {
 
   private boolean hasMoved;
   private boolean justMoved;
@@ -31,7 +30,6 @@ public class Pawn extends Piece{
     justMoved = false;
     hasMoved = false;
   }
-
 
   /**
    * Returns whether this pawn has just moved two squares forward (used for en passant).
@@ -51,33 +49,32 @@ public class Pawn extends Piece{
     justMoved = has;
   }
 
-  /**
-   * Updates the pawn's movement status after moving.
-   * Used to track eligibility for en passant.
-   */
+  /** Updates the pawn's movement status after moving. Used to track eligibility for en passant. */
   public void updateStatus() {
-    if(!hasMoved) {
+    if (!hasMoved) {
       justMoved = true;
       hasMoved = true;
-    }
-    else{
+    } else {
       justMoved = false;
     }
   }
 
   private boolean squareForEnPassant() {
-    return ((currentSquare.getYCoordinate() == 4 && chessColor == ChessColor.BLACK) ||
-            (currentSquare.getYCoordinate() == 5 && chessColor == ChessColor.WHITE));
+    return ((currentSquare.getYCoordinate() == 4 && chessColor == ChessColor.BLACK)
+        || (currentSquare.getYCoordinate() == 5 && chessColor == ChessColor.WHITE));
   }
 
   private boolean checkForEnPassant(Chess chess, ChessSquare square) {
-    if(!squareForEnPassant()) {
+    if (!squareForEnPassant()) {
       return false;
     }
 
     int yOffsett = square.getXCoordinate() == 4 ? 1 : -1;
-    ChessSquare squareToCapture = chess.getBoard().getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
-    if(!squareToCapture.hasPiece()) {
+    ChessSquare squareToCapture =
+        chess
+            .getBoard()
+            .getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
+    if (!squareToCapture.hasPiece()) {
       return false;
     }
 
@@ -85,17 +82,19 @@ public class Pawn extends Piece{
     if (!(pieceToCapture instanceof Pawn)) {
       return false;
     }
-    if(((Pawn) pieceToCapture).getFirstMoved()) {
+    if (((Pawn) pieceToCapture).getFirstMoved()) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
 
   private void performEnPassant(ChessSquare square, Chess chess) {
     int yOffsett = square.getXCoordinate() == 4 ? 1 : -1;
-    ChessSquare enemySquare = chess.getBoard().getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
+    ChessSquare enemySquare =
+        chess
+            .getBoard()
+            .getSquareByCords(square.getXCoordinate(), square.getYCoordinate() + yOffsett);
     Piece enemyPiece = enemySquare.getPiece();
 
     enemySquare.removePiece();
@@ -107,7 +106,7 @@ public class Pawn extends Piece{
   }
 
   private boolean isDiagMovePossible(ChessSquare square) {
-    if(square.hasPiece()) {
+    if (square.hasPiece()) {
       return square.getPiece().getColor() != chessColor;
     }
     return false;
@@ -116,14 +115,13 @@ public class Pawn extends Piece{
   private boolean isStraightMovePossible(ChessSquare square) {
     int yDiff = currentSquare.getYCoordinate() - square.getYCoordinate();
     int xDiff = currentSquare.getXCoordinate() - square.getXCoordinate();
-    if(chessColor == ChessColor.WHITE) {
-      if(currentSquare.getYCoordinate() == 2 && square.getYCoordinate() == 4) {
+    if (chessColor == ChessColor.WHITE) {
+      if (currentSquare.getYCoordinate() == 2 && square.getYCoordinate() == 4) {
         yDiff += 1;
       }
       return yDiff == -1 && xDiff == 0 && !square.hasPiece();
-    }
-    else {
-      if(currentSquare.getYCoordinate() == 7 && square.getYCoordinate() == 5) {
+    } else {
+      if (currentSquare.getYCoordinate() == 7 && square.getYCoordinate() == 5) {
         yDiff -= 1;
       }
       return yDiff == 1 && xDiff == 0 && !square.hasPiece();
@@ -131,7 +129,7 @@ public class Pawn extends Piece{
   }
 
   private void promote(Chess chess, String pieceType) {
-    if(currentSquare.getYCoordinate() != 1 && currentSquare.getYCoordinate() != 8) {
+    if (currentSquare.getYCoordinate() != 1 && currentSquare.getYCoordinate() != 8) {
       throw new IllegalArgumentException("Pawn which isnt on the final rank shouldnt be promoted");
     }
 
@@ -139,11 +137,11 @@ public class Pawn extends Piece{
     chess.getPlayer(chessColor).removePiece(this);
 
     Piece promotedPiece;
-    switch(pieceType) {
-      case("QUEEN") -> promotedPiece = new Queen(currentSquare, chessColor);
-      case("ROOK") -> promotedPiece = new Rook(currentSquare, chessColor);
-      case("BISHOP") -> promotedPiece = new Bishop(currentSquare, chessColor);
-      case("HORSE") -> promotedPiece = new Horse(currentSquare, chessColor);
+    switch (pieceType) {
+      case ("QUEEN") -> promotedPiece = new Queen(currentSquare, chessColor);
+      case ("ROOK") -> promotedPiece = new Rook(currentSquare, chessColor);
+      case ("BISHOP") -> promotedPiece = new Bishop(currentSquare, chessColor);
+      case ("HORSE") -> promotedPiece = new Horse(currentSquare, chessColor);
       default -> throw new IllegalArgumentException("Invalid piece type");
     }
 
@@ -163,14 +161,13 @@ public class Pawn extends Piece{
     int yDiff = currentSquare.getYCoordinate() - square.getYCoordinate();
     int xDiff = currentSquare.getXCoordinate() - square.getXCoordinate();
 
-    if(chessColor == ChessColor.WHITE) {
+    if (chessColor == ChessColor.WHITE) {
       yDiff *= -1;
     }
 
-    if(xDiff == 0) {
+    if (xDiff == 0) {
       legal = isStraightMovePossible(square);
-    }
-    else if(Math.abs(xDiff) == yDiff && yDiff == 1) {
+    } else if (Math.abs(xDiff) == yDiff && yDiff == 1) {
       legal = isDiagMovePossible(square);
     }
     return legal;
@@ -207,7 +204,6 @@ public class Pawn extends Piece{
     return isMovePossible(square) && super.isMoveLegal(square, chess);
   }
 
-
   /**
    * Moves the pawn to the specified square, handling promotion and en passant if applicable.
    *
@@ -216,17 +212,16 @@ public class Pawn extends Piece{
    */
   @Override
   public void move(ChessSquare square, Chess chess) {
-    if(isMoveLegal(square, chess)) {
+    if (isMoveLegal(square, chess)) {
       super.move(square, chess);
       updateStatus();
 
-      if(currentSquare.getYCoordinate() == 1 || currentSquare.getYCoordinate() == 8) {
+      if (currentSquare.getYCoordinate() == 1 || currentSquare.getYCoordinate() == 8) {
         promote(chess, "QUEEN");
       }
-    }
-    else if (Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate()) == 1 &&
-            Math.abs(currentSquare.getYCoordinate() - square.getYCoordinate()) == 1) {
-      if(checkForEnPassant(chess, square)) {
+    } else if (Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate()) == 1
+        && Math.abs(currentSquare.getYCoordinate() - square.getYCoordinate()) == 1) {
+      if (checkForEnPassant(chess, square)) {
         performEnPassant(square, chess);
         updateStatus();
       }

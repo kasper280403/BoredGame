@@ -9,10 +9,9 @@ import javafx.scene.media.MediaPlayer;
 
 /**
  * Handles playback of music files from a local directory.
- * <p>
- * Supports playing a random MP3 file, pausing playback, and notifying an observer
- * when a new track is played.
- * </p>
+ *
+ * <p>Supports playing a random MP3 file, pausing playback, and notifying an observer when a new
+ * track is played.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -25,10 +24,7 @@ public class MusicPlayer {
 
   private MusicObserver observer;
 
-
-  /**
-   * Constructs a new MusicPlayer and loads available music files.
-   */
+  /** Constructs a new MusicPlayer and loads available music files. */
   public MusicPlayer() {
     random = new Random();
     musicList = new ArrayList<>();
@@ -46,9 +42,8 @@ public class MusicPlayer {
   }
 
   /**
-   * Stops the current song if playing or paused, plays a new random song,
-   * and notifies the observer. Automatically continues with the next song
-   * when the current one ends.
+   * Stops the current song if playing or paused, plays a new random song, and notifies the
+   * observer. Automatically continues with the next song when the current one ends.
    */
   public void playNext() {
     if (mediaPlayer != null) {
@@ -59,7 +54,7 @@ public class MusicPlayer {
       mediaPlayer.dispose();
     }
 
-    if(musicList.isEmpty()) {
+    if (musicList.isEmpty()) {
       loadMusic();
     }
 
@@ -76,29 +71,23 @@ public class MusicPlayer {
     observer.update(songFile.getName());
   }
 
-  /**
-   * Pauses the currently playing song.
-   */
+  /** Pauses the currently playing song. */
   public void pause() {
     mediaPlayer.pause();
   }
 
-  /**
-   * Loads all MP3 files from the predefined music directory.
-   */
+  /** Loads all MP3 files from the predefined music directory. */
   private void loadMusic() {
-    File musicFolder = new File("GameData/music");
+    File musicFolder = new File("gameData/music");
 
     for (File file : musicFolder.listFiles()) {
-      if(file.getName().toLowerCase().endsWith(".mp3")) {
+      if (file.getName().toLowerCase().endsWith(".mp3")) {
         musicList.add(file);
       }
     }
   }
 
-  /**
-   * Initializes the player by loading music files.
-   */
+  /** Initializes the player by loading music files. */
   private void init() {
     loadMusic();
   }

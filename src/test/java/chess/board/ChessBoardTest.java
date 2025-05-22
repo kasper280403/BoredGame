@@ -21,16 +21,16 @@ public class ChessBoardTest {
 
   @Test
   void testGetSquareMap() {
-    //assert
+    // assert
     assertEquals(board.getSquareMap().size(), 64);
   }
 
   @Test
   void testGetSquare() {
-    //act
+    // act
     ChessSquare squareA1 = board.getSquare(1);
     ChessSquare squareB3 = board.getSquareByCords(2, 3);
-    //assert
+    // assert
     assertEquals(squareA1.getXCoordinate(), 1);
     assertEquals(squareA1.getYCoordinate(), 1);
 
@@ -40,19 +40,19 @@ public class ChessBoardTest {
 
   @Test
   void testIsPathClearPositive() {
-    //arrange
+    // arrange
     ChessSquare squareA1 = board.getSquareByCords(1, 1);
     ChessSquare squareA4 = board.getSquareByCords(1, 4);
     ChessSquare squareC3 = board.getSquareByCords(3, 3);
 
-    //assert
+    // assert
     assertTrue(board.isPathClear(squareA1, squareA4));
     assertTrue(board.isPathClear(squareA1, squareC3));
   }
 
   @Test
   void testIsPathClearNegative() {
-    //arrange
+    // arrange
     ChessSquare squareA1 = board.getSquareByCords(1, 1);
     ChessSquare squareA4 = board.getSquareByCords(1, 4);
     ChessSquare squareC3 = board.getSquareByCords(3, 3);
@@ -63,23 +63,22 @@ public class ChessBoardTest {
     board.getSquareByCords(1, 2).placePiece(piece1);
     board.getSquareByCords(2, 2).placePiece(piece2);
 
-    //assert
+    // assert
     assertFalse(board.isPathClear(squareA1, squareA4));
     assertFalse(board.isPathClear(squareA1, squareC3));
   }
 
   @Test
   void testGetPath() {
-    //arrange
+    // arrange
     ChessSquare squareA1 = board.getSquareByCords(1, 1);
     ChessSquare squareA4 = board.getSquareByCords(1, 4);
     ChessSquare squareC3 = board.getSquareByCords(3, 3);
-    //act
+    // act
     List<ChessSquare> path1 = board.getPath(squareA1, squareA4);
     List<ChessSquare> path2 = board.getPath(squareA1, squareC3);
-    //assert
+    // assert
     assertEquals(path1.size(), 2);
     assertEquals(path2.size(), 1);
   }
-
 }

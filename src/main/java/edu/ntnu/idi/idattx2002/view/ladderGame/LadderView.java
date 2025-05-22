@@ -4,10 +4,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * Utility class for loading and creating visual representations of special tiles in Snakes and Ladders.
- * <p>
- * Provides {@code ImageView} objects for elements like portals and switch tiles, scaled to fit tile size.
- * </p>
+ * Utility class for loading and creating visual representations of special tiles in Snakes and
+ * Ladders.
+ *
+ * <p>Provides {@code ImageView} objects for elements like portals and switch tiles, scaled to fit
+ * tile size.
  *
  * @author Sindre Mjøs
  * @version 1.0

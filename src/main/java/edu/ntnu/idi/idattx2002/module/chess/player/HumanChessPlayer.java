@@ -4,9 +4,8 @@ import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 
 /**
  * Represents a human-controlled player in a chess game.
- * <p>
- * Inherits all behavior from {@code ChessPlayer} and requires no additional logic.
- * </p>
+ *
+ * <p>Inherits all behavior from {@code ChessPlayer} and requires no additional logic.
  *
  * @author Sindre Mjøs
  * @version 1.0

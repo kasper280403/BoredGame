@@ -2,76 +2,78 @@ package ladderGame.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LadderGameSquare;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.board.LadderGameSquare;
+import edu.ntnu.idi.idattx2002.module.ladderGame.board.actions.LadderAction;
+import edu.ntnu.idi.idattx2002.module.ladderGame.player.LadderGamePlayer;
 import org.junit.jupiter.api.Test;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.LadderAction;
 
 public class LadderGameSquareTest {
 
   @Test
   void testGetSquareid() {
-    //arrange
+    // arrange
     LadderGameSquare tile = new LadderGameSquare(17);
-    //assert
+    // assert
     assertEquals(17, tile.getSquareId());
   }
 
   @Test
   void testValidTileId() {
-    //arrange
+    // arrange
     LadderGameSquare tile = new LadderGameSquare(1);
-    //assert
+    // assert
     assertEquals(1, tile.getSquareId());
   }
 
   @Test
   void testInvalidTileId() {
-    assertThrows(IllegalArgumentException.class, () -> {
-      new LadderGameSquare(-1);
-    });
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          new LadderGameSquare(-1);
+        });
   }
 
   @Test
   void testSetLandAction() {
-    //arrange
+    // arrange
     LadderGameSquare tile = new LadderGameSquare(1);
     LadderAction ladderAction = new LadderAction(20);
-    //act
+    // act
     tile.setLandAction(ladderAction);
-    //assert
+    // assert
     assertTrue(tile.hasLandAction());
   }
 
   @Test
   void testNoLandAction() {
-    //arrange
+    // arrange
     LadderGameSquare tile = new LadderGameSquare(1);
-    //assert
+    // assert
     assertFalse(tile.hasLandAction());
   }
 
   @Test
   void testLandPlayerOnTileWithLandAction() {
-    //arrange
+    // arrange
     LadderGamePlayer player = new LadderGamePlayer("TestPlayer", 1, 1);
     LadderGameSquare tile = new LadderGameSquare(1);
     LadderAction ladderAction = new LadderAction(20);
     tile.setLandAction(ladderAction);
-    //act
+    // act
     tile.landPlayer(player);
-    //assert
+    // assert
     assertEquals(20, player.getCurrentTileId());
   }
 
   @Test
   void testLandPlayerOnTileWithoutLandAction() {
-    //arrange
+    // arrange
     LadderGamePlayer player = new LadderGamePlayer("TestPlayer", 1, 1);
     LadderGameSquare tile = new LadderGameSquare(5);
-    //act
+    // act
     tile.landPlayer(player);
-    //assert
+    // assert
     assertEquals(0, player.getCurrentTileId());
   }
 }

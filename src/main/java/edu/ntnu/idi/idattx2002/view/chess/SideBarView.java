@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.view.chess;
 
+import edu.ntnu.idi.idattx2002.controller.chess.BoardController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
@@ -10,18 +11,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import edu.ntnu.idi.idattx2002.controller.chess.BoardController;
 
 /**
  * Sidebar view for the Chess game.
- * <p>
- * Displays user feedback and provides controls such as board flipping and auto-flip toggling.
- * </p>
+ *
+ * <p>Displays user feedback and provides controls such as board flipping and auto-flip toggling.
  *
  * @author Sindre Mjøs
  * @version 1.0
  */
-
 public class SideBarView extends VBox {
 
   private final Pane parent;

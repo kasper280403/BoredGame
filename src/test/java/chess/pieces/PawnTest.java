@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
-
 import edu.ntnu.idi.idattx2002.module.chess.pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,38 +21,36 @@ public class PawnTest {
 
   @Test
   void testIsSingleStraightMovePossible() {
-    //arrange
+    // arrange
     ChessSquare whiteDestination = new ChessSquare(1, 3);
     ChessSquare blackDestination = new ChessSquare(1, 6);
 
-    //assert
+    // assert
     assertTrue(whitePawn.isMovePossible(whiteDestination));
     assertTrue(blackPawn.isMovePossible(blackDestination));
   }
 
   @Test
   void testIsStartDoubleMovePossible() {
-    //arrange
+    // arrange
     ChessSquare whiteDestination = new ChessSquare(1, 4);
     ChessSquare blackDestination = new ChessSquare(1, 5);
 
-    //assert
+    // assert
     assertTrue(whitePawn.isMovePossible(whiteDestination));
     assertTrue(blackPawn.isMovePossible(blackDestination));
   }
 
   @Test
   void testIsNoneStartDoubleMovePossible() {
-    //arrange
+    // arrange
     ChessSquare whiteDestination = new ChessSquare(1, 4);
     ChessSquare blackDestination = new ChessSquare(1, 5);
     whitePawn.setFirstMoved(false);
     blackPawn.setFirstMoved(false);
 
-    //assert
+    // assert
     assertTrue(whitePawn.isMovePossible(whiteDestination));
     assertTrue(blackPawn.isMovePossible(blackDestination));
   }
-
-
 }

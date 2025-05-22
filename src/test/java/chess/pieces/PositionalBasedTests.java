@@ -32,7 +32,7 @@ public class PositionalBasedTests {
 
   @Test
   void testCastle() {
-    //arrange
+    // arrange
     chess.playMove(new Move(board.getSquareByCords(5, 2), board.getSquareByCords(5, 3), chess));
     chess.playMove(new Move(board.getSquareByCords(5, 7), board.getSquareByCords(5, 6), chess));
 
@@ -44,24 +44,28 @@ public class PositionalBasedTests {
 
     King whiteKing = chess.getPlayer(ChessColor.WHITE).getKing();
 
-    //act
+    // act
     chess.playMove(new Move(board.getSquareByCords(5, 1), board.getSquareByCords(7, 1), chess));
 
-    //assert
+    // assert
     assertEquals(whiteKing.getCurrentSquare(), board.getSquareByCords(7, 1));
   }
 
   @Test
   void testMoveIntoFriendlyPiece() {
-    //assert
-    assertThrows(IllegalMoveException.class, () -> {
-      chess.playMove(new Move(board.getSquareByCords(5, 1), board.getSquareByCords(4, 1), chess));;
-    });
+    // assert
+    assertThrows(
+        IllegalMoveException.class,
+        () -> {
+          chess.playMove(
+              new Move(board.getSquareByCords(5, 1), board.getSquareByCords(4, 1), chess));
+          ;
+        });
   }
 
   @Test
   void testAnPassant() {
-    //arrange
+    // arrange
     chess.playMove(new Move(board.getSquareByCords(5, 2), board.getSquareByCords(5, 4), chess));
     chess.playMove(new Move(board.getSquareByCords(1, 7), board.getSquareByCords(1, 6), chess));
 
@@ -71,11 +75,10 @@ public class PositionalBasedTests {
     Pawn pawnToPerform = (Pawn) board.getSquareByCords(5, 5).getPiece();
     Pawn pawnToBeCaptured = (Pawn) board.getSquareByCords(6, 5).getPiece();
 
-
-    //act
+    // act
     chess.playMove(new Move(board.getSquareByCords(5, 5), board.getSquareByCords(6, 6), chess));
 
-    //assert
+    // assert
     assertEquals(pawnToPerform.getCurrentSquare(), board.getSquareByCords(6, 6));
     assertFalse(pawnToBeCaptured.isAlive());
   }
@@ -91,15 +94,18 @@ public class PositionalBasedTests {
     chess.playMove(new Move(board.getSquareByCords(4, 2), board.getSquareByCords(4, 4), chess));
     chess.playMove(new Move(board.getSquareByCords(2, 7), board.getSquareByCords(2, 6), chess));
 
-    //assert
-    assertThrows(IllegalMoveException.class, () -> {
-      chess.playMove(new Move(board.getSquareByCords(5, 5), board.getSquareByCords(6, 6), chess));
-    });
+    // assert
+    assertThrows(
+        IllegalMoveException.class,
+        () -> {
+          chess.playMove(
+              new Move(board.getSquareByCords(5, 5), board.getSquareByCords(6, 6), chess));
+        });
   }
 
   @Test
   void testPromotion() {
-    //arrange
+    // arrange
     chess.playMove(new Move(board.getSquareByCords(5, 2), board.getSquareByCords(5, 4), chess));
     chess.playMove(new Move(board.getSquareByCords(1, 7), board.getSquareByCords(1, 6), chess));
 
@@ -112,55 +118,58 @@ public class PositionalBasedTests {
     chess.playMove(new Move(board.getSquareByCords(5, 6), board.getSquareByCords(4, 7), chess));
     chess.playMove(new Move(board.getSquareByCords(5, 8), board.getSquareByCords(6, 7), chess));
 
-    //act
+    // act
     chess.playMove(new Move(board.getSquareByCords(4, 7), board.getSquareByCords(3, 8), chess));
 
-    //assert
+    // assert
     assertInstanceOf(Queen.class, board.getSquareByCords(3, 8).getPiece());
   }
 
   @Test
   void testCanNotMoveDueToBeingInCheck() {
-    //arrange
+    // arrange
     chess.playMove(new Move(board.getSquareByCords(5, 2), board.getSquareByCords(5, 4), chess));
     chess.playMove(new Move(board.getSquareByCords(6, 7), board.getSquareByCords(6, 6), chess));
 
     chess.playMove(new Move(board.getSquareByCords(4, 1), board.getSquareByCords(8, 5), chess));
 
-    //assert
-    assertThrows(IllegalMoveException.class, () -> {
-      chess.playMove(new Move(board.getSquareByCords(1, 7), board.getSquareByCords(1, 6), chess));
-    });
+    // assert
+    assertThrows(
+        IllegalMoveException.class,
+        () -> {
+          chess.playMove(
+              new Move(board.getSquareByCords(1, 7), board.getSquareByCords(1, 6), chess));
+        });
     assertTrue(chess.getPlayer(ChessColor.BLACK).getKing().isInCheck(chess));
   }
 
   @Test
   void testCanBlockOutOfCheck() {
-    //arrange
+    // arrange
     chess.playMove(new Move(board.getSquareByCords(5, 2), board.getSquareByCords(5, 4), chess));
     chess.playMove(new Move(board.getSquareByCords(6, 7), board.getSquareByCords(6, 6), chess));
 
     chess.playMove(new Move(board.getSquareByCords(4, 1), board.getSquareByCords(8, 5), chess));
 
-    //act
+    // act
     chess.playMove(new Move(board.getSquareByCords(7, 7), board.getSquareByCords(7, 6), chess));
 
-    //assert
+    // assert
     assertFalse(chess.getPlayer(ChessColor.BLACK).getKing().isInCheck(chess));
   }
 
   @Test
   void testCheckMate() {
-    //arrange
+    // arrange
     chess.playMove(new Move(board.getSquareByCords(6, 2), board.getSquareByCords(6, 3), chess));
     chess.playMove(new Move(board.getSquareByCords(5, 7), board.getSquareByCords(5, 6), chess));
 
     chess.playMove(new Move(board.getSquareByCords(7, 2), board.getSquareByCords(7, 4), chess));
 
-    //act
+    // act
     chess.playMove(new Move(board.getSquareByCords(4, 8), board.getSquareByCords(8, 4), chess));
 
-    //assert
+    // assert
     assertTrue(chess.getPlayer(ChessColor.WHITE).getKing().isInCheckMate(chess));
     assertFalse(chess.getPlayer(ChessColor.BLACK).getKing().isInCheckMate(chess));
   }

@@ -2,9 +2,8 @@ package edu.ntnu.idi.idattx2002.exception;
 
 /**
  * Represents a custom runtime exception for game-related errors.
- * <p>
- * This exception is used to signal general issues occurring during game execution.
- * </p>
+ *
+ * <p>This exception is used to signal general issues occurring during game execution.
  *
  * @author Sindre Mjøs
  * @version 1.0

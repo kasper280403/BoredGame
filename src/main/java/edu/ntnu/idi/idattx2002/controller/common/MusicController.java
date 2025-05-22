@@ -6,9 +6,9 @@ import javafx.scene.layout.Pane;
 
 /**
  * Controller for managing background music playback.
- * <p>
- * Connects the {@code MusicPlayer} logic with the user interface and handles user actions like play and pause.
- * </p>
+ *
+ * <p>Connects the {@code MusicPlayer} logic with the user interface and handles user actions like
+ * play and pause.
  *
  * @author Sindre Mjøs
  * @version 1.0

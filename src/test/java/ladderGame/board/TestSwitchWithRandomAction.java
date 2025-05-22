@@ -2,16 +2,16 @@ package ladderGame.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.SwitchWithRandomAction;
 import edu.ntnu.idi.idattx2002.module.ladderGame.LadderGame;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.board.actions.SwitchWithRandomAction;
+import edu.ntnu.idi.idattx2002.module.ladderGame.player.LadderGamePlayer;
 import org.junit.jupiter.api.Test;
 
 public class TestSwitchWithRandomAction {
 
   @Test
   void testPerform() {
-    //arrange
+    // arrange
     SwitchWithRandomAction switchWithRandomAction = new SwitchWithRandomAction();
     LadderGamePlayer player1 = new LadderGamePlayer("Sindre", 1, 1);
     LadderGamePlayer player2 = new LadderGamePlayer("Kasper", 2, 2);
@@ -23,10 +23,10 @@ public class TestSwitchWithRandomAction {
     ladderGame.addPlayer(player1);
     ladderGame.addPlayer(player2);
 
-    //act
+    // act
     switchWithRandomAction.perform(player1);
 
-    //assert
+    // assert
     assertEquals(20, player1.getCurrentTileId());
     assertEquals(4, player2.getCurrentTileId());
   }

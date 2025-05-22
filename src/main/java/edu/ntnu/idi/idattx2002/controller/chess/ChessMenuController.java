@@ -1,21 +1,21 @@
 package edu.ntnu.idi.idattx2002.controller.chess;
 
+import edu.ntnu.idi.idattx2002.controller.common.ChoosePlayerController;
 import edu.ntnu.idi.idattx2002.exception.GameException;
 import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
-import edu.ntnu.idi.idattx2002.view.chess.ChessMenuView;
-import edu.ntnu.idi.idattx2002.controller.common.ChoosePlayerController;
-import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
-import edu.ntnu.idi.idattx2002.module.chess.player.HumanChessPlayer;
-import java.util.List;
-import javafx.scene.layout.Pane;
 import edu.ntnu.idi.idattx2002.io.chess.PositionIO;
 import edu.ntnu.idi.idattx2002.module.chess.Chess;
+import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
+import edu.ntnu.idi.idattx2002.module.chess.player.HumanChessPlayer;
+import edu.ntnu.idi.idattx2002.view.chess.ChessMenuView;
+import java.util.List;
+import javafx.scene.layout.Pane;
 
 /**
  * Controller for the chess game setup menu.
- * <p>
- * Handles player selection, start position loading, and game initialization for the chess module.
- * </p>
+ *
+ * <p>Handles player selection, start position loading, and game initialization for the chess
+ * module.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -45,8 +45,12 @@ public class ChessMenuController {
     List<String> player1 = players.get(0);
     List<String> player2 = players.get(1);
 
-    HumanChessPlayer chessPlayer1 = new HumanChessPlayer(player1.getFirst(), Integer.parseInt(player1.getLast()), ChessColor.WHITE);
-    HumanChessPlayer chessPlayer2 = new HumanChessPlayer(player2.getFirst(), Integer.parseInt(player2.getLast()), ChessColor.BLACK);
+    HumanChessPlayer chessPlayer1 =
+        new HumanChessPlayer(
+            player1.getFirst(), Integer.parseInt(player1.getLast()), ChessColor.WHITE);
+    HumanChessPlayer chessPlayer2 =
+        new HumanChessPlayer(
+            player2.getFirst(), Integer.parseInt(player2.getLast()), ChessColor.BLACK);
 
     chess.addPlayer(chessPlayer1);
     chess.addPlayer(chessPlayer2);
@@ -68,11 +72,10 @@ public class ChessMenuController {
         ChessController chessController = new ChessController(mainPane, chess);
 
         chessController.showView();
-      }
-      else {
+      } else {
         throw new IlliegalGameArgumentException("Wrong number of chosen players");
       }
-    } catch(GameException e) {
+    } catch (GameException e) {
       chessMenuView.setUserFeedback(e.getMessage());
     }
   }

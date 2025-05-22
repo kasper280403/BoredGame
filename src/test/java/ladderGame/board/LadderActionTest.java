@@ -2,26 +2,26 @@ package ladderGame.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions.LadderAction;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.board.actions.LadderAction;
+import edu.ntnu.idi.idattx2002.module.ladderGame.player.LadderGamePlayer;
 import org.junit.jupiter.api.Test;
 
 public class LadderActionTest {
 
   @Test
   void testPerform() {
-    //Arrange
+    // Arrange
     LadderAction ladderTo10 = new LadderAction(10);
     LadderGamePlayer player = new LadderGamePlayer("Kasper", 1, 1);
-    //act
+    // act
     ladderTo10.perform(player);
-    //Assert
+    // Assert
     assertEquals(10, player.getCurrentTileId());
   }
 
   @Test
   void testInvalidDestinationTileId() {
-    //Assert
+    // Assert
     assertThrows(IllegalArgumentException.class, () -> new LadderAction(-1));
   }
 }

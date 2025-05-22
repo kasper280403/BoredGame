@@ -1,7 +1,7 @@
 package edu.ntnu.idi.idattx2002.view.common;
 
 import edu.ntnu.idi.idattx2002.module.common.WinObserver;
-import edu.ntnu.idi.idattx2002.module.common.Player.Player;
+import edu.ntnu.idi.idattx2002.module.common.player.Player;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -11,9 +11,9 @@ import javafx.scene.text.Text;
 
 /**
  * View for displaying the game winner.
- * <p>
- * Implements {@code WinObserver} to respond to win events and show a victory message with the player's name.
- * </p>
+ *
+ * <p>Implements {@code WinObserver} to respond to win events and show a victory message with the
+ * player's name.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -27,10 +27,9 @@ public class WinView extends VBox implements WinObserver {
     init();
   }
 
-
   private Text createPlayerText(Player player) {
     Text username = new Text(player.getName());
-    username.setFont(new Font ("Helvetica", 80));
+    username.setFont(new Font("Helvetica", 80));
     username.setFill(Color.YELLOW);
 
     return username;

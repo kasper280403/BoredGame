@@ -2,9 +2,9 @@ package edu.ntnu.idi.idattx2002.module.chess.board;
 
 /**
  * An interface for observing updates to a {@code ChessSquare}.
- * <p>
- * Implementing classes define how to respond when a square changes, such as piece placement or removal.
- * </p>
+ *
+ * <p>Implementing classes define how to respond when a square changes, such as piece placement or
+ * removal.
  *
  * @author Sindre Mjøs
  * @version 1.0

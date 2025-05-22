@@ -1,14 +1,13 @@
-package edu.ntnu.idi.idattx2002.module.ladderGame.Board.Actions;
+package edu.ntnu.idi.idattx2002.module.ladderGame.board.actions;
 
-import edu.ntnu.idi.idattx2002.module.ladderGame.Board.LandAction;
-import edu.ntnu.idi.idattx2002.module.ladderGame.Player.LadderGamePlayer;
+import edu.ntnu.idi.idattx2002.module.ladderGame.board.LandAction;
+import edu.ntnu.idi.idattx2002.module.ladderGame.player.LadderGamePlayer;
 
 /**
  * Represents a ladder action that moves a player to a different tile.
- * <p>
- * This class is used in ladder-style board games where landing on a tile
- * triggers a jump to a new destination tile.
- * </p>
+ *
+ * <p>This class is used in ladder-style board games where landing on a tile triggers a jump to a
+ * new destination tile.
  *
  * @author Sindre Mjøs and Kasper Karlsen
  * @version 1.0
@@ -23,7 +22,7 @@ public class LadderAction implements LandAction {
    * @param destinationTileId the ID of the tile to move the player to; must be greater than zero
    * @throws IllegalArgumentException if {@code destinationTileId} is less than 1
    */
-  public LadderAction (int destinationTileId) {
+  public LadderAction(int destinationTileId) {
     validateDestinationTileId(destinationTileId);
     this.destinationTileId = destinationTileId;
   }

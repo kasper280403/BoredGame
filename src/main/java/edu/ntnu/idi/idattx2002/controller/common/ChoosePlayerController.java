@@ -1,8 +1,8 @@
 package edu.ntnu.idi.idattx2002.controller.common;
 
+import edu.ntnu.idi.idattx2002.io.common.PlayerIO;
 import edu.ntnu.idi.idattx2002.view.common.ChoosePlayerView;
 import edu.ntnu.idi.idattx2002.view.common.CreatePlayerWindow;
-import edu.ntnu.idi.idattx2002.io.common.PlayerIO;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.Button;
@@ -12,10 +12,9 @@ import javafx.scene.paint.Color;
 
 /**
  * Controller for handling player selection logic.
- * <p>
- * Manages interaction between the player selection view and internal player data,
- * including selection toggles, constraints, and player creation.
- * </p>
+ *
+ * <p>Manages interaction between the player selection view and internal player data, including
+ * selection toggles, constraints, and player creation.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -38,7 +37,7 @@ public class ChoosePlayerController {
     this.minPlayers = minPlayers;
     this.maxPlayers = maxPlayers;
 
-    //Init method?
+    // Init method?
     chosenPlayers = new ArrayList<>();
     playerIO = new PlayerIO();
 
@@ -68,16 +67,13 @@ public class ChoosePlayerController {
       btn.setTextFill(Color.WHITESMOKE);
 
       addToList(player);
-    }
-    else {
+    } else {
       btn.setText("Unselected");
       btn.setBackground(Background.fill(Color.RED));
       btn.setTextFill(Color.WHITESMOKE);
 
       removeFromList(player);
     }
-
-
   }
 
   public void openCreatePlayerWindow() {

@@ -1,17 +1,16 @@
 package edu.ntnu.idi.idattx2002.module.chess.pieces;
 
-import java.util.ArrayList;
-import java.util.List;
 import edu.ntnu.idi.idattx2002.module.chess.Chess;
 import edu.ntnu.idi.idattx2002.module.chess.ChessColor;
 import edu.ntnu.idi.idattx2002.module.chess.board.ChessSquare;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents the King piece in chess.
- * <p>
- * The king can move one square in any direction and is the most important piece in the game.
+ *
+ * <p>The king can move one square in any direction and is the most important piece in the game.
  * This class includes logic for checking, checkmate, and castling.
- * </p>
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -40,7 +39,8 @@ public class King extends Piece {
   public List<Piece> getPutsInCheck(Chess chess) {
     List<Piece> putsInCheck = new ArrayList<>();
 
-    ChessColor enemyChessColor = chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
+    ChessColor enemyChessColor =
+        chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
     List<Piece> enemyPieces = chess.getPlayer(enemyChessColor).getAlivePieces();
 
     for (Piece piece : enemyPieces) {
@@ -89,7 +89,9 @@ public class King extends Piece {
    * @return {@code true} if castling is legal, {@code false} otherwise
    */
   private boolean isCastleLegal(ChessSquare square, Chess chess) {
-    if(isInCheck(chess) || hasMoved || Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate()) < 2) {
+    if (isInCheck(chess)
+        || hasMoved
+        || Math.abs(currentSquare.getXCoordinate() - square.getXCoordinate()) < 2) {
       return false;
     }
 
@@ -97,13 +99,13 @@ public class King extends Piece {
 
     List<Rook> rooks = new ArrayList<>();
     for (Piece piece : chess.getPlayer(chessColor).getAlivePieces()) {
-      if(piece instanceof Rook) {
+      if (piece instanceof Rook) {
         rooks.add((Rook) piece);
       }
     }
 
-    for(Rook rook : rooks) {
-      if (canCastleWithRook(square, rook, chess)){
+    for (Rook rook : rooks) {
+      if (canCastleWithRook(square, rook, chess)) {
         canCastle = true;
       }
     }
@@ -113,21 +115,22 @@ public class King extends Piece {
   private boolean canCastleWithRook(ChessSquare square, Rook rook, Chess chess) {
     boolean canCastle = false;
 
-    ChessColor enemyChessColor = chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
+    ChessColor enemyChessColor =
+        chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
     if (!rook.hasMoved()) {
       ChessSquare rookSquare = rook.getCurrentSquare();
       List<ChessSquare> castlePath = chess.getBoard().getPath(getCurrentSquare(), rookSquare);
 
       for (ChessSquare castleSquare : castlePath) {
         if (square == castleSquare || square == rookSquare) {
-         canCastle = true;
+          canCastle = true;
         }
       }
 
       for (ChessSquare castleSquare : castlePath) {
         for (Piece piece : chess.getPlayer(enemyChessColor).getAlivePieces()) {
-          int squareDistanceFromKing = Math.abs(
-              currentSquare.getXCoordinate() - castleSquare.getXCoordinate());
+          int squareDistanceFromKing =
+              Math.abs(currentSquare.getXCoordinate() - castleSquare.getXCoordinate());
           if (squareDistanceFromKing <= 2 && piece.isMoveLegal(castleSquare, chess)) {
             canCastle = false;
           }
@@ -140,14 +143,14 @@ public class King extends Piece {
   private void castle(ChessSquare square, Chess chess) {
     List<Rook> rooks = new ArrayList<>();
     for (Piece piece : chess.getPlayer(chessColor).getAlivePieces()) {
-      if(piece instanceof Rook) {
+      if (piece instanceof Rook) {
         rooks.add((Rook) piece);
       }
     }
 
     boolean performed = false;
     for (Rook rook : rooks) {
-      if(canCastleWithRook(square, rook, chess) && !performed) {
+      if (canCastleWithRook(square, rook, chess) && !performed) {
         ChessSquare kingSquare = currentSquare;
         ChessSquare rookSquare = rook.getCurrentSquare();
 
@@ -156,8 +159,14 @@ public class King extends Piece {
         int rookXCoordinate = rookSquare.getXCoordinate();
         int directionFactor = kingXCoordinate - rookXCoordinate > 0 ? 1 : -1;
 
-        ChessSquare newKingSquare = chess.getBoard().getSquareByCords(kingXCoordinate - 2 * directionFactor, kingYCoordinate);
-        ChessSquare newRookSquare = chess.getBoard().getSquareByCords(kingXCoordinate - 1 * directionFactor, kingYCoordinate);
+        ChessSquare newKingSquare =
+            chess
+                .getBoard()
+                .getSquareByCords(kingXCoordinate - 2 * directionFactor, kingYCoordinate);
+        ChessSquare newRookSquare =
+            chess
+                .getBoard()
+                .getSquareByCords(kingXCoordinate - 1 * directionFactor, kingYCoordinate);
 
         kingSquare.removePiece();
         rookSquare.removePiece();
@@ -174,12 +183,11 @@ public class King extends Piece {
         performed = true;
       }
     }
-
   }
 
   /**
-   * Checks whether a basic move (non-castling) is valid for the king.
-   * The king can move one square in any direction.
+   * Checks whether a basic move (non-castling) is valid for the king. The king can move one square
+   * in any direction.
    *
    * @param square the target square
    * @return {@code true} if the move is possible, {@code false} otherwise
@@ -200,13 +208,13 @@ public class King extends Piece {
    */
   @Override
   public boolean stopsCheck(ChessSquare square, Chess chess) {
-    ChessColor enemyChessColor = chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
+    ChessColor enemyChessColor =
+        chessColor == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE;
 
     for (Piece enemyPiece : chess.getPlayer(enemyChessColor).getAlivePieces()) {
       if (enemyPiece.threatens(square, chess) && !square.hasPiece()) {
         return false;
-      }
-      else if(enemyPiece.threatens(square, chess) && square.hasPiece()) {
+      } else if (enemyPiece.threatens(square, chess) && square.hasPiece()) {
         return false;
       }
     }
@@ -238,19 +246,18 @@ public class King extends Piece {
   }
 
   /**
-   * Moves the king to the specified square if the move is legal.
-   * If castling is legal, performs castling instead.
+   * Moves the king to the specified square if the move is legal. If castling is legal, performs
+   * castling instead.
    *
    * @param square the destination square
    * @param chess the current game state
    */
   @Override
   public void move(ChessSquare square, Chess chess) {
-    if(isMoveLegal(square, chess)) {
+    if (isMoveLegal(square, chess)) {
       super.move(square, chess);
       hasMoved = true;
-    }
-    else if(isCastleLegal(square, chess)) {
+    } else if (isCastleLegal(square, chess)) {
       castle(square, chess);
     }
   }

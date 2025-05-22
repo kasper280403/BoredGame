@@ -1,10 +1,9 @@
-package edu.ntnu.idi.idattx2002.module.common.Player;
+package edu.ntnu.idi.idattx2002.module.common.player;
 
 /**
  * Represents an abstract player with a name and an icon identifier.
- * <p>
- * Subclasses should define specific player behavior or attributes.
- * </p>
+ *
+ * <p>Subclasses should define specific player behavior or attributes.
  *
  * @author Sindre Mjøs
  * @version 1.0
@@ -30,13 +29,13 @@ public abstract class Player {
   }
 
   private void verifyIconId(int iconId) {
-    if(iconId <= 0 || iconId > 4) {
+    if (iconId <= 0 || iconId > 4) {
       throw new IllegalArgumentException("IconIs must be between 1 and 4");
     }
   }
 
   private void verifyName(String name) {
-    if(name.isBlank() || name.contains(" ")) {
+    if (name.isBlank() || name.contains(" ")) {
       throw new IllegalArgumentException("Name cannot be empty or contain white spaces");
     }
   }
