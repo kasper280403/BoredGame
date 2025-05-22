@@ -33,7 +33,7 @@ public class BoardIO {
         filePath = "src/main/resources/ladderGameResources/ladderGamePositions/boardSetUp.csv";
     }
 
-    public static ArrayList<String> getBoards()  {
+    public ArrayList<String> getBoards()  {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/ladderGameResources/ladderGamePositions/boardSetUp.csv"));
             String line;

@@ -24,7 +24,8 @@ public class SnakesAndLaddersMenuController {
   }
 
   public List<String> getStartPositions() {
-    return BoardIO.getBoards();
+    BoardIO boardIO = new BoardIO(null);
+    return boardIO.getBoards();
   }
 
   public GameMenuView getView() {
