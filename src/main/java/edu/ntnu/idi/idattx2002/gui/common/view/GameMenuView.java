@@ -55,7 +55,7 @@ public abstract class GameMenuView extends VBox{
     userFeedback.setText(message);
   }
 
-  public ComboBox<String> getGameModeSelection() throws IlliegalGameArgumentException {
+  public ComboBox<String> getGameModeSelection() {
     if(gameModeSelection.getValue() == null) {
       throw new IlliegalGameArgumentException("No Gamemode is chosen");
     }

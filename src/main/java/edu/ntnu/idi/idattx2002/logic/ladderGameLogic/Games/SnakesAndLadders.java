@@ -1,6 +1,8 @@
 package edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Games;
 
+import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
 import edu.ntnu.idi.idattx2002.io.ladderGameIO.BoardIO;
+import edu.ntnu.idi.idattx2002.logic.common.Player.Player;
 import edu.ntnu.idi.idattx2002.logic.common.WinObserver;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Board.SnakesAndLaddersBoard;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
@@ -42,7 +44,7 @@ public class SnakesAndLadders {
     return board;
   }
 
-  private SnakesAndLaddersPlayer getPlayerToMove() {
+  public SnakesAndLaddersPlayer getPlayerToMove() {
     return players.get(playerToMoveID);
   }
 
@@ -86,7 +88,19 @@ public class SnakesAndLadders {
   }
 
   public void addPlayer(SnakesAndLaddersPlayer player) {
+    validatePlayer(player);
     players.put(player.getPlayerID(), player);
+  }
+
+  private void validatePlayer(SnakesAndLaddersPlayer player) {
+    for (SnakesAndLaddersPlayer existingPlayer : players.values()) {
+      if(player.getName() == existingPlayer.getName()) {
+        throw new IlliegalGameArgumentException("Two players can not have the same name");
+      }
+      if(player.getIconId() == existingPlayer.getIconId()) {
+        throw new IlliegalGameArgumentException("Two players can not have the same icon");
+      }
+    }
   }
 
   private void setActions(String gameID) {

@@ -14,6 +14,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -48,6 +49,10 @@ public class SnakesAndLaddersView extends HBox{
         return rightPane;
     }
 
+    public void setMoveInfo(String message) {
+        moveInfo.setText(message);
+    }
+
     private Button createPlayTurnButton() {
         Button playTurn = new Button("Throw Dice");
         PauseTransition pause = new PauseTransition(Duration.millis(2400));
@@ -61,7 +66,9 @@ public class SnakesAndLaddersView extends HBox{
     }
 
     private void createMoveInfo() {
-        moveInfo = new Text("MOVEINFO MOVEINFO MOVEINFO");
+        moveInfo = new Text();
+        moveInfo.setFont(new Font("Helvetica", 20));
+        moveInfo.setFill(Color.WHITE);
     }
 
     private void createLeftPane() {

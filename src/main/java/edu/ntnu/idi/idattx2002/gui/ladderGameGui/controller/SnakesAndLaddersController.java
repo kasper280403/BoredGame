@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idattx2002.gui.ladderGameGui.controller;
 
+import edu.ntnu.idi.idattx2002.exception.IlliegalGameArgumentException;
 import edu.ntnu.idi.idattx2002.gui.common.view.WinView;
 import edu.ntnu.idi.idattx2002.gui.ladderGameGui.view.SnakesAndLaddersMenuView;
 import edu.ntnu.idi.idattx2002.logic.ladderGameLogic.Dice.Dice;
@@ -53,6 +54,10 @@ public class SnakesAndLaddersController {
     }
   }
 
+  private void updateGameInfo() {
+    snakesAndLadderView.setMoveInfo("Player To Move: " + game.getPlayerToMove().getName());
+  }
+
   private void startGame() {
     snakesAndLadderView.show();
     diceView.show();
@@ -61,5 +66,6 @@ public class SnakesAndLaddersController {
 
   public void playTurn() {
     game.playTurn();
+    updateGameInfo();
   }
 }

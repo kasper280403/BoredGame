@@ -102,7 +102,7 @@ public class BoardController {
     }
 
     else {
-      sideBarView.setUserFeedback("To Move: " + chess.getPlayerToMove().getColor());
+      sideBarView.setUserFeedback("To Move: " + chess.getPlayerToMove().getName() + " (" + chess.getPlayerToMove().getColor() + ")");
     }
 
     if(autoFlip) {
