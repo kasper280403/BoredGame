@@ -135,9 +135,9 @@ public class Chess {
   public void playMove(Move move) {
     move.execute();
     if (move.successful()) {
-      checkForWin();
       updatePlayerToMove();
       updatePieceStatuses();
+      checkForWin();
     } else {
       throw new IllegalMoveException("Move is not legal");
     }
