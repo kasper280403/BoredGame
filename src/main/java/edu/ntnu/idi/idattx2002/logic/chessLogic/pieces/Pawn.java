@@ -53,8 +53,7 @@ public class Pawn extends Piece{
     if (!(pieceToCapture instanceof Pawn)) {
       return false;
     }
-
-    if(((Pawn) pieceToCapture).justMoved) {
+    if(((Pawn) pieceToCapture).getFirstMoved()) {
       return true;
     }
     else {
