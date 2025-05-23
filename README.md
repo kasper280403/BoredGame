@@ -16,7 +16,7 @@ Download the latest release from the [Releases](https://github.com/kasper280403/
 ```bash
 java --module-path /path/to/javafx-sdk-<version>/lib \
      --add-modules javafx.controls,javafx.fxml \
-     -jar BoredGame-1.0-SNAPSHOT-shaded.jar
+     -jar BoredGame-1.0-shaded.jar
 ```
 ---
 
